@@ -114,7 +114,7 @@ class UsernameService {
 
     if (decoded != null && decoded["records"] != null && decoded["records"]["crypto.NANO.address"] != null) {
       address = decoded["records"]["crypto.NANO.address"] as String?;
-      if (NanoAccounts.isValid(NanoAccountType.NANO, address!)) {
+      if (NanoAccounts.isValid(NanoAccountType.BANANO, address!)) {
         return address;
       }
     }
@@ -127,9 +127,9 @@ class UsernameService {
     if (pubKey.isEmpty) {
       return null;
     } else {
-      final String address = NanoAccounts.createAccount(NanoAccountType.NANO, pubKey);
+      final String address = NanoAccounts.createAccount(NanoAccountType.BANANO, pubKey);
       // Validating address
-      if (NanoAccounts.isValid(NanoAccountType.NANO, address)) {
+      if (NanoAccounts.isValid(NanoAccountType.BANANO, address)) {
         return address;
       } else {
         return null;
@@ -375,7 +375,7 @@ class UsernameService {
       final ReceivableResponseItem? item = receivableBlocks[hash];
 
       String stateHash = NanoBlocks.computeStateHash(
-        NanoAccountType.NANO,
+        NanoAccountType.BANANO,
         A3Account,
         "0",
         representativeEncodedUsername,

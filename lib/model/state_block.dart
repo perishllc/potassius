@@ -112,7 +112,7 @@ class StateBlock {
     if (balance == null) {
       return null;
     }
-    hash = NanoBlocks.computeStateHash(NanoAccountType.NANO, account!, previous!, representative!, BigInt.parse(balance!), link!);
+    hash = NanoBlocks.computeStateHash(NanoAccountType.BANANO, account!, previous!, representative!, BigInt.parse(balance!), link!);
     signature = NanoSignatures.signBlock(hash!, privateKey!);
     return signature;
   }

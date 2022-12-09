@@ -2226,7 +2226,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                             child: Container(
                               margin: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                               child: Text(
-                                NonTranslatable.nano,
+                                NonTranslatable.BANANO,
                                 textAlign: TextAlign.center,
                                 style: AppStyles.textStyleTransactionWelcome(context),
                               ),

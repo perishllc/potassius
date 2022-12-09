@@ -10,7 +10,7 @@ import 'package:wallet_flutter/service_locator.dart';
 
 dynamic uriParser(String value) {
   String? finAmount;
-  final String? finAddress = NanoAccounts.findAccountInString(NanoAccountType.NANO, value.toLowerCase().replaceAll("\n", ""));
+  final String? finAddress = NanoAccounts.findAccountInString(NanoAccountType.BANANO, value.toLowerCase().replaceAll("\n", ""));
   PayItem? finPayItem;
   AuthItem? finAuthItem;
 
@@ -162,12 +162,12 @@ class Address {
     if (address == null) {
       return false;
     }
-    return NanoAccounts.isValid(NanoAccountType.NANO, address!);
+    return NanoAccounts.isValid(NanoAccountType.BANANO, address!);
   }
 
   void _parseAddressString(String? value) {
     if (value != null) {
-      address = NanoAccounts.findAccountInString(NanoAccountType.NANO, value.toLowerCase().replaceAll("\n", ""));
+      address = NanoAccounts.findAccountInString(NanoAccountType.BANANO, value.toLowerCase().replaceAll("\n", ""));
       final List<String> split = value.split(":");
       if (split.length > 1) {
         final Uri? uri = Uri.tryParse(value);
