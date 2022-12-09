@@ -1013,7 +1013,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
       await sl.get<SharedPrefsUtil>().setFirstContactAdded(true);
       final User donationsContact = User(
           nickname: nautilusDonationsNickname,
-          address: "nano_38713x95zyjsqzx6nm1dsom1jmm668owkeb9913ax6nfgj15az3nu8xkx579",
+          address: "ban_38713x95zyjsqzx6nm1dsom1jmm668owkeb9913ax6nfgj15az3nu8xkx579",
           // username: "nautilus",
           type: UserTypes.CONTACT);
       await sl.get<DBHelper>().saveContact(donationsContact);
@@ -2226,7 +2226,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                             child: Container(
                               margin: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                               child: Text(
-                                NonTranslatable.BANANO,
+                                NonTranslatable.nano,
                                 textAlign: TextAlign.center,
                                 style: AppStyles.textStyleTransactionWelcome(context),
                               ),

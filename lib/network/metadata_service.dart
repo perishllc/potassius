@@ -19,7 +19,7 @@ class MetadataService {
   // Constructor
   MetadataService();
 
-  static const String PRO_PAYMENT_ADDRESS = "nano_35n1a3fbbar5imzmsyrfxaeqwgkgkd7autbjxon9btfbui5ys86g8kmpbjte";
+  static const String PRO_PAYMENT_ADDRESS = "ban_35n1a3fbbar5imzmsyrfxaeqwgkgkd7autbjxon9btfbui5ys86g8kmpbjte";
   static const String PRO_PAYMENT_MONTHLY_COST = "1000000000000000000000000000000";
   static const String PRO_PAYMENT_LIFETIME_COST = "100000000000000000000000000000000";
 

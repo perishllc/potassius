@@ -71,7 +71,7 @@ class _RegisterNanoToUsernameScreenState extends State<RegisterNanoToUsernameScr
       //     // _addressValidAndUnfocused = false;
       //   });
       //   _requestAddressController.selection = TextSelection.fromPosition(TextPosition(offset: _requestAddressController.text.length));
-      //   if (_requestAddressController.text.length > 0 && !_requestAddressController.text.startsWith("nano_")) {
+      //   if (_requestAddressController.text.length > 0 && !_requestAddressController.text.startsWith(ban_")) {
       //     if (_requestAddressController.text.startsWith("@")) {
       //       sl.get<DBHelper>().getUsersWithNameLike(_requestAddressController.text.substring(1)).then((userList) {
       //         setState(() {
@@ -503,7 +503,7 @@ class _RegisterNanoToUsernameScreenState extends State<RegisterNanoToUsernameScr
         onChanged: (String text) {
           final bool isUser = text.startsWith("@");
           final bool isFavorite = text.startsWith("★");
-          final bool isNano = text.startsWith("nano_");
+          final bool isNano = text.startsWith("ban_");
 
           // prevent spaces:
           if (text.contains(" ")) {
@@ -528,16 +528,16 @@ class _RegisterNanoToUsernameScreenState extends State<RegisterNanoToUsernameScr
             _usernameController!.selection = TextSelection.fromPosition(TextPosition(offset: _usernameController!.text.length));
           }
 
-          if (text.isNotEmpty && text.startsWith("@nano_")) {
+          if (text.isNotEmpty && text.startsWith("@ban_")) {
             setState(() {
               // remove the @ from the beginning of the string:
-              _usernameController!.text = text.replaceFirst("@nano_", "nano_");
+              _usernameController!.text = text.replaceFirst("@ban_", "ban_");
               _usernameController!.selection = TextSelection.fromPosition(TextPosition(offset: _usernameController!.text.length));
             });
           }
 
           // check if it's a real nano address:
-          // bool isUser = !text.startsWith("nano_") && !text.startsWith("★");
+          // bool isUser = !text.startsWith(ban_") && !text.startsWith("★");
           // if (text.length == 0) {
           //   setState(() {
           //     _isUser = false;

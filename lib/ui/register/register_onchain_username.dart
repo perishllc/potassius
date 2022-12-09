@@ -312,7 +312,7 @@ class _RegisterOnchainUsernameScreenState extends State<RegisterOnchainUsernameS
         onChanged: (String text) {
           final bool isUser = text.startsWith("@");
           final bool isFavorite = text.startsWith("★");
-          final bool isNano = text.startsWith("nano_");
+          final bool isNano = text.startsWith("ban_");
 
           // prevent spaces:
           if (text.contains(" ")) {
@@ -337,10 +337,10 @@ class _RegisterOnchainUsernameScreenState extends State<RegisterOnchainUsernameS
             _usernameController!.selection = TextSelection.fromPosition(TextPosition(offset: _usernameController!.text.length));
           }
 
-          if (text.isNotEmpty && text.startsWith("@nano_")) {
+          if (text.isNotEmpty && text.startsWith("@ban_")) {
             setState(() {
               // remove the @ from the beginning of the string:
-              _usernameController!.text = text.replaceFirst("@nano_", "nano_");
+              _usernameController!.text = text.replaceFirst("@ban_", "ban_");
               _usernameController!.selection = TextSelection.fromPosition(TextPosition(offset: _usernameController!.text.length));
             });
           }

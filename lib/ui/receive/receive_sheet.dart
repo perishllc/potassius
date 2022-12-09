@@ -184,7 +184,7 @@ class _ReceiveSheetState extends State<ReceiveSheet> {
           _addressStyle = AddressStyle.TEXT60;
         });
         _addressController!.selection = TextSelection.fromPosition(TextPosition(offset: _addressController!.text.length));
-        if (_addressController!.text.isNotEmpty && _addressController!.text.length > 1 && !_addressController!.text.startsWith("nano_")) {
+        if (_addressController!.text.isNotEmpty && _addressController!.text.length > 1 && !_addressController!.text.startsWith("ban_")) {
           final String formattedAddress = SendSheetHelpers.stripPrefixes(_addressController!.text);
           if (_addressController!.text != formattedAddress) {
             setState(() {
@@ -1118,7 +1118,7 @@ class _ReceiveSheetState extends State<ReceiveSheet> {
     final bool isUser = _addressController!.text.startsWith("@") || _addressController!.text.startsWith("#");
     final bool isFavorite = _addressController!.text.startsWith("★");
     final bool isDomain = _addressController!.text.contains(".") || _addressController!.text.contains(r"$");
-    final bool isNano = _addressController!.text.startsWith("nano_");
+    final bool isNano = _addressController!.text.startsWith("ban_");
     // final bool isPhoneNumber = _isPhoneNumber(_addressController!.text);
     if (_addressController!.text.trim().isEmpty) {
       isValid = false;
@@ -1176,7 +1176,7 @@ class _ReceiveSheetState extends State<ReceiveSheet> {
   //*******************************************************//
   Widget getEnterAmountContainer() {
     double margin = 200;
-    if (_addressController!.text.startsWith("nano_")) {
+    if (_addressController!.text.startsWith("ban_")) {
       if (_addressController!.text.length > 24) {
         margin += 15;
       }
@@ -1377,7 +1377,7 @@ class _ReceiveSheetState extends State<ReceiveSheet> {
           bool isUser = false;
           final bool isDomain = text.contains(".") || text.contains(r"$");
           final bool isFavorite = text.startsWith("★");
-          final bool isNano = text.startsWith("nano_");
+          final bool isNano = text.startsWith("ban_");
 
           // prevent spaces:
           if (text.contains(" ")) {
@@ -1404,7 +1404,7 @@ class _ReceiveSheetState extends State<ReceiveSheet> {
             isUser = true;
           }
 
-          if (text.isNotEmpty && text.startsWith("nano_")) {
+          if (text.isNotEmpty && text.startsWith("ban_")) {
             isUser = false;
           }
 
@@ -1413,7 +1413,7 @@ class _ReceiveSheetState extends State<ReceiveSheet> {
           }
 
           // check if it's a real nano address:
-          // bool isUser = !text.startsWith("nano_") && !text.startsWith("★");
+          // bool isUser = !text.startsWith("ban_") && !text.startsWith("★");
           if (text.isEmpty) {
             setState(() {
               _isUser = false;
@@ -1487,7 +1487,7 @@ class _ReceiveSheetState extends State<ReceiveSheet> {
   //*******************************************************//
   Widget getEnterMemoContainer() {
     double margin = 285;
-    if (_addressController!.text.startsWith("nano_")) {
+    if (_addressController!.text.startsWith("ban_")) {
       if (_addressController!.text.length > 24) {
         margin += 10;
       }
