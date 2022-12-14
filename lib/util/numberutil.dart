@@ -4,7 +4,7 @@ import 'package:decimal/decimal.dart';
 class NumberUtil {
   static const int maxDecimalDigits = 6; // Max digits after decimal
   static BigInt rawPerNano = BigInt.parse("1000000000000000000000000000000");
-  static BigInt rawPerNyano = BigInt.parse("1000000000000000000000000");
+  static BigInt rawPerNyano = BigInt.parse("100000000000000000000000000000");
   static BigInt rawPerXMR = BigInt.parse("1000000000000");
   static BigInt convertXMRtoNano = BigInt.parse("1000000000000000000");
   // static BigInt convertXMRtoNano = BigInt.parse("1000000000000000000000000000");

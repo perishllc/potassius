@@ -29,8 +29,8 @@ String? formatAddress(String? address) {
   if (address == null) {
     return null;
   }
-  // nano mode:
-  return "nano_${lowerStripAddress(address)}";
+  // banano mode:
+  return "ban_${lowerStripAddress(address)}";
 }
 
 @JsonSerializable()

@@ -809,8 +809,8 @@ class StateContainerState extends State<StateContainer> {
     // add the donations contact:
     await sl.get<SharedPrefsUtil>().setFirstContactAdded(true);
     final User donationsContact = User(
-        nickname: "NautilusDonations",
-        address: "nano_38713x95zyjsqzx6nm1dsom1jmm668owkeb9913ax6nfgj15az3nu8xkx579",
+        nickname: "PotassiusDonations",
+        address: "ban_38713x95zyjsqzx6nm1dsom1jmm668owkeb9913ax6nfgj15az3nu8xkx579",
         type: UserTypes.CONTACT);
     await sl.get<DBHelper>().saveContact(donationsContact);
 
@@ -904,7 +904,7 @@ class StateContainerState extends State<StateContainer> {
   void setCurrencyMode(String currencyMode) {
     setState(() {
       this.currencyMode = currencyMode;
-      nyanoMode = this.currencyMode == CurrencyModeSetting(CurrencyModeOptions.NYANO).getDisplayName();
+      nyanoMode = this.currencyMode == CurrencyModeSetting(CurrencyModeOptions.BANANO).getDisplayName();
     });
   }
 

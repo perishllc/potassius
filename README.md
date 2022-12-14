@@ -1,8 +1,8 @@
-# Nautilus Wallet
+# Potassius Wallet
 
 ![Cover](/assets/banner.png)
 
-### Feature Packed NANO Wallet
+### Potassium Packed BANANO Wallet
 
 <a href="https://nautilus.io/promo">
    <img src="https://imagedelivery.net/uA65-M4gr037oB0C4RNdvw/c6fef9c3-dc48-4973-8303-c4d35e655d00/public" width="200">

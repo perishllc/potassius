@@ -317,7 +317,7 @@ class _AddWatchOnlyAccountSheetState extends State<AddWatchOnlyAccountSheet> {
           isUser = true;
         }
 
-        if (text.isNotEmpty && text.startsWith("nano_")) {
+        if (text.isNotEmpty && text.startsWith("ban_")) {
           isUser = false;
         }
 

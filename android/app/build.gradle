@@ -38,7 +38,7 @@ android {
     compileSdkVersion 33
 
     defaultConfig {
-        applicationId "co.perish.nautiluswallet"
+        applicationId "co.perish.potassius"
         minSdkVersion 21
         targetSdkVersion 33
         multiDexEnabled true

@@ -172,8 +172,8 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
     minLaunches: 5,
     remindDays: 7,
     remindLaunches: 5,
-    googlePlayIdentifier: 'co.perish.nautiluswallet',
-    appStoreIdentifier: '1615775960',
+    googlePlayIdentifier: 'co.perish.potassius',
+    // appStoreIdentifier: 'TODO',
   );
 
   // confetti:
@@ -1006,7 +1006,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
   Future<void> _addSampleContact() async {
     final bool contactAdded = await sl.get<SharedPrefsUtil>().getFirstContactAdded();
     if (!contactAdded) {
-      const String nautilusDonationsNickname = "NautilusDonations";
+      const String nautilusDonationsNickname = "PotassiusDonations";
       await sl.get<SharedPrefsUtil>().setFirstContactAdded(true);
       final User donationsContact = User(
           nickname: nautilusDonationsNickname,

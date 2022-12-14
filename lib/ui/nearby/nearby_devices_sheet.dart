@@ -161,7 +161,7 @@ class NearbyDevicesSheetState extends State<NearbyDevicesSheet> {
                               ),
                             ),
                             TextSpan(
-                              text: (StateContainer.of(context).nyanoMode) ? (" nyano)") : (" NANO)"),
+                              text: (StateContainer.of(context).nyanoMode) ? (" banano)") : (" NANO)"),
                               style: TextStyle(
                                 color: StateContainer.of(context).curTheme.primary60,
                                 fontSize: 14.0,

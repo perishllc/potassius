@@ -337,7 +337,7 @@ class LowerCaseTextFormatter extends TextInputFormatter {
 
 TextSpan displayCurrencySymbol(BuildContext context, TextStyle textStyle, {String prefix = ""}) {
   if (StateContainer.of(context).nyanoMode) {
-    return TextSpan(text: "${prefix}y", style: textStyle.copyWith(decoration: TextDecoration.lineThrough));
+    return TextSpan(text: "${prefix}B", style: textStyle.copyWith(decoration: TextDecoration.lineThrough));
   }
 
   return TextSpan(text: "$prefixӾ", style: textStyle);

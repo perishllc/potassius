@@ -38,8 +38,8 @@ class AppWallet {
         unified = unified ?? [];
 
   // the default is randomized but in case the user is offline during account creation we still need a default:
-  static String defaultRepresentative = 'nano_38713x95zyjsqzx6nm1dsom1jmm668owkeb9913ax6nfgj15az3nu8xkx579';
-  static const String nautilusRepresentative = 'nano_38713x95zyjsqzx6nm1dsom1jmm668owkeb9913ax6nfgj15az3nu8xkx579';
+  static String defaultRepresentative = 'ban_38713x95zyjsqzx6nm1dsom1jmm668owkeb9913ax6nfgj15az3nu8xkx579';
+  static const String nautilusRepresentative = 'ban_38713x95zyjsqzx6nm1dsom1jmm668owkeb9913ax6nfgj15az3nu8xkx579';
 
   bool loading; // Whether or not app is initially loading
   bool historyLoading; // Whether or not we have received initial account history response

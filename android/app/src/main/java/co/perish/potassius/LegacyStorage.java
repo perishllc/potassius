@@ -1,4 +1,4 @@
-package co.perish.nautiluswallet;
+package co.perish.potassius;
 
 import android.util.Base64;
 

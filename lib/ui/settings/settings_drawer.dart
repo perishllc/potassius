@@ -309,7 +309,7 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
             _curCurrencyModeSetting = CurrencyModeSetting(CurrencyModeOptions.NANO);
             break;
           case "NYANO":
-            _curCurrencyModeSetting = CurrencyModeSetting(CurrencyModeOptions.NYANO);
+            _curCurrencyModeSetting = CurrencyModeSetting(CurrencyModeOptions.BANANO);
             break;
         }
       });
@@ -394,7 +394,6 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
   StreamSubscription<TransferCompleteEvent>? _transferCompleteSub;
   StreamSubscription<NotificationSettingChangeEvent>? _notificationSettingChangeSub;
   StreamSubscription<ContactsSettingChangeEvent>? _contactsSettingChangeSub;
-  StreamSubscription<XMREvent>? _xmrSub;
 
   void _registerBus() {
     // Ready to go to transfer confirm
@@ -428,15 +427,6 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
       setState(() {
         _curContactsSetting = event.isOn ? ContactsSetting(ContactsOptions.ON) : ContactsSetting(ContactsOptions.OFF);
       });
-    });
-    // xmr:
-    _xmrSub = EventTaxiImpl.singleton().registerTo<XMREvent>().listen((XMREvent event) {
-      if (event.type == "set_restore_height") {
-        if (!mounted) return;
-        setState(() {
-          _curXmrRestoreHeight = int.parse(event.message);
-        });
-      }
     });
   }
 
@@ -750,70 +740,6 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
     await sl.get<SharedPrefsUtil>().setUnopenedWarningOn(picked == ContactsOptions.ON);
     setState(() {
       _curUnopenedWarningSetting = ContactsSetting(picked);
-    });
-  }
-
-  Future<void> _showMoneroDialog() async {
-    final ContactsOptions? picked = await showDialog<ContactsOptions>(
-        context: context,
-        barrierColor: StateContainer.of(context).curTheme.barrier,
-        builder: (BuildContext context) {
-          return AppSimpleDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  Z.of(context).showMoneroHeader,
-                  style: AppStyles.textStyleDialogHeader(context),
-                ),
-                AppDialogs.infoButton(
-                  context,
-                  () {
-                    AppDialogs.showInfoDialog(context, Z.of(context).showMoneroHeader, Z.of(context).showMoneroInfo);
-                  },
-                )
-              ],
-            ),
-            children: <Widget>[
-              AppSimpleDialogOption(
-                onPressed: () {
-                  Navigator.pop(context, ContactsOptions.ON);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Text(
-                    Z.of(context).onStr,
-                    style: AppStyles.textStyleDialogOptions(context),
-                  ),
-                ),
-              ),
-              AppSimpleDialogOption(
-                onPressed: () {
-                  Navigator.pop(context, ContactsOptions.OFF);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Text(
-                    Z.of(context).off,
-                    style: AppStyles.textStyleDialogOptions(context),
-                  ),
-                ),
-              ),
-            ],
-          );
-        });
-
-    if (picked == null) {
-      return;
-    }
-
-    final bool enabled = picked == ContactsOptions.ON;
-    await sl.get<SharedPrefsUtil>().setXmrEnabled(enabled);
-    if (!mounted) return;
-    StateContainer.of(context).setXmrEnabled(enabled);
-    setState(() {
-      _curXmrEnabledSetting = ContactsSetting(picked);
     });
   }
 
@@ -2448,15 +2374,15 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                                 fontWeight: FontWeight.w100,
                                 color: StateContainer.of(context).curTheme.text60)),
                       ),
-                      Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
-                      AppSettings.buildSettingsListItemDoubleLine(context, Z.of(context).showMoneroHeader,
-                          _curXmrEnabledSetting, AppIcons.money_bill_alt, _showMoneroDialog),
-                      Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
-                      AppSettings.buildSettingsListItemDoubleLine(
-                          context, Z.of(context).setXMRRestoreHeight, null, AppIcons.backupseed,
-                          overrideSubtitle: _curXmrRestoreHeight.toString(), () async {
-                        Sheets.showAppHeightEightSheet(context: context, widget: SetXMRRestoreHeightSheet());
-                      }),
+                      // Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
+                      // AppSettings.buildSettingsListItemDoubleLine(context, Z.of(context).showMoneroHeader,
+                      //     _curXmrEnabledSetting, AppIcons.money_bill_alt, _showMoneroDialog),
+                      // Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
+                      // AppSettings.buildSettingsListItemDoubleLine(
+                      //     context, Z.of(context).setXMRRestoreHeight, null, AppIcons.backupseed,
+                      //     overrideSubtitle: _curXmrRestoreHeight.toString(), () async {
+                      //   Sheets.showAppHeightEightSheet(context: context, widget: SetXMRRestoreHeightSheet());
+                      // }),
                       // Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
                       // AppSettings.buildSettingsListItemDoubleLine(
                       //     context, Z.of(context).showContacts, _curContactsSetting, AppIcons.addcontact, _contactsDialog),

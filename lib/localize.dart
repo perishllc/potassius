@@ -118,7 +118,7 @@ class NonTranslatable {
   }
 
   static String get nautilus {
-    return "Nautilus";
+    return "Potassius";
   }
 
   static String get nano {

@@ -167,20 +167,10 @@ class DBHelper {
     await addCustomNode(
       Node(
         index: 0,
-        name: "Perish Node",
+        name: "Kalium Node",
         selected: true,
-        http_url: "https://nautilus.perish.co/api",
-        ws_url: "wss://nautilus.perish.co",
-      ),
-      dbClient: db,
-    );
-    await addCustomNode(
-      Node(
-        index: 1,
-        name: "Natrium Node",
-        selected: false,
-        http_url: "https://testapp.natrium.io/api",
-        ws_url: "wss://testapp.natrium.io",
+        http_url: "https://kaliumapi.appditto.com/api",
+        ws_url: "wss://kaliumapi.appditto.com",
       ),
       dbClient: db,
     );
@@ -221,20 +211,10 @@ class DBHelper {
       await addCustomNode(
         Node(
           index: 0,
-          name: "Perish Node",
+          name: "Kalium Node",
           selected: true,
-          http_url: "https://nautilus.perish.co/api",
-          ws_url: "wss://nautilus.perish.co",
-        ),
-        dbClient: db,
-      );
-      await addCustomNode(
-        Node(
-          index: 1,
-          name: "Natrium Node",
-          selected: false,
-          http_url: "https://testapp.natrium.io/api",
-          ws_url: "wss://testapp.natrium.io",
+          http_url: "https://kaliumapi.appditto.com/api",
+          ws_url: "wss://kaliumapi.appditto.com",
         ),
         dbClient: db,
       );
@@ -256,7 +236,7 @@ class DBHelper {
   }
 
   String lowerStripAddress(String address) {
-    return address.toLowerCase().replaceAll("xrb_", "").replaceAll("nano_", "");
+    return address.toLowerCase().replaceAll("xrb_", "").replaceAll("ban_", "");
   }
 
   String? formatAddress(String? address) {
