@@ -129,7 +129,7 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
   NyaniconSetting _curNyaniconSetting = NyaniconSetting(NyaniconOptions.ON);
   FundingSetting _curFundingSetting = FundingSetting(FundingOptions.SHOW);
   MinRawSetting _curMinRawSetting = MinRawSetting(MinRawOptions.OFF);
-  CurrencyModeSetting _curCurrencyModeSetting = CurrencyModeSetting(CurrencyModeOptions.NANO);
+  CurrencyModeSetting _curCurrencyModeSetting = CurrencyModeSetting(CurrencyModeOptions.BANANO);
   UnlockSetting _curUnlockSetting = UnlockSetting(UnlockOption.NO);
   LockTimeoutSetting _curTimeoutSetting = LockTimeoutSetting(LockTimeoutOption.ONE);
   ThemeSetting _curThemeSetting = ThemeSetting(ThemeOptions.NAUTILUS);
@@ -2392,9 +2392,9 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                       Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
                       AppSettings.buildSettingsListItemDoubleLine(context, Z.of(context).showFunding,
                           _curFundingSetting, AppIcons.money_bill_wave, _fundingDialog),
-                      Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
-                      AppSettings.buildSettingsListItemDoubleLine(context, Z.of(context).currencyMode,
-                          _curCurrencyModeSetting, AppIcons.currency, _currencyModeDialog),
+                      // Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
+                      // AppSettings.buildSettingsListItemDoubleLine(context, Z.of(context).currencyMode,
+                      //     _curCurrencyModeSetting, AppIcons.currency, _currencyModeDialog),
                       Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
                       AppSettings.buildSettingsListItemDoubleLine(context, Z.of(context).receiveMinimum,
                           _curMinRawSetting, AppIcons.less_than_equal, _minRawDialog),
