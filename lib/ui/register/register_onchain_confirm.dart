@@ -235,9 +235,6 @@ class _RegisterOnchainConfirmSheetState extends State<RegisterOnchainConfirmShee
       // sleep for a while before updating the database:
       await Future<dynamic>.delayed(const Duration(milliseconds: 2000));
 
-      // force update the database:
-      // await StateContainer.of(context).checkAndUpdateNanoToUsernames(true);
-
       // refresh the wallet by just updating to the same account:
       await StateContainer.of(context).updateWallet(account: StateContainer.of(context).selectedAccount!);
 
@@ -247,6 +244,8 @@ class _RegisterOnchainConfirmSheetState extends State<RegisterOnchainConfirmShee
 
       Sheets.showAppHeightNineSheet(context: context, closeOnTap: true, removeUntilHome: true, widget: RegisterOnchainCompleteSheet(username: widget.username));
     } catch (e) {
+
+      print(e.toString());
       // Send failed
       if (animationOpen) {
         Navigator.of(context).pop();

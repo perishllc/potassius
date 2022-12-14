@@ -1,15 +1,40 @@
 brew install ninja rustup-init llvm
 rustup-init -y
 source "$HOME/.cargo/env"
-cargo install cargo-xcode
-cargo install cargo-ndk
-cargo install flutter_rust_bridge_codegen
+cargo install cargo-lipo cargo-xcode cargo-ndk flutter_rust_bridge_codegen cbindgen
 rustup target add \
     aarch64-linux-android \
-    armv7-linux-androideabi
+    armv7-linux-androideabi \
+    aarch64-apple-ios \
+    x86_64-apple-ios \
+    aarch64-apple-ios-sim
+flutter pub get
 
-flutter_rust_bridge_codegen --rust-input rust/src/username_registration.rs --dart-output lib/generated/rust/username_registration.dart --skip-deps-check
+# problem with c-output not being separate files:
+# flutter_rust_bridge_codegen --skip-deps-check \
+# --rust-input rust/src/username_registration.rs rust/src/counter.rs \
+# --dart-output lib/generated/rust/username_registration.dart lib/generated/rust/counter.dart \
+# --rust-output rust/src/username_registration_bridge.rs rust/src/counter_bridge.rs \
+# --class-name UsernameRegistration Counter \
+# --c-output ios/Runner/Generated/username_bridge.h ios/Runner/Generated/counter.h
+
+# flutter_rust_bridge_codegen --skip-deps-check \
+# --rust-input rust/src/counter.rs \
+# --dart-output lib/generated/rust/counter.dart \
+# --c-output ios/Runner/Generated/counter.h \
+# --rust-output rust/src/counter_generated.rs \
+# --class-name Counter
+
+flutter_rust_bridge_codegen --skip-deps-check \
+--rust-input rust/src/username_registration.rs \
+--dart-output lib/generated/rust/username_registration.dart \
+--c-output ios/Runner/Generated/username_registration.h \
+--rust-output rust/src/username_registration_generated.rs \
+--class-name UsernameRegistration
+
 cd rust
+cargo lipo
+# cp target/universal/debug/libperish.a ../ios/Runner
 cargo ndk -t arm64-v8a -t armeabi-v7a -o ../android/app/src/main/jniLibs build
 cd ..
 

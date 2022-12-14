@@ -36,8 +36,7 @@ class SharedPrefsUtil {
   static const String cur_language = 'fkalium_language_pref';
   static const String cur_theme = 'fkalium_theme_pref';
   static const String cur_explorer = 'fkalium_cur_explorer_pref';
-  static const String user_representative =
-      'fkalium_user_rep'; // For when non-opened accounts have set a representative
+  static const String user_representative = 'fkalium_user_rep'; // For when non-opened accounts have set a representative
   static const String firstcontact_added = 'fkalium_first_c_added';
   static const String notification_enabled = 'fkalium_notification_on';
   static const String contacts_enabled = 'fnautilus_contacts_on';
@@ -83,6 +82,13 @@ class SharedPrefsUtil {
   static const String pro_sub_status = 'fnautilus_pro_sub_status';
   // whether they should automatically renew:
   static const String pro_renew_active = 'fnautilus_pro_renew_active';
+
+  // RPC settings:
+  // static const String http_url = 'fnautilus_http_url';
+  // static const String ws_url = 'fnautilus_ws_url';
+  static const String node_index = 'fnautilus_node_index';
+
+
 
   // For plain-text data
   Future<void> set(String key, dynamic value) async {
@@ -608,6 +614,14 @@ class SharedPrefsUtil {
   //   }
   // }
 
+  Future<void> setNodeIndex(int nodeIndex) async {
+    return set(node_index, nodeIndex);
+  }
+
+  Future<int> getNodeIndex() async {
+    return await get(node_index, defaultValue: 0) as int;
+  }
+
   // For logging out
   Future<void> deleteAll() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -640,6 +654,7 @@ class SharedPrefsUtil {
     await prefs.remove(cur_theme);
     await prefs.remove(pro_sub_status);
     await prefs.remove(pro_renew_active);
+
     // don't remove this preference since it's annoying when you log out:
     // await prefs.remove(tracking_enabled);
     // remove the dismissals of any important alerts:
