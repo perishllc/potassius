@@ -208,6 +208,7 @@ class DBHelper {
       await db.execute(ACCOUNTS_ADD_WATCH_ONLY_COLUMN_SQL);
     }
     if (oldVersion == 8) {
+      await db.execute(NODES_SQL);
       await addCustomNode(
         Node(
           index: 0,
