@@ -59,7 +59,7 @@ class DefaultFirebaseOptions {
     projectId: 'nautilus-a7345',
     storageBucket: 'nautilus-a7345.appspot.com',
     iosClientId: '871480363204-bd20vmid7gk577hkioua0124o9g1ass5.apps.googleusercontent.com',
-    iosBundleId: 'co.perish.nautilus',
+    iosBundleId: 'co.perish.potassius',
   );
 
   static FirebaseOptions macos = FirebaseOptions(
@@ -69,6 +69,6 @@ class DefaultFirebaseOptions {
     projectId: 'nautilus-a7345',
     storageBucket: 'nautilus-a7345.appspot.com',
     iosClientId: '871480363204-2de9id8nj3eod5pip1g3l9erqvbjgahm.apps.googleusercontent.com',
-    iosBundleId: 'co.perish.nautiluswallet',
+    iosBundleId: 'co.perish.potassius',
   );
 }

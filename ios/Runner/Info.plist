@@ -44,7 +44,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>co.perish.nautilus</string>
+			<string>co.perish.potassius</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>nautilus</string>
