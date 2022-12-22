@@ -58,11 +58,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "addressOrUserMissing": MessageLookupByLibrary.simpleMessage(
             "Kérjük, adja meg felhasználónevét vagy címét"),
         "addressShare": MessageLookupByLibrary.simpleMessage("Megosztás"),
+        "advanced": MessageLookupByLibrary.simpleMessage("Fejlett"),
         "aliases": MessageLookupByLibrary.simpleMessage("Álnevek"),
         "amountGiftGreaterError": MessageLookupByLibrary.simpleMessage(
             "A megosztott összeg nem lehet nagyobb, mint az ajándékegyenleg"),
         "amountMissing":
             MessageLookupByLibrary.simpleMessage("Adjon meg egy összeget"),
+        "appWallet": MessageLookupByLibrary.simpleMessage("%1 Wallet"),
         "askSkipSetup": MessageLookupByLibrary.simpleMessage(
             "Észrevettük, hogy egy nanoelemet tartalmazó linkre kattintott. Szeretné kihagyni a beállítási folyamatot? Később mindig változtathatsz a dolgokon.\n\n Ha azonban van egy meglévő vetőmagja, amelyet importálni szeretne, válassza a nem lehetőséget."),
         "askTracking": MessageLookupByLibrary.simpleMessage(
@@ -320,6 +322,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("@coworker"),
         "exampleRecRecipientMessage":
             MessageLookupByLibrary.simpleMessage("Gáz Pénz"),
+        "exchangeCurrency": MessageLookupByLibrary.simpleMessage("Csere %2"),
         "exchangeNano": MessageLookupByLibrary.simpleMessage("Csere NANO"),
         "existingPasswordHint":
             MessageLookupByLibrary.simpleMessage("Írd be a jelenlegi jelszót"),
@@ -360,6 +363,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "fundingBannerHeader": MessageLookupByLibrary.simpleMessage(
             "Finanszírozási szalaghirdetés"),
         "fundingHeader": MessageLookupByLibrary.simpleMessage("Finanszírozás"),
+        "getCurrency":
+            MessageLookupByLibrary.simpleMessage("Szerezze be a %2-t"),
         "getNano": MessageLookupByLibrary.simpleMessage("Szerezd meg a NANO-t"),
         "giftAlert": MessageLookupByLibrary.simpleMessage("Van egy ajándékod!"),
         "giftAlertEmpty": MessageLookupByLibrary.simpleMessage("Üres ajándék"),
@@ -628,6 +633,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Mindössze havi 1 NANO-ért feloldhatja a Nautilus Pro összes funkcióját."),
         "promotionalLink":
             MessageLookupByLibrary.simpleMessage("Ingyenes NANO"),
+        "purchaseCurrency":
+            MessageLookupByLibrary.simpleMessage("Vásároljon %2"),
         "purchaseNano": MessageLookupByLibrary.simpleMessage("Vásárlás Nano"),
         "qrInvalidAddress": MessageLookupByLibrary.simpleMessage(
             "QR code does not contain a valid destination"),
@@ -795,6 +802,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "settingsTransfer":
             MessageLookupByLibrary.simpleMessage("Load from Paper Wallet"),
         "share": MessageLookupByLibrary.simpleMessage("Részvény"),
+        "shareApp": MessageLookupByLibrary.simpleMessage("Megosztás %1"),
+        "shareAppText": MessageLookupByLibrary.simpleMessage(
+            "Nézze meg %1! Egy kiváló NANO mobil pénztárca!"),
         "shareLink": MessageLookupByLibrary.simpleMessage("Link megosztása"),
         "shareMessage":
             MessageLookupByLibrary.simpleMessage("Üzenet megosztása"),
@@ -827,6 +837,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "simplex": MessageLookupByLibrary.simpleMessage("Simplex"),
         "social": MessageLookupByLibrary.simpleMessage("Társadalmi"),
         "someone": MessageLookupByLibrary.simpleMessage("valaki"),
+        "spendCurrency": MessageLookupByLibrary.simpleMessage("Költés %2"),
         "spendNano": MessageLookupByLibrary.simpleMessage("Töltsön NANO-t"),
         "splitBill": MessageLookupByLibrary.simpleMessage("Split Bill"),
         "splitBillHeader": MessageLookupByLibrary.simpleMessage("Split A Bill"),
@@ -835,6 +846,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "splitBillInfoHeader":
             MessageLookupByLibrary.simpleMessage("Split Bill Info"),
         "splitBy": MessageLookupByLibrary.simpleMessage("Felosztás"),
+        "subsButton": MessageLookupByLibrary.simpleMessage("Előfizetések"),
         "subscribeButton": MessageLookupByLibrary.simpleMessage("Iratkozz fel"),
         "subscribeWithApple": MessageLookupByLibrary.simpleMessage(
             "Előfizetés az Apple Pay-en keresztül"),
@@ -921,6 +933,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "uptime": MessageLookupByLibrary.simpleMessage("Uptime"),
         "urlEmpty":
             MessageLookupByLibrary.simpleMessage("Kérjük, adjon meg egy URL-t"),
+        "useAppRep": MessageLookupByLibrary.simpleMessage("Használja a %1 Rep"),
+        "useCurrency": MessageLookupByLibrary.simpleMessage("Használja a %2"),
         "useNano": MessageLookupByLibrary.simpleMessage("Használj NANO-t"),
         "useNautilusRep":
             MessageLookupByLibrary.simpleMessage("Use Nautilus Rep"),

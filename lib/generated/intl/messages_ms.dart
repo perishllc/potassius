@@ -54,11 +54,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "addressOrUserMissing": MessageLookupByLibrary.simpleMessage(
             "Sila Masukkan Nama Pengguna atau Alamat"),
         "addressShare": MessageLookupByLibrary.simpleMessage("Kongsi"),
+        "advanced": MessageLookupByLibrary.simpleMessage("Maju"),
         "aliases": MessageLookupByLibrary.simpleMessage("Alias"),
         "amountGiftGreaterError": MessageLookupByLibrary.simpleMessage(
             "Jumlah Pisahan tidak boleh lebih besar daripada baki hadiah"),
         "amountMissing":
             MessageLookupByLibrary.simpleMessage("Sila masukkan jumlah"),
+        "appWallet": MessageLookupByLibrary.simpleMessage("% 1 Dompet"),
         "askSkipSetup": MessageLookupByLibrary.simpleMessage(
             "Kami mendapati anda mengklik pada pautan yang mengandungi beberapa nano, adakah anda ingin melangkau proses persediaan? Anda sentiasa boleh mengubah perkara kemudian.\n\n Jika anda mempunyai benih sedia ada yang anda ingin import walau bagaimanapun, anda harus memilih no."),
         "askTracking": MessageLookupByLibrary.simpleMessage(
@@ -311,6 +313,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("@coworker"),
         "exampleRecRecipientMessage":
             MessageLookupByLibrary.simpleMessage("Wang Gas"),
+        "exchangeCurrency": MessageLookupByLibrary.simpleMessage("Tukar % 2"),
         "exchangeNano": MessageLookupByLibrary.simpleMessage("Tukar NANO"),
         "existingPasswordHint":
             MessageLookupByLibrary.simpleMessage("Masukkan kata laluan semasa"),
@@ -353,6 +356,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fundingBannerHeader":
             MessageLookupByLibrary.simpleMessage("Sepanduk Pembiayaan"),
         "fundingHeader": MessageLookupByLibrary.simpleMessage("Pembiayaan"),
+        "getCurrency": MessageLookupByLibrary.simpleMessage("Dapatkan % 2"),
         "getNano": MessageLookupByLibrary.simpleMessage("Dapatkan NANO"),
         "giftAlert":
             MessageLookupByLibrary.simpleMessage("Anda mempunyai hadiah!"),
@@ -615,6 +619,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "proSubRequiredParagraph": MessageLookupByLibrary.simpleMessage(
             "Dengan hanya 1 NANO sebulan, anda boleh membuka kunci semua ciri Nautilus Pro."),
         "promotionalLink": MessageLookupByLibrary.simpleMessage("NANO percuma"),
+        "purchaseCurrency": MessageLookupByLibrary.simpleMessage("Beli % 2"),
         "purchaseNano": MessageLookupByLibrary.simpleMessage("Pembelian Nano"),
         "qrInvalidAddress": MessageLookupByLibrary.simpleMessage(
             "Kod QR tidak mengandungi destinasi yang sah"),
@@ -780,6 +785,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "settingsTransfer":
             MessageLookupByLibrary.simpleMessage("Muatkan dari Dompet Kertas"),
         "share": MessageLookupByLibrary.simpleMessage("Kongsi"),
+        "shareApp": MessageLookupByLibrary.simpleMessage("Kongsi % 1"),
+        "shareAppText": MessageLookupByLibrary.simpleMessage(
+            "Lihat % 1! Dompet mudah alih NANO terulung!"),
         "shareLink": MessageLookupByLibrary.simpleMessage("Kongsi Pautan"),
         "shareMessage": MessageLookupByLibrary.simpleMessage("Kongsi Mesej"),
         "shareNautilus":
@@ -810,6 +818,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "simplex": MessageLookupByLibrary.simpleMessage("Simplex"),
         "social": MessageLookupByLibrary.simpleMessage("sosial"),
         "someone": MessageLookupByLibrary.simpleMessage("seseorang"),
+        "spendCurrency": MessageLookupByLibrary.simpleMessage("Belanja % 2"),
         "spendNano": MessageLookupByLibrary.simpleMessage("Belanjakan NANO"),
         "splitBill": MessageLookupByLibrary.simpleMessage("Bil Pisah"),
         "splitBillHeader": MessageLookupByLibrary.simpleMessage("Pisahkan Bil"),
@@ -818,6 +827,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "splitBillInfoHeader":
             MessageLookupByLibrary.simpleMessage("Maklumat Bil Pisah"),
         "splitBy": MessageLookupByLibrary.simpleMessage("Dipisahkan Oleh"),
+        "subsButton": MessageLookupByLibrary.simpleMessage("Langganan"),
         "subscribeButton": MessageLookupByLibrary.simpleMessage("Langgan"),
         "subscribeWithApple":
             MessageLookupByLibrary.simpleMessage("Langgan melalui Apple Pay"),
@@ -904,6 +914,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "unread": MessageLookupByLibrary.simpleMessage("belum dibaca"),
         "uptime": MessageLookupByLibrary.simpleMessage("Uptime"),
         "urlEmpty": MessageLookupByLibrary.simpleMessage("Sila masukkan URL"),
+        "useAppRep": MessageLookupByLibrary.simpleMessage("Gunakan % 1 Rep"),
+        "useCurrency": MessageLookupByLibrary.simpleMessage("Gunakan % 2"),
         "useNano": MessageLookupByLibrary.simpleMessage("Gunakan NANO"),
         "useNautilusRep":
             MessageLookupByLibrary.simpleMessage("Use Nautilus Rep"),

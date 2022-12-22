@@ -59,11 +59,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "অনুগ্রহ করে একটি ব্যবহারকারীর নাম বা ঠিকানা লিখুন"),
         "addressShare":
             MessageLookupByLibrary.simpleMessage("ঠিকানা শেয়ার করুন"),
+        "advanced": MessageLookupByLibrary.simpleMessage("উন্নত"),
         "aliases": MessageLookupByLibrary.simpleMessage("ছদ্মনাম"),
         "amountGiftGreaterError": MessageLookupByLibrary.simpleMessage(
             "বিভক্ত পরিমাণ উপহার ব্যালেন্সের চেয়ে বেশি হতে পারে না"),
         "amountMissing":
             MessageLookupByLibrary.simpleMessage("অনুগ্রহ করে পরিমাণ লিখুন"),
+        "appWallet": MessageLookupByLibrary.simpleMessage("%1 ওয়ালেট"),
         "askSkipSetup": MessageLookupByLibrary.simpleMessage(
             "আমরা লক্ষ্য করেছি যে আপনি একটি লিঙ্কে ক্লিক করেছেন যাতে কিছু ন্যানো রয়েছে, আপনি কি সেটআপ প্রক্রিয়াটি এড়িয়ে যেতে চান? আপনি সবসময় পরে জিনিস পরিবর্তন করতে পারেন.\n\n যদি আপনার কাছে একটি বিদ্যমান বীজ থাকে যা আপনি আমদানি করতে চান তবে আপনাকে না নির্বাচন করা উচিত।"),
         "askTracking": MessageLookupByLibrary.simpleMessage(
@@ -316,6 +318,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("@coworker"),
         "exampleRecRecipientMessage":
             MessageLookupByLibrary.simpleMessage("গ্যাস টাকা"),
+        "exchangeCurrency": MessageLookupByLibrary.simpleMessage("বিনিময় %2"),
         "exchangeNano":
             MessageLookupByLibrary.simpleMessage("ন্যানো বিনিময় করুন"),
         "existingPasswordHint":
@@ -355,6 +358,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fundingBannerHeader":
             MessageLookupByLibrary.simpleMessage("ফান্ডিং ব্যানার"),
         "fundingHeader": MessageLookupByLibrary.simpleMessage("অর্থায়ন"),
+        "getCurrency": MessageLookupByLibrary.simpleMessage("%2 পান"),
         "getNano": MessageLookupByLibrary.simpleMessage("NANO পান"),
         "giftAlert":
             MessageLookupByLibrary.simpleMessage("তোমার কাছে একটা উপহার আছে!"),
@@ -620,6 +624,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "প্রতি মাসে মাত্র 1 NANO এর জন্য, আপনি Nautilus Pro এর সমস্ত বৈশিষ্ট্য আনলক করতে পারেন।"),
         "promotionalLink":
             MessageLookupByLibrary.simpleMessage("বিনামূল্যে ন্যানো"),
+        "purchaseCurrency": MessageLookupByLibrary.simpleMessage("ক্রয় %2"),
         "purchaseNano": MessageLookupByLibrary.simpleMessage("ন্যানো ক্রয়"),
         "qrInvalidAddress":
             MessageLookupByLibrary.simpleMessage("QR কোডে কোন বৈধ গন্তব্য নেই"),
@@ -790,6 +795,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "settingsTransfer":
             MessageLookupByLibrary.simpleMessage("পেপার ওয়ালেট থেকে লোড করুন"),
         "share": MessageLookupByLibrary.simpleMessage("শেয়ার করুন"),
+        "shareApp": MessageLookupByLibrary.simpleMessage("শেয়ার করুন %1"),
+        "shareAppText": MessageLookupByLibrary.simpleMessage(
+            "%1 দেখুন! একটি প্রিমিয়ার ন্যানো মোবাইল ওয়ালেট!"),
         "shareLink": MessageLookupByLibrary.simpleMessage("লিংক শেয়ার করুন"),
         "shareMessage":
             MessageLookupByLibrary.simpleMessage("বার্তা শেয়ার করুন"),
@@ -818,6 +826,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "simplex": MessageLookupByLibrary.simpleMessage("সিমপ্লেক্স"),
         "social": MessageLookupByLibrary.simpleMessage("সামাজিক"),
         "someone": MessageLookupByLibrary.simpleMessage("কেউ"),
+        "spendCurrency": MessageLookupByLibrary.simpleMessage("%2 খরচ করুন"),
         "spendNano": MessageLookupByLibrary.simpleMessage("NANO খরচ করুন"),
         "splitBill": MessageLookupByLibrary.simpleMessage("বিভক্ত বিল"),
         "splitBillHeader":
@@ -827,6 +836,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "splitBillInfoHeader":
             MessageLookupByLibrary.simpleMessage("বিভক্ত বিল তথ্য"),
         "splitBy": MessageLookupByLibrary.simpleMessage("দ্বারা বিভক্ত"),
+        "subsButton": MessageLookupByLibrary.simpleMessage("সদস্যতা"),
         "subscribeButton": MessageLookupByLibrary.simpleMessage("সাবস্ক্রাইব"),
         "subscribeWithApple": MessageLookupByLibrary.simpleMessage(
             "অ্যাপল পে এর মাধ্যমে সদস্যতা নিন"),
@@ -913,6 +923,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "unread": MessageLookupByLibrary.simpleMessage("অপঠিত"),
         "uptime": MessageLookupByLibrary.simpleMessage("আপটাইম"),
         "urlEmpty": MessageLookupByLibrary.simpleMessage("একটি URL লিখুন"),
+        "useAppRep":
+            MessageLookupByLibrary.simpleMessage("%1 প্রতিনিধি ব্যবহার করুন"),
+        "useCurrency": MessageLookupByLibrary.simpleMessage("%2 ব্যবহার করুন"),
         "useNano": MessageLookupByLibrary.simpleMessage("NANO ব্যবহার করুন"),
         "useNautilusRep":
             MessageLookupByLibrary.simpleMessage("Use Nautilus Rep"),

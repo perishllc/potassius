@@ -270,6 +270,16 @@ class Z {
     );
   }
 
+  /// `Advanced`
+  String get advanced {
+    return Intl.message(
+      'Advanced',
+      name: 'advanced',
+      desc: 'settings_advanced_header',
+      args: [],
+    );
+  }
+
   /// `Aliases`
   String get aliases {
     return Intl.message(
@@ -300,6 +310,16 @@ class Z {
     );
   }
 
+  /// `%1 Wallet`
+  String get appWallet {
+    return Intl.message(
+      '%1 Wallet',
+      name: 'appWallet',
+      desc: 'app_wallet',
+      args: [],
+    );
+  }
+
   /// `Asked`
   String get asked {
     return Intl.message(
@@ -310,10 +330,10 @@ class Z {
     );
   }
 
-  /// `We noticed you clicked on a link that contains some nano, would you like to skip the setup process? You can always change things later.\n\n If you have an existing seed that you want to import however, you should select no.`
+  /// `We noticed you clicked on a link that contains some %2, would you like to skip the setup process? You can always change things later.\n\n If you have an existing seed that you want to import however, you should select no.`
   String get askSkipSetup {
     return Intl.message(
-      'We noticed you clicked on a link that contains some nano, would you like to skip the setup process? You can always change things later.\n\n If you have an existing seed that you want to import however, you should select no.',
+      'We noticed you clicked on a link that contains some %2, would you like to skip the setup process? You can always change things later.\n\n If you have an existing seed that you want to import however, you should select no.',
       name: 'askSkipSetup',
       desc: 'prompt_skip_setup',
       args: [],
@@ -616,16 +636,6 @@ class Z {
       'Business',
       name: 'businessButton',
       desc: 'business_button',
-      args: [],
-    );
-  }
-
-  /// `Subscriptions`
-  String get subsButton {
-    return Intl.message(
-      'Subscriptions',
-      name: 'subsButton',
-      desc: 'subs_button',
       args: [],
     );
   }
@@ -1295,10 +1305,10 @@ class Z {
     );
   }
 
-  /// `Check out Nautilus! I sent you some nano with this link:`
+  /// `Check out %1! I sent you some %2 with this link:`
   String get defaultGiftMessage {
     return Intl.message(
-      'Check out Nautilus! I sent you some nano with this link:',
+      'Check out %1! I sent you some %2 with this link:',
       name: 'defaultGiftMessage',
       desc: 'default_gift_message',
       args: [],
@@ -1655,10 +1665,10 @@ class Z {
     );
   }
 
-  /// `Welcome to Nautilus. Once you receive NANO, transactions will show up like this:`
+  /// `Welcome to %1. Once you receive %2, transactions will show up like this:`
   String get exampleCardIntro {
     return Intl.message(
-      'Welcome to Nautilus. Once you receive NANO, transactions will show up like this:',
+      'Welcome to %1. Once you receive %2, transactions will show up like this:',
       name: 'exampleCardIntro',
       desc: 'example_card_intro',
       args: [],
@@ -1825,6 +1835,16 @@ class Z {
     );
   }
 
+  /// `Exchange %2`
+  String get exchangeCurrency {
+    return Intl.message(
+      'Exchange %2',
+      name: 'exchangeCurrency',
+      desc: 'exchange_currency',
+      args: [],
+    );
+  }
+
   /// `Exchange NANO`
   String get exchangeNano {
     return Intl.message(
@@ -1896,20 +1916,20 @@ class Z {
     );
   }
 
-  /// `Nautilus Disconnected`
+  /// `%1 Disconnected`
   String get fallbackHeader {
     return Intl.message(
-      'Nautilus Disconnected',
+      '%1 Disconnected',
       name: 'fallbackHeader',
       desc: 'fallback_connected',
       args: [],
     );
   }
 
-  /// `Nautilus Servers appear to be disconnected, Sending and Receiving (without memos) should still be operational but payment requests may not go through\n\n Come back later or restart the app to try again`
+  /// `%1 Servers appear to be disconnected, Sending and Receiving (without memos) should still be operational but payment requests may not go through\n\n Come back later or restart the app to try again`
   String get fallbackInfo {
     return Intl.message(
-      'Nautilus Servers appear to be disconnected, Sending and Receiving (without memos) should still be operational but payment requests may not go through\n\n Come back later or restart the app to try again',
+      '%1 Servers appear to be disconnected, Sending and Receiving (without memos) should still be operational but payment requests may not go through\n\n Come back later or restart the app to try again',
       name: 'fallbackInfo',
       desc: 'fallback_info',
       args: [],
@@ -2086,6 +2106,16 @@ class Z {
     );
   }
 
+  /// `Get %2`
+  String get getCurrency {
+    return Intl.message(
+      'Get %2',
+      name: 'getCurrency',
+      desc: 'get_currency',
+      args: [],
+    );
+  }
+
   /// `Get NANO`
   String get getNano {
     return Intl.message(
@@ -2166,10 +2196,10 @@ class Z {
     );
   }
 
-  /// `Load a Digital Gift Card with NANO! Set an amount, and an optional message for the recipient to see when they open it!\n\nOnce created, you'll get a link that you can send to anyone, which when opened will automatically distribute the funds to the recipient after installing Nautilus!\n\nIf the recipient is already a Nautilus user they'll get a prompt to transfer the funds into their account upon opening the link\n\nYou can also set a split amount to distribute from the gift card rather than the entire balance.`
+  /// `Load a Digital Gift Card with %2! Set an amount, and an optional message for the recipient to see when they open it!\n\nOnce created, you'll get a link that you can send to anyone, which when opened will automatically distribute the funds to the recipient after installing %1!\n\nIf the recipient is already a %1 user they'll get a prompt to transfer the funds into their account upon opening the link\n\nYou can also set a split amount to distribute from the gift card rather than the entire balance.`
   String get giftInfo {
     return Intl.message(
-      'Load a Digital Gift Card with NANO! Set an amount, and an optional message for the recipient to see when they open it!\n\nOnce created, you\'ll get a link that you can send to anyone, which when opened will automatically distribute the funds to the recipient after installing Nautilus!\n\nIf the recipient is already a Nautilus user they\'ll get a prompt to transfer the funds into their account upon opening the link\n\nYou can also set a split amount to distribute from the gift card rather than the entire balance.',
+      'Load a Digital Gift Card with %2! Set an amount, and an optional message for the recipient to see when they open it!\n\nOnce created, you\'ll get a link that you can send to anyone, which when opened will automatically distribute the funds to the recipient after installing %1!\n\nIf the recipient is already a %1 user they\'ll get a prompt to transfer the funds into their account upon opening the link\n\nYou can also set a split amount to distribute from the gift card rather than the entire balance.',
       name: 'giftInfo',
       desc: 'Description for gift card creation',
       args: [],
@@ -2396,40 +2426,40 @@ class Z {
     );
   }
 
-  /// `The link you clicked contains some nano, would you like to import it to this wallet, or refund it to whoever sent it?`
+  /// `The link you clicked contains some %2, would you like to import it to this wallet, or refund it to whoever sent it?`
   String get importGift {
     return Intl.message(
-      'The link you clicked contains some nano, would you like to import it to this wallet, or refund it to whoever sent it?',
+      'The link you clicked contains some %2, would you like to import it to this wallet, or refund it to whoever sent it?',
       name: 'importGift',
       desc: 'import_gift',
       args: [],
     );
   }
 
-  /// `Unfortunately the link you clicked that contained some nano appears to be empty, but you can still see the amount and associated message.`
+  /// `Unfortunately the link you clicked that contained some %2 appears to be empty, but you can still see the amount and associated message.`
   String get importGiftEmpty {
     return Intl.message(
-      'Unfortunately the link you clicked that contained some nano appears to be empty, but you can still see the amount and associated message.',
+      'Unfortunately the link you clicked that contained some %2 appears to be empty, but you can still see the amount and associated message.',
       name: 'importGiftEmpty',
       desc: 'import_gift_empty',
       args: [],
     );
   }
 
-  /// `It looks like you clicked a link that contains some NANO, in order to receive these funds we just need for you to finish setting up your wallet.`
+  /// `It looks like you clicked a link that contains some %2, in order to receive these funds we just need for you to finish setting up your wallet.`
   String get importGiftIntro {
     return Intl.message(
-      'It looks like you clicked a link that contains some NANO, in order to receive these funds we just need for you to finish setting up your wallet.',
+      'It looks like you clicked a link that contains some %2, in order to receive these funds we just need for you to finish setting up your wallet.',
       name: 'importGiftIntro',
       desc: 'import_gift_intro',
       args: [],
     );
   }
 
-  /// `The link you clicked contains some NANO, would you like to import it to this wallet?`
+  /// `The link you clicked contains some %2, would you like to import it to this wallet?`
   String get importGiftv2 {
     return Intl.message(
-      'The link you clicked contains some NANO, would you like to import it to this wallet?',
+      'The link you clicked contains some %2, would you like to import it to this wallet?',
       name: 'importGiftv2',
       desc: 'import_gift_v2',
       args: [],
@@ -2606,10 +2636,10 @@ class Z {
     );
   }
 
-  /// `Due to iOS App Store guidelines and restrictions, we can't link you to our donations page. If you'd like to support the project, consider sending to the nautilus node's address.`
+  /// `Due to iOS App Store guidelines and restrictions, we can't link you to our donations page. If you'd like to support the project, consider sending to the %1 node's address.`
   String get iosFundingMessage {
     return Intl.message(
-      'Due to iOS App Store guidelines and restrictions, we can\'t link you to our donations page. If you\'d like to support the project, consider sending to the nautilus node\'s address.',
+      'Due to iOS App Store guidelines and restrictions, we can\'t link you to our donations page. If you\'d like to support the project, consider sending to the %1 node\'s address.',
       name: 'iosFundingMessage',
       desc: 'ios_funding_message',
       args: [],
@@ -2737,10 +2767,10 @@ class Z {
     );
   }
 
-  /// `Logging out will remove your seed and all Nautilus-related data from this device. If your seed is not backed up, you will never be able to access your funds again`
+  /// `Logging out will remove your seed and all %1-related data from this device. If your seed is not backed up, you will never be able to access your funds again`
   String get logoutDetail {
     return Intl.message(
-      'Logging out will remove your seed and all Nautilus-related data from this device. If your seed is not backed up, you will never be able to access your funds again',
+      'Logging out will remove your seed and all %1-related data from this device. If your seed is not backed up, you will never be able to access your funds again',
       name: 'logoutDetail',
       desc: 'settings_logout_alert_message',
       args: [],
@@ -3008,10 +3038,10 @@ class Z {
     );
   }
 
-  /// `This is your new account. Once you receive NANO, transactions will show up like this:`
+  /// `This is your new account. Once you receive %2, transactions will show up like this:`
   String get newAccountIntro {
     return Intl.message(
-      'This is your new account. Once you receive NANO, transactions will show up like this:',
+      'This is your new account. Once you receive %2, transactions will show up like this:',
       name: 'newAccountIntro',
       desc: 'Alternate account intro card',
       args: [],
@@ -3138,10 +3168,10 @@ class Z {
     );
   }
 
-  /// `Open Nautilus to view this transaction`
+  /// `Open %1 to view this transaction`
   String get notificationBody {
     return Intl.message(
-      'Open Nautilus to view this transaction',
+      'Open %1 to view this transaction',
       name: 'notificationBody',
       desc: 'notification_body',
       args: [],
@@ -3419,10 +3449,10 @@ class Z {
     );
   }
 
-  /// `You will not need a password to open Nautilus anymore.`
+  /// `You will not need a password to open %1 anymore.`
   String get passwordNoLongerRequiredToOpenParagraph {
     return Intl.message(
-      'You will not need a password to open Nautilus anymore.',
+      'You will not need a password to open %1 anymore.',
       name: 'passwordNoLongerRequiredToOpenParagraph',
       desc:
           'An info paragraph that tells the user a password will no longer be needed to open Nautilus',
@@ -3470,20 +3500,20 @@ class Z {
     );
   }
 
-  /// `This password will be required to open Nautilus.`
+  /// `This password will be required to open %1.`
   String get passwordWarning {
     return Intl.message(
-      'This password will be required to open Nautilus.',
+      'This password will be required to open %1.',
       name: 'passwordWarning',
       desc: 'A paragraph that warns the user to not lose their password.',
       args: [],
     );
   }
 
-  /// `This password will be required to open Nautilus.`
+  /// `This password will be required to open %1.`
   String get passwordWillBeRequiredToOpenParagraph {
     return Intl.message(
-      'This password will be required to open Nautilus.',
+      'This password will be required to open %1.',
       name: 'passwordWillBeRequiredToOpenParagraph',
       desc:
           'A paragraph that tells the users that the created password will be required to open Nautilus.',
@@ -3692,16 +3722,6 @@ class Z {
     );
   }
 
-  /// `Advanced`
-  String get advanced {
-    return Intl.message(
-      'Advanced',
-      name: 'advanced',
-      desc: 'settings_advanced_header',
-      args: [],
-    );
-  }
-
   /// `Privacy Policy`
   String get privacyPolicy {
     return Intl.message(
@@ -3712,32 +3732,42 @@ class Z {
     );
   }
 
-  /// `Free NANO`
+  /// `Free %2`
   String get promotionalLink {
     return Intl.message(
-      'Free NANO',
+      'Free %2',
       name: 'promotionalLink',
       desc: 'promo_Link',
       args: [],
     );
   }
 
-  /// `Nautilus Pro Subscription Required`
+  /// `%1 Pro Subscription Required`
   String get proSubRequiredHeader {
     return Intl.message(
-      'Nautilus Pro Subscription Required',
+      '%1 Pro Subscription Required',
       name: 'proSubRequiredHeader',
       desc: 'pro_sub_required_header',
       args: [],
     );
   }
 
-  /// `For just 1 NANO per month, you can unlock all of the features of Nautilus Pro.`
+  /// `For just %3 %2 per month, you can unlock all of the features of %1 Pro.`
   String get proSubRequiredParagraph {
     return Intl.message(
-      'For just 1 NANO per month, you can unlock all of the features of Nautilus Pro.',
+      'For just %3 %2 per month, you can unlock all of the features of %1 Pro.',
       name: 'proSubRequiredParagraph',
       desc: 'pro_sub_required_paragraph',
+      args: [],
+    );
+  }
+
+  /// `Purchase %2`
+  String get purchaseCurrency {
+    return Intl.message(
+      'Purchase %2',
+      name: 'purchaseCurrency',
+      desc: 'purchase_currency',
       args: [],
     );
   }
@@ -4132,10 +4162,10 @@ class Z {
     );
   }
 
-  /// `Request Failed: This user doesn't appear to have Nautilus installed, or has notifications disabled.`
+  /// `Request Failed: This user doesn't appear to have %1 installed, or has notifications disabled.`
   String get requestError {
     return Intl.message(
-      'Request Failed: This user doesn\'t appear to have Nautilus installed, or has notifications disabled.',
+      'Request Failed: This user doesn\'t appear to have %1 installed, or has notifications disabled.',
       name: 'requestError',
       desc: 'request_generic_error',
       args: [],
@@ -4192,10 +4222,10 @@ class Z {
     );
   }
 
-  /// `Request a payment, with End to End Encrypted messages!\n\nPayment requests, memos, and messages will only be receivable by other nautilus users, but you can use them for your own record keeping even if the recipient doesn't use nautilus.`
+  /// `Request a payment, with End to End Encrypted messages!\n\nPayment requests, memos, and messages will only be receivable by other %1 users, but you can use them for your own record keeping even if the recipient doesn't use %1.`
   String get requestSheetInfo {
     return Intl.message(
-      'Request a payment, with End to End Encrypted messages!\n\nPayment requests, memos, and messages will only be receivable by other nautilus users, but you can use them for your own record keeping even if the recipient doesn\'t use nautilus.',
+      'Request a payment, with End to End Encrypted messages!\n\nPayment requests, memos, and messages will only be receivable by other %1 users, but you can use them for your own record keeping even if the recipient doesn\'t use %1.',
       name: 'requestSheetInfo',
       desc: 'request_sheet_info',
       args: [],
@@ -4212,10 +4242,10 @@ class Z {
     );
   }
 
-  /// `Require a password to open Nautilus?`
+  /// `Require a password to open %1?`
   String get requireAPasswordToOpenHeader {
     return Intl.message(
-      'Require a password to open Nautilus?',
+      'Require a password to open %1?',
       name: 'requireAPasswordToOpenHeader',
       desc:
           'A paragraph that asks the users if they would like a password to be required to open Nautilus.',
@@ -4304,10 +4334,10 @@ class Z {
     );
   }
 
-  /// `Scan a Nano \naddress QR code`
+  /// `Scan a %2 \naddress QR code`
   String get scanInstructions {
     return Intl.message(
-      'Scan a Nano \naddress QR code',
+      'Scan a %2 \naddress QR code',
       name: 'scanInstructions',
       desc: 'scan_send_instruction_label',
       args: [],
@@ -4544,10 +4574,10 @@ class Z {
     );
   }
 
-  /// `Sending memo with transaction failed, they may not be a Nautilus user.`
+  /// `Sending memo with transaction failed, they may not be a %1 user.`
   String get sendMemoError {
     return Intl.message(
-      'Sending memo with transaction failed, they may not be a Nautilus user.',
+      'Sending memo with transaction failed, they may not be a %1 user.',
       name: 'sendMemoError',
       desc: 'send_memo_error',
       args: [],
@@ -4584,10 +4614,10 @@ class Z {
     );
   }
 
-  /// `Send or Request a payment, with End to End Encrypted messages!\n\nPayment requests, memos, and messages will only be receivable by other nautilus users.\n\nYou don't need to have a username in order to send or receive payment requests, and you can use them for your own record keeping even if they don't use nautilus.`
+  /// `Send or Request a payment, with End to End Encrypted messages!\n\nPayment requests, memos, and messages will only be receivable by other %1 users.\n\nYou don't need to have a username in order to send or receive payment requests, and you can use them for your own record keeping even if they don't use %1.`
   String get sendSheetInfo {
     return Intl.message(
-      'Send or Request a payment, with End to End Encrypted messages!\n\nPayment requests, memos, and messages will only be receivable by other nautilus users.\n\nYou don\'t need to have a username in order to send or receive payment requests, and you can use them for your own record keeping even if they don\'t use nautilus.',
+      'Send or Request a payment, with End to End Encrypted messages!\n\nPayment requests, memos, and messages will only be receivable by other %1 users.\n\nYou don\'t need to have a username in order to send or receive payment requests, and you can use them for your own record keeping even if they don\'t use %1.',
       name: 'sendSheetInfo',
       desc: 'send_sheet_info',
       args: [],
@@ -4771,6 +4801,26 @@ class Z {
       'Share',
       name: 'share',
       desc: 'nautilus_share',
+      args: [],
+    );
+  }
+
+  /// `Share %1`
+  String get shareApp {
+    return Intl.message(
+      'Share %1',
+      name: 'shareApp',
+      desc: 'settings_share',
+      args: [],
+    );
+  }
+
+  /// `Check out %1! A premier %2 mobile wallet!`
+  String get shareAppText {
+    return Intl.message(
+      'Check out %1! A premier %2 mobile wallet!',
+      name: 'shareAppText',
+      desc: 'share_extra',
       args: [],
     );
   }
@@ -4975,6 +5025,16 @@ class Z {
     );
   }
 
+  /// `Spend %2`
+  String get spendCurrency {
+    return Intl.message(
+      'Spend %2',
+      name: 'spendCurrency',
+      desc: 'spend_currency',
+      args: [],
+    );
+  }
+
   /// `Spend NANO`
   String get spendNano {
     return Intl.message(
@@ -5031,6 +5091,16 @@ class Z {
       'Split By',
       name: 'splitBy',
       desc: 'gift_card_split_by',
+      args: [],
+    );
+  }
+
+  /// `Subscriptions`
+  String get subsButton {
+    return Intl.message(
+      'Subscriptions',
+      name: 'subsButton',
+      desc: 'subs_button',
       args: [],
     );
   }
@@ -5115,10 +5185,10 @@ class Z {
     );
   }
 
-  /// `Monero is a privacy-focused cryptocurrency that makes it very hard or even impossible to trace transactions. Meanwhile NANO is a payments-focused cryptocurrency that is fast and fee-less. Together they provide some of the most useful aspects of cryptocurrencies!\n\nUse this page to easily swap your NANO for XMR!`
+  /// `Monero is a privacy-focused cryptocurrency that makes it very hard or even impossible to trace transactions. Meanwhile %2 is a payments-focused cryptocurrency that is fast and fee-less. Together they provide some of the most useful aspects of cryptocurrencies!\n\nUse this page to easily swap your %2 for XMR!`
   String get swapXMRInfo {
     return Intl.message(
-      'Monero is a privacy-focused cryptocurrency that makes it very hard or even impossible to trace transactions. Meanwhile NANO is a payments-focused cryptocurrency that is fast and fee-less. Together they provide some of the most useful aspects of cryptocurrencies!\n\nUse this page to easily swap your NANO for XMR!',
+      'Monero is a privacy-focused cryptocurrency that makes it very hard or even impossible to trace transactions. Meanwhile %2 is a payments-focused cryptocurrency that is fast and fee-less. Together they provide some of the most useful aspects of cryptocurrencies!\n\nUse this page to easily swap your %2 for XMR!',
       name: 'swapXMRInfo',
       desc: 'swap_xmr_header',
       args: [],
@@ -5285,20 +5355,20 @@ class Z {
     );
   }
 
-  /// `%1 %2 successfully transferred to your Nautilus Wallet.\n`
+  /// `%1 %2 successfully transferred to your %3 Wallet.\n`
   String get transferComplete {
     return Intl.message(
-      '%1 %2 successfully transferred to your Nautilus Wallet.\n',
+      '%1 %2 successfully transferred to your %3 Wallet.\n',
       name: 'transferComplete',
       desc: 'transfer_complete_text',
       args: [],
     );
   }
 
-  /// `A wallet with a balance of %1 NANO has been detected.\n`
+  /// `A wallet with a balance of %1 %2 has been detected.\n`
   String get transferConfirmInfo {
     return Intl.message(
-      'A wallet with a balance of %1 NANO has been detected.\n',
+      'A wallet with a balance of %1 %2 has been detected.\n',
       name: 'transferConfirmInfo',
       desc: 'transfer_confirm_info_first',
       args: [],
@@ -5345,20 +5415,20 @@ class Z {
     );
   }
 
-  /// `This process will transfer the funds from a paper wallet to your Nautilus wallet.\n\nTap the "%1" button to start.`
+  /// `This process will transfer the funds from a paper wallet to your %2 wallet.\n\nTap the "%1" button to start.`
   String get transferIntro {
     return Intl.message(
-      'This process will transfer the funds from a paper wallet to your Nautilus wallet.\n\nTap the "%1" button to start.',
+      'This process will transfer the funds from a paper wallet to your %2 wallet.\n\nTap the "%1" button to start.',
       name: 'transferIntro',
       desc: 'transfer_intro',
       args: [],
     );
   }
 
-  /// `This process will transfer the funds from a paper wallet to your Nautilus wallet.`
+  /// `This process will transfer the funds from a paper wallet to your %1 wallet.`
   String get transferIntroShort {
     return Intl.message(
-      'This process will transfer the funds from a paper wallet to your Nautilus wallet.',
+      'This process will transfer the funds from a paper wallet to your %1 wallet.',
       name: 'transferIntroShort',
       desc: 'transfer_intro_short',
       args: [],
@@ -5385,10 +5455,10 @@ class Z {
     );
   }
 
-  /// `This seed does not have any NANO on it`
+  /// `This seed does not have any %2 on it`
   String get transferNoFunds {
     return Intl.message(
-      'This seed does not have any NANO on it',
+      'This seed does not have any %2 on it',
       name: 'transferNoFunds',
       desc: 'transfer_no_funds_toast',
       args: [],
@@ -5405,10 +5475,10 @@ class Z {
     );
   }
 
-  /// `Scan a Nano \nseed or private key`
+  /// `Scan a %2 \nseed or private key`
   String get transferQrScanHint {
     return Intl.message(
-      'Scan a Nano \nseed or private key',
+      'Scan a %2 \nseed or private key',
       name: 'transferQrScanHint',
       desc: 'transfer_qr_scan_hint',
       args: [],
@@ -5455,20 +5525,20 @@ class Z {
     );
   }
 
-  /// `Authenticate to Unlock Nautilus`
+  /// `Authenticate to Unlock %1`
   String get unlockBiometrics {
     return Intl.message(
-      'Authenticate to Unlock Nautilus',
+      'Authenticate to Unlock %1',
       name: 'unlockBiometrics',
       desc: 'unlock_bio',
       args: [],
     );
   }
 
-  /// `Enter PIN to Unlock Nautilus`
+  /// `Enter PIN to Unlock %1`
   String get unlockPin {
     return Intl.message(
-      'Enter PIN to Unlock Nautilus',
+      'Enter PIN to Unlock %1',
       name: 'unlockPin',
       desc: 'unlock_pin',
       args: [],
@@ -5555,6 +5625,26 @@ class Z {
     );
   }
 
+  /// `Use %1 Rep`
+  String get useAppRep {
+    return Intl.message(
+      'Use %1 Rep',
+      name: 'useAppRep',
+      desc: 'use app node as rep',
+      args: [],
+    );
+  }
+
+  /// `Use %2`
+  String get useCurrency {
+    return Intl.message(
+      'Use %2',
+      name: 'useCurrency',
+      desc: 'use_currency',
+      args: [],
+    );
+  }
+
   /// `Use NANO`
   String get useNano {
     return Intl.message(
@@ -5625,10 +5715,10 @@ class Z {
     );
   }
 
-  /// `Pick out a unique @username to make it easy for friends and family to find you!\n\nHaving a Nautilus username updates the UI globally to reflect your new handle.`
+  /// `Pick out a unique @username to make it easy for friends and family to find you!\n\nHaving a %1 username updates the UI globally to reflect your new handle.`
   String get usernameInfo {
     return Intl.message(
-      'Pick out a unique @username to make it easy for friends and family to find you!\n\nHaving a Nautilus username updates the UI globally to reflect your new handle.',
+      'Pick out a unique @username to make it easy for friends and family to find you!\n\nHaving a %1 username updates the UI globally to reflect your new handle.',
       name: 'usernameInfo',
       desc: 'Description for username registration',
       args: [],
@@ -5655,10 +5745,10 @@ class Z {
     );
   }
 
-  /// `Nautilus usernames are a centralized service provided by Nano.to`
+  /// `%1 usernames are a centralized service provided by Nano.to`
   String get usernameWarning {
     return Intl.message(
-      'Nautilus usernames are a centralized service provided by Nano.to',
+      '%1 usernames are a centralized service provided by Nano.to',
       name: 'usernameWarning',
       desc: 'Username centralization warning',
       args: [],
@@ -5775,20 +5865,20 @@ class Z {
     );
   }
 
-  /// `Welcome to Nautilus. Choose an option to get started or pick a theme using the icon below.`
+  /// `Welcome to %1. Choose an option to get started or pick a theme using the icon below.`
   String get welcomeTextLogin {
     return Intl.message(
-      'Welcome to Nautilus. Choose an option to get started or pick a theme using the icon below.',
+      'Welcome to %1. Choose an option to get started or pick a theme using the icon below.',
       name: 'welcomeTextLogin',
       desc: 'intro_welcome_login',
       args: [],
     );
   }
 
-  /// `Welcome to Nautilus. To start, create a new wallet or import an existing one.`
+  /// `Welcome to %1. To start, create a new wallet or import an existing one.`
   String get welcomeTextUpdated {
     return Intl.message(
-      'Welcome to Nautilus. To start, create a new wallet or import an existing one.',
+      'Welcome to %1. To start, create a new wallet or import an existing one.',
       name: 'welcomeTextUpdated',
       desc: 'intro_welcome_title',
       args: [],

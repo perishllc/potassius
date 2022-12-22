@@ -1642,7 +1642,7 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
           AppTransferOverviewSheet().mainBottomSheet(context);
         }),
         Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
-        AppSettings.buildSettingsListItemSingleLine(context, Z.of(context).shareNautilus, AppIcons.share,
+        AppSettings.buildSettingsListItemSingleLine(context, Z.of(context).shareApp.replaceAll("%1", NonTranslatable.appName), AppIcons.share,
             onPressed: () {
           setState(() {
             _shareOpen = true;
@@ -1660,7 +1660,7 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
         Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
         AppSettings.buildSettingsListItemSingleLine(context, Z.of(context).logout, AppIcons.logout, onPressed: () {
           AppDialogs.showConfirmDialog(context, CaseChange.toUpperCase(Z.of(context).warning, context),
-              Z.of(context).logoutDetail, Z.of(context).logoutAction.toUpperCase(), () {
+              Z.of(context).logoutDetail.replaceAll("%1", NonTranslatable.appName), Z.of(context).logoutAction.toUpperCase(), () {
             // Show another confirm dialog
             AppDialogs.showConfirmDialog(context, Z.of(context).logoutAreYouSure, Z.of(context).logoutReassurance,
                 CaseChange.toUpperCase(Z.of(context).yes, context), () async {
@@ -2773,7 +2773,7 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                     Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
                     AppSettings.buildSettingsListItemSingleLine(context, Z.of(context).shareText, AppIcons.share,
                         onPressed: () {
-                      Share.share("${Z.of(context).shareNautilusText} ${NonTranslatable.genericStoreLink}");
+                      Share.share("${Z.of(context).shareAppText.replaceAll("%1", NonTranslatable.appName)} ${NonTranslatable.genericStoreLink}");
                     }),
                     Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
                     Container(

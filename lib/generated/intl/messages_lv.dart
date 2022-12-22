@@ -57,11 +57,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "addressOrUserMissing": MessageLookupByLibrary.simpleMessage(
             "Please Enter a Username or Address"),
         "addressShare": MessageLookupByLibrary.simpleMessage("Kopīgot adresi"),
+        "advanced": MessageLookupByLibrary.simpleMessage("Papildu"),
         "aliases": MessageLookupByLibrary.simpleMessage("Aliases"),
         "amountGiftGreaterError": MessageLookupByLibrary.simpleMessage(
             "Dalītā summa nevar būt lielāka par dāvanas atlikumu"),
         "amountMissing":
             MessageLookupByLibrary.simpleMessage("Lūdzu ievadiet daudzumu"),
+        "appWallet": MessageLookupByLibrary.simpleMessage("%1 Maks"),
         "askSkipSetup": MessageLookupByLibrary.simpleMessage(
             "Mēs pamanījām, ka esat noklikšķinājis uz saites, kurā ir ietverts nanoelements. Vai vēlaties izlaist iestatīšanas procesu? Jūs vienmēr varat mainīt lietas vēlāk.\n\n Tomēr, ja jums ir kāda sēkla, kuru vēlaties importēt, atlasiet nē."),
         "askTracking": MessageLookupByLibrary.simpleMessage(
@@ -314,6 +316,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("@coworker"),
         "exampleRecRecipientMessage":
             MessageLookupByLibrary.simpleMessage("Gas Money"),
+        "exchangeCurrency": MessageLookupByLibrary.simpleMessage("Apmaiņa %2"),
         "exchangeNano":
             MessageLookupByLibrary.simpleMessage("Apmainīties ar NANO"),
         "existingPasswordHint":
@@ -357,6 +360,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fundingBannerHeader":
             MessageLookupByLibrary.simpleMessage("Finansēšanas reklāmkarogs"),
         "fundingHeader": MessageLookupByLibrary.simpleMessage("Finansējums"),
+        "getCurrency": MessageLookupByLibrary.simpleMessage("Iegūstiet %2"),
         "getNano": MessageLookupByLibrary.simpleMessage("Iegūstiet NANO"),
         "giftAlert": MessageLookupByLibrary.simpleMessage("You have a gift!"),
         "giftAlertEmpty": MessageLookupByLibrary.simpleMessage("Empty Gift"),
@@ -615,6 +619,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Tikai par 1 NANO mēnesī varat atbloķēt visas Nautilus Pro funkcijas."),
         "promotionalLink":
             MessageLookupByLibrary.simpleMessage("Bezmaksas NANO"),
+        "purchaseCurrency": MessageLookupByLibrary.simpleMessage("Pirkums %2"),
         "purchaseNano": MessageLookupByLibrary.simpleMessage("Purchase Nano"),
         "qrInvalidAddress": MessageLookupByLibrary.simpleMessage(
             "QR code does not contain a valid destination"),
@@ -781,6 +786,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "settingsTransfer":
             MessageLookupByLibrary.simpleMessage("Ielādēt no papīra maka"),
         "share": MessageLookupByLibrary.simpleMessage("Dalīties"),
+        "shareApp": MessageLookupByLibrary.simpleMessage("Kopīgot %1"),
+        "shareAppText": MessageLookupByLibrary.simpleMessage(
+            "Pārbaudiet %1! Labākais NANO mobilais maks!"),
         "shareLink": MessageLookupByLibrary.simpleMessage("Share Link"),
         "shareMessage": MessageLookupByLibrary.simpleMessage("Kopīgot ziņu"),
         "shareNautilus":
@@ -810,6 +818,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "simplex": MessageLookupByLibrary.simpleMessage("Simplex"),
         "social": MessageLookupByLibrary.simpleMessage("Sociālie"),
         "someone": MessageLookupByLibrary.simpleMessage("kāds"),
+        "spendCurrency": MessageLookupByLibrary.simpleMessage("Iztērē %2"),
         "spendNano": MessageLookupByLibrary.simpleMessage("Tērē NANO"),
         "splitBill": MessageLookupByLibrary.simpleMessage("Sadalīts Bils"),
         "splitBillHeader":
@@ -819,6 +828,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "splitBillInfoHeader":
             MessageLookupByLibrary.simpleMessage("Dalīta rēķina informācija"),
         "splitBy": MessageLookupByLibrary.simpleMessage("Sadalīt pēc"),
+        "subsButton": MessageLookupByLibrary.simpleMessage("Abonementi"),
         "subscribeButton": MessageLookupByLibrary.simpleMessage("Abonēt"),
         "subscribeWithApple": MessageLookupByLibrary.simpleMessage(
             "Abonējiet, izmantojot Apple Pay"),
@@ -907,6 +917,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "unread": MessageLookupByLibrary.simpleMessage("unread"),
         "uptime": MessageLookupByLibrary.simpleMessage("Uptime"),
         "urlEmpty": MessageLookupByLibrary.simpleMessage("Lūdzu, ievadiet URL"),
+        "useAppRep": MessageLookupByLibrary.simpleMessage("Izmantojiet %1 Rep"),
+        "useCurrency": MessageLookupByLibrary.simpleMessage("Izmantojiet %2"),
         "useNano": MessageLookupByLibrary.simpleMessage("Izmantojiet NANO"),
         "useNautilusRep":
             MessageLookupByLibrary.simpleMessage("Use Nautilus Rep"),

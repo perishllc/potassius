@@ -51,10 +51,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "addressOrUserMissing":
             MessageLookupByLibrary.simpleMessage("אנא הזן שם משתמש או כתובת"),
         "addressShare": MessageLookupByLibrary.simpleMessage("שתף"),
+        "advanced": MessageLookupByLibrary.simpleMessage("מִתקַדֵם"),
         "aliases": MessageLookupByLibrary.simpleMessage("כינויים"),
         "amountGiftGreaterError": MessageLookupByLibrary.simpleMessage(
             "הסכום המפוצל לא יכול להיות גדול מיתרת המתנה"),
         "amountMissing": MessageLookupByLibrary.simpleMessage("הזן סכום"),
+        "appWallet": MessageLookupByLibrary.simpleMessage("% 1 ארנק"),
         "askSkipSetup": MessageLookupByLibrary.simpleMessage(
             "שמנו לב שלחצת על קישור שמכיל קצת ננו, האם תרצה לדלג על תהליך ההגדרה? תמיד תוכל לשנות דברים מאוחר יותר.\n\n אם יש לך זרע קיים שברצונך לייבא עם זאת, עליך לבחור לא."),
         "askTracking": MessageLookupByLibrary.simpleMessage(
@@ -292,6 +294,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("@coworker"),
         "exampleRecRecipientMessage":
             MessageLookupByLibrary.simpleMessage("כסף גז"),
+        "exchangeCurrency": MessageLookupByLibrary.simpleMessage("Exchange %2"),
         "exchangeNano": MessageLookupByLibrary.simpleMessage("החלף NANO"),
         "existingPasswordHint":
             MessageLookupByLibrary.simpleMessage("הכנס סיסמא נוכחית"),
@@ -328,6 +331,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fundingBannerHeader":
             MessageLookupByLibrary.simpleMessage("באנר מימון"),
         "fundingHeader": MessageLookupByLibrary.simpleMessage("מימון"),
+        "getCurrency": MessageLookupByLibrary.simpleMessage("קבל %2"),
         "getNano": MessageLookupByLibrary.simpleMessage("קבל NANO"),
         "giftAlert": MessageLookupByLibrary.simpleMessage("יש לך כישרון!"),
         "giftAlertEmpty": MessageLookupByLibrary.simpleMessage("מתנה ריקה"),
@@ -575,6 +579,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "proSubRequiredParagraph": MessageLookupByLibrary.simpleMessage(
             "תמורת NANO אחד בלבד לחודש, אתה יכול לפתוח את כל התכונות של Nautilus Pro."),
         "promotionalLink": MessageLookupByLibrary.simpleMessage("חינם NANO"),
+        "purchaseCurrency": MessageLookupByLibrary.simpleMessage("קנה %2"),
         "purchaseNano": MessageLookupByLibrary.simpleMessage("רכישת ננו"),
         "qrInvalidAddress": MessageLookupByLibrary.simpleMessage(
             "QR code does not contain a valid destination"),
@@ -730,6 +735,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "settingsTransfer":
             MessageLookupByLibrary.simpleMessage("טען מארנק נייר"),
         "share": MessageLookupByLibrary.simpleMessage("לַחֲלוֹק"),
+        "shareApp": MessageLookupByLibrary.simpleMessage("שתף %1"),
+        "shareAppText": MessageLookupByLibrary.simpleMessage(
+            "בדוק את% 1! ארנק נייד NANO מעולה!"),
         "shareLink": MessageLookupByLibrary.simpleMessage("שתף קישור"),
         "shareMessage": MessageLookupByLibrary.simpleMessage("שתף הודעה"),
         "shareNautilus": MessageLookupByLibrary.simpleMessage("Share Nautilus"),
@@ -756,6 +764,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "simplex": MessageLookupByLibrary.simpleMessage("סימפלקס"),
         "social": MessageLookupByLibrary.simpleMessage("חֶברָתִי"),
         "someone": MessageLookupByLibrary.simpleMessage("מִישֶׁהוּ"),
+        "spendCurrency": MessageLookupByLibrary.simpleMessage("הוצא% 2"),
         "spendNano": MessageLookupByLibrary.simpleMessage("להוציא ננו"),
         "splitBill": MessageLookupByLibrary.simpleMessage("ביל מפוצל"),
         "splitBillHeader": MessageLookupByLibrary.simpleMessage("פיצול שטר"),
@@ -764,6 +773,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "splitBillInfoHeader":
             MessageLookupByLibrary.simpleMessage("פיצול פרטי חשבון"),
         "splitBy": MessageLookupByLibrary.simpleMessage("פיצול לפי"),
+        "subsButton": MessageLookupByLibrary.simpleMessage("מנויים"),
         "subscribeButton": MessageLookupByLibrary.simpleMessage("הירשם"),
         "subscribeWithApple":
             MessageLookupByLibrary.simpleMessage("הירשם באמצעות Apple Pay"),
@@ -844,6 +854,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "unread": MessageLookupByLibrary.simpleMessage("שלא נקראו"),
         "uptime": MessageLookupByLibrary.simpleMessage("זמן אונליין"),
         "urlEmpty": MessageLookupByLibrary.simpleMessage("נא להזין כתובת URL"),
+        "useAppRep": MessageLookupByLibrary.simpleMessage("השתמש ב-% 1 נציג"),
+        "useCurrency": MessageLookupByLibrary.simpleMessage("השתמש ב% 2"),
         "useNano": MessageLookupByLibrary.simpleMessage("השתמש ב-NANO"),
         "useNautilusRep":
             MessageLookupByLibrary.simpleMessage("Use Nautilus Rep"),

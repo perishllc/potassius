@@ -54,11 +54,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "addressOrUserMissing": MessageLookupByLibrary.simpleMessage(
             "Моля, въведете потребителско име или адрес"),
         "addressShare": MessageLookupByLibrary.simpleMessage("Сподели Адрес"),
+        "advanced": MessageLookupByLibrary.simpleMessage("Разширено"),
         "aliases": MessageLookupByLibrary.simpleMessage("Псевдоними"),
         "amountGiftGreaterError": MessageLookupByLibrary.simpleMessage(
             "Разделената сума не може да бъде по-голяма от баланса на подаръка"),
         "amountMissing":
             MessageLookupByLibrary.simpleMessage("Моля въведете Сума"),
+        "appWallet": MessageLookupByLibrary.simpleMessage("%1 портфейл"),
         "askSkipSetup": MessageLookupByLibrary.simpleMessage(
             "Забелязахме, че сте кликнали върху връзка, която съдържа някои nano, искате ли да пропуснете процеса на настройка? Винаги можете да промените нещата по-късно.\n\n Ако обаче имате съществуващо семе, което искате да импортирате, трябва да изберете не."),
         "askTracking": MessageLookupByLibrary.simpleMessage(
@@ -312,6 +314,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("@coworker"),
         "exampleRecRecipientMessage":
             MessageLookupByLibrary.simpleMessage("Газови пари"),
+        "exchangeCurrency":
+            MessageLookupByLibrary.simpleMessage("Разменете %2"),
         "exchangeNano": MessageLookupByLibrary.simpleMessage("Разменете NANO"),
         "existingPasswordHint":
             MessageLookupByLibrary.simpleMessage("Въведете текущата парола"),
@@ -353,6 +357,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fundingBannerHeader":
             MessageLookupByLibrary.simpleMessage("Банер за финансиране"),
         "fundingHeader": MessageLookupByLibrary.simpleMessage("Финансиране"),
+        "getCurrency": MessageLookupByLibrary.simpleMessage("Вземете %2"),
         "getNano": MessageLookupByLibrary.simpleMessage("Вземете NANO"),
         "giftAlert": MessageLookupByLibrary.simpleMessage("Имаш дарба!"),
         "giftAlertEmpty":
@@ -618,6 +623,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Само за 1 NANO на месец можете да отключите всички функции на Nautilus Pro."),
         "promotionalLink":
             MessageLookupByLibrary.simpleMessage("Безплатен NANO"),
+        "purchaseCurrency": MessageLookupByLibrary.simpleMessage("Купете %2"),
         "purchaseNano": MessageLookupByLibrary.simpleMessage("Покупка Нано"),
         "qrInvalidAddress": MessageLookupByLibrary.simpleMessage(
             "QR кода не съдържа валидна дестинация "),
@@ -784,6 +790,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "settingsTransfer":
             MessageLookupByLibrary.simpleMessage("Зареди от Хартиен Портфейл"),
         "share": MessageLookupByLibrary.simpleMessage("Дял"),
+        "shareApp": MessageLookupByLibrary.simpleMessage("Споделете %1"),
+        "shareAppText": MessageLookupByLibrary.simpleMessage(
+            "Вижте %1! Първокласен NANO мобилен портфейл!"),
         "shareLink":
             MessageLookupByLibrary.simpleMessage("Споделяне на връзка"),
         "shareMessage":
@@ -817,6 +826,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "simplex": MessageLookupByLibrary.simpleMessage("Симплекс"),
         "social": MessageLookupByLibrary.simpleMessage("Социални"),
         "someone": MessageLookupByLibrary.simpleMessage("някой"),
+        "spendCurrency": MessageLookupByLibrary.simpleMessage("Похарчете %2"),
         "spendNano": MessageLookupByLibrary.simpleMessage("Прекарайте NANO"),
         "splitBill": MessageLookupByLibrary.simpleMessage("Разделен Бил"),
         "splitBillHeader":
@@ -826,6 +836,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "splitBillInfoHeader": MessageLookupByLibrary.simpleMessage(
             "Разделена информация за сметката"),
         "splitBy": MessageLookupByLibrary.simpleMessage("Разделяне по"),
+        "subsButton": MessageLookupByLibrary.simpleMessage("Абонаменти"),
         "subscribeButton": MessageLookupByLibrary.simpleMessage("Абонирай се"),
         "subscribeWithApple": MessageLookupByLibrary.simpleMessage(
             "Абонирайте се чрез Apple Pay"),
@@ -913,6 +924,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "unread": MessageLookupByLibrary.simpleMessage("непрочетени"),
         "uptime": MessageLookupByLibrary.simpleMessage("Ъптайм"),
         "urlEmpty": MessageLookupByLibrary.simpleMessage("Моля, въведете URL"),
+        "useAppRep": MessageLookupByLibrary.simpleMessage("Използвайте %1 Rep"),
+        "useCurrency": MessageLookupByLibrary.simpleMessage("Използвайте %2"),
         "useNano": MessageLookupByLibrary.simpleMessage("Използвайте NANO"),
         "useNautilusRep":
             MessageLookupByLibrary.simpleMessage("Use Nautilus Rep"),

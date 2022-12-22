@@ -57,11 +57,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "addressOrUserMissing": MessageLookupByLibrary.simpleMessage(
             "Introduzca un nombre de usuario o una dirección"),
         "addressShare": MessageLookupByLibrary.simpleMessage("Compartir"),
+        "advanced": MessageLookupByLibrary.simpleMessage("Avanzado"),
         "aliases": MessageLookupByLibrary.simpleMessage("Alias"),
         "amountGiftGreaterError": MessageLookupByLibrary.simpleMessage(
             "El monto dividido no puede ser mayor que el saldo del regalo"),
         "amountMissing":
             MessageLookupByLibrary.simpleMessage("Por favor ingrese un monto"),
+        "appWallet": MessageLookupByLibrary.simpleMessage("%1 Monedero"),
         "askSkipSetup": MessageLookupByLibrary.simpleMessage(
             "Notamos que hizo clic en un enlace que contiene algo de nano, ¿le gustaría omitir el proceso de configuración? Siempre puedes cambiar las cosas más tarde.\n\n Sin embargo, si tiene una semilla existente que desea importar, debe seleccionar no."),
         "askTracking": MessageLookupByLibrary.simpleMessage(
@@ -321,6 +323,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("@compañero"),
         "exampleRecRecipientMessage":
             MessageLookupByLibrary.simpleMessage("Dinero para gasolina"),
+        "exchangeCurrency":
+            MessageLookupByLibrary.simpleMessage("Intercambio %2"),
         "exchangeNano":
             MessageLookupByLibrary.simpleMessage("Intercambio NANO"),
         "existingPasswordHint": MessageLookupByLibrary.simpleMessage(
@@ -362,6 +366,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fundingBannerHeader":
             MessageLookupByLibrary.simpleMessage("Bandera de Financiación"),
         "fundingHeader": MessageLookupByLibrary.simpleMessage("Financiación"),
+        "getCurrency": MessageLookupByLibrary.simpleMessage("Obtener %2"),
         "getNano": MessageLookupByLibrary.simpleMessage("Obtén NANO"),
         "giftAlert": MessageLookupByLibrary.simpleMessage("¡Tienes un regalo!"),
         "giftAlertEmpty": MessageLookupByLibrary.simpleMessage("Regalo vacío"),
@@ -630,6 +635,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "proSubRequiredParagraph": MessageLookupByLibrary.simpleMessage(
             "Por solo 1 NANO al mes, puede desbloquear todas las funciones de Nautilus Pro."),
         "promotionalLink": MessageLookupByLibrary.simpleMessage("NANO libre"),
+        "purchaseCurrency": MessageLookupByLibrary.simpleMessage("Compra %2"),
         "purchaseNano": MessageLookupByLibrary.simpleMessage("Comprar Nano"),
         "qrInvalidAddress": MessageLookupByLibrary.simpleMessage(
             "El código QR no contiene una dirección válida"),
@@ -803,6 +809,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "settingsTransfer": MessageLookupByLibrary.simpleMessage(
             "Cargar desde billetera de papel"),
         "share": MessageLookupByLibrary.simpleMessage("Cuota"),
+        "shareApp": MessageLookupByLibrary.simpleMessage("Compartir %1"),
+        "shareAppText": MessageLookupByLibrary.simpleMessage(
+            "¡Echa un vistazo a %1! ¡Una billetera móvil NANO de primer nivel!"),
         "shareLink": MessageLookupByLibrary.simpleMessage("Compartir Enlace"),
         "shareMessage":
             MessageLookupByLibrary.simpleMessage("Compartir Mensaje"),
@@ -834,6 +843,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "simplex": MessageLookupByLibrary.simpleMessage("Simplex"),
         "social": MessageLookupByLibrary.simpleMessage("Social"),
         "someone": MessageLookupByLibrary.simpleMessage("alguien"),
+        "spendCurrency": MessageLookupByLibrary.simpleMessage("Gastar %2"),
         "spendNano": MessageLookupByLibrary.simpleMessage("Gasta NANO"),
         "splitBill": MessageLookupByLibrary.simpleMessage("Factura dividida"),
         "splitBillHeader":
@@ -843,6 +853,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "splitBillInfoHeader": MessageLookupByLibrary.simpleMessage(
             "Información de factura dividida"),
         "splitBy": MessageLookupByLibrary.simpleMessage("Dividir por"),
+        "subsButton": MessageLookupByLibrary.simpleMessage("Suscripciones"),
         "subscribeButton": MessageLookupByLibrary.simpleMessage("Suscribir"),
         "subscribeWithApple": MessageLookupByLibrary.simpleMessage(
             "Suscríbete a través de Apple Pay"),
@@ -931,6 +942,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "uptime": MessageLookupByLibrary.simpleMessage("Tiempo en línea"),
         "urlEmpty":
             MessageLookupByLibrary.simpleMessage("Por favor ingrese una URL"),
+        "useAppRep":
+            MessageLookupByLibrary.simpleMessage("Usar %1 representante"),
+        "useCurrency": MessageLookupByLibrary.simpleMessage("Usar %2"),
         "useNano": MessageLookupByLibrary.simpleMessage("Usa NANO"),
         "useNautilusRep":
             MessageLookupByLibrary.simpleMessage("Use Nautilus Rep"),

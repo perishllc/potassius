@@ -58,8 +58,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Split Amount can\'t be greater than gift balance"),
         "amountMissing":
             MessageLookupByLibrary.simpleMessage("Please enter an Amount"),
+        "appWallet": MessageLookupByLibrary.simpleMessage("%1 Wallet"),
         "askSkipSetup": MessageLookupByLibrary.simpleMessage(
-            "We noticed you clicked on a link that contains some nano, would you like to skip the setup process? You can always change things later.\n\n If you have an existing seed that you want to import however, you should select no."),
+            "We noticed you clicked on a link that contains some %2, would you like to skip the setup process? You can always change things later.\n\n If you have an existing seed that you want to import however, you should select no."),
         "askTracking": MessageLookupByLibrary.simpleMessage(
             "We\'re about to ask for the \"tracking\" permission, this is used *strictly* for attributing links / referrals, and minor analytics (things like number of installs, what app version, etc.) We believe you are entitled to your privacy and are not interested in any of your personal data, we just need the permission in order for link attributions to work correctly."),
         "asked": MessageLookupByLibrary.simpleMessage("Asked"),
@@ -219,7 +220,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "defaultAccountName":
             MessageLookupByLibrary.simpleMessage("Main Account"),
         "defaultGiftMessage": MessageLookupByLibrary.simpleMessage(
-            "Check out Nautilus! I sent you some nano with this link:"),
+            "Check out %1! I sent you some %2 with this link:"),
         "defaultNewAccountName":
             MessageLookupByLibrary.simpleMessage("Account %1"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
@@ -279,7 +280,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "eula": MessageLookupByLibrary.simpleMessage("EULA"),
         "exampleCardFrom": MessageLookupByLibrary.simpleMessage("someone"),
         "exampleCardIntro": MessageLookupByLibrary.simpleMessage(
-            "Welcome to Nautilus. Once you receive NANO, transactions will show up like this:"),
+            "Welcome to %1. Once you receive %2, transactions will show up like this:"),
         "exampleCardLittle": MessageLookupByLibrary.simpleMessage("A little"),
         "exampleCardLot": MessageLookupByLibrary.simpleMessage("A lot of"),
         "exampleCardTo": MessageLookupByLibrary.simpleMessage("someone"),
@@ -306,6 +307,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("@coworker"),
         "exampleRecRecipientMessage":
             MessageLookupByLibrary.simpleMessage("Gas Money"),
+        "exchangeCurrency": MessageLookupByLibrary.simpleMessage("Exchange %2"),
         "exchangeNano": MessageLookupByLibrary.simpleMessage("Exchange NANO"),
         "existingPasswordHint":
             MessageLookupByLibrary.simpleMessage("Enter current password"),
@@ -317,9 +319,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "failed": MessageLookupByLibrary.simpleMessage("failed"),
         "failedMessage": MessageLookupByLibrary.simpleMessage("msg failed"),
         "fallbackHeader":
-            MessageLookupByLibrary.simpleMessage("Nautilus Disconnected"),
+            MessageLookupByLibrary.simpleMessage("%1 Disconnected"),
         "fallbackInfo": MessageLookupByLibrary.simpleMessage(
-            "Nautilus Servers appear to be disconnected, Sending and Receiving (without memos) should still be operational but payment requests may not go through\n\n Come back later or restart the app to try again"),
+            "%1 Servers appear to be disconnected, Sending and Receiving (without memos) should still be operational but payment requests may not go through\n\n Come back later or restart the app to try again"),
         "favoriteExists":
             MessageLookupByLibrary.simpleMessage("Favorite Already Exists"),
         "favoriteHeader": MessageLookupByLibrary.simpleMessage("Favorite"),
@@ -346,6 +348,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fundingBannerHeader":
             MessageLookupByLibrary.simpleMessage("Funding Banner"),
         "fundingHeader": MessageLookupByLibrary.simpleMessage("Funding"),
+        "getCurrency": MessageLookupByLibrary.simpleMessage("Get %2"),
         "getNano": MessageLookupByLibrary.simpleMessage("Get NANO"),
         "giftAlert": MessageLookupByLibrary.simpleMessage("You have a gift!"),
         "giftAlertEmpty": MessageLookupByLibrary.simpleMessage("Empty Gift"),
@@ -358,7 +361,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Gift Sheet Info"),
         "giftFrom": MessageLookupByLibrary.simpleMessage("Gift From"),
         "giftInfo": MessageLookupByLibrary.simpleMessage(
-            "Load a Digital Gift Card with NANO! Set an amount, and an optional message for the recipient to see when they open it!\n\nOnce created, you\'ll get a link that you can send to anyone, which when opened will automatically distribute the funds to the recipient after installing Nautilus!\n\nIf the recipient is already a Nautilus user they\'ll get a prompt to transfer the funds into their account upon opening the link\n\nYou can also set a split amount to distribute from the gift card rather than the entire balance."),
+            "Load a Digital Gift Card with %2! Set an amount, and an optional message for the recipient to see when they open it!\n\nOnce created, you\'ll get a link that you can send to anyone, which when opened will automatically distribute the funds to the recipient after installing %1!\n\nIf the recipient is already a %1 user they\'ll get a prompt to transfer the funds into their account upon opening the link\n\nYou can also set a split amount to distribute from the gift card rather than the entire balance."),
         "giftMessage": MessageLookupByLibrary.simpleMessage("Gift Message"),
         "giftProcessError": MessageLookupByLibrary.simpleMessage(
             "There was an error while processing this gift card. Maybe check your connection and try clicking the gift link again."),
@@ -396,13 +399,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "imSure": MessageLookupByLibrary.simpleMessage("I\'m Sure"),
         "import": MessageLookupByLibrary.simpleMessage("Import"),
         "importGift": MessageLookupByLibrary.simpleMessage(
-            "The link you clicked contains some nano, would you like to import it to this wallet, or refund it to whoever sent it?"),
+            "The link you clicked contains some %2, would you like to import it to this wallet, or refund it to whoever sent it?"),
         "importGiftEmpty": MessageLookupByLibrary.simpleMessage(
-            "Unfortunately the link you clicked that contained some nano appears to be empty, but you can still see the amount and associated message."),
+            "Unfortunately the link you clicked that contained some %2 appears to be empty, but you can still see the amount and associated message."),
         "importGiftIntro": MessageLookupByLibrary.simpleMessage(
-            "It looks like you clicked a link that contains some NANO, in order to receive these funds we just need for you to finish setting up your wallet."),
+            "It looks like you clicked a link that contains some %2, in order to receive these funds we just need for you to finish setting up your wallet."),
         "importGiftv2": MessageLookupByLibrary.simpleMessage(
-            "The link you clicked contains some NANO, would you like to import it to this wallet?"),
+            "The link you clicked contains some %2, would you like to import it to this wallet?"),
         "importHD": MessageLookupByLibrary.simpleMessage("Import HD"),
         "importSecretPhrase":
             MessageLookupByLibrary.simpleMessage("Import Secret Phrase"),
@@ -430,7 +433,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Invalid Password"),
         "invalidPin": MessageLookupByLibrary.simpleMessage("Invalid Pin"),
         "iosFundingMessage": MessageLookupByLibrary.simpleMessage(
-            "Due to iOS App Store guidelines and restrictions, we can\'t link you to our donations page. If you\'d like to support the project, consider sending to the nautilus node\'s address."),
+            "Due to iOS App Store guidelines and restrictions, we can\'t link you to our donations page. If you\'d like to support the project, consider sending to the %1 node\'s address."),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "linkCopied": MessageLookupByLibrary.simpleMessage("Link Copied"),
         "loaded": MessageLookupByLibrary.simpleMessage("Loaded"),
@@ -447,7 +450,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logoutAreYouSure":
             MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "logoutDetail": MessageLookupByLibrary.simpleMessage(
-            "Logging out will remove your seed and all Nautilus-related data from this device. If your seed is not backed up, you will never be able to access your funds again"),
+            "Logging out will remove your seed and all %1-related data from this device. If your seed is not backed up, you will never be able to access your funds again"),
         "logoutReassurance": MessageLookupByLibrary.simpleMessage(
             "As long as you\'ve backed up your seed you have nothing to worry about."),
         "looksLikeHdSeed": MessageLookupByLibrary.simpleMessage(
@@ -489,7 +492,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "needVerificationAlertHeader":
             MessageLookupByLibrary.simpleMessage("Verification Needed"),
         "newAccountIntro": MessageLookupByLibrary.simpleMessage(
-            "This is your new account. Once you receive NANO, transactions will show up like this:"),
+            "This is your new account. Once you receive %2, transactions will show up like this:"),
         "newWallet": MessageLookupByLibrary.simpleMessage("New Wallet"),
         "nextButton": MessageLookupByLibrary.simpleMessage("Next"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
@@ -509,7 +512,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noneMethod": MessageLookupByLibrary.simpleMessage("None"),
         "notSent": MessageLookupByLibrary.simpleMessage("not sent"),
         "notificationBody": MessageLookupByLibrary.simpleMessage(
-            "Open Nautilus to view this transaction"),
+            "Open %1 to view this transaction"),
         "notificationHeaderSupplement":
             MessageLookupByLibrary.simpleMessage("Tap to open"),
         "notificationInfo": MessageLookupByLibrary.simpleMessage(
@@ -550,7 +553,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Incorrect password"),
         "passwordNoLongerRequiredToOpenParagraph":
             MessageLookupByLibrary.simpleMessage(
-                "You will not need a password to open Nautilus anymore."),
+                "You will not need a password to open %1 anymore."),
         "passwordNumber": MessageLookupByLibrary.simpleMessage(
             "Password must contain at least 1 number"),
         "passwordSpecialCharacter": MessageLookupByLibrary.simpleMessage(
@@ -558,10 +561,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordTooShort":
             MessageLookupByLibrary.simpleMessage("Password is too short"),
         "passwordWarning": MessageLookupByLibrary.simpleMessage(
-            "This password will be required to open Nautilus."),
+            "This password will be required to open %1."),
         "passwordWillBeRequiredToOpenParagraph":
             MessageLookupByLibrary.simpleMessage(
-                "This password will be required to open Nautilus."),
+                "This password will be required to open %1."),
         "passwordsDontMatch":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "pay": MessageLookupByLibrary.simpleMessage("Pay"),
@@ -599,10 +602,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "preferences": MessageLookupByLibrary.simpleMessage("Preferences"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "proSubRequiredHeader": MessageLookupByLibrary.simpleMessage(
-            "Nautilus Pro Subscription Required"),
+            "%1 Pro Subscription Required"),
         "proSubRequiredParagraph": MessageLookupByLibrary.simpleMessage(
-            "For just 1 NANO per month, you can unlock all of the features of Nautilus Pro."),
-        "promotionalLink": MessageLookupByLibrary.simpleMessage("Free NANO"),
+            "For just %3 %2 per month, you can unlock all of the features of %1 Pro."),
+        "promotionalLink": MessageLookupByLibrary.simpleMessage("Free %2"),
+        "purchaseCurrency": MessageLookupByLibrary.simpleMessage("Purchase %2"),
         "purchaseNano": MessageLookupByLibrary.simpleMessage("Purchase Nano"),
         "qrInvalidAddress": MessageLookupByLibrary.simpleMessage(
             "QR code does not contain a valid destination"),
@@ -661,7 +665,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestAmountConfirm":
             MessageLookupByLibrary.simpleMessage("Request %1 %2"),
         "requestError": MessageLookupByLibrary.simpleMessage(
-            "Request Failed: This user doesn\'t appear to have Nautilus installed, or has notifications disabled."),
+            "Request Failed: This user doesn\'t appear to have %1 installed, or has notifications disabled."),
         "requestFrom": MessageLookupByLibrary.simpleMessage("Request From"),
         "requestPayment":
             MessageLookupByLibrary.simpleMessage("Request Payment"),
@@ -670,14 +674,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestSentButNotReceived": MessageLookupByLibrary.simpleMessage(
             "Request re-sent! If still unread, the recipient\'s device may be offline."),
         "requestSheetInfo": MessageLookupByLibrary.simpleMessage(
-            "Request a payment, with End to End Encrypted messages!\n\nPayment requests, memos, and messages will only be receivable by other nautilus users, but you can use them for your own record keeping even if the recipient doesn\'t use nautilus."),
+            "Request a payment, with End to End Encrypted messages!\n\nPayment requests, memos, and messages will only be receivable by other %1 users, but you can use them for your own record keeping even if the recipient doesn\'t use %1."),
         "requestSheetInfoHeader":
             MessageLookupByLibrary.simpleMessage("Request Sheet Info"),
         "requested": MessageLookupByLibrary.simpleMessage("Requested"),
         "requestedFrom": MessageLookupByLibrary.simpleMessage("Requested From"),
         "requesting": MessageLookupByLibrary.simpleMessage("Requesting"),
         "requireAPasswordToOpenHeader": MessageLookupByLibrary.simpleMessage(
-            "Require a password to open Nautilus?"),
+            "Require a password to open %1?"),
         "requireCaptcha": MessageLookupByLibrary.simpleMessage(
             "Require CAPTCHA to claim gift card"),
         "resendMemo": MessageLookupByLibrary.simpleMessage("Resend this memo"),
@@ -691,8 +695,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "rootWarning": MessageLookupByLibrary.simpleMessage(
             "It appears your device is \"rooted\", \"jailbroken\", or modified in a way that compromises security. It is recommended that you reset your device to its original state before proceeding."),
-        "scanInstructions": MessageLookupByLibrary.simpleMessage(
-            "Scan a Nano \naddress QR code"),
+        "scanInstructions":
+            MessageLookupByLibrary.simpleMessage("Scan a %2 \naddress QR code"),
         "scanNFC": MessageLookupByLibrary.simpleMessage("Scan NFC"),
         "scanQrCode": MessageLookupByLibrary.simpleMessage("Scan QR Code"),
         "searchHint":
@@ -727,14 +731,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error occurred. Try again later."),
         "sendFrom": MessageLookupByLibrary.simpleMessage("Send From"),
         "sendMemoError": MessageLookupByLibrary.simpleMessage(
-            "Sending memo with transaction failed, they may not be a Nautilus user."),
+            "Sending memo with transaction failed, they may not be a %1 user."),
         "sendMessageConfirm":
             MessageLookupByLibrary.simpleMessage("Sending message"),
         "sendRequestAgain":
             MessageLookupByLibrary.simpleMessage("Send Request again"),
         "sendRequests": MessageLookupByLibrary.simpleMessage("Send Requests"),
         "sendSheetInfo": MessageLookupByLibrary.simpleMessage(
-            "Send or Request a payment, with End to End Encrypted messages!\n\nPayment requests, memos, and messages will only be receivable by other nautilus users.\n\nYou don\'t need to have a username in order to send or receive payment requests, and you can use them for your own record keeping even if they don\'t use nautilus."),
+            "Send or Request a payment, with End to End Encrypted messages!\n\nPayment requests, memos, and messages will only be receivable by other %1 users.\n\nYou don\'t need to have a username in order to send or receive payment requests, and you can use them for your own record keeping even if they don\'t use %1."),
         "sendSheetInfoHeader":
             MessageLookupByLibrary.simpleMessage("Send Sheet Info"),
         "sending": MessageLookupByLibrary.simpleMessage("Sending"),
@@ -763,6 +767,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "settingsTransfer":
             MessageLookupByLibrary.simpleMessage("Load from Paper Wallet"),
         "share": MessageLookupByLibrary.simpleMessage("Share"),
+        "shareApp": MessageLookupByLibrary.simpleMessage("Share %1"),
+        "shareAppText": MessageLookupByLibrary.simpleMessage(
+            "Check out %1! A premier %2 mobile wallet!"),
         "shareLink": MessageLookupByLibrary.simpleMessage("Share Link"),
         "shareMessage": MessageLookupByLibrary.simpleMessage("Share Message"),
         "shareNautilus": MessageLookupByLibrary.simpleMessage("Share Nautilus"),
@@ -789,6 +796,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "simplex": MessageLookupByLibrary.simpleMessage("Simplex"),
         "social": MessageLookupByLibrary.simpleMessage("Social"),
         "someone": MessageLookupByLibrary.simpleMessage("someone"),
+        "spendCurrency": MessageLookupByLibrary.simpleMessage("Spend %2"),
         "spendNano": MessageLookupByLibrary.simpleMessage("Spend NANO"),
         "splitBill": MessageLookupByLibrary.simpleMessage("Split Bill"),
         "splitBillHeader": MessageLookupByLibrary.simpleMessage("Split A Bill"),
@@ -809,7 +817,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "swapXMR": MessageLookupByLibrary.simpleMessage("Swap XMR"),
         "swapXMRHeader": MessageLookupByLibrary.simpleMessage("Swap Monero"),
         "swapXMRInfo": MessageLookupByLibrary.simpleMessage(
-            "Monero is a privacy-focused cryptocurrency that makes it very hard or even impossible to trace transactions. Meanwhile NANO is a payments-focused cryptocurrency that is fast and fee-less. Together they provide some of the most useful aspects of cryptocurrencies!\n\nUse this page to easily swap your NANO for XMR!"),
+            "Monero is a privacy-focused cryptocurrency that makes it very hard or even impossible to trace transactions. Meanwhile %2 is a payments-focused cryptocurrency that is fast and fee-less. Together they provide some of the most useful aspects of cryptocurrencies!\n\nUse this page to easily swap your %2 for XMR!"),
         "swapping": MessageLookupByLibrary.simpleMessage("Swapping"),
         "switchToSeed": MessageLookupByLibrary.simpleMessage("Switch to Seed"),
         "systemDefault": MessageLookupByLibrary.simpleMessage("System Default"),
@@ -836,9 +844,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "transferClose": MessageLookupByLibrary.simpleMessage(
             "Tap anywhere to close the window."),
         "transferComplete": MessageLookupByLibrary.simpleMessage(
-            "%1 %2 successfully transferred to your Nautilus Wallet.\n"),
+            "%1 %2 successfully transferred to your %3 Wallet.\n"),
         "transferConfirmInfo": MessageLookupByLibrary.simpleMessage(
-            "A wallet with a balance of %1 NANO has been detected.\n"),
+            "A wallet with a balance of %1 %2 has been detected.\n"),
         "transferConfirmInfoSecond": MessageLookupByLibrary.simpleMessage(
             "Tap confirm to transfer the funds.\n"),
         "transferConfirmInfoThird": MessageLookupByLibrary.simpleMessage(
@@ -848,27 +856,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "transferHeader":
             MessageLookupByLibrary.simpleMessage("Transfer Funds"),
         "transferIntro": MessageLookupByLibrary.simpleMessage(
-            "This process will transfer the funds from a paper wallet to your Nautilus wallet.\n\nTap the \"%1\" button to start."),
+            "This process will transfer the funds from a paper wallet to your %2 wallet.\n\nTap the \"%1\" button to start."),
         "transferIntroShort": MessageLookupByLibrary.simpleMessage(
-            "This process will transfer the funds from a paper wallet to your Nautilus wallet."),
+            "This process will transfer the funds from a paper wallet to your %1 wallet."),
         "transferLoading": MessageLookupByLibrary.simpleMessage("Transferring"),
         "transferManualHint": MessageLookupByLibrary.simpleMessage(
             "Please enter the seed below."),
         "transferNoFunds": MessageLookupByLibrary.simpleMessage(
-            "This seed does not have any NANO on it"),
+            "This seed does not have any %2 on it"),
         "transferQrScanError": MessageLookupByLibrary.simpleMessage(
             "This QR code does not contain a valid seed."),
         "transferQrScanHint": MessageLookupByLibrary.simpleMessage(
-            "Scan a Nano \nseed or private key"),
+            "Scan a %2 \nseed or private key"),
         "unacknowledged":
             MessageLookupByLibrary.simpleMessage("unacknowledged"),
         "unconfirmed": MessageLookupByLibrary.simpleMessage("unconfirmed"),
         "unfulfilled": MessageLookupByLibrary.simpleMessage("unfulfilled"),
         "unlock": MessageLookupByLibrary.simpleMessage("Unlock"),
-        "unlockBiometrics": MessageLookupByLibrary.simpleMessage(
-            "Authenticate to Unlock Nautilus"),
-        "unlockPin": MessageLookupByLibrary.simpleMessage(
-            "Enter PIN to Unlock Nautilus"),
+        "unlockBiometrics":
+            MessageLookupByLibrary.simpleMessage("Authenticate to Unlock %1"),
+        "unlockPin":
+            MessageLookupByLibrary.simpleMessage("Enter PIN to Unlock %1"),
         "unopenedWarningHeader":
             MessageLookupByLibrary.simpleMessage("Show Unopened Warning"),
         "unopenedWarningInfo": MessageLookupByLibrary.simpleMessage(
@@ -881,6 +889,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "unread": MessageLookupByLibrary.simpleMessage("unread"),
         "uptime": MessageLookupByLibrary.simpleMessage("Uptime"),
         "urlEmpty": MessageLookupByLibrary.simpleMessage("Please enter a URL"),
+        "useAppRep": MessageLookupByLibrary.simpleMessage("Use %1 Rep"),
+        "useCurrency": MessageLookupByLibrary.simpleMessage("Use %2"),
         "useNano": MessageLookupByLibrary.simpleMessage("Use NANO"),
         "useNautilusRep":
             MessageLookupByLibrary.simpleMessage("Use Nautilus Rep"),
@@ -895,13 +905,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter a Username"),
         "usernameError": MessageLookupByLibrary.simpleMessage("Username Error"),
         "usernameInfo": MessageLookupByLibrary.simpleMessage(
-            "Pick out a unique @username to make it easy for friends and family to find you!\n\nHaving a Nautilus username updates the UI globally to reflect your new handle."),
+            "Pick out a unique @username to make it easy for friends and family to find you!\n\nHaving a %1 username updates the UI globally to reflect your new handle."),
         "usernameInvalid":
             MessageLookupByLibrary.simpleMessage("Invalid Username"),
         "usernameUnavailable":
             MessageLookupByLibrary.simpleMessage("Username unavailable"),
         "usernameWarning": MessageLookupByLibrary.simpleMessage(
-            "Nautilus usernames are a centralized service provided by Nano.to"),
+            "%1 usernames are a centralized service provided by Nano.to"),
         "using": MessageLookupByLibrary.simpleMessage("Using"),
         "viewDetails": MessageLookupByLibrary.simpleMessage("View Details"),
         "viewTX": MessageLookupByLibrary.simpleMessage("View Transaction"),
@@ -916,9 +926,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "weekAgo": MessageLookupByLibrary.simpleMessage("A week ago"),
         "welcomeText": MessageLookupByLibrary.simpleMessage(""),
         "welcomeTextLogin": MessageLookupByLibrary.simpleMessage(
-            "Welcome to Nautilus. Choose an option to get started or pick a theme using the icon below."),
+            "Welcome to %1. Choose an option to get started or pick a theme using the icon below."),
         "welcomeTextUpdated": MessageLookupByLibrary.simpleMessage(
-            "Welcome to Nautilus. To start, create a new wallet or import an existing one."),
+            "Welcome to %1. To start, create a new wallet or import an existing one."),
         "welcomeTextWithoutLogin": MessageLookupByLibrary.simpleMessage(
             "To start, create a new wallet or import an existing one."),
         "withAddress": MessageLookupByLibrary.simpleMessage("With Address"),

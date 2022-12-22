@@ -53,11 +53,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "addressOrUserMissing": MessageLookupByLibrary.simpleMessage(
             "Vui lòng nhập tên người dùng hoặc địa chỉ"),
         "addressShare": MessageLookupByLibrary.simpleMessage("Chia sẻ địa chỉ"),
+        "advanced": MessageLookupByLibrary.simpleMessage("Nâng cao"),
         "aliases": MessageLookupByLibrary.simpleMessage("Bí danh"),
         "amountGiftGreaterError": MessageLookupByLibrary.simpleMessage(
             "Số tiền Chia tách không được lớn hơn số dư quà tặng"),
         "amountMissing":
             MessageLookupByLibrary.simpleMessage("Hãy nhập lượng tiền"),
+        "appWallet": MessageLookupByLibrary.simpleMessage("Ví %1"),
         "askSkipSetup": MessageLookupByLibrary.simpleMessage(
             "Chúng tôi nhận thấy bạn đã nhấp vào một liên kết có chứa một số nano, bạn có muốn bỏ qua quá trình thiết lập không? Bạn luôn có thể thay đổi mọi thứ sau này.\n\n Tuy nhiên, nếu bạn có một hạt giống hiện có mà bạn muốn nhập, bạn nên chọn không."),
         "askTracking": MessageLookupByLibrary.simpleMessage(
@@ -308,6 +310,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("@coworker"),
         "exampleRecRecipientMessage":
             MessageLookupByLibrary.simpleMessage("Tiền gas"),
+        "exchangeCurrency": MessageLookupByLibrary.simpleMessage("Trao đổi %2"),
         "exchangeNano": MessageLookupByLibrary.simpleMessage("Trao đổi NANO"),
         "existingPasswordHint":
             MessageLookupByLibrary.simpleMessage("Nhập mật khẩu hiện tại"),
@@ -350,6 +353,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fundingBannerHeader":
             MessageLookupByLibrary.simpleMessage("Biểu ngữ tài trợ"),
         "fundingHeader": MessageLookupByLibrary.simpleMessage("Kinh phí"),
+        "getCurrency": MessageLookupByLibrary.simpleMessage("Nhận %2"),
         "getNano": MessageLookupByLibrary.simpleMessage("Nhận NANO"),
         "giftAlert":
             MessageLookupByLibrary.simpleMessage("Anh có một món quà!"),
@@ -615,6 +619,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Chỉ với 1 NANO mỗi tháng, bạn có thể mở khóa tất cả các tính năng của Nautilus Pro."),
         "promotionalLink":
             MessageLookupByLibrary.simpleMessage("NANO miễn phí"),
+        "purchaseCurrency": MessageLookupByLibrary.simpleMessage("Mua %2"),
         "purchaseNano": MessageLookupByLibrary.simpleMessage("Mua Nano"),
         "qrInvalidAddress": MessageLookupByLibrary.simpleMessage(
             "Mã QR không chứa điểm đến hợp lệ"),
@@ -779,6 +784,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "settingsTransfer":
             MessageLookupByLibrary.simpleMessage("Nhập từ ví giấy"),
         "share": MessageLookupByLibrary.simpleMessage("Đăng lại"),
+        "shareApp": MessageLookupByLibrary.simpleMessage("Chia sẻ %1"),
+        "shareAppText": MessageLookupByLibrary.simpleMessage(
+            "Kiểm tra %1! Ví di động NANO hàng đầu!"),
         "shareLink": MessageLookupByLibrary.simpleMessage("Chia sẻ liên kết"),
         "shareMessage":
             MessageLookupByLibrary.simpleMessage("Chia sẻ tin nhắn"),
@@ -811,6 +819,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "simplex": MessageLookupByLibrary.simpleMessage("Đơn giản"),
         "social": MessageLookupByLibrary.simpleMessage("Xã hội"),
         "someone": MessageLookupByLibrary.simpleMessage("người nào"),
+        "spendCurrency": MessageLookupByLibrary.simpleMessage("Chi tiêu %2"),
         "spendNano": MessageLookupByLibrary.simpleMessage("Tiêu NANO"),
         "splitBill": MessageLookupByLibrary.simpleMessage("Hóa đơn tách"),
         "splitBillHeader":
@@ -820,6 +829,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "splitBillInfoHeader":
             MessageLookupByLibrary.simpleMessage("Thông tin tách bạch hóa đơn"),
         "splitBy": MessageLookupByLibrary.simpleMessage("Chia theo"),
+        "subsButton": MessageLookupByLibrary.simpleMessage("đăng ký"),
         "subscribeButton": MessageLookupByLibrary.simpleMessage("Đặt mua"),
         "subscribeWithApple":
             MessageLookupByLibrary.simpleMessage("Đăng ký qua Apple Pay"),
@@ -907,6 +917,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Thời gian hoạt động (uptime)"),
         "urlEmpty":
             MessageLookupByLibrary.simpleMessage("Vui lòng nhập một URL"),
+        "useAppRep":
+            MessageLookupByLibrary.simpleMessage("Sử dụng %1 Đại diện"),
+        "useCurrency": MessageLookupByLibrary.simpleMessage("Sử dụng %2"),
         "useNano": MessageLookupByLibrary.simpleMessage("Sử dụng NANO"),
         "useNautilusRep":
             MessageLookupByLibrary.simpleMessage("Use Nautilus Rep"),
