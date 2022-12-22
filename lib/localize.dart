@@ -33,9 +33,9 @@ class NonTranslatable {
   /// -- NON-TRANSLATABLE ITEMS
   static String getBlockExplorerUrl(String? hash, AvailableBlockExplorer explorer) {
     if (explorer.explorer == AvailableBlockExplorerEnum.NANOCOMMUNITY) {
-      return "https://nano.community/$hash";
+      return "https://creeper.banano.cc/hash/$hash";
     } else if (explorer.explorer == AvailableBlockExplorerEnum.NANOLOOKER) {
-      return "https://nanolooker.com/block/$hash";
+      return "https://bananolooker.com/block/$hash";
     } else if (explorer.explorer == AvailableBlockExplorerEnum.NANOCAFE) {
       return "https://nanocafe.cc/$hash";
     }
@@ -44,13 +44,13 @@ class NonTranslatable {
 
   static String getAccountExplorerUrl(String? account, AvailableBlockExplorer explorer) {
     if (explorer.explorer == AvailableBlockExplorerEnum.NANOCOMMUNITY) {
-      return "https://nano.community/$account";
+      return "https://creeper.banano.cc/account/$account";
     } else if (explorer.explorer == AvailableBlockExplorerEnum.NANOLOOKER) {
-      return "https://nanolooker.com/account/$account";
+      return "https://bananolooker.com/account/$account";
     } else if (explorer.explorer == AvailableBlockExplorerEnum.NANOCAFE) {
       return "https://nanocafe.cc/$account";
     }
-    return "https://nanolooker.com/account/$account";
+    return "https://bananolooker.com/account/$account";
   }
 
   static String get discordUrl {

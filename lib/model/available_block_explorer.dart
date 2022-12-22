@@ -13,11 +13,11 @@ class AvailableBlockExplorer extends SettingSelectionItem {
   String getDisplayName(BuildContext context) {
     switch (explorer) {
       case AvailableBlockExplorerEnum.NANOLOOKER:
-        return "nanolooker.com";
+        return "bananolooker.com";
       case AvailableBlockExplorerEnum.NANOCAFE:
         return "nanocafe.cc";
       case AvailableBlockExplorerEnum.NANOCOMMUNITY:
-        return "nano.community";
+        return "creeper.banano.cc";
     }
   }
 

@@ -1075,7 +1075,10 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
 
   List<Widget> _buildExplorerOptions() {
     final List<Widget> ret = <Widget>[];
-    for (final AvailableBlockExplorerEnum value in AvailableBlockExplorerEnum.values) {
+    // ignore: prefer_const_declarations, prefer_final_locals
+    List<AvailableBlockExplorerEnum> availableBE = AvailableBlockExplorerEnum.values;
+    availableBE.remove(AvailableBlockExplorerEnum.NANOCAFE);
+    for (final AvailableBlockExplorerEnum value in availableBE) {
       ret.add(SimpleDialogOption(
         onPressed: () {
           Navigator.pop(context, value);
