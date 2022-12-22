@@ -118,11 +118,11 @@ class NonTranslatable {
   }
 
   static String get appName {
-    return "Nautilus";
+    return "Potassius";
   }
 
   static String get currencyName {
-    return "Nano";
+    return "Banano";
   }
 
   static String get nano {
