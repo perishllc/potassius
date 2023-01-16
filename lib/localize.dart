@@ -126,7 +126,7 @@ class NonTranslatable {
   }
 
   static String get currencyPrefix {
-    return "nano_";
+    return "ban_";
   }
 
   static String get nano {
