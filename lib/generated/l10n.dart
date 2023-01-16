@@ -100,6 +100,16 @@ class Z {
     );
   }
 
+  /// `Activate Subscription`
+  String get activateSub {
+    return Intl.message(
+      'Activate Subscription',
+      name: 'activateSub',
+      desc: 'activate_subscription',
+      args: [],
+    );
+  }
+
   /// `Active Message`
   String get activeMessageHeader {
     return Intl.message(
@@ -170,6 +180,16 @@ class Z {
     );
   }
 
+  /// `Add Work Source`
+  String get addWorkSource {
+    return Intl.message(
+      'Add Work Source',
+      name: 'addWorkSource',
+      desc: 'Add work source',
+      args: [],
+    );
+  }
+
   /// `Address`
   String get address {
     return Intl.message(
@@ -226,6 +246,16 @@ class Z {
       'Share Address',
       name: 'addressShare',
       desc: 'receive_share_cta',
+      args: [],
+    );
+  }
+
+  /// `Add Subscription`
+  String get addSubscription {
+    return Intl.message(
+      'Add Subscription',
+      name: 'addSubscription',
+      desc: 'Add a new subscription',
       args: [],
     );
   }
@@ -650,6 +680,16 @@ class Z {
     );
   }
 
+  /// `Cancel Subscription`
+  String get cancelSub {
+    return Intl.message(
+      'Cancel Subscription',
+      name: 'cancelSub',
+      desc: 'cancel_subscription',
+      args: [],
+    );
+  }
+
   /// `Captcha`
   String get captchaWarning {
     return Intl.message(
@@ -696,6 +736,36 @@ class Z {
       'Change Node',
       name: 'changeNode',
       desc: 'change node',
+      args: [],
+    );
+  }
+
+  /// `Change PoW`
+  String get changePow {
+    return Intl.message(
+      'Change PoW',
+      name: 'changePow',
+      desc: 'change pow',
+      args: [],
+    );
+  }
+
+  /// `Change PoW Source`
+  String get changePowSource {
+    return Intl.message(
+      'Change PoW Source',
+      name: 'changePowSource',
+      desc: 'change pow source',
+      args: [],
+    );
+  }
+
+  /// `PoW`
+  String get pow {
+    return Intl.message(
+      'PoW',
+      name: 'pow',
+      desc: 'pow',
       args: [],
     );
   }
@@ -1365,6 +1435,26 @@ class Z {
     );
   }
 
+  /// `Are you sure you want to delete this subscription?\n\nYou can always re-add it later by tapping the "Add Subscription" button`
+  String get deleteSubConfirmation {
+    return Intl.message(
+      'Are you sure you want to delete this subscription?\n\nYou can always re-add it later by tapping the "Add Subscription" button',
+      name: 'deleteSubConfirmation',
+      desc: 'delete sub confirmation info',
+      args: [],
+    );
+  }
+
+  /// `Delete Subscription?`
+  String get deleteSubHeader {
+    return Intl.message(
+      'Delete Subscription?',
+      name: 'deleteSubHeader',
+      desc: 'Confirmation dialog header',
+      args: [],
+    );
+  }
+
   /// `Disable`
   String get disablePasswordSheetHeader {
     return Intl.message(
@@ -1571,6 +1661,16 @@ class Z {
       'Enter XMR Address',
       name: 'enterMoneroAddress',
       desc: 'enter_xmr_address',
+      args: [],
+    );
+  }
+
+  /// `Enter Name`
+  String get enterName {
+    return Intl.message(
+      'Enter Name',
+      name: 'enterName',
+      desc: 'add_sub_name_hint',
       args: [],
     );
   }
@@ -4364,6 +4464,16 @@ class Z {
     );
   }
 
+  /// `Schedule`
+  String get schedule {
+    return Intl.message(
+      'Schedule',
+      name: 'schedule',
+      desc: 'subs_schedule',
+      args: [],
+    );
+  }
+
   /// `Search for anything`
   String get searchHint {
     return Intl.message(
@@ -5115,12 +5225,32 @@ class Z {
     );
   }
 
+  /// `Subscribed`
+  String get subscribed {
+    return Intl.message(
+      'Subscribed',
+      name: 'subscribed',
+      desc: 'subscribed_text',
+      args: [],
+    );
+  }
+
   /// `Subscribe via Apple Pay`
   String get subscribeWithApple {
     return Intl.message(
       'Subscribe via Apple Pay',
       name: 'subscribeWithApple',
       desc: 'subscribe_apple_button',
+      args: [],
+    );
+  }
+
+  /// `Subscribing`
+  String get subscribing {
+    return Intl.message(
+      'Subscribing',
+      name: 'subscribing',
+      desc: 'sub_confirm',
       args: [],
     );
   }
@@ -5781,6 +5911,16 @@ class Z {
       'View Details',
       name: 'viewDetails',
       desc: 'transaction_details',
+      args: [],
+    );
+  }
+
+  /// `View Payment History`
+  String get viewPaymentHistory {
+    return Intl.message(
+      'View Payment History',
+      name: 'viewPaymentHistory',
+      desc: 'view_payment_history',
       args: [],
     );
   }

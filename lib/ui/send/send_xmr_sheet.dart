@@ -27,8 +27,10 @@ import 'package:wallet_flutter/network/username_service.dart';
 import 'package:wallet_flutter/service_locator.dart';
 import 'package:wallet_flutter/styles.dart';
 import 'package:wallet_flutter/ui/receive/receive_sheet.dart';
+import 'package:wallet_flutter/ui/send/send_sheet.dart';
 import 'package:wallet_flutter/ui/send/send_xmr_confirm_sheet.dart';
 import 'package:wallet_flutter/ui/util/formatters.dart';
+import 'package:wallet_flutter/ui/util/handlebars.dart';
 import 'package:wallet_flutter/ui/util/ui_util.dart';
 import 'package:wallet_flutter/ui/widgets/app_simpledialog.dart';
 import 'package:wallet_flutter/ui/widgets/app_text_field.dart';
@@ -55,12 +57,6 @@ class SendXMRSheet extends StatefulWidget {
 }
 
 enum AddressStyle { TEXT60, TEXT90, PRIMARY }
-
-mixin SendSheetHelpers {
-  static String stripPrefixes(String addressText) {
-    return addressText.replaceAll("@", "").replaceAll("★", "");
-  }
-}
 
 class SendXMRSheetState extends State<SendXMRSheet> {
   final Logger log = sl.get<Logger>();
@@ -184,7 +180,7 @@ class SendXMRSheetState extends State<SendXMRSheet> {
             TextSelection.fromPosition(TextPosition(offset: _addressController!.text.length));
         if (_addressController!.text.isNotEmpty &&
             _addressController!.text.length > 1 &&
-            !_addressController!.text.startsWith("nano_")) {
+            !_addressController!.text.startsWith(NonTranslatable.currencyPrefix)) {
           final String formattedAddress = SendSheetHelpers.stripPrefixes(_addressController!.text);
           if (_addressController!.text != formattedAddress) {
             setState(() {
@@ -469,16 +465,7 @@ class SendXMRSheetState extends State<SendXMRSheet> {
                 // Container for the header, address and balance text
                 Column(
                   children: <Widget>[
-                    // Sheet handle
-                    Container(
-                      margin: const EdgeInsets.only(top: 10),
-                      height: 5,
-                      width: MediaQuery.of(context).size.width * 0.15,
-                      decoration: BoxDecoration(
-                        color: StateContainer.of(context).curTheme.text20,
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                    ),
+                    Handlebars.horizontal(context),
                     Container(
                       margin: const EdgeInsets.only(top: 15.0),
                       constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width - 140),
@@ -971,7 +958,6 @@ class SendXMRSheetState extends State<SendXMRSheet> {
     final bool isUser = _addressController!.text.startsWith("@") || _addressController!.text.startsWith("#");
     final bool isFavorite = _addressController!.text.startsWith("★");
     final bool isDomain = _addressController!.text.contains(".") || _addressController!.text.contains(r"$");
-    final bool isNano = _addressController!.text.startsWith("nano_");
     // final bool isPhoneNumber = _isPhoneNumber(_addressController!.text);
     if (_addressController!.text.isNotEmpty &&
         !isFavorite &&
@@ -1239,7 +1225,7 @@ class SendXMRSheetState extends State<SendXMRSheet> {
         bool isUser = false;
         final bool isDomain = text.contains(".") || text.contains(r"$");
         final bool isFavorite = text.startsWith("★");
-        final bool isNano = text.startsWith("nano_");
+        final bool isNano = text.startsWith(NonTranslatable.currencyPrefix);
 
         // prevent spaces:
         if (text.contains(" ")) {
@@ -1267,7 +1253,7 @@ class SendXMRSheetState extends State<SendXMRSheet> {
           isUser = true;
         }
 
-        if (text.isNotEmpty && text.startsWith("nano_")) {
+        if (text.isNotEmpty && text.startsWith(NonTranslatable.currencyPrefix)) {
           isUser = false;
         }
 
@@ -1276,7 +1262,6 @@ class SendXMRSheetState extends State<SendXMRSheet> {
         }
 
         // check if it's a real nano address:
-        // bool isUser = !text.startsWith("nano_") && !text.startsWith("★");
         if (text.isEmpty) {
           setState(() {
             _isUser = false;
@@ -1356,7 +1341,7 @@ class SendXMRSheetState extends State<SendXMRSheet> {
   //*******************************************************//
   Widget getEnterMemoContainer() {
     double margin = 200;
-    if (_addressController!.text.startsWith("nano_")) {
+    if (_addressController!.text.startsWith(NonTranslatable.currencyPrefix)) {
       if (_addressController!.text.length > 24) {
         margin = 217;
       }

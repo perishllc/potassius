@@ -31,8 +31,10 @@ import 'package:wallet_flutter/localize.dart';
 import 'package:wallet_flutter/model/address.dart';
 import 'package:wallet_flutter/model/db/account.dart';
 import 'package:wallet_flutter/model/db/appdb.dart';
+import 'package:wallet_flutter/model/db/subscription.dart';
 import 'package:wallet_flutter/model/db/txdata.dart';
 import 'package:wallet_flutter/model/db/user.dart';
+import 'package:wallet_flutter/model/db/work_source.dart';
 import 'package:wallet_flutter/model/list_model.dart';
 import 'package:wallet_flutter/network/account_service.dart';
 import 'package:wallet_flutter/network/giftcards.dart';
@@ -46,6 +48,7 @@ import 'package:wallet_flutter/network/model/response/alerts_response_item.dart'
 import 'package:wallet_flutter/network/model/response/auth_item.dart';
 import 'package:wallet_flutter/network/model/response/pay_item.dart';
 import 'package:wallet_flutter/network/model/status_types.dart';
+import 'package:wallet_flutter/network/username_service.dart';
 import 'package:wallet_flutter/service_locator.dart';
 import 'package:wallet_flutter/styles.dart';
 import 'package:wallet_flutter/ui/auth/auth_confirm_sheet.dart';
@@ -64,6 +67,7 @@ import 'package:wallet_flutter/ui/shop/shop_sheet.dart';
 import 'package:wallet_flutter/ui/subs/subs_sheet.dart';
 import 'package:wallet_flutter/ui/transfer/transfer_overview_sheet.dart';
 import 'package:wallet_flutter/ui/util/formatters.dart';
+import 'package:wallet_flutter/ui/util/handlebars.dart';
 import 'package:wallet_flutter/ui/util/routes.dart';
 import 'package:wallet_flutter/ui/util/ui_util.dart';
 import 'package:wallet_flutter/ui/widgets/animations.dart';
@@ -203,7 +207,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
   /// Notification includes which account its for, automatically switch to it if they're entering app from notification
   Future<void> _chooseCorrectAccountFromNotification(dynamic message) async {
     if (message.containsKey("account") as bool) {
-      final String? account = message['account'] as String?;
+      final String? account = message["account"] as String?;
       if (account != null) {
         await _switchToAccount(account);
       }
@@ -836,11 +840,11 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
       if (!mounted) return;
 
       // Setup notifications
-      // skip if we just opened a gift card:
-      if (!StateContainer.of(context).introSkiped) {
-        await getNotificationPermissions();
-      }
 
+      // get notification permissions:
+      await getNotificationPermissions();
+
+      // check if we have tracking permissions:
       await getTrackingPermissions();
 
       if (!mounted) return;
@@ -848,7 +852,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
       // show changelog?
 
       // don't show the changelog on first launch:
-      if (!StateContainer.of(context).introSkiped && !isFirstLaunch) {
+      if (!isFirstLaunch) {
         final PackageInfo packageInfo = await PackageInfo.fromPlatform();
         final String runningVersion = packageInfo.version;
         final String lastVersion = await sl.get<SharedPrefsUtil>().getAppVersion();
@@ -873,9 +877,25 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
       // add donations contact:
       _addSampleContact();
 
+      // check account for a username:
+      if (StateContainer.of(context).wallet?.address != null && mounted) {
+        await sl.get<UsernameService>().checkAddressDebounced(
+              context,
+              StateContainer.of(context).wallet!.address!,
+            );
+      }
+
       // check for nautilus pro sub:
       if (!mounted) return;
       _isPro = await AppDialogs.proCheck(context, shouldShowDialog: false);
+
+      final ws = await sl.get<DBHelper>().getSelectedWorkSource();
+      if (ws.type == WorkSourceTypes.URL) {
+        StateContainer.of(context).stopLoading();
+      }
+
+      // check on subscriptions:
+      // todo:
     });
     // confetti:
     _confettiControllerLeft = ConfettiController(duration: const Duration(milliseconds: 150));
@@ -1131,6 +1151,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
   StreamSubscription<AccountChangedEvent>? _switchAccountSub;
   StreamSubscription<DeepLinkEvent>? _deepLinkEventSub;
   StreamSubscription<XMREvent>? _xmrSub;
+  StreamSubscription<ConnStatusEvent>? _connectionSub;
   // purchase sub:
   StreamSubscription<List<PurchaseDetails>>? _subscription;
 
@@ -1252,8 +1273,16 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
         }
       }
     });
-    final purchaseUpdated = InAppPurchase.instance.purchaseStream;
-    _subscription = purchaseUpdated.listen((purchaseDetailsList) {
+    // listen to connection events:
+    _connectionSub = EventTaxiImpl.singleton().registerTo<ConnStatusEvent>().listen((ConnStatusEvent event) {
+      if (event.status == ConnectionStatus.CONNECTED) {
+        showConnectionWarning(false);
+      } else if (event.status == ConnectionStatus.DISCONNECTED) {
+        showConnectionWarning(true);
+      }
+    });
+    final Stream<List<PurchaseDetails>> purchaseUpdated = InAppPurchase.instance.purchaseStream;
+    _subscription = purchaseUpdated.listen((List<PurchaseDetails> purchaseDetailsList) {
       _listenToPurchaseUpdated(purchaseDetailsList);
     }, onDone: () {
       _subscription?.cancel();
@@ -1278,6 +1307,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
     _unifiedSub?.cancel();
     _xmrSub?.cancel();
     _subscription?.cancel();
+    _connectionSub?.cancel();
   }
 
   @override
@@ -1339,16 +1369,15 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
     }
     final List<int> unconfirmedUpdate = <int>[];
     final List<int> confirmedUpdate = <int>[];
-    for (int i = 0; i < _historyListMap[StateContainer.of(context).wallet!.address]!.length; i++) {
-      if ((_historyListMap[StateContainer.of(context).wallet!.address]![i].confirmed == null ||
-              _historyListMap[StateContainer.of(context).wallet!.address]![i].confirmed!) &&
-          _historyListMap[StateContainer.of(context).wallet!.address]![i].height != null &&
-          confirmationHeight! < _historyListMap[StateContainer.of(context).wallet!.address]![i].height!) {
+    final List<AccountHistoryResponseItem> histListMap = _historyListMap[StateContainer.of(context).wallet!.address]!;
+    for (int i = 0; i < histListMap.length; i++) {
+      if ((histListMap[i].confirmed == null || histListMap[i].confirmed!) &&
+          histListMap[i].height != null &&
+          confirmationHeight! < histListMap[i].height!) {
         unconfirmedUpdate.add(i);
-      } else if ((_historyListMap[StateContainer.of(context).wallet!.address]![i].confirmed == null ||
-              !_historyListMap[StateContainer.of(context).wallet!.address]![i].confirmed!) &&
-          _historyListMap[StateContainer.of(context).wallet!.address]![i].height != null &&
-          confirmationHeight! >= _historyListMap[StateContainer.of(context).wallet!.address]![i].height!) {
+      } else if ((histListMap[i].confirmed == null || !histListMap[i].confirmed!) &&
+          histListMap[i].height != null &&
+          confirmationHeight! >= histListMap[i].height!) {
         confirmedUpdate.add(i);
       }
     }
@@ -1639,7 +1668,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
 
         // check if there's a username:
         for (final User user in _users) {
-          if (user.address == account.replaceAll("xrb_", "nano_")) {
+          if (user.address == account) {
             displayName = user.getDisplayName()!;
             break;
           }
@@ -1925,7 +1954,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
 
         // check if there's a username:
         for (final User user in _users.reversed) {
-          if (user.address == account.replaceAll("xrb_", "nano_")) {
+          if (user.address == account) {
             displayName = user.getDisplayName()!;
             break;
           }
@@ -2125,13 +2154,14 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
       } else {
         // Go to send with address
         Sheets.showAppHeightNineSheet(
-            context: context,
-            widget: SendSheet(
-              localCurrency: StateContainer.of(context).curCurrency,
-              user: user,
-              address: address.address,
-              quickSendAmount: amount,
-            ));
+          context: context,
+          widget: SendSheet(
+            localCurrency: StateContainer.of(context).curCurrency,
+            user: user,
+            address: address.address,
+            quickSendAmount: amount,
+          ),
+        );
       }
     } else if (result is PayItem) {
       // handle block handoff:
@@ -2280,7 +2310,10 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                       children: <Widget>[
                         const CustomMonero(),
                         Container(
-                            width: 2, height: 2, color: StateContainer.of(context).curTheme.background?.withOpacity(1)),
+                          width: 2,
+                          height: 2,
+                          color: StateContainer.of(context).curTheme.background?.withOpacity(1),
+                        ),
                       ],
                     ),
 
@@ -2488,7 +2521,6 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                   confettiController: _confettiControllerRight,
                   blastDirection: -2 * pi / 3,
                   emissionFrequency: 0.02,
-                  // numberOfParticles: 30,
                   numberOfParticles: 40,
                   maxBlastForce: 60,
                   minBlastForce: 10,
@@ -2565,16 +2597,17 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
             if (index != HOME_INDEX) {
               switch (index) {
                 case SUBS_INDEX:
-                  await Sheets.showAppHeightFullSheet(
+                  final List<Subscription> subs = await sl.get<DBHelper>().getSubscriptions();
+                  await Sheets.showAppHeightNineSheet(
                     context: context,
                     barrier: Colors.transparent,
-                    widget: const SubsSheet(
-                      nodes: [],
+                    widget: SubsSheet(
+                      subs: subs,
                     ),
                   );
                   break;
                 case SHOP_INDEX:
-                  await Sheets.showAppHeightFullSheet(
+                  await Sheets.showAppHeightNineSheet(
                     context: context,
                     barrier: Colors.transparent,
                     widget: ShopSheet(
@@ -2588,7 +2621,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                     width: MediaQuery.of(context).size.width,
                     child: await UIUtil.getQRImage(context, data),
                   );
-                  await Sheets.showAppHeightFullSheet(
+                  await Sheets.showAppHeightNineSheet(
                     context: context,
                     barrier: Colors.transparent,
                     widget: CheckoutSheet(
@@ -3182,7 +3215,10 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                 ),
                 onPressed: () {
                   Sheets.showAppHeightEightSheet(
-                      context: context, widget: PaymentDetailsSheet(txDetails: txDetails), animationDurationMs: 175);
+                    context: context,
+                    widget: PaymentDetailsSheet(txDetails: txDetails),
+                    animationDurationMs: 175,
+                  );
                 },
                 child: Center(
                   // ignore: avoid_unnecessary_containers
@@ -3399,17 +3435,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                 ),
               ),
             ),
-            // handle bars:
-            if (slideEnabled)
-              Container(
-                width: 4,
-                height: 30,
-                margin: const EdgeInsets.only(right: 22),
-                decoration: BoxDecoration(
-                  color: StateContainer.of(context).curTheme.text45,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
+            if (slideEnabled) Handlebars.vertical(context),
           ],
         ),
       ),
@@ -3542,7 +3568,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
 
     // check if there's a username:
     for (final User user in _users) {
-      if (user.address == account.replaceAll("xrb_", "nano_")) {
+      if (user.address == account) {
         displayName = user.getDisplayName()!;
         break;
       }
@@ -3585,7 +3611,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
     String displayName = "${account.substring(0, 9)}\n...${account.substring(account.length - 6)}";
     // // check if there's a username:
     for (final User user in _users) {
-      if (user.address == account.replaceAll("xrb_", "nano_")) {
+      if (user.address == account) {
         displayName = user.getDisplayName()!;
         break;
       }

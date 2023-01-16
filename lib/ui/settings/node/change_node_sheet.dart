@@ -17,6 +17,7 @@ import 'package:wallet_flutter/service_locator.dart';
 import 'package:wallet_flutter/styles.dart';
 import 'package:wallet_flutter/ui/settings/node/add_node_sheet.dart';
 import 'package:wallet_flutter/ui/settings/node/node_details_sheet.dart';
+import 'package:wallet_flutter/ui/util/handlebars.dart';
 import 'package:wallet_flutter/ui/widgets/buttons.dart';
 import 'package:wallet_flutter/ui/widgets/dialog.dart';
 import 'package:wallet_flutter/ui/widgets/draggable_scrollbar.dart';
@@ -41,7 +42,6 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
   final ScrollController _scrollController = ScrollController();
 
   StreamSubscription<NodeModifiedEvent>? _nodeModifiedSub;
-  late bool _nodeIsChanging;
 
   Future<bool> _onWillPop() async {
     if (_nodeModifiedSub != null) {
@@ -55,7 +55,6 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
     super.initState();
     _registerBus();
     _addingNode = false;
-    _nodeIsChanging = false;
   }
 
   @override
@@ -70,7 +69,9 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
         if (event.node!.selected) {
           Future<void>.delayed(const Duration(milliseconds: 50), () {
             setState(() {
-              widget.nodes.where((Node a) => a.index == StateContainer.of(context).selectedAccount!.index).forEach((Node node) async {
+              widget.nodes
+                  .where((Node a) => a.id == StateContainer.of(context).selectedAccount!.id)
+                  .forEach((Node node) async {
                 node.selected = true;
                 await sl.get<DBHelper>().changeNode(node);
                 await sl.get<AccountService>().updateNode();
@@ -79,7 +80,7 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
           });
         }
         setState(() {
-          widget.nodes.removeWhere((Node a) => a.index == event.node!.index);
+          widget.nodes.removeWhere((Node a) => a.id == event.node!.id);
         });
       } else if (event.created && event.node != null) {
         setState(() {
@@ -88,9 +89,9 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
       } else {
         // Name change
         setState(() {
-          widget.nodes.removeWhere((Node a) => a.index == event.node!.index);
+          widget.nodes.removeWhere((Node a) => a.id == event.node!.id);
           widget.nodes.add(event.node!);
-          widget.nodes.sort((Node a, Node b) => a.index.compareTo(b.index));
+          widget.nodes.sort((Node a, Node b) => a.id!.compareTo(b.id!));
         });
       }
     });
@@ -103,13 +104,17 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
   }
 
   Future<void> _changeNode(Node node, StateSetter setState) async {
-    // Change account
+    // don't unselect if already selected
+    if (node.selected) {
+      return;
+    }
+    // Change node
     for (final Node acc in widget.nodes) {
       if (acc.selected) {
         setState(() {
           acc.selected = false;
         });
-      } else if (node.index == acc.index) {
+      } else if (node.id == acc.id) {
         setState(() {
           acc.selected = true;
         });
@@ -118,9 +123,7 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
     await sl.get<DBHelper>().changeNode(node);
     EventTaxiImpl.singleton().fire(NodeChangedEvent(node: node, delayPop: true));
     await sl.get<AccountService>().updateNode();
-    setState(() {
-      _nodeIsChanging = false;
-    });
+    setState(() {});
   }
 
   @override
@@ -144,16 +147,7 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
                   ),
                   Column(
                     children: <Widget>[
-                      // Sheet handle
-                      Container(
-                        margin: const EdgeInsets.only(top: 10),
-                        height: 5,
-                        width: MediaQuery.of(context).size.width * 0.15,
-                        decoration: BoxDecoration(
-                          color: StateContainer.of(context).curTheme.text20,
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                      ),
+                      Handlebars.horizontal(context),
                       Container(
                         margin: const EdgeInsets.only(top: 15.0),
                         constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width - 140),
@@ -197,7 +191,7 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
                           scrollbarTopMargin: 20.0,
                           scrollbarBottomMargin: 12.0,
                           child: ListView.builder(
-                            // padding: const EdgeInsets.symmetric(vertical: 20),
+                            padding: const EdgeInsets.symmetric(vertical: 20),
                             // padding: const EdgeInsets.only(right: 2),
                             itemCount: widget.nodes.length,
                             controller: _scrollController,
@@ -240,7 +234,7 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
                             _addingNode = true;
                           });
 
-                          final Node? node = await Sheets.showAppHeightEightSheet(
+                          Node? node = await Sheets.showAppHeightEightSheet(
                             context: context,
                             widget: const AddNodeSheet(),
                           ) as Node?;
@@ -251,8 +245,9 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
                             });
                             return;
                           }
+                          node.id = widget.nodes.length;
 
-                          sl.get<DBHelper>().addNode(node).then((Node? newNode) {
+                          sl.get<DBHelper>().saveNode(node).then((Node? newNode) {
                             if (newNode == null) {
                               sl.get<Logger>().d("Error adding node: node was null");
                               return;
@@ -260,16 +255,16 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
                             widget.nodes.add(newNode);
                             setState(() {
                               _addingNode = false;
-                              widget.nodes.sort((Node a, Node b) => a.index.compareTo(b.index));
+                              widget.nodes.sort((Node a, Node b) => a.id!.compareTo(b.id!));
                               // Scroll if list is full
                               if (expandedKey.currentContext != null) {
                                 final RenderBox? box = expandedKey.currentContext!.findRenderObject() as RenderBox?;
                                 if (box == null) return;
                                 if (widget.nodes.length * 72.0 >= box.size.height) {
                                   _scrollController.animateTo(
-                                    newNode.index * 72.0 > _scrollController.position.maxScrollExtent
+                                    newNode.id! * 72.0 > _scrollController.position.maxScrollExtent
                                         ? _scrollController.position.maxScrollExtent + 72.0
-                                        : newNode.index * 72.0,
+                                        : newNode.id! * 72.0,
                                     curve: Curves.easeOut,
                                     duration: const Duration(milliseconds: 200),
                                   );
@@ -324,16 +319,8 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
               // highlightColor: StateContainer.of(context).curTheme.text15,
               // splashColor: StateContainer.of(context).curTheme.text15,
               // padding: EdgeInsets.all(0.0),
-              onPressed: () {
-                if (!_nodeIsChanging) {
-                  // Change account
-                  if (!node.selected) {
-                    setState(() {
-                      _nodeIsChanging = true;
-                    });
-                    _changeNode(node, setState);
-                  }
-                }
+              onPressed: () async {
+                await _changeNode(node, setState);
               },
               child: SizedBox(
                 height: 70.0,
@@ -341,12 +328,12 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    // Selected indicator
-                    Container(
-                      height: 70,
-                      width: 6,
-                      color: node.selected ? StateContainer.of(context).curTheme.primary : Colors.transparent,
-                    ),
+                    // // Selected indicator
+                    // Container(
+                    //   height: 70,
+                    //   width: 6,
+                    //   color: node.selected ? StateContainer.of(context).curTheme.primary : Colors.transparent,
+                    // ),
                     // Icon, Account Name, Address and Amount
                     Expanded(
                       child: Container(
@@ -366,7 +353,9 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
                                         margin: EdgeInsets.zero,
                                         child: Icon(
                                           Icons.hub,
-                                          color: node.selected ? StateContainer.of(context).curTheme.success : StateContainer.of(context).curTheme.primary,
+                                          color: node.selected
+                                              ? StateContainer.of(context).curTheme.success
+                                              : StateContainer.of(context).curTheme.primary,
                                           size: 30,
                                         ),
                                       ),
@@ -418,16 +407,7 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
                         ),
                       ),
                     ),
-                    // handle bars:
-                    Container(
-                      width: 4,
-                      height: 30,
-                      margin: const EdgeInsets.only(right: 20),
-                      decoration: BoxDecoration(
-                        color: StateContainer.of(context).curTheme.text45,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
+                    Handlebars.vertical(context),
                   ],
                 ),
               ),
@@ -451,11 +431,14 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
         onPressed: (BuildContext context) async {
           await Future<dynamic>.delayed(const Duration(milliseconds: 250));
           if (!mounted) return;
-          NodeDetailsSheet(node).mainBottomSheet(context);
+          Sheets.showAppHeightNineSheet(
+            context: context,
+            widget: NodeDetailsSheet(node: node),
+          );
           await Slidable.of(context)!.close();
         }));
 
-    if (node.index > 0) {
+    if (node.id! > 0) {
       actions.add(
         SlidableAction(
           autoClose: false,
@@ -465,14 +448,14 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
           icon: Icons.delete,
           label: Z.of(context).delete,
           onPressed: (BuildContext context) {
-            AppDialogs.showConfirmDialog(
-                context, Z.of(context).deleteNodeHeader, Z.of(context).deleteNodeConfirmation, CaseChange.toUpperCase(Z.of(context).yes, context), () async {
+            AppDialogs.showConfirmDialog(context, Z.of(context).deleteNodeHeader, Z.of(context).deleteNodeConfirmation,
+                CaseChange.toUpperCase(Z.of(context).yes, context), () async {
               await Future<dynamic>.delayed(const Duration(milliseconds: 250));
               // Remove account
               await sl.get<DBHelper>().deleteNode(node);
               EventTaxiImpl.singleton().fire(NodeModifiedEvent(node: node, deleted: true));
               setState(() {
-                widget.nodes.removeWhere((Node acc) => acc.index == node.index);
+                widget.nodes.removeWhere((Node acc) => acc.id == node.id);
               });
               if (!mounted) return;
               await Slidable.of(context)!.close();
@@ -485,7 +468,7 @@ class ChangeNodeSheetState extends State<ChangeNodeSheet> {
     return ActionPane(
       // motion: const DrawerMotion(),
       motion: const ScrollMotion(),
-      extentRatio: (node.index > 0) ? 0.5 : 0.25,
+      extentRatio: (node.id! > 0) ? 0.5 : 0.25,
       children: actions,
     );
   }

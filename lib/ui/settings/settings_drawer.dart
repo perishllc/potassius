@@ -35,6 +35,7 @@ import 'package:wallet_flutter/model/db/account.dart';
 import 'package:wallet_flutter/model/db/appdb.dart';
 import 'package:wallet_flutter/model/db/node.dart';
 import 'package:wallet_flutter/model/db/txdata.dart';
+import 'package:wallet_flutter/model/db/work_source.dart';
 import 'package:wallet_flutter/model/device_lock_timeout.dart';
 import 'package:wallet_flutter/model/device_unlock_option.dart';
 import 'package:wallet_flutter/model/funding_setting.dart';
@@ -57,6 +58,7 @@ import 'package:wallet_flutter/ui/settings/magic/change_magic_seed_sheet.dart';
 import 'package:wallet_flutter/ui/settings/node/change_node_sheet.dart';
 import 'package:wallet_flutter/ui/settings/password/set_pin_sheet.dart';
 import 'package:wallet_flutter/ui/settings/password/set_plausible_pin_sheet.dart';
+import 'package:wallet_flutter/ui/settings/pow/change_work_source_sheet.dart';
 import 'package:wallet_flutter/ui/settings/rep/changerepresentative_sheet.dart';
 import 'package:wallet_flutter/ui/settings/settings_list_item.dart';
 import 'package:wallet_flutter/ui/settings/users/blocked_widget.dart';
@@ -1642,12 +1644,29 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
           AppTransferOverviewSheet().mainBottomSheet(context);
         }),
         Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
-        AppSettings.buildSettingsListItemSingleLine(context, Z.of(context).shareApp.replaceAll("%1", NonTranslatable.appName), AppIcons.share,
-            onPressed: () {
-          setState(() {
-            _shareOpen = true;
-          });
-          _shareController.forward();
+        AppSettings.buildSettingsListItemSingleLine(
+            context, Z.of(context).shareApp.replaceAll("%1", NonTranslatable.appName), AppIcons.share, onPressed: () {
+          // setState(() {
+          //   _shareOpen = true;
+          // });
+          // _shareController.forward();
+          Share.share(
+              "${Z.of(context).shareAppText.replaceAll("%1", NonTranslatable.appName).replaceAll("%2", NonTranslatable.currencyName)} ${NonTranslatable.genericStoreLink}");
+        }, onLongPress: () async {
+          final Widget qrWidget = SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: await UIUtil.getQRImage(
+              context,
+              NonTranslatable.promoLink,
+            ),
+          );
+          Sheets.showAppHeightNineSheet(
+            context: context,
+            widget: OnboardSheet(
+              link: NonTranslatable.promoLink,
+              qrWidget: qrWidget,
+            ),
+          );
         }),
         Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
         AppSettings.buildSettingsListItemSingleLine(context, Z.of(context).moreSettings, AppIcons.settings,
@@ -1659,8 +1678,11 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
         }),
         Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
         AppSettings.buildSettingsListItemSingleLine(context, Z.of(context).logout, AppIcons.logout, onPressed: () {
-          AppDialogs.showConfirmDialog(context, CaseChange.toUpperCase(Z.of(context).warning, context),
-              Z.of(context).logoutDetail.replaceAll("%1", NonTranslatable.appName), Z.of(context).logoutAction.toUpperCase(), () {
+          AppDialogs.showConfirmDialog(
+              context,
+              CaseChange.toUpperCase(Z.of(context).warning, context),
+              Z.of(context).logoutDetail.replaceAll("%1", NonTranslatable.appName),
+              Z.of(context).logoutAction.toUpperCase(), () {
             // Show another confirm dialog
             AppDialogs.showConfirmDialog(context, Z.of(context).logoutAreYouSure, Z.of(context).logoutReassurance,
                 CaseChange.toUpperCase(Z.of(context).yes, context), () async {
@@ -1769,14 +1791,14 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                                   height: 45,
                                   alignment: AlignmentDirectional.centerStart,
                                   child: Icon(
-                                    StateContainer.of(context).wallet!.watchOnly
+                                    (StateContainer.of(context).wallet?.watchOnly ?? false)
                                         ? AppIcons.search
                                         : AppIcons.accountwallet,
                                     color: StateContainer.of(context).curTheme.success,
                                     size: 45,
                                   )),
                             ),
-                            if (!StateContainer.of(context).wallet!.watchOnly)
+                            if (!(StateContainer.of(context).wallet?.watchOnly ?? false))
                               Center(
                                 child: Container(
                                   width: 60,
@@ -1811,8 +1833,10 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                                     height: 45,
                                   ),
                                   onPressed: () {
-                                    AccountDetailsSheet(StateContainer.of(context).selectedAccount!)
-                                        .mainBottomSheet(context);
+                                    Sheets.showAppHeightNineSheet(
+                                      context: context,
+                                      widget: AccountDetailsSheet(account: StateContainer.of(context).selectedAccount!),
+                                    );
                                   },
                                 ),
                               ),
@@ -2046,7 +2070,10 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                         // splashColor: StateContainer.of(context).curTheme.text30,
                       ),
                       onPressed: () {
-                        AccountDetailsSheet(StateContainer.of(context).selectedAccount!).mainBottomSheet(context);
+                        Sheets.showAppHeightNineSheet(
+                          context: context,
+                          widget: AccountDetailsSheet(account: StateContainer.of(context).selectedAccount!),
+                        );
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -2065,7 +2092,7 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                           // Main account address
                           Text(
                             StateContainer.of(context).wallet?.username ??
-                                Address(StateContainer.of(context).wallet!.address).getShortFirstPart() ??
+                                Address(StateContainer.of(context).wallet?.address).getShortFirstPart() ??
                                 "",
                             style: TextStyle(
                               fontFamily: "OverpassMono",
@@ -2089,7 +2116,7 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                   DraggableScrollbar(
                     controller: _scrollController,
                     scrollbarTopMargin: 20.0,
-                    scrollbarBottomMargin: 0.0,
+                    scrollbarBottomMargin: 0,
                     scrollbarColor: StateContainer.of(context).curTheme.primary,
                     child: _buildSettingsList(),
                   ),
@@ -2450,6 +2477,15 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                         );
                       }),
                       Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
+                      AppSettings.buildSettingsListItemSingleLine(context, Z.of(context).changePowSource, Icons.bolt,
+                          onPressed: () async {
+                        final List<WorkSource> workSources = await sl.get<DBHelper>().getWorkSources();
+                        Sheets.showAppHeightNineSheet(
+                          context: context,
+                          widget: ChangePowSheet(workSources: workSources),
+                        );
+                      }),
+                      Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
                       AppSettings.buildSettingsListItemSingleLine(
                           context, Z.of(context).changeRepAuthenticate, AppIcons.changerepresentative, onPressed: () {
                         Sheets.showAppHeightEightSheet(context: context, widget: const AppChangeRepresentativeSheet());
@@ -2773,7 +2809,8 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                     Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
                     AppSettings.buildSettingsListItemSingleLine(context, Z.of(context).shareText, AppIcons.share,
                         onPressed: () {
-                      Share.share("${Z.of(context).shareAppText.replaceAll("%1", NonTranslatable.appName)} ${NonTranslatable.genericStoreLink}");
+                      Share.share(
+                          "${Z.of(context).shareAppText.replaceAll("%1", NonTranslatable.appName).replaceAll("%2", NonTranslatable.currencyName)} ${NonTranslatable.genericStoreLink}");
                     }),
                     Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
                     Container(
@@ -2785,11 +2822,16 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                               color: StateContainer.of(context).curTheme.text60)),
                     ),
                     Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
-                    AppSettings.buildSettingsListItemSingleLine(context, Z.of(context).promotionalLink, AppIcons.qrcode,
-                        onPressed: () async {
+                    AppSettings.buildSettingsListItemSingleLine(
+                        context,
+                        Z.of(context).promotionalLink.replaceAll("%2", NonTranslatable.currencyName),
+                        AppIcons.qrcode, onPressed: () async {
                       final Widget qrWidget = SizedBox(
                           width: MediaQuery.of(context).size.width,
-                          child: await UIUtil.getQRImage(context, NonTranslatable.promoLink));
+                          child: await UIUtil.getQRImage(
+                            context,
+                            NonTranslatable.promoLink,
+                          ));
                       Sheets.showAppHeightNineSheet(
                           context: context,
                           widget: OnboardSheet(
@@ -2832,10 +2874,11 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
       Navigator.of(context).pop();
       StateContainer.of(context).getSeed().then((String seed) {
         Sheets.showAppHeightNineSheet(
-            context: context,
-            widget: AppSeedBackupSheet(
-              seed: seed,
-            ));
+          context: context,
+          widget: AppSeedBackupSheet(
+            seed: seed,
+          ),
+        );
       });
     }
   }

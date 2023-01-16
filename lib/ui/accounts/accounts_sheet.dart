@@ -22,6 +22,7 @@ import 'package:wallet_flutter/styles.dart';
 import 'package:wallet_flutter/ui/accounts/accountdetails_sheet.dart';
 import 'package:wallet_flutter/ui/accounts/add_watch_only_sheet.dart';
 import 'package:wallet_flutter/ui/util/formatters.dart';
+import 'package:wallet_flutter/ui/util/handlebars.dart';
 import 'package:wallet_flutter/ui/util/ui_util.dart';
 import 'package:wallet_flutter/ui/widgets/buttons.dart';
 import 'package:wallet_flutter/ui/widgets/dialog.dart';
@@ -75,7 +76,7 @@ class AppAccountsSheetState extends State<AppAccountsSheet> {
     // Handle balances event
     for (final Account account in widget.accounts) {
       resp.balances!.forEach((String address, AccountBalanceItem balance) {
-        address = address.replaceAll("xrb_", "nano_");
+        address = address;
         final String combinedBalance =
             (BigInt.tryParse(balance.balance!)! + BigInt.tryParse(balance.receivable!)!).toString();
         if (account.address == address && combinedBalance != account.balance) {
@@ -227,15 +228,9 @@ class AppAccountsSheetState extends State<AppAccountsSheet> {
                   ),
                   Column(
                     children: <Widget>[
-                      // Sheet handle
-                      Container(
-                        margin: const EdgeInsets.only(top: 10),
-                        height: 5,
+                      Handlebars.horizontal(
+                        context,
                         width: MediaQuery.of(context).size.width * 0.15,
-                        decoration: BoxDecoration(
-                          color: StateContainer.of(context).curTheme.text20,
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 15.0),
@@ -321,8 +316,7 @@ class AppAccountsSheetState extends State<AppAccountsSheet> {
                           scrollbarTopMargin: 20.0,
                           scrollbarBottomMargin: 12.0,
                           child: ListView.builder(
-                            // padding: const EdgeInsets.symmetric(vertical: 20),
-                            // padding: const EdgeInsets.only(right: 2),
+                            padding: const EdgeInsets.symmetric(vertical: 20),
                             itemCount: widget.accounts.length,
                             controller: _scrollController,
                             itemBuilder: (BuildContext context, int index) {
@@ -612,16 +606,7 @@ class AppAccountsSheetState extends State<AppAccountsSheet> {
                         ),
                       ),
                     ),
-                    // handle bars:
-                    Container(
-                      width: 4,
-                      height: 30,
-                      margin: const EdgeInsets.only(right: 20),
-                      decoration: BoxDecoration(
-                        color: StateContainer.of(context).curTheme.text45,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
+                    Handlebars.vertical(context),
                   ],
                 ),
               ),
@@ -645,7 +630,10 @@ class AppAccountsSheetState extends State<AppAccountsSheet> {
         onPressed: (BuildContext context) async {
           await Future<dynamic>.delayed(const Duration(milliseconds: 250));
           if (!mounted) return;
-          AccountDetailsSheet(account).mainBottomSheet(context);
+          Sheets.showAppHeightNineSheet(
+            context: context,
+            widget: AccountDetailsSheet(account: account),
+          );
           await Slidable.of(context)!.close();
         }));
 

@@ -17,7 +17,9 @@ import 'package:wallet_flutter/service_locator.dart';
 import 'package:wallet_flutter/styles.dart';
 import 'package:wallet_flutter/ui/receive/split_bill_add_user_sheet.dart';
 import 'package:wallet_flutter/ui/request/request_confirm_sheet.dart';
+import 'package:wallet_flutter/ui/send/send_sheet.dart';
 import 'package:wallet_flutter/ui/util/formatters.dart';
+import 'package:wallet_flutter/ui/util/handlebars.dart';
 import 'package:wallet_flutter/ui/util/ui_util.dart';
 import 'package:wallet_flutter/ui/widgets/app_text_field.dart';
 import 'package:wallet_flutter/ui/widgets/buttons.dart';
@@ -43,7 +45,7 @@ class SplitBillSheetState extends State<SplitBillSheet> {
 
   bool _localCurrencyMode = false;
   final List<User> users = [];
-  final Map<String, dynamic> userMap = <String, dynamic>{};
+  Map<String, dynamic> userMap = <String, dynamic>{};
 
   bool _addingAccount = false;
   final ScrollController _scrollController = ScrollController();
@@ -94,16 +96,7 @@ class SplitBillSheetState extends State<SplitBillSheet> {
                     constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width - 140),
                     child: Column(
                       children: <Widget>[
-                        // Sheet handle
-                        Container(
-                          margin: const EdgeInsets.only(top: 10),
-                          height: 5,
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          decoration: BoxDecoration(
-                            color: StateContainer.of(context).curTheme.text20,
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                        ),
+                        Handlebars.horizontal(context),
                         Container(
                           margin: const EdgeInsets.only(top: 15.0),
                           constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width - 140),
@@ -129,8 +122,8 @@ class SplitBillSheetState extends State<SplitBillSheet> {
                     child: AppDialogs.infoButton(
                       context,
                       () {
-                        AppDialogs.showInfoDialog(context, Z.of(context).splitBillInfoHeader,
-                            Z.of(context).splitBillInfo);
+                        AppDialogs.showInfoDialog(
+                            context, Z.of(context).splitBillInfoHeader, Z.of(context).splitBillInfo);
                       },
                     ),
                   ),
@@ -296,55 +289,6 @@ class SplitBillSheetState extends State<SplitBillSheet> {
                       }
                     },
                   ),
-                  // AppButton.buildAppButton(
-                  //   context,
-                  //   AppButtonType.PRIMARY,
-                  //   Z.of(context).sendAmounts,
-                  //   Dimens.BUTTON_COMPACT_RIGHT_DIMENS,
-                  //   disabled: users.isEmpty,
-                  //   onPressed: () async {
-                  //     for (final User user in users) {
-                  //       final String displayName = user.displayNameOrShortestAddress()!;
-
-                  //       final TextEditingController amountController =
-                  //           userMap[displayName]["_amountController"] as TextEditingController;
-                  //       final TextEditingController memoController =
-                  //           userMap[displayName]["_memoController"] as TextEditingController;
-
-                  //       // final String amountRaw = userMap[displayName]["_amountController"].text as String;
-
-                  //       // final String formattedAddress = SendSheetHelpers.stripPrefixes(_addressController!.text);
-
-                  //       final String formattedAmount =
-                  //           sanitizedAmount(widget.localCurrencyFormat, amountController.text);
-
-                  //       String amountRaw;
-                  //       if (amountController.text.isEmpty || amountController.text == "0") {
-                  //         amountRaw = "0";
-                  //       } else {
-                  //         if (_localCurrencyMode) {
-                  //           amountRaw = NumberUtil.getAmountAsRaw(sanitizedAmount(
-                  //               widget.localCurrencyFormat,
-                  //               convertLocalCurrencyToLocalizedCrypto(
-                  //                   context, widget.localCurrencyFormat, amountController.text)));
-                  //         } else {
-                  //           if (!mounted) return;
-                  //           amountRaw = getThemeAwareAmountAsRaw(context, formattedAmount);
-                  //         }
-                  //       }
-
-                  //       await Sheets.showAppHeightNineSheet(
-                  //           context: context,
-                  //           widget: SendConfirmSheet(
-                  //             amountRaw: amountRaw,
-                  //             destination: user.address!,
-                  //             contactName: user.getDisplayName(),
-                  //             localCurrency: _localCurrencyMode ? amountController.text : null,
-                  //             memo: memoController.text,
-                  //           ));
-                  //     }
-                  //   },
-                  // ),
                 ],
               ),
               Row(
@@ -444,83 +388,12 @@ class SplitBillSheetState extends State<SplitBillSheet> {
                   ),
                 ),
               ),
-              // handle bars:
-              Container(
-                width: 4,
-                height: 90,
-                margin: const EdgeInsets.only(right: 20),
-                decoration: BoxDecoration(
-                  color: StateContainer.of(context).curTheme.text45,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
+              Handlebars.vertical(context, height: 90),
             ],
           ),
         ),
       ],
     );
-  }
-
-  void toggleLocalCurrency() {
-    // Keep a cache of previous amounts because, it's kinda nice to see approx what nano is worth
-    // this way you can tap button and tap back and not end up with X.9993451 NANO
-    for (final String addr in userMap.keys) {
-      if (userMap[addr]["_amountController"] != null) {
-        final TextEditingController amountController = userMap[addr]["_amountController"] as TextEditingController;
-        String lastLocalCurrencyAmount = userMap[addr]["_lastLocalCurrencyAmount"] as String;
-        String lastCryptoAmount = userMap[addr]["_lastCryptoAmount"] as String;
-
-        if (_localCurrencyMode) {
-          // Switching to crypto-mode
-          String cryptoAmountStr;
-          // Check out previous state
-          if (amountController.text == lastLocalCurrencyAmount) {
-            cryptoAmountStr = lastCryptoAmount;
-          } else {
-            lastLocalCurrencyAmount = amountController.text;
-            lastCryptoAmount =
-                convertLocalCurrencyToLocalizedCrypto(context, widget.localCurrencyFormat, amountController.text);
-            cryptoAmountStr = lastCryptoAmount;
-          }
-          // setState(() {
-          //   _localCurrencyMode = false;
-          // });
-          Future<void>.delayed(const Duration(milliseconds: 50), () {
-            amountController.text = cryptoAmountStr;
-            amountController.selection = TextSelection.fromPosition(TextPosition(offset: cryptoAmountStr.length));
-          });
-        } else {
-          // Switching to local-currency mode
-          String localAmountStr;
-          // Check our previous state
-          if (amountController.text == lastCryptoAmount) {
-            localAmountStr = lastLocalCurrencyAmount;
-            if (!lastLocalCurrencyAmount.startsWith(widget.localCurrencyFormat.currencySymbol)) {
-              lastLocalCurrencyAmount = widget.localCurrencyFormat.currencySymbol + lastLocalCurrencyAmount;
-            }
-          } else {
-            lastCryptoAmount = amountController.text;
-            lastLocalCurrencyAmount =
-                convertCryptoToLocalCurrency(context, widget.localCurrencyFormat, amountController.text);
-            localAmountStr = lastLocalCurrencyAmount;
-          }
-          Future<void>.delayed(const Duration(milliseconds: 50), () {
-            amountController.text = localAmountStr;
-            amountController.selection = TextSelection.fromPosition(TextPosition(offset: localAmountStr.length));
-          });
-        }
-      }
-    }
-    // change the state:
-    if (_localCurrencyMode) {
-      setState(() {
-        _localCurrencyMode = false;
-      });
-    } else {
-      setState(() {
-        _localCurrencyMode = true;
-      });
-    }
   }
 
   ActionPane _getSlideActionsForUser(BuildContext context, User user, StateSetter setState) {
@@ -629,7 +502,31 @@ class SplitBillSheetState extends State<SplitBillSheet> {
           ],
         ),
         onPressed: () {
-          toggleLocalCurrency();
+          for (final String addr in userMap.keys) {
+            if (userMap[addr]["_amountController"] == null) {
+              continue;
+            }
+            final TextEditingController amountController = userMap[addr]["_amountController"] as TextEditingController;
+            final String lastLocalCurrencyAmount = userMap[addr]["_lastLocalCurrencyAmount"] as String;
+            final String lastCryptoAmount = userMap[addr]["_lastCryptoAmount"] as String;
+
+            final List<String> stateVars = SendSheetHelpers.toggleLocalCurrency(
+              setState,
+              context,
+              amountController,
+              _localCurrencyMode,
+              widget.localCurrencyFormat,
+              lastLocalCurrencyAmount,
+              lastCryptoAmount,
+            );
+            setState(() {
+              userMap[addr]["_lastCryptoAmount"] = stateVars[0];
+              userMap[addr]["_lastLocalCurrencyAmount"] = stateVars[1];
+            });
+          }
+          setState(() {
+            _localCurrencyMode = !_localCurrencyMode;
+          });
         },
       ),
       textInputAction: TextInputAction.next,

@@ -10,6 +10,7 @@ import 'package:wallet_flutter/app_icons.dart';
 import 'package:wallet_flutter/appstate_container.dart';
 import 'package:wallet_flutter/dimens.dart';
 import 'package:wallet_flutter/generated/l10n.dart';
+import 'package:wallet_flutter/localize.dart';
 import 'package:wallet_flutter/model/available_currency.dart';
 import 'package:wallet_flutter/network/account_service.dart';
 import 'package:wallet_flutter/service_locator.dart';
@@ -355,22 +356,22 @@ class SwapXMRScreenState extends State<SwapXMRScreen> {
                             sanitizedAmount(_localCurrencyFormat, convertLocalCurrencyToLocalizedCrypto(context, _localCurrencyFormat, formattedAmount)))
                         : getThemeAwareAmountAsRaw(context, formattedAmount);
 
-                    // start a swap for monero:
+                    // // start a swap for monero:
 
-                    final Map resp = await sl.get<AccountService>().createSwapToXMR(amountRaw: amountRaw, xmrAddress: xmrAddress) as Map;
-                    if (!resp.containsKey("payInAddress")) {
-                      print("Error creating swap: ${resp["error"]}");
-                      return;
-                    }
+                    // final Map resp = await sl.get<AccountService>().createSwapToXMR(amountRaw: amountRaw, xmrAddress: xmrAddress) as Map;
+                    // if (!resp.containsKey("payInAddress")) {
+                    //   print("Error creating swap: ${resp["error"]}");
+                    //   return;
+                    // }
 
-                    String payInAddress = resp["payInAddress"] as String;
+                    // String payInAddress = resp["payInAddress"] as String;
 
-                    Sheets.showAppHeightNineSheet(
-                        context: context,
-                        widget: SwapXMRConfirmSheet(
-                          destination: payInAddress,
-                          amountRaw: amountRaw,
-                        ));
+                    // Sheets.showAppHeightNineSheet(
+                    //     context: context,
+                    //     widget: SwapXMRConfirmSheet(
+                    //       destination: payInAddress,
+                    //       amountRaw: amountRaw,
+                    //     ));
                   }),
                 ],
               ),
@@ -419,49 +420,6 @@ class SwapXMRScreenState extends State<SwapXMRScreen> {
   }
 
   void toggleLocalCurrency() {
-    // Keep a cache of previous amounts because, it's kinda nice to see approx what nano is worth
-    // this way you can tap button and tap back and not end up with X.9993451 NANO
-    if (_localCurrencyMode) {
-      // Switching to crypto-mode
-      String cryptoAmountStr;
-      // Check out previous state
-      if (_amountController!.text == _lastLocalCurrencyAmount) {
-        cryptoAmountStr = _lastCryptoAmount;
-      } else {
-        _lastLocalCurrencyAmount = _amountController!.text;
-        _lastCryptoAmount = convertLocalCurrencyToLocalizedCrypto(context, _localCurrencyFormat, _amountController!.text);
-        cryptoAmountStr = _lastCryptoAmount;
-      }
-      setState(() {
-        _localCurrencyMode = false;
-      });
-      Future.delayed(const Duration(milliseconds: 50), () {
-        _amountController!.text = cryptoAmountStr;
-        _amountController!.selection = TextSelection.fromPosition(TextPosition(offset: cryptoAmountStr.length));
-      });
-    } else {
-      // Switching to local-currency mode
-      String localAmountStr;
-      // Check our previous state
-      if (_amountController!.text == _lastCryptoAmount) {
-        localAmountStr = _lastLocalCurrencyAmount;
-        if (!_lastLocalCurrencyAmount.startsWith(_localCurrencyFormat.currencySymbol)) {
-          _lastLocalCurrencyAmount = _localCurrencyFormat.currencySymbol + _lastLocalCurrencyAmount;
-        }
-      } else {
-        _lastCryptoAmount = _amountController!.text;
-        _lastLocalCurrencyAmount = convertCryptoToLocalCurrency(context, _localCurrencyFormat, _amountController!.text);
-        localAmountStr = _lastLocalCurrencyAmount;
-      }
-
-      setState(() {
-        _localCurrencyMode = true;
-      });
-      Future.delayed(const Duration(milliseconds: 50), () {
-        _amountController!.text = localAmountStr;
-        _amountController!.selection = TextSelection.fromPosition(TextPosition(offset: localAmountStr.length));
-      });
-    }
   }
 
   //************ Enter Amount Container Method ************//
@@ -628,7 +586,7 @@ class SwapXMRScreenState extends State<SwapXMRScreen> {
         bool isUser = false;
         final bool isDomain = text.contains(".") || text.contains(r"$");
         final bool isFavorite = text.startsWith("★");
-        final bool isNano = text.startsWith("nano_");
+        final bool isNano = text.startsWith(NonTranslatable.currencyPrefix);
 
         // prevent spaces:
         if (text.contains(" ")) {

@@ -1,22 +1,24 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:event_taxi/event_taxi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:logger/logger.dart';
 import 'package:wallet_flutter/appstate_container.dart';
-import 'package:wallet_flutter/bus/node_changed_event.dart';
-import 'package:wallet_flutter/bus/node_modified_event.dart';
+import 'package:wallet_flutter/bus/sub_modified_event.dart';
 import 'package:wallet_flutter/dimens.dart';
 import 'package:wallet_flutter/generated/l10n.dart';
+import 'package:wallet_flutter/model/address.dart';
 import 'package:wallet_flutter/model/db/appdb.dart';
-import 'package:wallet_flutter/model/db/node.dart';
-import 'package:wallet_flutter/network/account_service.dart';
+import 'package:wallet_flutter/model/db/subscription.dart';
 import 'package:wallet_flutter/service_locator.dart';
 import 'package:wallet_flutter/styles.dart';
-import 'package:wallet_flutter/ui/settings/node/add_node_sheet.dart';
-import 'package:wallet_flutter/ui/settings/node/node_details_sheet.dart';
+import 'package:wallet_flutter/ui/subs/add_sub_sheet.dart';
+import 'package:wallet_flutter/ui/subs/sub_confirm_sheet.dart';
+import 'package:wallet_flutter/ui/subs/sub_details_sheet.dart';
+import 'package:wallet_flutter/ui/util/formatters.dart';
+import 'package:wallet_flutter/ui/util/handlebars.dart';
 import 'package:wallet_flutter/ui/widgets/buttons.dart';
 import 'package:wallet_flutter/ui/widgets/dialog.dart';
 import 'package:wallet_flutter/ui/widgets/draggable_scrollbar.dart';
@@ -25,9 +27,9 @@ import 'package:wallet_flutter/ui/widgets/sheet_util.dart';
 import 'package:wallet_flutter/util/caseconverter.dart';
 
 class SubsSheet extends StatefulWidget {
-  const SubsSheet({super.key, required this.nodes});
+  SubsSheet({super.key, required this.subs});
 
-  final List<Node> nodes;
+  List<Subscription> subs;
 
   @override
   SubsSheetState createState() => SubsSheetState();
@@ -40,12 +42,12 @@ class SubsSheetState extends State<SubsSheet> {
   bool _addingNode = false;
   final ScrollController _scrollController = ScrollController();
 
-  StreamSubscription<NodeModifiedEvent>? _nodeModifiedSub;
+  StreamSubscription<SubModifiedEvent>? _subscriptionModifiedSub;
   late bool _nodeIsChanging;
 
   Future<bool> _onWillPop() async {
-    if (_nodeModifiedSub != null) {
-      _nodeModifiedSub!.cancel();
+    if (_subscriptionModifiedSub != null) {
+      _subscriptionModifiedSub!.cancel();
     }
     return true;
   }
@@ -65,69 +67,55 @@ class SubsSheetState extends State<SubsSheet> {
   }
 
   void _registerBus() {
-    _nodeModifiedSub = EventTaxiImpl.singleton().registerTo<NodeModifiedEvent>().listen((NodeModifiedEvent event) {
+    _subscriptionModifiedSub =
+        EventTaxiImpl.singleton().registerTo<SubModifiedEvent>().listen((SubModifiedEvent event) {
       if (event.deleted) {
-        if (event.node!.selected) {
-          Future<void>.delayed(const Duration(milliseconds: 50), () {
-            setState(() {
-              widget.nodes.where((Node a) => a.index == StateContainer.of(context).selectedAccount!.index).forEach((Node node) async {
-                node.selected = true;
-                await sl.get<DBHelper>().changeNode(node);
-                await sl.get<AccountService>().updateNode();
-              });
-            });
-          });
-        }
         setState(() {
-          widget.nodes.removeWhere((Node a) => a.index == event.node!.index);
+          widget.subs.removeWhere((Subscription a) => a.id == event.sub!.id);
         });
-      } else if (event.created && event.node != null) {
+      } else if (event.created && event.sub != null) {
         setState(() {
-          widget.nodes.add(event.node!);
+          widget.subs.add(event.sub!);
         });
       } else {
-        // Name change
-        setState(() {
-          widget.nodes.removeWhere((Node a) => a.index == event.node!.index);
-          widget.nodes.add(event.node!);
-          widget.nodes.sort((Node a, Node b) => a.index.compareTo(b.index));
+        // update subs list:
+        // backlog: not very efficient since we'll be reloading everything from disk,
+        // but not worth the effort to optimize this imo
+        sl.get<DBHelper>().getSubscriptions().then((List<Subscription> subs) {
+          setState(() {
+            widget.subs = subs;
+          });
         });
+        // setState(() {
+          // widget.subs.removeWhere((Subscription a) => a.id == event.sub!.id);
+          // widget.subs.add(event.sub!);
+          // widget.subs.sort((Subscription a, Subscription b) => a.id!.compareTo(b.id!));
+        // });
       }
     });
   }
 
   void _destroyBus() {
-    if (_nodeModifiedSub != null) {
-      _nodeModifiedSub!.cancel();
+    if (_subscriptionModifiedSub != null) {
+      _subscriptionModifiedSub!.cancel();
     }
-  }
-
-  Future<void> _changeNode(Node node, StateSetter setState) async {
-    // Change account
-    for (final Node acc in widget.nodes) {
-      if (acc.selected) {
-        setState(() {
-          acc.selected = false;
-        });
-      } else if (node.index == acc.index) {
-        setState(() {
-          acc.selected = true;
-        });
-      }
-    }
-    await sl.get<DBHelper>().changeNode(node);
-    EventTaxiImpl.singleton().fire(NodeChangedEvent(node: node, delayPop: true));
-    await sl.get<AccountService>().updateNode();
-    setState(() {
-      _nodeIsChanging = false;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
+    // double bottomMargin = 60;
+    // // TODO: better calculation of bottom bar height
+    // if (Platform.isIOS) {
+    //   bottomMargin = 100;
+    // }
     return SafeArea(
-        minimum: EdgeInsets.only(
-          bottom: MediaQuery.of(context).size.height * 0.035,
+      minimum: EdgeInsets.only(
+        bottom: MediaQuery.of(context).size.height * 0.035,
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: StateContainer.of(context).curTheme.backgroundDark,
+          borderRadius: const BorderRadius.all(Radius.circular(15)),
         ),
         child: SizedBox(
           width: double.infinity,
@@ -144,15 +132,9 @@ class SubsSheetState extends State<SubsSheet> {
                   ),
                   Column(
                     children: <Widget>[
-                      // Sheet handle
-                      Container(
-                        margin: const EdgeInsets.only(top: 10),
-                        height: 5,
+                      Handlebars.horizontal(
+                        context,
                         width: MediaQuery.of(context).size.width * 0.15,
-                        decoration: BoxDecoration(
-                          color: StateContainer.of(context).curTheme.text20,
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 15.0),
@@ -160,7 +142,7 @@ class SubsSheetState extends State<SubsSheet> {
                         child: Column(
                           children: <Widget>[
                             AutoSizeText(
-                              CaseChange.toUpperCase(Z.of(context).nodes, context),
+                              CaseChange.toUpperCase(Z.of(context).subsButton, context),
                               style: AppStyles.textStyleHeader(context),
                               maxLines: 1,
                               stepGranularity: 0.1,
@@ -186,7 +168,7 @@ class SubsSheetState extends State<SubsSheet> {
                   key: expandedKey,
                   child: Stack(
                     children: <Widget>[
-                      if (widget.nodes == null)
+                      if (widget.subs == null)
                         const Center(
                           child: Text("Loading"),
                         )
@@ -197,12 +179,11 @@ class SubsSheetState extends State<SubsSheet> {
                           scrollbarTopMargin: 20.0,
                           scrollbarBottomMargin: 12.0,
                           child: ListView.builder(
-                            // padding: const EdgeInsets.symmetric(vertical: 20),
-                            // padding: const EdgeInsets.only(right: 2),
-                            itemCount: widget.nodes.length,
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            itemCount: widget.subs.length,
                             controller: _scrollController,
                             itemBuilder: (BuildContext context, int index) {
-                              return _buildNodeListItem(context, widget.nodes[index], setState);
+                              return _buildSubListItem(context, widget.subs[index], setState);
                             },
                           ),
                         ),
@@ -224,84 +205,81 @@ class SubsSheetState extends State<SubsSheet> {
               const SizedBox(
                 height: 15,
               ),
-              //A row with Add Account button
-              if (widget.nodes.length < MAX_ACCOUNTS)
-                Row(
-                  children: <Widget>[
-                    AppButton.buildAppButton(
-                      context,
-                      AppButtonType.PRIMARY,
-                      Z.of(context).addNode,
-                      Dimens.BUTTON_TOP_DIMENS,
-                      disabled: _addingNode,
-                      onPressed: () async {
-                        if (!_addingNode) {
-                          setState(() {
-                            _addingNode = true;
-                          });
-
-                          final Node? node = await Sheets.showAppHeightEightSheet(
-                            context: context,
-                            widget: const AddNodeSheet(),
-                          ) as Node?;
-                          if (!mounted) return;
-                          if (node == null) {
-                            setState(() {
-                              _addingNode = false;
-                            });
-                            return;
-                          }
-
-                          sl.get<DBHelper>().addNode(node).then((Node? newNode) {
-                            if (newNode == null) {
-                              sl.get<Logger>().d("Error adding node: node was null");
-                              return;
-                            }
-                            widget.nodes.add(newNode);
-                            setState(() {
-                              _addingNode = false;
-                              widget.nodes.sort((Node a, Node b) => a.index.compareTo(b.index));
-                              // Scroll if list is full
-                              if (expandedKey.currentContext != null) {
-                                final RenderBox? box = expandedKey.currentContext!.findRenderObject() as RenderBox?;
-                                if (box == null) return;
-                                if (widget.nodes.length * 72.0 >= box.size.height) {
-                                  _scrollController.animateTo(
-                                    newNode.index * 72.0 > _scrollController.position.maxScrollExtent
-                                        ? _scrollController.position.maxScrollExtent + 72.0
-                                        : newNode.index * 72.0,
-                                    curve: Curves.easeOut,
-                                    duration: const Duration(milliseconds: 200),
-                                  );
-                                }
-                              }
-                            });
-                          });
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              // Close button
+              //A row with Add Sub button
               Row(
                 children: <Widget>[
                   AppButton.buildAppButton(
                     context,
-                    AppButtonType.PRIMARY_OUTLINE,
-                    Z.of(context).close,
-                    Dimens.BUTTON_BOTTOM_DIMENS,
-                    onPressed: () {
-                      Navigator.pop(context);
+                    AppButtonType.PRIMARY,
+                    Z.of(context).addSubscription,
+                    Dimens.BUTTON_TOP_DIMENS,
+                    disabled: _addingNode,
+                    onPressed: () async {
+                      if (!_addingNode) {
+                        setState(() {
+                          _addingNode = true;
+                        });
+
+                        final Subscription? sub = await Sheets.showAppHeightNineSheet(
+                          context: context,
+                          widget: AddSubSheet(
+                            localCurrency: StateContainer.of(context).curCurrency,
+                          ),
+                        ) as Subscription?;
+                        if (!mounted) return;
+                        if (sub == null) {
+                          setState(() {
+                            _addingNode = false;
+                          });
+                          return;
+                        }
+                        await Sheets.showAppHeightNineSheet(
+                          context: context,
+                          widget: SubConfirmSheet(sub: sub),
+                        );
+                        if (!mounted) return;
+                        setState(() {
+                          _addingNode = false;
+                        });
+
+                        // sl.get<DBHelper>().saveNode(node).then((Node? newNode) {
+                        //   if (newNode == null) {
+                        //     sl.get<Logger>().d("Error adding node: node was null");
+                        //     return;
+                        //   }
+                        //   widget.nodes.add(newNode);
+                        //   setState(() {
+                        //     _addingNode = false;
+                        //     widget.nodes.sort((Node a, Node b) => a.id!.compareTo(b.id!));
+                        //     // Scroll if list is full
+                        //     if (expandedKey.currentContext != null) {
+                        //       final RenderBox? box = expandedKey.currentContext!.findRenderObject() as RenderBox?;
+                        //       if (box == null) return;
+                        //       if (widget.nodes.length * 72.0 >= box.size.height) {
+                        //         _scrollController.animateTo(
+                        //           newNode.id! * 72.0 > _scrollController.position.maxScrollExtent
+                        //               ? _scrollController.position.maxScrollExtent + 72.0
+                        //               : newNode.id! * 72.0,
+                        //           curve: Curves.easeOut,
+                        //           duration: const Duration(milliseconds: 200),
+                        //         );
+                        //       }
+                        //     }
+                        //   });
+                        // });
+                      }
                     },
                   ),
                 ],
               ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
-  Widget _buildNodeListItem(BuildContext context, Node node, StateSetter setState) {
+  Widget _buildSubListItem(BuildContext context, Subscription sub, StateSetter setState) {
     return Column(
       children: <Widget>[
         Divider(
@@ -312,7 +290,7 @@ class SubsSheetState extends State<SubsSheet> {
           margin: const EdgeInsets.only(right: 10),
           child: Slidable(
             closeOnScroll: true,
-            endActionPane: _getSlideActionsForNode(context, node, setState),
+            endActionPane: _getSlideActionsForSub(context, sub, setState),
             child: TextButton(
               style: TextButton.styleFrom(
                 foregroundColor: StateContainer.of(context).curTheme.text15,
@@ -325,15 +303,11 @@ class SubsSheetState extends State<SubsSheet> {
               // splashColor: StateContainer.of(context).curTheme.text15,
               // padding: EdgeInsets.all(0.0),
               onPressed: () {
-                if (!_nodeIsChanging) {
-                  // Change account
-                  if (!node.selected) {
-                    setState(() {
-                      _nodeIsChanging = true;
-                    });
-                    _changeNode(node, setState);
-                  }
-                }
+                Sheets.showAppHeightEightSheet(
+                  context: context,
+                  widget: SubDetailsSheet(sub: sub),
+                  animationDurationMs: 175,
+                );
               },
               child: SizedBox(
                 height: 70.0,
@@ -342,11 +316,11 @@ class SubsSheetState extends State<SubsSheet> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     // Selected indicator
-                    Container(
-                      height: 70,
-                      width: 6,
-                      color: node.selected ? StateContainer.of(context).curTheme.primary : Colors.transparent,
-                    ),
+                    // Container(
+                    //   height: 70,
+                    //   width: 6,
+                    //   color: sub.active ? StateContainer.of(context).curTheme.primary : Colors.transparent,
+                    // ),
                     // Icon, Account Name, Address and Amount
                     Expanded(
                       child: Container(
@@ -365,8 +339,10 @@ class SubsSheetState extends State<SubsSheet> {
                                       child: Container(
                                         margin: EdgeInsets.zero,
                                         child: Icon(
-                                          Icons.hub,
-                                          color: node.selected ? StateContainer.of(context).curTheme.success : StateContainer.of(context).curTheme.primary,
+                                          sub.active ? Icons.paid : Icons.money_off,
+                                          color: sub.active
+                                              ? StateContainer.of(context).curTheme.success
+                                              : StateContainer.of(context).curTheme.error,
                                           size: 30,
                                         ),
                                       ),
@@ -384,7 +360,7 @@ class SubsSheetState extends State<SubsSheet> {
                                     children: <Widget>[
                                       // Account name
                                       AutoSizeText(
-                                        node.name,
+                                        sub.name,
                                         style: TextStyle(
                                           fontFamily: "NunitoSans",
                                           fontWeight: FontWeight.w600,
@@ -396,9 +372,8 @@ class SubsSheetState extends State<SubsSheet> {
                                         maxLines: 1,
                                         textAlign: TextAlign.start,
                                       ),
-                                      // http_url + ws_url
                                       AutoSizeText(
-                                        "${node.http_url}\n${node.ws_url}",
+                                        Address(sub.address).getShortString() ?? "",
                                         style: TextStyle(
                                           fontFamily: "OverpassMono",
                                           fontWeight: FontWeight.w100,
@@ -407,7 +382,27 @@ class SubsSheetState extends State<SubsSheet> {
                                         ),
                                         minFontSize: 8.0,
                                         stepGranularity: 0.1,
-                                        maxLines: 2,
+                                        maxLines: 1,
+                                      ),
+                                      RichText(
+                                        textAlign: TextAlign.center,
+                                        text: TextSpan(
+                                          text: "",
+                                          children: <InlineSpan>[
+                                            TextSpan(
+                                              text: getThemeAwareRawAccuracy(context, sub.amount_raw),
+                                              style: AppStyles.textStyleParagraphPrimary(context),
+                                            ),
+                                            displayCurrencySymbol(
+                                              context,
+                                              AppStyles.textStyleParagraphPrimary(context),
+                                            ),
+                                            TextSpan(
+                                              text: getRawAsThemeAwareFormattedAmount(context, sub.amount_raw),
+                                              style: AppStyles.textStyleParagraphPrimary(context),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -418,16 +413,7 @@ class SubsSheetState extends State<SubsSheet> {
                         ),
                       ),
                     ),
-                    // handle bars:
-                    Container(
-                      width: 4,
-                      height: 30,
-                      margin: const EdgeInsets.only(right: 20),
-                      decoration: BoxDecoration(
-                        color: StateContainer.of(context).curTheme.text45,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
+                    Handlebars.vertical(context),
                   ],
                 ),
               ),
@@ -438,7 +424,7 @@ class SubsSheetState extends State<SubsSheet> {
     );
   }
 
-  ActionPane _getSlideActionsForNode(BuildContext context, Node node, StateSetter setState) {
+  ActionPane _getSlideActionsForSub(BuildContext context, Subscription sub, StateSetter setState) {
     final List<Widget> actions = <Widget>[];
 
     actions.add(SlidableAction(
@@ -451,41 +437,42 @@ class SubsSheetState extends State<SubsSheet> {
         onPressed: (BuildContext context) async {
           await Future<dynamic>.delayed(const Duration(milliseconds: 250));
           if (!mounted) return;
-          NodeDetailsSheet(node).mainBottomSheet(context);
+          // Sheets.showAppHeightEightSheet(
+          //   context: context,
+          //   widget: SubDetailsSheet(sub: sub),
+          //   animationDurationMs: 175,
+          // );
           await Slidable.of(context)!.close();
         }));
 
-    if (node.index > 0) {
-      actions.add(
-        SlidableAction(
-          autoClose: false,
-          borderRadius: BorderRadius.circular(5.0),
-          backgroundColor: StateContainer.of(context).curTheme.backgroundDark!,
-          foregroundColor: StateContainer.of(context).curTheme.error60,
-          icon: Icons.delete,
-          label: Z.of(context).delete,
-          onPressed: (BuildContext context) {
-            AppDialogs.showConfirmDialog(
-                context, Z.of(context).deleteNodeHeader, Z.of(context).deleteNodeConfirmation, CaseChange.toUpperCase(Z.of(context).yes, context), () async {
-              await Future<dynamic>.delayed(const Duration(milliseconds: 250));
-              // Remove account
-              await sl.get<DBHelper>().deleteNode(node);
-              EventTaxiImpl.singleton().fire(NodeModifiedEvent(node: node, deleted: true));
-              setState(() {
-                widget.nodes.removeWhere((Node acc) => acc.index == node.index);
-              });
-              if (!mounted) return;
-              await Slidable.of(context)!.close();
-            }, cancelText: CaseChange.toUpperCase(Z.of(context).no, context));
-          },
-        ),
-      );
-    }
+    actions.add(
+      SlidableAction(
+        autoClose: false,
+        borderRadius: BorderRadius.circular(5.0),
+        backgroundColor: StateContainer.of(context).curTheme.backgroundDark!,
+        foregroundColor: StateContainer.of(context).curTheme.error60,
+        icon: Icons.delete,
+        label: Z.of(context).delete,
+        onPressed: (BuildContext context) {
+          AppDialogs.showConfirmDialog(context, Z.of(context).deleteSubHeader, Z.of(context).deleteSubConfirmation,
+              CaseChange.toUpperCase(Z.of(context).yes, context), () async {
+            await Future<dynamic>.delayed(const Duration(milliseconds: 250));
+            // Remove account
+            await sl.get<DBHelper>().deleteSubscription(sub);
+            EventTaxiImpl.singleton().fire(SubModifiedEvent(sub: sub, deleted: true));
+            setState(() {
+              widget.subs.removeWhere((Subscription acc) => acc.id == sub.id);
+            });
+            if (!mounted) return;
+            await Slidable.of(context)!.close();
+          }, cancelText: CaseChange.toUpperCase(Z.of(context).no, context));
+        },
+      ),
+    );
 
     return ActionPane(
-      // motion: const DrawerMotion(),
       motion: const ScrollMotion(),
-      extentRatio: (node.index > 0) ? 0.5 : 0.25,
+      extentRatio: 0.5,
       children: actions,
     );
   }

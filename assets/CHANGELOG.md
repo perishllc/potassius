@@ -1,10 +1,16 @@
-## v0.7.3 - [2022-12-25]
+## v0.7.3 - [2023-01-20]
 #### Added
+- Subscriptions menu
+- Long press the share nautilus button for a QR code for easy onboarding (promo link)
+- Ability to change PoW Source
 #### Changed
 - UI updates on the send / receive sheets
 - Updated more settings menu / icons
+- Improved send / receive sheet UX / field focus
 #### Fixed
 - Update node url character limit
+- Split bill currency fixes
+- Scrollbar jitter fixes
 ## v0.7.2 - [2022-12-16]
 #### Fixed
 - Hotfixes
@@ -141,7 +147,7 @@
 ## v0.6.0 - [2022-08-25]
 #### Added
 - "nanopay" and (WIP) "nanoauth" URI scheme support!
-  - [Demo Handoff](https://perihs.co/handoff)
+  - [Demo Handoff](https://perish.co/handoff)
 - Checkbox option to require a captcha in order to redeem a gift card
 - perish.co/promo (feel free to use as a general promotional link for nautilus / easy onboarding)
 #### Changed

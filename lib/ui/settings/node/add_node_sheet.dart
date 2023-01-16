@@ -1,12 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:keyboard_avoider/keyboard_avoider.dart';
 import 'package:wallet_flutter/app_icons.dart';
 import 'package:wallet_flutter/appstate_container.dart';
 import 'package:wallet_flutter/dimens.dart';
 import 'package:wallet_flutter/generated/l10n.dart';
 import 'package:wallet_flutter/model/db/node.dart';
 import 'package:wallet_flutter/styles.dart';
+import 'package:wallet_flutter/ui/util/handlebars.dart';
 import 'package:wallet_flutter/ui/widgets/app_text_field.dart';
 import 'package:wallet_flutter/ui/widgets/buttons.dart';
 import 'package:wallet_flutter/ui/widgets/tap_outside_unfocus.dart';
@@ -96,15 +98,6 @@ class AddNodeSheetState extends State<AddNodeSheet> {
       //         : AppStyles.textStyleAddressPrimary(context),
       style: AppStyles.textStyleAddressText90(context),
       onChanged: (String text) async {
-        // prevent spaces:
-        if (text.contains(" ")) {
-          text = text.replaceAll(" ", "");
-          _httpController.text = text;
-          _httpController.selection = TextSelection.fromPosition(TextPosition(
-            offset: _httpController.text.length,
-          ));
-        }
-
         // Always reset the error message to be less annoying
         if (_nameValidationText.isNotEmpty) {
           setState(() {
@@ -187,6 +180,12 @@ class AddNodeSheetState extends State<AddNodeSheet> {
           setState(() {
             _httpValidationText = "";
           });
+        }
+      },
+      onSubmitted: (String text) {
+        FocusScope.of(context).unfocus();
+        if (_wsController.text.isEmpty) {
+          FocusScope.of(context).requestFocus(_wsFocusNode);
         }
       },
     );
@@ -292,15 +291,9 @@ class AddNodeSheetState extends State<AddNodeSheet> {
                 constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width - 140),
                 child: Column(
                   children: <Widget>[
-                    // Sheet handle
-                    Container(
+                    Handlebars.horizontal(
+                      context,
                       margin: const EdgeInsets.only(top: 10, bottom: 15),
-                      height: 5,
-                      width: MediaQuery.of(context).size.width * 0.15,
-                      decoration: BoxDecoration(
-                        color: StateContainer.of(context).curTheme.text20,
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
                     ),
                     AutoSizeText(
                       CaseChange.toUpperCase(Z.of(context).addNode, context),
@@ -337,78 +330,83 @@ class AddNodeSheetState extends State<AddNodeSheet> {
                       child: const SizedBox.expand(),
                     ),
                   ),
-                  Column(
-                    children: <Widget>[
-                      Stack(
-                        children: <Widget>[
-                          // Column for Enter Address container + Enter Address Error container
-                          Column(
-                            children: <Widget>[
-                              Container(
-                                alignment: Alignment.topCenter,
-                                child: Stack(
+                  KeyboardAvoider(
+                    duration: Duration.zero,
+                    autoScroll: true,
+                    focusPadding: 40,
+                    child: Column(
+                      children: <Widget>[
+                        Stack(
+                          children: <Widget>[
+                            // Column for Enter Address container + Enter Address Error container
+                            Column(
+                              children: <Widget>[
+                                Container(
                                   alignment: Alignment.topCenter,
-                                  children: <Widget>[
-                                    getEnterNameContainer(),
-                                  ],
+                                  child: Stack(
+                                    alignment: Alignment.topCenter,
+                                    children: <Widget>[
+                                      getEnterNameContainer(),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Container(
-                                alignment: AlignmentDirectional.center,
-                                margin: const EdgeInsets.only(top: 3),
-                                child: Text(_nameValidationText,
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      color: StateContainer.of(context).curTheme.primary,
-                                      fontFamily: "NunitoSans",
-                                      fontWeight: FontWeight.w600,
-                                    )),
-                              ),
-                              Container(
-                                alignment: Alignment.topCenter,
-                                child: Stack(
+                                Container(
+                                  alignment: AlignmentDirectional.center,
+                                  margin: const EdgeInsets.only(top: 3),
+                                  child: Text(_nameValidationText,
+                                      style: TextStyle(
+                                        fontSize: 14.0,
+                                        color: StateContainer.of(context).curTheme.primary,
+                                        fontFamily: "NunitoSans",
+                                        fontWeight: FontWeight.w600,
+                                      )),
+                                ),
+                                Container(
                                   alignment: Alignment.topCenter,
-                                  children: <Widget>[
-                                    getEnterHttpContainer(),
-                                  ],
+                                  child: Stack(
+                                    alignment: Alignment.topCenter,
+                                    children: <Widget>[
+                                      getEnterHttpContainer(),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Container(
-                                alignment: AlignmentDirectional.center,
-                                margin: const EdgeInsets.only(top: 3),
-                                child: Text(_httpValidationText,
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      color: StateContainer.of(context).curTheme.primary,
-                                      fontFamily: "NunitoSans",
-                                      fontWeight: FontWeight.w600,
-                                    )),
-                              ),
-                              Container(
-                                alignment: Alignment.topCenter,
-                                child: Stack(
+                                Container(
+                                  alignment: AlignmentDirectional.center,
+                                  margin: const EdgeInsets.only(top: 3),
+                                  child: Text(_httpValidationText,
+                                      style: TextStyle(
+                                        fontSize: 14.0,
+                                        color: StateContainer.of(context).curTheme.primary,
+                                        fontFamily: "NunitoSans",
+                                        fontWeight: FontWeight.w600,
+                                      )),
+                                ),
+                                Container(
                                   alignment: Alignment.topCenter,
-                                  children: <Widget>[
-                                    getEnterWsContainer(),
-                                  ],
+                                  child: Stack(
+                                    alignment: Alignment.topCenter,
+                                    children: <Widget>[
+                                      getEnterWsContainer(),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Container(
-                                alignment: AlignmentDirectional.center,
-                                margin: const EdgeInsets.only(top: 3),
-                                child: Text(_wsValidationText,
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      color: StateContainer.of(context).curTheme.primary,
-                                      fontFamily: "NunitoSans",
-                                      fontWeight: FontWeight.w600,
-                                    )),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
+                                Container(
+                                  alignment: AlignmentDirectional.center,
+                                  margin: const EdgeInsets.only(top: 3),
+                                  child: Text(_wsValidationText,
+                                      style: TextStyle(
+                                        fontSize: 14.0,
+                                        color: StateContainer.of(context).curTheme.primary,
+                                        fontFamily: "NunitoSans",
+                                        fontWeight: FontWeight.w600,
+                                      )),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -419,8 +417,10 @@ class AddNodeSheetState extends State<AddNodeSheet> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  // Add Contact Button
-                  AppButton.buildAppButton(context, AppButtonType.PRIMARY, Z.of(context).addAccount, Dimens.BUTTON_TOP_DIMENS, onPressed: () async {
+                  // Add Node Button
+                  AppButton.buildAppButton(
+                      context, AppButtonType.PRIMARY, Z.of(context).addNode, Dimens.BUTTON_TOP_DIMENS,
+                      onPressed: () async {
                     if (!await validateForm()) {
                       return;
                     }
@@ -450,7 +450,9 @@ class AddNodeSheetState extends State<AddNodeSheet> {
               Row(
                 children: <Widget>[
                   // Close Button
-                  AppButton.buildAppButton(context, AppButtonType.PRIMARY_OUTLINE, Z.of(context).close, Dimens.BUTTON_BOTTOM_DIMENS, onPressed: () {
+                  AppButton.buildAppButton(
+                      context, AppButtonType.PRIMARY_OUTLINE, Z.of(context).close, Dimens.BUTTON_BOTTOM_DIMENS,
+                      onPressed: () {
                     Navigator.of(context).pop();
                   }),
                 ],

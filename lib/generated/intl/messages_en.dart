@@ -29,6 +29,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "accounts": MessageLookupByLibrary.simpleMessage("Accounts"),
         "ackBackedUp": MessageLookupByLibrary.simpleMessage(
             "Are you sure that you\'ve backed up your secret phrase or seed?"),
+        "activateSub":
+            MessageLookupByLibrary.simpleMessage("Activate Subscription"),
         "activeMessageHeader":
             MessageLookupByLibrary.simpleMessage("Active Message"),
         "addAccount": MessageLookupByLibrary.simpleMessage("Add Account"),
@@ -37,6 +39,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addContact": MessageLookupByLibrary.simpleMessage("Add Contact"),
         "addFavorite": MessageLookupByLibrary.simpleMessage("Add Favorite"),
         "addNode": MessageLookupByLibrary.simpleMessage("Add Node"),
+        "addSubscription":
+            MessageLookupByLibrary.simpleMessage("Add Subscription"),
         "addUser": MessageLookupByLibrary.simpleMessage("Add a User"),
         "addWatchOnlyAccount":
             MessageLookupByLibrary.simpleMessage("Add Watch Only Account"),
@@ -44,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error adding Watch Only Account: Account was null"),
         "addWatchOnlyAccountSuccess": MessageLookupByLibrary.simpleMessage(
             "Successfully created watch only account!"),
+        "addWorkSource":
+            MessageLookupByLibrary.simpleMessage("Add Work Source"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
         "addressCopied": MessageLookupByLibrary.simpleMessage("Address Copied"),
         "addressHint": MessageLookupByLibrary.simpleMessage("Enter Address"),
@@ -115,6 +121,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Connection Warning"),
         "businessButton": MessageLookupByLibrary.simpleMessage("Business"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cancelSub":
+            MessageLookupByLibrary.simpleMessage("Cancel Subscription"),
         "captchaWarning": MessageLookupByLibrary.simpleMessage("Captcha"),
         "captchaWarningBody": MessageLookupByLibrary.simpleMessage(
             "In order to prevent abuse, we require you to solve a quick captcha on the next page to claim this gift card."),
@@ -128,6 +136,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Change your existing password. If you don\'t know your current password, just make your best guess as it\'s not actually required to change it (since you are already logged in), but it does let us delete the existing backup entry."),
         "changePin": MessageLookupByLibrary.simpleMessage("Change Pin"),
         "changePinHint": MessageLookupByLibrary.simpleMessage("Set pin"),
+        "changePow": MessageLookupByLibrary.simpleMessage("Change PoW"),
+        "changePowSource":
+            MessageLookupByLibrary.simpleMessage("Change PoW Source"),
         "changeRepAuthenticate":
             MessageLookupByLibrary.simpleMessage("Change Representative"),
         "changeRepButton": MessageLookupByLibrary.simpleMessage("Change"),
@@ -230,6 +241,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Delete Node?"),
         "deleteRequest":
             MessageLookupByLibrary.simpleMessage("Delete this request"),
+        "deleteSubConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to delete this subscription?\n\nYou can always re-add it later by tapping the \"Add Subscription\" button"),
+        "deleteSubHeader":
+            MessageLookupByLibrary.simpleMessage("Delete Subscription?"),
         "disablePasswordSheetHeader":
             MessageLookupByLibrary.simpleMessage("Disable"),
         "disablePasswordSuccess":
@@ -263,6 +278,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterMemo": MessageLookupByLibrary.simpleMessage("Enter Message"),
         "enterMoneroAddress":
             MessageLookupByLibrary.simpleMessage("Enter XMR Address"),
+        "enterName": MessageLookupByLibrary.simpleMessage("Enter Name"),
         "enterNodeName":
             MessageLookupByLibrary.simpleMessage("Enter Node Name"),
         "enterPasswordHint":
@@ -599,6 +615,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Plausible Deniability Info"),
         "plausibleSheetInfo": MessageLookupByLibrary.simpleMessage(
             "Set a secondary pin for plausible deniability mode.\n\nIf your wallet is unlocked using this secondary pin, your seed will be replaced with a hash of the existing seed. This is a security feature intended to be used in the event you are forced to open your wallet.\n\nThis pin will act like a normal (correct) pin EXCEPT when unlocking your wallet, which is when plausible deniability mode will activate.\n\nYour funds WILL BE LOST upon entering plausible deniability mode if you have not backed up your seed!"),
+        "pow": MessageLookupByLibrary.simpleMessage("PoW"),
         "preferences": MessageLookupByLibrary.simpleMessage("Preferences"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "proSubRequiredHeader": MessageLookupByLibrary.simpleMessage(
@@ -699,6 +716,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Scan a %2 \naddress QR code"),
         "scanNFC": MessageLookupByLibrary.simpleMessage("Scan NFC"),
         "scanQrCode": MessageLookupByLibrary.simpleMessage("Scan QR Code"),
+        "schedule": MessageLookupByLibrary.simpleMessage("Schedule"),
         "searchHint":
             MessageLookupByLibrary.simpleMessage("Search for anything"),
         "secretInfo": MessageLookupByLibrary.simpleMessage(
@@ -809,6 +827,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "subscribeButton": MessageLookupByLibrary.simpleMessage("Subscribe"),
         "subscribeWithApple":
             MessageLookupByLibrary.simpleMessage("Subscribe via Apple Pay"),
+        "subscribed": MessageLookupByLibrary.simpleMessage("Subscribed"),
+        "subscribing": MessageLookupByLibrary.simpleMessage("Subscribing"),
         "supportButton": MessageLookupByLibrary.simpleMessage("Support"),
         "supportDevelopment":
             MessageLookupByLibrary.simpleMessage("Help Support Development"),
@@ -914,6 +934,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "%1 usernames are a centralized service provided by Nano.to"),
         "using": MessageLookupByLibrary.simpleMessage("Using"),
         "viewDetails": MessageLookupByLibrary.simpleMessage("View Details"),
+        "viewPaymentHistory":
+            MessageLookupByLibrary.simpleMessage("View Payment History"),
         "viewTX": MessageLookupByLibrary.simpleMessage("View Transaction"),
         "votingWeight": MessageLookupByLibrary.simpleMessage("Voting Weight"),
         "warning": MessageLookupByLibrary.simpleMessage("Warning"),
