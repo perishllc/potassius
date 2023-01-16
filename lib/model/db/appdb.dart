@@ -239,7 +239,7 @@ class DBHelper {
     // add default nodes:
     await saveNode(
       Node(
-        index: 0,
+        id: 0,
         name: "Kalium Node",
         selected: true,
         http_url: "https://kaliumapi.appditto.com/api",
