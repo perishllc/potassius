@@ -60,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addressShare": MessageLookupByLibrary.simpleMessage("Share Address"),
         "advanced": MessageLookupByLibrary.simpleMessage("Advanced"),
         "aliases": MessageLookupByLibrary.simpleMessage("Aliases"),
+        "amount": MessageLookupByLibrary.simpleMessage("Amount"),
         "amountGiftGreaterError": MessageLookupByLibrary.simpleMessage(
             "Split Amount can\'t be greater than gift balance"),
         "amountMissing":
@@ -271,6 +272,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterAddress": MessageLookupByLibrary.simpleMessage("Enter Address"),
         "enterAmount": MessageLookupByLibrary.simpleMessage("Enter Amount"),
         "enterEmail": MessageLookupByLibrary.simpleMessage("Enter Email"),
+        "enterFrequency":
+            MessageLookupByLibrary.simpleMessage("Enter Frequency"),
         "enterGiftMemo":
             MessageLookupByLibrary.simpleMessage("Enter Gift Note"),
         "enterHeight": MessageLookupByLibrary.simpleMessage("Enter Height"),
@@ -359,6 +362,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("A few seconds ago"),
         "fingerprintSeedBackup": MessageLookupByLibrary.simpleMessage(
             "Authenticate to backup seed."),
+        "frequencyEmpty":
+            MessageLookupByLibrary.simpleMessage("Please enter a Frequency"),
         "from": MessageLookupByLibrary.simpleMessage("From"),
         "fulfilled": MessageLookupByLibrary.simpleMessage("fulfilled"),
         "fundingBannerHeader":
@@ -444,6 +449,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Backup your seed!"),
         "invalidAddress":
             MessageLookupByLibrary.simpleMessage("Address entered was invalid"),
+        "invalidFrequency":
+            MessageLookupByLibrary.simpleMessage("Frequency Invalid"),
         "invalidHeight": MessageLookupByLibrary.simpleMessage("Invalid Height"),
         "invalidPassword":
             MessageLookupByLibrary.simpleMessage("Invalid Password"),
@@ -511,6 +518,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "This is your new account. Once you receive %2, transactions will show up like this:"),
         "newWallet": MessageLookupByLibrary.simpleMessage("New Wallet"),
         "nextButton": MessageLookupByLibrary.simpleMessage("Next"),
+        "nextPayment": MessageLookupByLibrary.simpleMessage("Next Payment"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noContactsExport": MessageLookupByLibrary.simpleMessage(
             "There\'s no contacts to export."),
@@ -585,6 +593,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "pay": MessageLookupByLibrary.simpleMessage("Pay"),
         "payRequest": MessageLookupByLibrary.simpleMessage("Pay this request"),
+        "paymentHistory":
+            MessageLookupByLibrary.simpleMessage("Payment History"),
         "paymentRequestMessage": MessageLookupByLibrary.simpleMessage(
             "Someone has requested payment from you! check the payments page for more info."),
         "payments": MessageLookupByLibrary.simpleMessage("Payments"),

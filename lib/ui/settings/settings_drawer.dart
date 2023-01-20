@@ -1020,10 +1020,7 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
     if (selection != null) {
       sl.get<SharedPrefsUtil>().setCurrency(AvailableCurrency(selection)).then((void result) {
         if (StateContainer.of(context).curCurrency.currency != selection) {
-          setState(() {
-            StateContainer.of(context).curCurrency = AvailableCurrency(selection);
-          });
-          StateContainer.of(context).requestSubscribe();
+          StateContainer.of(context).updateCurrency(AvailableCurrency(selection));
         }
       });
     }
@@ -1660,7 +1657,7 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
               NonTranslatable.promoLink,
             ),
           );
-          Sheets.showAppHeightNineSheet(
+          Sheets.showAppHeightEightSheet(
             context: context,
             widget: OnboardSheet(
               link: NonTranslatable.promoLink,

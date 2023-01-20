@@ -3,10 +3,12 @@
 - Subscriptions menu
 - Long press the share nautilus button for a QR code for easy onboarding (promo link)
 - Ability to change PoW Source
+- Icon for notifications updated
 #### Changed
 - UI updates on the send / receive sheets
 - Updated more settings menu / icons
 - Improved send / receive sheet UX / field focus
+- Get price data from coingecko directly instead of relying on the backend
 #### Fixed
 - Update node url character limit
 - Split bill currency fixes

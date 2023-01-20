@@ -925,73 +925,6 @@ class _ReceiveSheetState extends State<ReceiveSheet> {
     });
   }
 
-  Future<bool> showNotificationDialog() async {
-    final NotificationOptions? option = await showDialog<NotificationOptions>(
-        context: context,
-        barrierColor: StateContainer.of(context).curTheme.barrier,
-        builder: (BuildContext context) {
-          return AppSimpleDialog(
-            title: Text(
-              Z.of(context).notifications,
-              style: AppStyles.textStyleDialogHeader(context),
-            ),
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Text("${Z.of(context).notificationInfo}\n", style: AppStyles.textStyleParagraph(context)),
-              ),
-              AppSimpleDialogOption(
-                onPressed: () {
-                  Navigator.pop(context, NotificationOptions.ON);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text(
-                    Z.of(context).onStr,
-                    style: AppStyles.textStyleDialogOptions(context),
-                  ),
-                ),
-              ),
-              AppSimpleDialogOption(
-                onPressed: () {
-                  Navigator.pop(context, NotificationOptions.OFF);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text(
-                    Z.of(context).off,
-                    style: AppStyles.textStyleDialogOptions(context),
-                  ),
-                ),
-              ),
-            ],
-          );
-        });
-
-    if (option == null) {
-      return false;
-    }
-
-    if (option == NotificationOptions.ON) {
-      sl.get<SharedPrefsUtil>().setNotificationsOn(true).then((void result) {
-        EventTaxiImpl.singleton().fire(NotificationSettingChangeEvent(isOn: true));
-        FirebaseMessaging.instance.requestPermission();
-        FirebaseMessaging.instance.getToken().then((String? fcmToken) {
-          EventTaxiImpl.singleton().fire(FcmUpdateEvent(token: fcmToken));
-        });
-      });
-      return true;
-    } else {
-      sl.get<SharedPrefsUtil>().setNotificationsOn(false).then((void result) {
-        EventTaxiImpl.singleton().fire(NotificationSettingChangeEvent(isOn: false));
-        FirebaseMessaging.instance.getToken().then((String? fcmToken) {
-          EventTaxiImpl.singleton().fire(FcmUpdateEvent(token: fcmToken));
-        });
-      });
-      return false;
-    }
-  }
-
   Future<bool> showNeedVerificationAlert() async {
     switch (await showDialog<int>(
         context: context,
@@ -1124,7 +1057,7 @@ class _ReceiveSheetState extends State<ReceiveSheet> {
       final bool notificationsEnabled = await sl.get<SharedPrefsUtil>().getNotificationsOn();
 
       if ((_memoController.text.isNotEmpty && _addressController.text.isNotEmpty) && !notificationsEnabled) {
-        final bool notificationTurnedOn = await showNotificationDialog();
+        final bool notificationTurnedOn = await SendSheetHelpers.showNotificationDialog(context);
         if (!notificationTurnedOn) {
           isValid = false;
         } else {
@@ -1184,21 +1117,6 @@ class _ReceiveSheetState extends State<ReceiveSheet> {
         ),
       ],
       onChanged: (String text) {
-        if (_localCurrencyMode == false && !text.contains(".") && text.isNotEmpty && text.length > 1) {
-          // if the amount is larger than 133248297 set it to that number:
-          if (BigInt.parse(text
-                  .replaceAll(_localCurrencyFormat.currencySymbol, "")
-                  .replaceAll(_localCurrencyFormat.symbols.GROUP_SEP, "")) >
-              BigInt.parse("133248297")) {
-            setState(() {
-              // _amountController.text = "133248297";
-              // prevent the user from entering more than 13324829
-              _amountController.text = _amountController.text.substring(0, _amountController.text.length - 1);
-              _amountController.selection =
-                  TextSelection.fromPosition(TextPosition(offset: _amountController.text.length));
-            });
-          }
-        }
         // Always reset the error message to be less annoying
         setState(() {
           _amountValidationText = "";

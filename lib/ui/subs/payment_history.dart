@@ -17,6 +17,7 @@ import 'package:wallet_flutter/model/db/appdb.dart';
 import 'package:wallet_flutter/model/db/node.dart';
 import 'package:wallet_flutter/model/db/subscription.dart';
 import 'package:wallet_flutter/network/account_service.dart';
+import 'package:wallet_flutter/network/model/response/account_history_response_item.dart';
 import 'package:wallet_flutter/service_locator.dart';
 import 'package:wallet_flutter/styles.dart';
 import 'package:wallet_flutter/ui/settings/node/add_node_sheet.dart';
@@ -33,9 +34,9 @@ import 'package:wallet_flutter/ui/widgets/sheet_util.dart';
 import 'package:wallet_flutter/util/caseconverter.dart';
 
 class PaymentHistorySheet extends StatefulWidget {
-  const PaymentHistorySheet({super.key, required this.address});
+  const PaymentHistorySheet({super.key, required this.history});
 
-  final String address;
+  final List<AccountHistoryResponseItem> history;
 
   @override
   PaymentHistorySheetState createState() => PaymentHistorySheetState();
@@ -72,16 +73,16 @@ class PaymentHistorySheetState extends State<PaymentHistorySheet> {
     super.dispose();
   }
 
-  void _registerBus() {
-  }
+  void _registerBus() {}
 
-  void _destroyBus() {
-  }
+  void _destroyBus() {}
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      minimum: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
+      minimum: EdgeInsets.only(
+        bottom: MediaQuery.of(context).size.height * 0.035,
+      ),
       child: Container(
         decoration: BoxDecoration(
           color: StateContainer.of(context).curTheme.backgroundDark,
@@ -102,13 +103,17 @@ class PaymentHistorySheetState extends State<PaymentHistorySheet> {
                   ),
                   Column(
                     children: <Widget>[
+                      Handlebars.horizontal(
+                        context,
+                        width: MediaQuery.of(context).size.width * 0.15,
+                      ),
                       Container(
                         margin: const EdgeInsets.only(top: 15.0),
                         constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width - 140),
                         child: Column(
                           children: <Widget>[
                             AutoSizeText(
-                              CaseChange.toUpperCase(Z.of(context).subsButton, context),
+                              CaseChange.toUpperCase(Z.of(context).paymentHistory, context),
                               style: AppStyles.textStyleHeader(context),
                               maxLines: 1,
                               stepGranularity: 0.1,
@@ -128,7 +133,6 @@ class PaymentHistorySheetState extends State<PaymentHistorySheet> {
                   ),
                 ],
               ),
-
               // A list containing accounts
               Expanded(
                   key: expandedKey,
@@ -149,7 +153,7 @@ class PaymentHistorySheetState extends State<PaymentHistorySheet> {
                       //       itemCount: widget.subs.length,
                       //       controller: _scrollController,
                       //       itemBuilder: (BuildContext context, int index) {
-                      //         return _buildSubListItem(context, widget.subs[index], setState);
+                      //         return _buildListItem(context, widget.subs[index], setState, index);
                       //       },
                       //     ),
                       //   ),
@@ -237,7 +241,7 @@ class PaymentHistorySheetState extends State<PaymentHistorySheet> {
     );
   }
 
-  Widget _buildSubListItem(BuildContext context, Subscription sub, StateSetter setState) {
+  Widget _buildListItem(BuildContext context, Subscription sub, StateSetter setState, int index) {
     return Column(
       children: <Widget>[
         Divider(
@@ -379,6 +383,11 @@ class PaymentHistorySheetState extends State<PaymentHistorySheet> {
             ),
           ),
         ),
+        if (index == widget.history.length - 1)
+          Divider(
+            height: 2,
+            color: StateContainer.of(context).curTheme.text15,
+          ),
       ],
     );
   }
@@ -412,8 +421,7 @@ class PaymentHistorySheetState extends State<PaymentHistorySheet> {
         foregroundColor: StateContainer.of(context).curTheme.error60,
         icon: Icons.delete,
         label: Z.of(context).delete,
-        onPressed: (BuildContext context) {
-        },
+        onPressed: (BuildContext context) {},
       ),
     );
 

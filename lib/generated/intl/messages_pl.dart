@@ -49,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Błąd podczas dodawania konta Watch Only: Konto było puste"),
         "addWatchOnlyAccountSuccess": MessageLookupByLibrary.simpleMessage(
             "Pomyślnie utworzono konto tylko do oglądania!"),
+        "addWorkSource":
+            MessageLookupByLibrary.simpleMessage("Dodaj źródło pracy"),
         "address": MessageLookupByLibrary.simpleMessage("Adres zamieszkania"),
         "addressCopied":
             MessageLookupByLibrary.simpleMessage("Adres Skopiowany"),
@@ -59,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addressShare": MessageLookupByLibrary.simpleMessage("Udostępnij"),
         "advanced": MessageLookupByLibrary.simpleMessage("Zaawansowany"),
         "aliases": MessageLookupByLibrary.simpleMessage("Aliasy"),
+        "amount": MessageLookupByLibrary.simpleMessage("Ilość"),
         "amountGiftGreaterError": MessageLookupByLibrary.simpleMessage(
             "Podzielona kwota nie może być większa niż saldo prezentu"),
         "amountMissing": MessageLookupByLibrary.simpleMessage("Wpisz ilość"),
@@ -134,6 +137,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Zmień swoje dotychczasowe hasło. Jeśli nie znasz swojego aktualnego hasła, po prostu zgadnij, ponieważ w rzeczywistości nie jest wymagane jego zmienianie (ponieważ jesteś już zalogowany), ale pozwala nam to usunąć istniejący wpis kopii zapasowej."),
         "changePin": MessageLookupByLibrary.simpleMessage("Zmień PIN"),
         "changePinHint": MessageLookupByLibrary.simpleMessage("Ustaw pinezkę"),
+        "changePow": MessageLookupByLibrary.simpleMessage("Zmień POW"),
+        "changePowSource":
+            MessageLookupByLibrary.simpleMessage("Zmień źródło PoW"),
         "changeRepAuthenticate":
             MessageLookupByLibrary.simpleMessage("Zmień przedstawiciela"),
         "changeRepButton": MessageLookupByLibrary.simpleMessage("Zmień"),
@@ -265,6 +271,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterAddress": MessageLookupByLibrary.simpleMessage("Wpisz Adres"),
         "enterAmount": MessageLookupByLibrary.simpleMessage("Wpisz Ilość"),
         "enterEmail": MessageLookupByLibrary.simpleMessage("Wprowadź e-mail"),
+        "enterFrequency":
+            MessageLookupByLibrary.simpleMessage("Wprowadź częstotliwość"),
         "enterGiftMemo": MessageLookupByLibrary.simpleMessage("Wpisz upominek"),
         "enterHeight":
             MessageLookupByLibrary.simpleMessage("Wprowadź wysokość"),
@@ -356,6 +364,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Kilka sekund temu"),
         "fingerprintSeedBackup": MessageLookupByLibrary.simpleMessage(
             "Potwierdz odcisk palca żeby zapisać nasiono portfela."),
+        "frequencyEmpty":
+            MessageLookupByLibrary.simpleMessage("Wprowadź częstotliwość"),
         "from": MessageLookupByLibrary.simpleMessage("Od"),
         "fulfilled": MessageLookupByLibrary.simpleMessage("spełniony"),
         "fundingBannerHeader":
@@ -442,6 +452,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Utwórz kopię zapasową swojego materiału siewnego!"),
         "invalidAddress": MessageLookupByLibrary.simpleMessage(
             "Wpisany Addres jest nieważny"),
+        "invalidFrequency":
+            MessageLookupByLibrary.simpleMessage("Nieprawidłowa częstotliwość"),
         "invalidHeight":
             MessageLookupByLibrary.simpleMessage("Nieprawidłowa wysokość"),
         "invalidPassword": MessageLookupByLibrary.simpleMessage("Błędne Hasło"),
@@ -513,6 +525,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "To jest twoje nowe konto. Kiedy dostaniesz NANO, transakcje będą tak wyglądały:"),
         "newWallet": MessageLookupByLibrary.simpleMessage("Nowy Portfel"),
         "nextButton": MessageLookupByLibrary.simpleMessage("Następne"),
+        "nextPayment": MessageLookupByLibrary.simpleMessage("Następna zapłata"),
         "no": MessageLookupByLibrary.simpleMessage("Nie"),
         "noContactsExport": MessageLookupByLibrary.simpleMessage(
             "Nie ma kontaktów do eksportowania"),
@@ -589,6 +602,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Hasła się nie zgadzają"),
         "pay": MessageLookupByLibrary.simpleMessage("Zapłacić"),
         "payRequest": MessageLookupByLibrary.simpleMessage("Zapłać tę prośbę"),
+        "paymentHistory":
+            MessageLookupByLibrary.simpleMessage("Historia płatności"),
         "paymentRequestMessage": MessageLookupByLibrary.simpleMessage(
             "Ktoś zażądał od Ciebie zapłaty! sprawdź stronę płatności, aby uzyskać więcej informacji."),
         "payments": MessageLookupByLibrary.simpleMessage("Płatności"),
@@ -619,6 +634,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Wiarygodne informacje dotyczące zaprzeczenia"),
         "plausibleSheetInfo": MessageLookupByLibrary.simpleMessage(
             "Ustaw drugi pin dla wiarygodnego trybu zaprzeczania.\n\nJeśli Twój portfel zostanie odblokowany za pomocą tego dodatkowego kodu PIN, Twój seed zostanie zastąpiony hashem istniejącego seeda. Jest to funkcja bezpieczeństwa przeznaczona do użycia w przypadku, gdy będziesz zmuszony otworzyć swój portfel.\n\nTen pin będzie działał jak normalny (prawidłowy) pin, Z WYJĄTKIEM odblokowywania portfela, kiedy aktywuje się tryb prawdopodobny.\n\nTwoje fundusze ZOSTANĄ UTRACONE po przejściu do trybu wiarygodnego odrzucania, jeśli nie utworzyłeś kopii zapasowej swojego materiału siewnego!"),
+        "pow": MessageLookupByLibrary.simpleMessage("PoW"),
         "preferences": MessageLookupByLibrary.simpleMessage("Preferencje"),
         "privacyPolicy":
             MessageLookupByLibrary.simpleMessage("Polityka Prywatności"),

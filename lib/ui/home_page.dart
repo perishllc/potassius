@@ -7,6 +7,7 @@ import 'dart:math';
 
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:badges/badges.dart';
 import 'package:confetti/confetti.dart';
 import 'package:event_taxi/event_taxi.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -23,6 +24,7 @@ import 'package:wallet_flutter/bus/blocked_modified_event.dart';
 import 'package:wallet_flutter/bus/deep_link_event.dart';
 import 'package:wallet_flutter/bus/events.dart';
 import 'package:wallet_flutter/bus/payments_home_event.dart';
+import 'package:wallet_flutter/bus/subs_changed_event.dart';
 import 'package:wallet_flutter/bus/tx_update_event.dart';
 import 'package:wallet_flutter/bus/unified_home_event.dart';
 import 'package:wallet_flutter/bus/xmr_event.dart';
@@ -48,6 +50,7 @@ import 'package:wallet_flutter/network/model/response/alerts_response_item.dart'
 import 'package:wallet_flutter/network/model/response/auth_item.dart';
 import 'package:wallet_flutter/network/model/response/pay_item.dart';
 import 'package:wallet_flutter/network/model/status_types.dart';
+import 'package:wallet_flutter/network/subscription_service.dart';
 import 'package:wallet_flutter/network/username_service.dart';
 import 'package:wallet_flutter/service_locator.dart';
 import 'package:wallet_flutter/styles.dart';
@@ -189,9 +192,10 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
   bool _xmrSRDisabled = true;
   String _currentMode = "nano";
 
-  int _selectedIndex = 2;
+  int _selectedIndex = 1;
 
   bool _isPro = false;
+  List<Subscription> _subscriptions = [];
 
   Future<void> _switchToAccount(String account) async {
     final List<Account> accounts = await sl.get<DBHelper>().getAccounts(await StateContainer.of(context).getSeed());
@@ -223,6 +227,12 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
         alert: true,
         provisional: true,
       );
+      // await AwesomeNotifications().requestPermissionToSendNotifications(
+      //   sound: true,
+      //   badge: true,
+      //   alert: true,
+      //   provisional: true,
+      // );
       if (settings.alert == AppleNotificationSetting.enabled ||
           settings.badge == AppleNotificationSetting.enabled ||
           settings.sound == AppleNotificationSetting.enabled ||
@@ -891,11 +901,19 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
 
       final ws = await sl.get<DBHelper>().getSelectedWorkSource();
       if (ws.type == WorkSourceTypes.URL) {
+        if (!mounted) return;
         StateContainer.of(context).stopLoading();
       }
 
       // check on subscriptions:
-      // todo:
+      // must be done post-load since we need to check history:
+      if (!mounted) return;
+      Future<void>.delayed(const Duration(seconds: 5), () async {
+        if (!mounted) return;
+        if (StateContainer.of(context).wallet?.history.isNotEmpty ?? false) {
+          await sl.get<SubscriptionService>().checkAreSubscriptionsPaid(StateContainer.of(context).wallet!.history);
+        }
+      });
     });
     // confetti:
     _confettiControllerLeft = ConfettiController(duration: const Duration(milliseconds: 150));
@@ -1152,6 +1170,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
   StreamSubscription<DeepLinkEvent>? _deepLinkEventSub;
   StreamSubscription<XMREvent>? _xmrSub;
   StreamSubscription<ConnStatusEvent>? _connectionSub;
+  StreamSubscription<SubsChangedEvent>? _subscriptionsSub;
   // purchase sub:
   StreamSubscription<List<PurchaseDetails>>? _subscription;
 
@@ -1293,6 +1312,11 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
     if (Platform.isIOS) {
       InAppPurchase.instance.restorePurchases();
     }
+    _subscriptionsSub = EventTaxiImpl.singleton().registerTo<SubsChangedEvent>().listen((SubsChangedEvent event) {
+      setState(() {
+        _subscriptions = event.subs ?? [];
+      });
+    });
   }
 
   void _destroyBus() {
@@ -2535,6 +2559,12 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
   }
 
   Widget _buildBottomNavigationBar(BuildContext context) {
+    int unpaidSubCount = 0;
+    for (final Subscription sub in _subscriptions) {
+      if (sub.active && !sub.paid) {
+        unpaidSubCount++;
+      }
+    }
     return Container(
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(topRight: Radius.circular(30), topLeft: Radius.circular(30)),
@@ -2548,7 +2578,8 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
           topLeft: Radius.circular(32),
         ),
         child: BottomNavigationBar(
-          type: BottomNavigationBarType.shifting,
+          backgroundColor: StateContainer.of(context).curTheme.backgroundDark,
+          type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: const Icon(Icons.shopping_bag),
@@ -2556,14 +2587,20 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
               backgroundColor: StateContainer.of(context).curTheme.warning,
             ),
             BottomNavigationBarItem(
-              icon: const Icon(Icons.currency_exchange),
-              label: Z.of(context).subsButton,
-              backgroundColor: StateContainer.of(context).curTheme.warning,
-            ),
-            BottomNavigationBarItem(
               icon: const Icon(Icons.home),
               label: Z.of(context).homeButton,
               backgroundColor: StateContainer.of(context).curTheme.backgroundDark,
+            ),
+            BottomNavigationBarItem(
+              icon: Badge(
+                showBadge: unpaidSubCount > 0,
+                badgeContent: Text("$unpaidSubCount", style: const TextStyle(color: Colors.white)),
+                animationType: BadgeAnimationType.scale,
+                shape: BadgeShape.circle,
+                child: const Icon(Icons.currency_exchange),
+              ),
+              label: Z.of(context).subsButton,
+              backgroundColor: StateContainer.of(context).curTheme.warning,
             ),
             // BottomNavigationBarItem(
             //   icon: const Icon(Icons.business),
@@ -2575,9 +2612,9 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
           selectedItemColor: StateContainer.of(context).curTheme.primary,
           unselectedItemColor: StateContainer.of(context).curTheme.text,
           onTap: (int index) async {
-            const int HOME_INDEX = 2;
+            const int HOME_INDEX = 1;
             const int SHOP_INDEX = 0;
-            const int SUBS_INDEX = 1;
+            const int SUBS_INDEX = 2;
             const int BUSINESS_INDEX = 3;
 
             // special case for when you double tap home, scroll to the top:
@@ -3609,7 +3646,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
     // final String displayName = txDetails.getShortestString(isRecipient) ?? "";
     final String account = txDetails.getAccount(isRecipient);
     String displayName = "${account.substring(0, 9)}\n...${account.substring(account.length - 6)}";
-    // // check if there's a username:
+    // check if there's a username:
     for (final User user in _users) {
       if (user.address == account) {
         displayName = user.getDisplayName()!;

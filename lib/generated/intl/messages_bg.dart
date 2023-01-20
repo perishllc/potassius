@@ -50,6 +50,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Грешка при добавяне на акаунт само за гледане: акаунтът беше нулев"),
         "addWatchOnlyAccountSuccess": MessageLookupByLibrary.simpleMessage(
             "Успешно създаден акаунт само за гледане!"),
+        "addWorkSource": MessageLookupByLibrary.simpleMessage(
+            "Добавяне на работен източник"),
         "address": MessageLookupByLibrary.simpleMessage("Адрес"),
         "addressCopied": MessageLookupByLibrary.simpleMessage("Адрес Копиран"),
         "addressHint": MessageLookupByLibrary.simpleMessage("Въведи Адрес\n"),
@@ -60,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addressShare": MessageLookupByLibrary.simpleMessage("Сподели Адрес"),
         "advanced": MessageLookupByLibrary.simpleMessage("Разширено"),
         "aliases": MessageLookupByLibrary.simpleMessage("Псевдоними"),
+        "amount": MessageLookupByLibrary.simpleMessage("Количество"),
         "amountGiftGreaterError": MessageLookupByLibrary.simpleMessage(
             "Разделената сума не може да бъде по-голяма от баланса на подаръка"),
         "amountMissing":
@@ -136,6 +139,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Променете съществуващата си парола. Ако не знаете текущата си парола, просто направете най-добро предположение, тъй като всъщност не е необходимо да я променяте (тъй като вече сте влезли), но ни позволява да изтрием съществуващия резервен запис."),
         "changePin": MessageLookupByLibrary.simpleMessage("Промяна на Pin"),
         "changePinHint": MessageLookupByLibrary.simpleMessage("Задайте щифт"),
+        "changePow": MessageLookupByLibrary.simpleMessage("Промяна на PoW"),
+        "changePowSource":
+            MessageLookupByLibrary.simpleMessage("Промяна на източника на PoW"),
         "changeRepAuthenticate":
             MessageLookupByLibrary.simpleMessage("Смени Представителя"),
         "changeRepButton": MessageLookupByLibrary.simpleMessage("Смени"),
@@ -269,6 +275,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterAddress": MessageLookupByLibrary.simpleMessage("Въведи Адрес"),
         "enterAmount": MessageLookupByLibrary.simpleMessage("Въведи Сума"),
         "enterEmail": MessageLookupByLibrary.simpleMessage("Въведете имейл"),
+        "enterFrequency":
+            MessageLookupByLibrary.simpleMessage("Въведете честота"),
         "enterGiftMemo":
             MessageLookupByLibrary.simpleMessage("Въведете бележка за подарък"),
         "enterHeight":
@@ -362,6 +370,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Преди няколко секунди"),
         "fingerprintSeedBackup": MessageLookupByLibrary.simpleMessage(
             "Удостовери за да съхраниш Seed."),
+        "frequencyEmpty":
+            MessageLookupByLibrary.simpleMessage("Моля, въведете честота"),
         "from": MessageLookupByLibrary.simpleMessage("От"),
         "fulfilled": MessageLookupByLibrary.simpleMessage("изпълнени"),
         "fundingBannerHeader":
@@ -449,6 +459,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Архивирайте вашето семе!"),
         "invalidAddress": MessageLookupByLibrary.simpleMessage(
             "Въведеният Адрес е невалиден"),
+        "invalidFrequency":
+            MessageLookupByLibrary.simpleMessage("Честотата е невалидна"),
         "invalidHeight":
             MessageLookupByLibrary.simpleMessage("Невалидна височина"),
         "invalidPassword":
@@ -520,6 +532,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Това е вашият нов акаунт. След като получите NANO, транзакциите ще се покажат по следният начин:"),
         "newWallet": MessageLookupByLibrary.simpleMessage("Нов Портфейл"),
         "nextButton": MessageLookupByLibrary.simpleMessage("Следващ"),
+        "nextPayment": MessageLookupByLibrary.simpleMessage("Следващо плащане"),
         "no": MessageLookupByLibrary.simpleMessage("Не"),
         "noContactsExport":
             MessageLookupByLibrary.simpleMessage("Няма контакти за експорт"),
@@ -594,6 +607,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Паролите не съвпадат"),
         "pay": MessageLookupByLibrary.simpleMessage("Плати"),
         "payRequest": MessageLookupByLibrary.simpleMessage("Плати тази заявка"),
+        "paymentHistory":
+            MessageLookupByLibrary.simpleMessage("История на плащанията"),
         "paymentRequestMessage": MessageLookupByLibrary.simpleMessage(
             "Някой е поискал плащане от вас! проверете страницата за плащания за повече информация."),
         "payments": MessageLookupByLibrary.simpleMessage("Плащания"),
@@ -624,6 +639,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Правдоподобна информация за отричане"),
         "plausibleSheetInfo": MessageLookupByLibrary.simpleMessage(
             "Задайте вторичен щифт за правдоподобен режим на отказ.\n\nАко вашият портфейл е отключен с помощта на този вторичен щифт, вашето семе ще бъде заменено с хеш на съществуващото семе. Това е защитна функция, предназначена да се използва в случай, че сте принудени да отворите портфейла си.\n\nТози щифт ще действа като нормален (правилен) щифт ОСВЕН при отключване на портфейла ви, когато ще се активира правдоподобният режим на отказ.\n\nВашите средства ЩЕ БЪДАТ ЗАГУБЕНИ при влизане в правдоподобен режим на отказ, ако не сте направили резервно копие на вашето семе!"),
+        "pow": MessageLookupByLibrary.simpleMessage("PoW"),
         "preferences": MessageLookupByLibrary.simpleMessage("Предпочитания"),
         "privacyPolicy":
             MessageLookupByLibrary.simpleMessage("Декларация за Поверителност"),

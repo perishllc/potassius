@@ -6,6 +6,7 @@ import 'package:flutter_nano_ffi/flutter_nano_ffi.dart';
 import 'package:logger/logger.dart';
 import 'package:wallet_flutter/appstate_container.dart';
 import 'package:wallet_flutter/bus/events.dart';
+import 'package:wallet_flutter/bus/subs_changed_event.dart';
 import 'package:wallet_flutter/dimens.dart';
 import 'package:wallet_flutter/generated/l10n.dart';
 import 'package:wallet_flutter/model/authentication_method.dart';
@@ -19,6 +20,7 @@ import 'package:wallet_flutter/network/model/response/handoff_response.dart';
 import 'package:wallet_flutter/service_locator.dart';
 import 'package:wallet_flutter/styles.dart';
 import 'package:wallet_flutter/ui/auth/auth_complete_sheet.dart';
+import 'package:wallet_flutter/ui/send/send_sheet.dart';
 import 'package:wallet_flutter/ui/subs/sub_complete_sheet.dart';
 import 'package:wallet_flutter/ui/util/formatters.dart';
 import 'package:wallet_flutter/ui/util/handlebars.dart';
@@ -130,6 +132,21 @@ class SubConfirmSheetState extends State<SubConfirmSheet> {
                         ),
                       ),
                     ),
+
+                  // Address text
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 15.0),
+                    margin: EdgeInsets.only(
+                        top: 30,
+                        left: MediaQuery.of(context).size.width * 0.105,
+                        right: MediaQuery.of(context).size.width * 0.105),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: StateContainer.of(context).curTheme.backgroundDarkest,
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: UIUtil.threeLineAddressText(context, widget.sub.address),
+                  ),
                   // if (widget.sub.name.isNotEmpty)
                   //   Container(
                   //     margin: EdgeInsets.only(
@@ -177,7 +194,7 @@ class SubConfirmSheetState extends State<SubConfirmSheet> {
 
                   // "FOR" text
                   Container(
-                    margin: const EdgeInsets.only(top: 30.0, bottom: 10),
+                    margin: const EdgeInsets.only(top: 30, bottom: 10),
                     child: Column(
                       children: <Widget>[
                         Text(
@@ -225,19 +242,6 @@ class SubConfirmSheetState extends State<SubConfirmSheet> {
                       ),
                     ),
                   ),
-                  // Address text
-                  // Container(
-                  //   padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 15.0),
-                  //   margin: EdgeInsets.only(
-                  //       left: MediaQuery.of(context).size.width * 0.105,
-                  //       right: MediaQuery.of(context).size.width * 0.105),
-                  //   width: double.infinity,
-                  //   decoration: BoxDecoration(
-                  //     color: StateContainer.of(context).curTheme.backgroundDarkest,
-                  //     borderRadius: BorderRadius.circular(25),
-                  //   ),
-                  //   child: UIUtil.threeLineAddressText(context, widget.destination, contactName: widget.contactName),
-                  // ),
                 ],
               ),
             ),
@@ -254,6 +258,16 @@ class SubConfirmSheetState extends State<SubConfirmSheet> {
                         AppButtonType.PRIMARY,
                         CaseChange.toUpperCase(Z.of(context).confirm, context),
                         Dimens.BUTTON_TOP_DIMENS, onPressed: () async {
+                      // make sure notifications are enabled:
+                      final bool notificationsEnabled = await sl.get<SharedPrefsUtil>().getNotificationsOn();
+                      if (!notificationsEnabled) {
+                        if (!mounted) return;
+                        final bool notificationTurnedOn = await SendSheetHelpers.showNotificationDialog(context);
+                        if (!notificationTurnedOn) {
+                          return;
+                        }
+                      }
+
                       // Authenticate
                       final AuthenticationMethod authMethod = await sl.get<SharedPrefsUtil>().getAuthMethod();
                       final bool hasBiometrics = await sl.get<BiometricUtil>().hasBiometrics();
@@ -301,7 +315,6 @@ class SubConfirmSheetState extends State<SubConfirmSheet> {
   }
 
   Future<void> _doSend() async {
-    final bool memoSendFailed = false;
     String? poppedError;
     try {
       _showAnimation(context, AnimationType.GENERIC);
@@ -309,27 +322,29 @@ class SubConfirmSheetState extends State<SubConfirmSheet> {
       // save the subscription to the database:
       await sl.get<DBHelper>().saveSubscription(widget.sub);
 
+      EventTaxiImpl.singleton().fire(SubsChangedEvent(subs: await sl.get<DBHelper>().getSubscriptions()));
+
       // Send the subscription amount:
-      bool payNow = false;
-      if (payNow) {
-        final String derivationMethod = await sl.get<SharedPrefsUtil>().getKeyDerivationMethod();
-        final String privKey = await NanoUtil.uniSeedToPrivate(await StateContainer.of(context).getSeed(),
-            StateContainer.of(context).selectedAccount!.index!, derivationMethod);
-        var resp = await sl.get<AccountService>().requestSend(
-              StateContainer.of(context).wallet!.representative,
-              StateContainer.of(context).wallet!.frontier,
-              widget.sub.amount_raw,
-              widget.sub.address,
-              StateContainer.of(context).wallet!.address,
-              privKey,
-              max: false,
-            );
-        if (!mounted) return;
-        StateContainer.of(context).wallet!.frontier = resp.hash;
-        StateContainer.of(context).wallet!.accountBalance += BigInt.parse(
-          widget.sub.amount_raw,
-        );
-      }
+      // bool payNow = false;
+      // if (payNow) {
+      //   final String derivationMethod = await sl.get<SharedPrefsUtil>().getKeyDerivationMethod();
+      //   final String privKey = await NanoUtil.uniSeedToPrivate(await StateContainer.of(context).getSeed(),
+      //       StateContainer.of(context).selectedAccount!.index!, derivationMethod);
+      //   var resp = await sl.get<AccountService>().requestSend(
+      //         StateContainer.of(context).wallet!.representative,
+      //         StateContainer.of(context).wallet!.frontier,
+      //         widget.sub.amount_raw,
+      //         widget.sub.address,
+      //         StateContainer.of(context).wallet!.address,
+      //         privKey,
+      //         max: false,
+      //       );
+      //   if (!mounted) return;
+      //   StateContainer.of(context).wallet!.frontier = resp.hash;
+      //   StateContainer.of(context).wallet!.accountBalance += BigInt.parse(
+      //     widget.sub.amount_raw,
+      //   );
+      // }
 
       // Show complete
       if (!mounted) return;

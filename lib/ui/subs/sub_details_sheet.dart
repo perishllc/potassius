@@ -6,10 +6,12 @@ import 'package:wallet_flutter/dimens.dart';
 import 'package:wallet_flutter/generated/l10n.dart';
 import 'package:wallet_flutter/model/db/appdb.dart';
 import 'package:wallet_flutter/model/db/subscription.dart';
+import 'package:wallet_flutter/network/subscription_service.dart';
 import 'package:wallet_flutter/service_locator.dart';
 import 'package:wallet_flutter/ui/send/send_sheet.dart';
 import 'package:wallet_flutter/ui/subs/payment_history.dart';
 import 'package:wallet_flutter/ui/util/handlebars.dart';
+import 'package:wallet_flutter/ui/util/routes.dart';
 import 'package:wallet_flutter/ui/widgets/buttons.dart';
 import 'package:wallet_flutter/ui/widgets/sheet_util.dart';
 
@@ -40,31 +42,35 @@ class SubDetailsSheetState extends State<SubDetailsSheet> {
                   margin: const EdgeInsets.only(top: 10, bottom: 24),
                 ),
                 // A row for pay button
-                Row(
-                  children: <Widget>[
-                    AppButton.buildAppButton(
-                        context, AppButtonType.PRIMARY, Z.of(context).pay, Dimens.BUTTON_TOP_DIMENS,
-                        onPressed: () async {
-                      Sheets.showAppHeightNineSheet(
-                        context: context,
-                        animationDurationMs: 175,
-                        widget: SendSheet(
-                          localCurrency: StateContainer.of(context).curCurrency,
-                          address: widget.sub.address,
-                          quickSendAmount: widget.sub.amount_raw,
-                        ),
-                      );
-                    }),
-                  ],
-                ),
+                if (!widget.sub.paid)
+                  Row(
+                    children: <Widget>[
+                      AppButton.buildAppButton(
+                          context, AppButtonType.PRIMARY, Z.of(context).pay, Dimens.BUTTON_TOP_DIMENS,
+                          onPressed: () async {
+                        Navigator.of(context).popUntil(RouteUtils.withNameLike("/home"));
+                        Sheets.showAppHeightNineSheet(
+                          context: context,
+                          animationDurationMs: 175,
+                          widget: SendSheet(
+                            localCurrency: StateContainer.of(context).curCurrency,
+                            address: widget.sub.address,
+                            quickSendAmount: widget.sub.amount_raw,
+                          ),
+                        );
+                      }),
+                    ],
+                  ),
                 // A row for View Details button
                 Row(
                   children: <Widget>[
                     AppButton.buildAppButton(context, AppButtonType.PRIMARY_OUTLINE, Z.of(context).viewPaymentHistory,
                         Dimens.BUTTON_BOTTOM_DIMENS, onPressed: () async {
+                      // Navigator.of(context).popUntil(RouteUtils.withNameLike("/home"));
+                      // var history = await sl.get<SubscriptionService>().getPaymentHistory(context, widget.sub);
                       Sheets.showAppHeightEightSheet(
                         context: context,
-                        widget: PaymentHistorySheet(address: widget.sub.address),
+                        widget: PaymentHistorySheet(history: [],),
                         animationDurationMs: 175,
                       );
                     }),
@@ -78,9 +84,11 @@ class SubDetailsSheetState extends State<SubDetailsSheet> {
                       widget.sub.active ? Z.of(context).cancelSub : Z.of(context).activateSub,
                       Dimens.BUTTON_BOTTOM_DIMENS,
                       onPressed: () async {
-                        await sl.get<DBHelper>().toggleSubscriptionActive(widget.sub);
-                        // trigger reload:
-                        EventTaxiImpl.singleton().fire(SubModifiedEvent());
+                        if (!mounted) return;
+                        if (await sl.get<SubscriptionService>().toggleSubscriptionActive(context, widget.sub)) {
+                          // trigger reload:
+                          EventTaxiImpl.singleton().fire(SubModifiedEvent());
+                        }
                         if (!mounted) return;
                         Navigator.of(context).pop();
                       },
