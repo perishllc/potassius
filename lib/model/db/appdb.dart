@@ -251,20 +251,11 @@ class DBHelper {
   }
 
   Future<void> _addDefaultWorkSources({Database? dbClient}) async {
-    // await saveWorkSource(
-    //   WorkSource(
-    //     id: 1,
-    //     name: "None",
-    //     selected: false,
-    //     type: WorkSourceTypes.NONE,
-    //   ),
-    //   dbClient: dbClient,
-    // );
     await saveWorkSource(
       WorkSource(
         id: 0,
-        name: "Use Node",
-        selected: true,
+        name: "Use Node (none)",
+        selected: false,
         type: WorkSourceTypes.NODE,
       ),
       dbClient: dbClient,
@@ -272,6 +263,16 @@ class DBHelper {
     await saveWorkSource(
       WorkSource(
         id: 1,
+        name: "Perish Workers",
+        selected: true,
+        type: WorkSourceTypes.URL,
+        url: "http://workers.perish.co:5555",
+      ),
+      dbClient: dbClient,
+    );
+    await saveWorkSource(
+      WorkSource(
+        id: 2,
         name: "nano.to",
         selected: false,
         type: WorkSourceTypes.URL,
@@ -346,7 +347,7 @@ class DBHelper {
   Future<void> changeNode(Node node) async {
     final Database dbClient = (await db)!;
     return dbClient.transaction((Transaction txn) async {
-      await txn.rawUpdate('UPDATE Nodes set selected = false');
+      await txn.rawUpdate('UPDATE Nodes set selected = 0');
       // Get access increment count
       final List<Map> list = await txn.rawQuery('SELECT * FROM Nodes');
       await txn.rawUpdate('UPDATE Nodes set selected = ? WHERE id = ?', [1, node.id]);
@@ -413,7 +414,7 @@ class DBHelper {
   Future<void> changeWorkSource(WorkSource ws) async {
     final Database dbClient = (await db)!;
     return dbClient.transaction((Transaction txn) async {
-      await txn.rawUpdate('UPDATE WorkSources set selected = false');
+      await txn.rawUpdate('UPDATE WorkSources set selected = 0');
       // Get access increment count
       final List<Map> list = await txn.rawQuery('SELECT * FROM Nodes');
       await txn.rawUpdate('UPDATE WorkSources set selected = ? WHERE id = ?', [1, ws.id]);

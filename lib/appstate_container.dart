@@ -35,11 +35,13 @@ import 'package:wallet_flutter/network/metadata_service.dart';
 import 'package:wallet_flutter/network/model/block_types.dart';
 import 'package:wallet_flutter/network/model/fcm_message_event.dart';
 import 'package:wallet_flutter/network/model/request/fcm_update_request.dart';
+import 'package:wallet_flutter/network/model/request/subscribe_option.dart';
 import 'package:wallet_flutter/network/model/request/subscribe_request.dart';
 import 'package:wallet_flutter/network/model/response/account_balance_item.dart';
 import 'package:wallet_flutter/network/model/response/account_history_response.dart';
 import 'package:wallet_flutter/network/model/response/account_history_response_item.dart';
 import 'package:wallet_flutter/network/model/response/account_info_response.dart';
+import 'package:wallet_flutter/network/model/response/account_representative_response.dart';
 import 'package:wallet_flutter/network/model/response/accounts_balances_response.dart';
 import 'package:wallet_flutter/network/model/response/alerts_response_item.dart';
 import 'package:wallet_flutter/network/model/response/callback_response.dart';
@@ -784,6 +786,7 @@ class StateContainerState extends State<StateContainer> {
         watchOnly: watchOnly,
         loading: true,
       );
+      getRequiredAccountInfo();
       requestUpdate();
       updateSolids();
     });
@@ -982,90 +985,32 @@ class StateContainerState extends State<StateContainer> {
     }
   }
 
-  /// Handle account_subscribe response
-  void handleSubscribeResponse(SubscribeResponse response) {
-    // get the preference for the receive threshold:
-    sl.get<SharedPrefsUtil>().getMinRawReceive().then((String? minRaw) {
-      receiveThreshold = minRaw;
-      // Combat spam by raising minimum receive if receivable block count is large enough
-      // only override the user preference if it was set to 0 (default)
-      if (response.receivableCount != null && response.receivableCount! > 50 && minRaw == "0") {
-        // Bump min receive to 0.05 NANO
-        receiveThreshold = BigInt.from(5).pow(28).toString();
-      }
-    });
-    // Set currency locale here for the UI to access
-    sl.get<SharedPrefsUtil>().getCurrency(deviceLocale).then((AvailableCurrency currency) {
-      setState(() {
-        currencyLocale = currency.getLocale().toString();
-        curCurrency = currency;
-      });
-    });
-    // Server gives us a UUID for future requests on subscribe
-    if (response.uuid != null) {
-      sl.get<SharedPrefsUtil>().setUuid(response.uuid!);
-    }
-    EventTaxiImpl.singleton().fire(ConfirmationHeightChangedEvent(confirmationHeight: response.confirmationHeight));
-
-    // check subscriptions:
-    if (wallet != null && wallet!.history != null && wallet!.history.isNotEmpty) {
-      sl.get<SubscriptionService>().checkAreSubscriptionsPaid(wallet!.history);
-    }
-
-    setState(() {
-      wallet!.loading = false;
-      wallet!.frontier = response.frontier;
-      wallet!.representative = response.representative ?? AppWallet.defaultRepresentative;
-      wallet!.representativeBlock = response.representativeBlock;
-      wallet!.openBlock = response.openBlock;
-      wallet!.blockCount = response.blockCount;
-      wallet!.confirmationHeight = response.confirmationHeight!;
-      if (response.balance == null) {
-        wallet!.accountBalance = BigInt.from(0);
-      } else {
-        wallet!.accountBalance = BigInt.tryParse(response.balance!)!;
-      }
-      if (response.price != null) {
-        wallet!.localCurrencyPrice = response.price.toString();
-      }
-      sl.get<AccountService>().pop();
-      sl.get<AccountService>().processQueue();
-    });
-  }
-
-  void stopLoading() {
-    requestUpdate();
-    setState(() {
-      wallet!.loading = false;
-      wallet!.confirmationHeight = 9999; // todo: fix this:
-      sl.get<AccountService>().pop();
-      sl.get<AccountService>().processQueue();
-    });
-  }
-
-  /// Handle callback response
-  /// Typically this means we need to pocket transactions
-  Future<void> handleCallbackResponse(CallbackResponse? resp) async {
+  // Handle account_subscribe response
+  // Typically this means we need to pocket transactions
+  Future<void> handleSubscribeResponse(SubscribeResponse resp) async {
     if (_locked) {
       return;
     }
-    log.d("Received callback ${json.encode(resp!.toJson())}");
-    if (resp.isSend != "true") {
+    log.d("Received subscription message: ${json.encode(resp.toJson())}");
+
+    if (resp.block?.subType != BlockTypes.SEND) {
       sl.get<AccountService>().processQueue();
       return;
     }
+
     final ReceivableResponseItem receivableItem =
         ReceivableResponseItem(hash: resp.hash, source: resp.account, amount: resp.amount);
     final String? receivedHash = await handleReceivableItem(receivableItem, link_as_account: resp.block!.linkAsAccount);
     if (receivedHash != null) {
       final AccountHistoryResponseItem histItem = AccountHistoryResponseItem(
-          type: BlockTypes.STATE,
-          subtype: BlockTypes.RECEIVE,
-          account: resp.account,
-          amount: resp.amount,
-          hash: receivedHash,
-          link: resp.hash,
-          local_timestamp: DateTime.now().millisecondsSinceEpoch ~/ Duration.millisecondsPerSecond);
+        type: BlockTypes.STATE,
+        subtype: BlockTypes.RECEIVE,
+        account: resp.account,
+        amount: resp.amount,
+        hash: receivedHash,
+        link: resp.hash,
+        local_timestamp: DateTime.now().millisecondsSinceEpoch ~/ Duration.millisecondsPerSecond,
+      );
       log.d("Received histItem ${json.encode(histItem.toJson())}");
       if (!wallet!.history.contains(histItem)) {
         setState(() {
@@ -1080,7 +1025,59 @@ class StateContainerState extends State<StateContainer> {
         });
       }
     }
+
+    // log.d("handleSubscribeResponse: ${response.toJson()}");
+    // // get the preference for the receive threshold:
+    // sl.get<SharedPrefsUtil>().getMinRawReceive().then((String? minRaw) {
+    //   receiveThreshold = minRaw;
+    //   // Combat spam by raising minimum receive if receivable block count is large enough
+    //   // only override the user preference if it was set to 0 (default)
+    //   if (response.receivableCount != null && response.receivableCount! > 50 && minRaw == "0") {
+    //     // Bump min receive to 0.05 NANO
+    //     receiveThreshold = BigInt.from(5).pow(28).toString();
+    //   }
+    // });
+    // // Set currency locale here for the UI to access
+    // sl.get<SharedPrefsUtil>().getCurrency(deviceLocale).then((AvailableCurrency currency) {
+    //   setState(() {
+    //     currencyLocale = currency.getLocale().toString();
+    //     curCurrency = currency;
+    //   });
+    // });
+    // // Server gives us a UUID for future requests on subscribe
+    // if (response.uuid != null) {
+    //   sl.get<SharedPrefsUtil>().setUuid(response.uuid!);
+    // }
+    // EventTaxiImpl.singleton().fire(ConfirmationHeightChangedEvent(confirmationHeight: response.confirmationHeight));
+
+    // // check subscriptions:
+    // if (wallet != null && wallet!.history != null && wallet!.history.isNotEmpty) {
+    //   sl.get<SubscriptionService>().checkAreSubscriptionsPaid(wallet!.history);
+    // }
+
+    // setState(() {
+    //   wallet!.loading = false;
+    //   wallet!.frontier = response.frontier;
+    //   wallet!.representative = response.representative ?? AppWallet.defaultRepresentative;
+    //   wallet!.representativeBlock = response.representativeBlock;
+    //   wallet!.openBlock = response.openBlock;
+    //   wallet!.blockCount = response.blockCount;
+    //   wallet!.confirmationHeight = response.confirmationHeight!;
+    //   if (response.balance == null) {
+    //     wallet!.accountBalance = BigInt.from(0);
+    //   } else {
+    //     wallet!.accountBalance = BigInt.tryParse(response.balance!)!;
+    //   }
+    //   if (response.price != null) {
+    //     wallet!.localCurrencyPrice = response.price.toString();
+    //   }
+    //   sl.get<AccountService>().pop();
+    //   sl.get<AccountService>().processQueue();
+    // });
   }
+
+  /// Handle callback response
+  Future<void> handleCallbackResponse(CallbackResponse? resp) async {}
 
   Future<String?> handleReceivableItem(ReceivableResponseItem? item, {String? link_as_account}) async {
     if (receivableRequests.contains(item?.hash)) {
@@ -1288,6 +1285,35 @@ class StateContainerState extends State<StateContainer> {
     });
   }
 
+  // one time request required to render history correctly:
+  Future<void> getRequiredAccountInfo() async {
+    if (wallet == null || wallet?.address == null || !Address(wallet!.address).isValid()) {
+      return;
+    }
+
+    // get account info:
+    final AccountInfoResponse accountResp = await sl.get<AccountService>().getAccountInfo(wallet!.address!);
+
+    // get account representative:
+    final AccountRepresentativeResponse representativeResp =
+        await sl.get<AccountService>().requestAccountRepresentative(wallet!.address!);
+
+    setState(() {
+      wallet!.loading = false;
+      wallet!.confirmationHeight = accountResp.confirmationHeight ?? 0;
+      wallet!.frontier = accountResp.frontier;
+      wallet!.representativeBlock = accountResp.representativeBlock;
+      wallet!.openBlock = accountResp.openBlock;
+      wallet!.blockCount = accountResp.blockCount;
+      if (accountResp.balance == null) {
+        wallet!.accountBalance = BigInt.from(0);
+      } else {
+        wallet!.accountBalance = BigInt.tryParse(accountResp.balance!)!;
+      }
+      wallet!.representative = representativeResp.representative ?? AppWallet.defaultRepresentative;
+    });
+  }
+
   Future<void> requestUpdate({bool receivable = true}) async {
     if (wallet == null || wallet?.address == null || !Address(wallet!.address).isValid()) {
       return;
@@ -1349,9 +1375,11 @@ class StateContainerState extends State<StateContainer> {
       // Receive receivables
       if (receivable) {
         receivableRequests.clear();
-        final ReceivableResponse receivableResp = await sl
-            .get<AccountService>()
-            .getReceivable(wallet!.address, max(wallet!.blockCount ?? 0, 10), threshold: receiveThreshold);
+        final ReceivableResponse receivableResp = await sl.get<AccountService>().getReceivable(
+              wallet!.address,
+              max(wallet!.blockCount ?? 0, 10),
+              threshold: receiveThreshold,
+            );
 
         // remove any receivables in the wallet history that are not in the receivable response:
         if (wallet!.watchOnly) {
@@ -1460,14 +1488,13 @@ class StateContainerState extends State<StateContainer> {
     sl.get<AccountService>().clearQueue();
     sl.get<AccountService>().queueRequest(
           SubscribeRequest(
-            account: wallet!.address,
-            currency: curCurrency.getIso4217Code(),
-            uuid: uuid,
-            fcmToken: fcmToken,
-            notificationEnabled: notificationsEnabled,
+            options: SubscribeOption(accounts: [wallet!.address ?? ""]),
           ),
         );
     sl.get<AccountService>().processQueue();
+    if (notificationsEnabled == true) {
+      // await sl.get<MetaData>().subscribeToAccount(wallet!.address, fcmToken);
+    }
   }
 
   Future<String> decryptMessageCurrentAccount(String memoEnc, String? fromAddress, String? toAddress) async {

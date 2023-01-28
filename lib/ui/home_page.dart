@@ -7,7 +7,7 @@ import 'dart:math';
 
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:badges/badges.dart';
+// import 'package:badges/badges.dart';
 import 'package:confetti/confetti.dart';
 import 'package:event_taxi/event_taxi.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -49,12 +49,14 @@ import 'package:wallet_flutter/network/model/response/accounts_balances_response
 import 'package:wallet_flutter/network/model/response/alerts_response_item.dart';
 import 'package:wallet_flutter/network/model/response/auth_item.dart';
 import 'package:wallet_flutter/network/model/response/pay_item.dart';
+import 'package:wallet_flutter/network/model/response/sub_item.dart';
 import 'package:wallet_flutter/network/model/status_types.dart';
 import 'package:wallet_flutter/network/subscription_service.dart';
 import 'package:wallet_flutter/network/username_service.dart';
 import 'package:wallet_flutter/service_locator.dart';
 import 'package:wallet_flutter/styles.dart';
 import 'package:wallet_flutter/ui/auth/auth_confirm_sheet.dart';
+import 'package:wallet_flutter/ui/business/calc_sheet.dart';
 import 'package:wallet_flutter/ui/business/checkout_sheet.dart';
 import 'package:wallet_flutter/ui/handoff/handoff_confirm_sheet.dart';
 import 'package:wallet_flutter/ui/home/card_actions.dart';
@@ -67,6 +69,7 @@ import 'package:wallet_flutter/ui/send/send_confirm_sheet.dart';
 import 'package:wallet_flutter/ui/send/send_sheet.dart';
 import 'package:wallet_flutter/ui/settings/settings_drawer.dart';
 import 'package:wallet_flutter/ui/shop/shop_sheet.dart';
+import 'package:wallet_flutter/ui/subs/sub_confirm_sheet.dart';
 import 'package:wallet_flutter/ui/subs/subs_sheet.dart';
 import 'package:wallet_flutter/ui/transfer/transfer_overview_sheet.dart';
 import 'package:wallet_flutter/ui/util/formatters.dart';
@@ -358,7 +361,8 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    Text("${Z.of(context).importGift}\n\n", style: AppStyles.textStyleParagraph(context)),
+                    Text("${Z.of(context).importGift.replaceAll("%2", NonTranslatable.currencyName)}\n\n",
+                        style: AppStyles.textStyleParagraph(context)),
                     RichText(
                       textAlign: TextAlign.start,
                       text: TextSpan(
@@ -655,7 +659,8 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Text("${Z.of(context).importGiftEmpty}\n\n", style: AppStyles.textStyleParagraph(context)),
+                  Text("${Z.of(context).importGiftEmpty.replaceAll("%2", NonTranslatable.currencyName)}\n\n",
+                      style: AppStyles.textStyleParagraph(context)),
                   RichText(
                     textAlign: TextAlign.start,
                     text: TextSpan(
@@ -898,12 +903,6 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
       // check for nautilus pro sub:
       if (!mounted) return;
       _isPro = await AppDialogs.proCheck(context, shouldShowDialog: false);
-
-      final ws = await sl.get<DBHelper>().getSelectedWorkSource();
-      if (ws.type == WorkSourceTypes.URL) {
-        if (!mounted) return;
-        StateContainer.of(context).stopLoading();
-      }
 
       // check on subscriptions:
       // must be done post-load since we need to check history:
@@ -1220,7 +1219,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
     });
     _solidsSub = EventTaxiImpl.singleton().registerTo<PaymentsHomeEvent>().listen((PaymentsHomeEvent event) {
       final List<TXData>? newSolids = event.items;
-      if (newSolids == null || _solidsListMap[StateContainer.of(context).wallet!.address] == null) {
+      if (newSolids == null || _solidsListMap[StateContainer.of(context).wallet?.address ?? ""] == null) {
         return;
       }
       setState(() {
@@ -1313,9 +1312,11 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
       InAppPurchase.instance.restorePurchases();
     }
     _subscriptionsSub = EventTaxiImpl.singleton().registerTo<SubsChangedEvent>().listen((SubsChangedEvent event) {
-      setState(() {
-        _subscriptions = event.subs ?? [];
-      });
+      if (mounted) {
+        setState(() {
+          _subscriptions = event.subs ?? <Subscription>[];
+        });
+      }
     });
   }
 
@@ -1513,11 +1514,18 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
       });
     }
 
-    // are we not connected after ~5 seconds?
-    await Future<dynamic>.delayed(const Duration(seconds: 8));
+    // check immediately but only act on it if we are connected:
     final bool connected = await sl.get<AccountService>().isConnected();
-    showConnectionWarning(!connected);
-    // await generateUnifiedList(fastUpdate: false);
+    if (connected) {
+      // remove the warning if it's there:
+      showConnectionWarning(!connected);
+    } else {
+      // check again after ~5 seconds:
+      await Future<dynamic>.delayed(const Duration(seconds: 5));
+      final bool connected = await sl.get<AccountService>().isConnected();
+      showConnectionWarning(!connected);
+    }
+    
     // setState(() {});
   }
 
@@ -2141,14 +2149,14 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
 
     if (!mounted) return;
 
-    final dynamic result = uriParser(link);
+    final dynamic scanResult = uriParser(link);
 
-    if (result == null) {
+    if (scanResult == null) {
       return;
     }
 
-    if (result is Address && result.isValid()) {
-      final Address address = result;
+    if (scanResult is Address && scanResult.isValid()) {
+      final Address address = scanResult;
       String? amount;
       bool sufficientBalance = false;
       if (address.amount != null) {
@@ -2187,9 +2195,9 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
           ),
         );
       }
-    } else if (result is PayItem) {
+    } else if (scanResult is PayItem) {
       // handle block handoff:
-      final PayItem payItem = result;
+      final PayItem payItem = scanResult;
       // See if this address belongs to a contact or username
       final User? user = await sl.get<DBHelper>().getUserOrContactWithAddress(payItem.account);
 
@@ -2216,9 +2224,9 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
             destination: user?.address ?? payItem.account,
             contactName: user?.getDisplayName(),
           ));
-    } else if (result is AuthItem) {
+    } else if (scanResult is AuthItem) {
       // handle auth handoff:
-      final AuthItem authItem = result;
+      final AuthItem authItem = scanResult;
       // See if this address belongs to a contact or username
       final User? user = await sl.get<DBHelper>().getUserOrContactWithAddress(authItem.account);
 
@@ -2229,6 +2237,19 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
           authItem: authItem,
           destination: user?.address ?? authItem.account,
           contactName: user?.getDisplayName(),
+        ),
+      );
+    } else if (scanResult is SubItem) {
+      Sheets.showAppHeightNineSheet(
+        context: context,
+        widget: SubConfirmSheet(
+          sub: Subscription(
+            address: scanResult.account,
+            amount_raw: scanResult.amount,
+            name: scanResult.label,
+            frequency: scanResult.frequency,
+            active: false,
+          ),
         ),
       );
     }
@@ -2446,7 +2467,8 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                             return;
                           }
 
-                          final String data = "nano:${StateContainer.of(context).wallet!.address}";
+                          final String data =
+                              "${NonTranslatable.currencyUriPrefix}:${StateContainer.of(context).wallet!.address}";
                           final Widget qrWidget = SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: await UIUtil.getQRImage(context, data),
@@ -2593,10 +2615,8 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
             ),
             BottomNavigationBarItem(
               icon: Badge(
-                showBadge: unpaidSubCount > 0,
-                badgeContent: Text("$unpaidSubCount", style: const TextStyle(color: Colors.white)),
-                animationType: BadgeAnimationType.scale,
-                shape: BadgeShape.circle,
+                isLabelVisible: unpaidSubCount > 0,
+                label: Text("$unpaidSubCount", style: const TextStyle(color: Colors.white)),
                 child: const Icon(Icons.currency_exchange),
               ),
               label: Z.of(context).subsButton,
@@ -2653,18 +2673,18 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                   );
                   break;
                 case BUSINESS_INDEX:
-                  final String data = "nano:${StateContainer.of(context).wallet!.address}";
-                  final Widget qrWidget = SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: await UIUtil.getQRImage(context, data),
-                  );
+                  // final String data = "${NonTranslatable.currencyUriPrefix}:${StateContainer.of(context).wallet!.address}";
+                  // final Widget qrWidget = SizedBox(
+                  //   width: MediaQuery.of(context).size.width,
+                  //   child: await UIUtil.getQRImage(context, data),
+                  // );
                   await Sheets.showAppHeightNineSheet(
                     context: context,
                     barrier: Colors.transparent,
-                    widget: CheckoutSheet(
+                    widget: CalcSheet(
                       localCurrency: StateContainer.of(context).curCurrency,
                       address: StateContainer.of(context).wallet!.address,
-                      qrWidget: qrWidget,
+                      // qrWidget: qrWidget,
                     ),
                   );
                   break;

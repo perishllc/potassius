@@ -1,3 +1,12 @@
+## v0.7.4 - [2023-02-XX]
+#### Added
+- Checkout menu
+#### Changed
+- Websockets reworked to connect to node directly
+#### Fixed
+- Sub links
+- QR code scanning
+- Custom node send/receive
 ## v0.7.3 - [2023-01-20]
 #### Added
 - Subscriptions menu

@@ -7,21 +7,21 @@ import 'dart:convert';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:event_taxi/event_taxi.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_nano_ffi/flutter_nano_ffi.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:logger/logger.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:synchronized/synchronized.dart';
 import 'package:wallet_flutter/bus/events.dart';
 import 'package:wallet_flutter/model/db/appdb.dart';
 import 'package:wallet_flutter/model/db/node.dart';
-import 'package:wallet_flutter/model/db/user.dart';
 import 'package:wallet_flutter/model/db/work_source.dart';
 import 'package:wallet_flutter/model/state_block.dart';
 import 'package:wallet_flutter/network/model/base_request.dart';
 import 'package:wallet_flutter/network/model/block_types.dart';
 import 'package:wallet_flutter/network/model/request/account_history_request.dart';
 import 'package:wallet_flutter/network/model/request/account_info_request.dart';
+import 'package:wallet_flutter/network/model/request/account_representative_request.dart';
 import 'package:wallet_flutter/network/model/request/accounts_balances_request.dart';
 import 'package:wallet_flutter/network/model/request/auth_reply_request.dart';
 import 'package:wallet_flutter/network/model/request/block_info_request.dart';
@@ -32,12 +32,11 @@ import 'package:wallet_flutter/network/model/request/subscribe_request.dart';
 import 'package:wallet_flutter/network/model/request_item.dart';
 import 'package:wallet_flutter/network/model/response/account_history_response.dart';
 import 'package:wallet_flutter/network/model/response/account_info_response.dart';
+import 'package:wallet_flutter/network/model/response/account_representative_response.dart';
 import 'package:wallet_flutter/network/model/response/accounts_balances_response.dart';
-import 'package:wallet_flutter/network/model/response/alerts_response_item.dart';
 import 'package:wallet_flutter/network/model/response/block_info_item.dart';
 import 'package:wallet_flutter/network/model/response/callback_response.dart';
 import 'package:wallet_flutter/network/model/response/error_response.dart';
-import 'package:wallet_flutter/network/model/response/funding_response_item.dart';
 import 'package:wallet_flutter/network/model/response/handoff_response.dart';
 import 'package:wallet_flutter/network/model/response/price_response.dart';
 import 'package:wallet_flutter/network/model/response/process_response.dart';
@@ -46,8 +45,6 @@ import 'package:wallet_flutter/network/model/response/subscribe_response.dart';
 import 'package:wallet_flutter/service_locator.dart';
 import 'package:wallet_flutter/util/nanoutil.dart';
 import 'package:wallet_flutter/util/sharedprefsutil.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:synchronized/synchronized.dart';
 import 'package:web_socket_channel/io.dart';
 
 // late Web3Client _web3Client;
@@ -60,6 +57,9 @@ Map? decodeJson(dynamic src) {
 // overriden!:
 String HTTP_URL = "";
 String WS_URL = "";
+
+const String DEFAULT_HTTP_URL = "https://nautilus.perish.co/api";
+const String DEFAULT_WS_URL = "wss://nautilus.perish.co";
 
 // AccountService singleton
 class AccountService {
@@ -86,8 +86,8 @@ class AccountService {
       log.e(e);
     }
     if (HTTP_URL == "" || WS_URL == "") {
-      HTTP_URL = "https://nautilus.perish.co/api";
-      WS_URL = "wss://nautilus.perish.co";
+      HTTP_URL = DEFAULT_HTTP_URL;
+      WS_URL = DEFAULT_WS_URL;
     }
   }
 
@@ -100,8 +100,8 @@ class AccountService {
       log.e(e);
     }
     if (HTTP_URL == "" || WS_URL == "") {
-      HTTP_URL = "https://nautilus.perish.co/api";
-      WS_URL = "wss://nautilus.perish.co";
+      HTTP_URL = DEFAULT_HTTP_URL;
+      WS_URL = DEFAULT_WS_URL;
     }
 
     // reset vars:
@@ -260,6 +260,7 @@ class AccountService {
     }
   }
 
+  // from the websocket server:
   Future<void> _onMessageReceived(dynamic message) async {
     if (suspended) {
       return;
@@ -273,18 +274,19 @@ class AccountService {
         throw Exception("Invalid JSON received");
       }
       // Determine response type
-      if (msg.containsKey("uuid") || (msg.containsKey("frontier") && msg.containsKey("representative_block"))) {
+      if (msg.containsKey("message")) {
+        // Subscribe response
+        final SubscribeResponse resp = await compute(subscribeResponseFromJson, msg["message"] as Map<String, dynamic>);
+        EventTaxiImpl.singleton().fire(SubscribeEvent(response: resp));
+        // @legacy server:
+      } else if (msg.containsKey("block") && msg.containsKey("hash") && msg.containsKey("account")) {
         // Subscribe response
         final SubscribeResponse resp = await compute(subscribeResponseFromJson, msg);
-        // Post to callbacks
         EventTaxiImpl.singleton().fire(SubscribeEvent(response: resp));
       } else if (msg.containsKey("currency") && msg.containsKey("price")) {
         // Price info sent from server
         final PriceResponse resp = PriceResponse.fromJson(msg as Map<String, dynamic>);
         EventTaxiImpl.singleton().fire(PriceEvent(response: resp));
-      } else if (msg.containsKey("block") && msg.containsKey("hash") && msg.containsKey("account")) {
-        final CallbackResponse resp = await compute(callbackResponseFromJson, msg);
-        EventTaxiImpl.singleton().fire(CallbackEvent(response: resp));
       } else if (msg.containsKey("error")) {
         final ErrorResponse resp = ErrorResponse.fromJson(msg as Map<String, dynamic>);
         EventTaxiImpl.singleton().fire(ErrorEvent(response: resp));
@@ -321,7 +323,7 @@ class AccountService {
           }
           requestItem.isProcessing = true;
           final String requestJson = await compute(encodeRequestItem, requestItem.request);
-          //log.d("Sending: $requestJson");
+          // log.d("Sending: $requestJson");
           await _send(requestJson);
         } else if (DateTime.now().difference(requestItem.expireDt!).inSeconds > RequestItem.EXPIRE_TIME_S) {
           pop();
@@ -333,10 +335,6 @@ class AccountService {
 
   // Queue Utilities
   bool queueContainsRequestWithHash(String hash) {
-    // if (_requestQueue != null || _requestQueue!.length == 0) {
-    //   return false;
-    // }
-    // NATRIUM fix:
     if (_requestQueue == null || _requestQueue!.isEmpty) {
       return false;
     }
@@ -354,7 +352,6 @@ class AccountService {
   }
 
   bool queueContainsOpenBlock() {
-    // NATRIUM fix:
     if (_requestQueue == null || _requestQueue!.isEmpty) {
       return false;
     }
@@ -501,6 +498,15 @@ class AccountService {
     return AccountsBalancesResponse.fromJson(response);
   }
 
+  Future<AccountRepresentativeResponse> requestAccountRepresentative(String account) async {
+    final AccountRepresentativeRequest request = AccountRepresentativeRequest(account: account);
+    final dynamic response = await makeHttpRequest(request);
+    if (response is ErrorResponse) {
+      throw Exception("Received error ${response.error} ${response.details}");
+    }
+    return AccountRepresentativeResponse.fromJson(response);
+  }
+
   // Future<dynamic> createSwapToXMR({
   //   String? amountRaw,
   //   String? xmrAddress,
@@ -637,7 +643,16 @@ class AccountService {
 
   Future<String?> requestWork(String url, String hash) async {
     return http
-        .post(Uri.parse(url), headers: {'Content-type': 'application/json'}, body: json.encode({"hash": hash}))
+        .post(
+      Uri.parse(url),
+      headers: {'Content-type': 'application/json'},
+      body: json.encode(
+        {
+          "action": "work_generate",
+          "hash": hash,
+        },
+      ),
+    )
         .then((http.Response response) {
       if (response.statusCode == 200) {
         final Map<String, dynamic> decoded = json.decode(response.body) as Map<String, dynamic>;
@@ -718,28 +733,6 @@ class AccountService {
       account: account,
       privKey: privKey,
     );
-
-    // checked elsewhere and not needed here, I think:
-    // // db query to check if username for this address exists:
-    // try {
-    //   User? user = await sl.get<DBHelper>().getUserWithAddress(account!);
-    //   bool shouldUpdate = false;
-    //   if (user != null && user.type == UserTypes.ONCHAIN) {
-    //     int weekAgo = 0;
-    //     if (user.last_updated == null || user.last_updated! < weekAgo) {
-    //       // user is out of date, update:
-    //       shouldUpdate = true;
-    //     }
-    //   } else if (user == null) {
-    //     shouldUpdate = true;
-    //   }
-
-    //   if (shouldUpdate) {
-    //     // check for username here:
-    //   }
-    // } catch (error) {
-    //   log.e("Error processing receive username $error");
-    // }
 
     final BlockInfoItem previousInfo = await requestBlockInfo(previous);
     final StateBlock previousBlock = StateBlock.fromJson(json.decode(previousInfo.contents!) as Map<String, dynamic>);
