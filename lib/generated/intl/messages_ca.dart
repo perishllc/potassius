@@ -255,6 +255,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Esteu segur que voleu suprimir aquesta subscripció?\n\nSempre el podeu tornar a afegir més tard tocant el botó \"Afegeix una subscripció\"."),
         "deleteSubHeader": MessageLookupByLibrary.simpleMessage(
             "Vols suprimir la subscripció?"),
+        "deleteWorkSourceConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Esteu segur que voleu suprimir aquesta font de treball?\n\nSempre el podeu tornar a afegir més tard tocant el botó \"Afegeix una font de treball\"."),
+        "deleteWorkSourceHeader": MessageLookupByLibrary.simpleMessage(
+            "Vols suprimir la font de treball?"),
         "disablePasswordSheetHeader":
             MessageLookupByLibrary.simpleMessage("Vypnout"),
         "disablePasswordSuccess":
@@ -831,6 +835,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "shareText": MessageLookupByLibrary.simpleMessage("Comparteix el text"),
         "shopButton": MessageLookupByLibrary.simpleMessage("Botiga"),
         "show": MessageLookupByLibrary.simpleMessage("Espectacle"),
+        "showAccount": MessageLookupByLibrary.simpleMessage("Mostra el compte"),
         "showAccountInfo":
             MessageLookupByLibrary.simpleMessage("Informació del compte"),
         "showAccountQR": MessageLookupByLibrary.simpleMessage(

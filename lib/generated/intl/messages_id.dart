@@ -254,6 +254,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Yakin ingin menghapus langganan ini?\n\nAnda selalu dapat menambahkannya kembali nanti dengan mengetuk tombol \"Tambah Langganan\"."),
         "deleteSubHeader":
             MessageLookupByLibrary.simpleMessage("Hapus Langganan?"),
+        "deleteWorkSourceConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Anda yakin ingin menghapus sumber pekerjaan ini?\n\nAnda selalu dapat menambahkannya kembali nanti dengan mengetuk tombol \"Tambahkan Sumber Kerja\"."),
+        "deleteWorkSourceHeader":
+            MessageLookupByLibrary.simpleMessage("Hapus Sumber Kerja?"),
         "disablePasswordSheetHeader":
             MessageLookupByLibrary.simpleMessage("Nonaktifkan"),
         "disablePasswordSuccess": MessageLookupByLibrary.simpleMessage(
@@ -832,6 +836,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "shareText": MessageLookupByLibrary.simpleMessage("Bagikan Teks"),
         "shopButton": MessageLookupByLibrary.simpleMessage("Toko"),
         "show": MessageLookupByLibrary.simpleMessage("Menunjukkan"),
+        "showAccount": MessageLookupByLibrary.simpleMessage("Tampilkan Akun"),
         "showAccountInfo": MessageLookupByLibrary.simpleMessage("Info akun"),
         "showAccountQR":
             MessageLookupByLibrary.simpleMessage("Tampilkan Kode QR Akun"),

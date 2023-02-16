@@ -220,6 +220,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "이 구독을 삭제하시겠습니까?\n\n\"구독 추가\" 버튼을 탭하여 나중에 언제든지 다시 추가할 수 있습니다."),
         "deleteSubHeader":
             MessageLookupByLibrary.simpleMessage("구독을 삭제하시겠습니까?"),
+        "deleteWorkSourceConfirmation": MessageLookupByLibrary.simpleMessage(
+            "이 작업 소스를 삭제하시겠습니까?\n\n\"작업 소스 추가\" 버튼을 탭하여 나중에 언제든지 다시 추가할 수 있습니다."),
+        "deleteWorkSourceHeader":
+            MessageLookupByLibrary.simpleMessage("작업 소스를 삭제하시겠습니까?"),
         "disablePasswordSheetHeader":
             MessageLookupByLibrary.simpleMessage("Disable"),
         "disablePasswordSuccess":
@@ -729,6 +733,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "shareText": MessageLookupByLibrary.simpleMessage("텍스트 공유"),
         "shopButton": MessageLookupByLibrary.simpleMessage("가게"),
         "show": MessageLookupByLibrary.simpleMessage("보여 주다"),
+        "showAccount": MessageLookupByLibrary.simpleMessage("계정 표시"),
         "showAccountInfo": MessageLookupByLibrary.simpleMessage("계정 정보"),
         "showAccountQR": MessageLookupByLibrary.simpleMessage("계정 QR 코드 표시"),
         "showContacts": MessageLookupByLibrary.simpleMessage("연락처 보기"),

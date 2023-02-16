@@ -244,6 +244,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "هل أنت متأكد أنك تريد حذف هذا الاشتراك؟\n\nيمكنك دائمًا إعادة إضافته لاحقًا بالنقر فوق الزر \"إضافة اشتراك\""),
         "deleteSubHeader":
             MessageLookupByLibrary.simpleMessage("حذف الاشتراك؟"),
+        "deleteWorkSourceConfirmation": MessageLookupByLibrary.simpleMessage(
+            "هل أنت متأكد أنك تريد حذف مصدر العمل هذا؟\n\nيمكنك دائمًا إعادة إضافته لاحقًا بالنقر فوق الزر \"إضافة مصدر العمل\""),
+        "deleteWorkSourceHeader":
+            MessageLookupByLibrary.simpleMessage("هل تريد حذف مصدر العمل؟"),
         "disablePasswordSheetHeader":
             MessageLookupByLibrary.simpleMessage("تعطيل"),
         "disablePasswordSuccess":
@@ -804,6 +808,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "shareText": MessageLookupByLibrary.simpleMessage("مشاركة النص"),
         "shopButton": MessageLookupByLibrary.simpleMessage("محل"),
         "show": MessageLookupByLibrary.simpleMessage("يعرض"),
+        "showAccount": MessageLookupByLibrary.simpleMessage("إظهار الحساب"),
         "showAccountInfo":
             MessageLookupByLibrary.simpleMessage("معلومات الحساب"),
         "showAccountQR": MessageLookupByLibrary.simpleMessage(

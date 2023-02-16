@@ -64,6 +64,7 @@ import 'package:wallet_flutter/ui/home/payment_details_sheet.dart';
 import 'package:wallet_flutter/ui/home/top_card.dart';
 import 'package:wallet_flutter/ui/popup_button.dart';
 import 'package:wallet_flutter/ui/receive/receive_sheet.dart';
+import 'package:wallet_flutter/ui/receive/receive_show_qr.dart';
 import 'package:wallet_flutter/ui/receive/receive_xmr_sheet.dart';
 import 'package:wallet_flutter/ui/send/send_confirm_sheet.dart';
 import 'package:wallet_flutter/ui/send/send_sheet.dart';
@@ -190,15 +191,15 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
   late ConfettiController _confettiControllerLeft;
   late ConfettiController _confettiControllerRight;
 
-  // receive disabled?:
-  bool _receiveDisabled = false;
-  bool _xmrSRDisabled = true;
   String _currentMode = "nano";
 
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
 
   bool _isPro = false;
   List<Subscription> _subscriptions = [];
+  
+  // make the connection warning less annoying:
+  Timer? _connectionTimer;
 
   Future<void> _switchToAccount(String account) async {
     final List<Account> accounts = await sl.get<DBHelper>().getAccounts(await StateContainer.of(context).getSeed());
@@ -754,31 +755,6 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
         });
         EventTaxiImpl.singleton().fire(XMREvent(type: "mode_change", message: mode));
       }
-
-      if (_currentMode == "nano") {
-        if (!_receiveDisabled) {
-          if (StateContainer.of(context).wallet?.address == null ||
-              StateContainer.of(context).wallet!.address!.isEmpty) {
-            setState(() {
-              _receiveDisabled = true;
-            });
-          }
-        } else {
-          if (StateContainer.of(context).wallet?.address != null &&
-              StateContainer.of(context).wallet!.address!.isNotEmpty) {
-            setState(() {
-              _receiveDisabled = false;
-            });
-          }
-        }
-      } else if (_currentMode == "monero") {
-        if (!_xmrSRDisabled && StateContainer.of(context).xmrAddress.isEmpty ||
-            _xmrSRDisabled && StateContainer.of(context).xmrAddress.isNotEmpty) {
-          setState(() {
-            _xmrSRDisabled = !_xmrSRDisabled;
-          });
-        }
-      }
     });
     // Setup placeholder animation and start
     _animationDisposed = false;
@@ -1242,34 +1218,6 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
   StreamSubscription<XMREvent>? _xmrSub;
   StreamSubscription<ConnStatusEvent>? _connectionSub;
   StreamSubscription<SubsChangedEvent>? _subscriptionsSub;
-  // purchase sub:
-  StreamSubscription<List<PurchaseDetails>>? _subscription;
-
-  void _listenToPurchaseUpdated(List<PurchaseDetails> purchaseDetailsList) {
-    purchaseDetailsList.forEach((PurchaseDetails purchaseDetails) async {
-      if (purchaseDetails.status == PurchaseStatus.pending) {
-        // _showPendingUI();
-      } else {
-        if (purchaseDetails.status == PurchaseStatus.error) {
-          // _handleError(purchaseDetails.error!);
-          UIUtil.showSnackbar(
-            /*Z.of(context)!.purchaseError*/ "There was an error handling the purchase request!",
-            context,
-          );
-        } else if (purchaseDetails.status == PurchaseStatus.purchased ||
-            purchaseDetails.status == PurchaseStatus.restored) {
-          log.e("PURCHASED: ${purchaseDetails.productID}");
-          // TODO: verify purchase:
-          const int monthInSecs = 2628000;
-          sl.get<SharedPrefsUtil>().setProStatus(relativeExpireTime: monthInSecs);
-          _isPro = true;
-        }
-        if (purchaseDetails.pendingCompletePurchase) {
-          await InAppPurchase.instance.completePurchase(purchaseDetails);
-        }
-      }
-    });
-  }
 
   void _registerBus() {
     _historySub = EventTaxiImpl.singleton().registerTo<HistoryHomeEvent>().listen((HistoryHomeEvent event) {
@@ -1366,23 +1314,16 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
     // listen to connection events:
     _connectionSub = EventTaxiImpl.singleton().registerTo<ConnStatusEvent>().listen((ConnStatusEvent event) {
       if (event.status == ConnectionStatus.CONNECTED) {
+        // cancel the timer, if it's still running:
+        _connectionTimer?.cancel();
         showConnectionWarning(false);
       } else if (event.status == ConnectionStatus.DISCONNECTED) {
-        showConnectionWarning(true);
+        // start a timer, if it expires, show the warning:
+        _connectionTimer = Timer(const Duration(seconds: 8), () {
+          showConnectionWarning(true);
+        });
       }
     });
-    final Stream<List<PurchaseDetails>> purchaseUpdated = InAppPurchase.instance.purchaseStream;
-    _subscription = purchaseUpdated.listen((List<PurchaseDetails> purchaseDetailsList) {
-      _listenToPurchaseUpdated(purchaseDetailsList);
-    }, onDone: () {
-      _subscription?.cancel();
-    }, onError: (error) {
-      // handle error here.
-      log.v("Error listening to purchase updates: $error");
-    });
-    if (Platform.isIOS) {
-      InAppPurchase.instance.restorePurchases();
-    }
     _subscriptionsSub = EventTaxiImpl.singleton().registerTo<SubsChangedEvent>().listen((SubsChangedEvent event) {
       if (mounted) {
         setState(() {
@@ -1403,7 +1344,6 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
     _solidsSub?.cancel();
     _unifiedSub?.cancel();
     _xmrSub?.cancel();
-    _subscription?.cancel();
     _connectionSub?.cancel();
   }
 
@@ -2349,22 +2289,6 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
   }
 
   Widget _buildMainColumnView(BuildContext context) {
-    if (_currentMode == "nano") {
-      if (_receiveDisabled &&
-          StateContainer.of(context).wallet?.address != null &&
-          StateContainer.of(context).wallet!.address!.isNotEmpty) {
-        setState(() {
-          _receiveDisabled = false;
-        });
-      }
-    }
-    if (_currentMode == "monero") {
-      if (_xmrSRDisabled && StateContainer.of(context).xmrAddress.isNotEmpty) {
-        setState(() {
-          _xmrSRDisabled = false;
-        });
-      }
-    }
     return Column(
       children: <Widget>[
         Expanded(
@@ -2524,12 +2448,9 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                       child: TextButton(
                         key: const Key("home_receive_button"),
                         style: TextButton.styleFrom(
-                          backgroundColor: !_receiveDisabled
-                              ? StateContainer.of(context).curTheme.primary
-                              : StateContainer.of(context).curTheme.primary60,
+                          backgroundColor: StateContainer.of(context).curTheme.primary,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppButton.BORDER_RADIUS)),
-                          foregroundColor:
-                              !_receiveDisabled ? StateContainer.of(context).curTheme.background40 : Colors.transparent,
+                          foregroundColor: StateContainer.of(context).curTheme.background40,
                         ),
                         child: AutoSizeText(
                           Z.of(context).request,
@@ -2539,10 +2460,6 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                           stepGranularity: 0.5,
                         ),
                         onPressed: () async {
-                          if (_receiveDisabled) {
-                            return;
-                          }
-
                           final String data =
                               "${NonTranslatable.currencyUriPrefix}:${StateContainer.of(context).wallet!.address}";
                           final Widget qrWidget = SizedBox(
@@ -2551,12 +2468,30 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                           );
                           if (!mounted) return;
                           Sheets.showAppHeightNineSheet(
-                              context: context,
-                              widget: ReceiveSheet(
-                                localCurrency: StateContainer.of(context).curCurrency,
-                                address: StateContainer.of(context).wallet!.address,
-                                qrWidget: qrWidget,
-                              ));
+                            context: context,
+                            widget: ReceiveSheet(
+                              localCurrency: StateContainer.of(context).curCurrency,
+                              address: StateContainer.of(context).wallet!.address,
+                              qrWidget: qrWidget,
+                            ),
+                          );
+                        },
+                        onLongPress: () async {
+                          final String data =
+                              "${NonTranslatable.currencyUriPrefix}:${StateContainer.of(context).wallet!.address}";
+                          final Widget qrWidget = SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            child: await UIUtil.getQRImage(context, data),
+                          );
+                          if (!mounted) return;
+                          Sheets.showAppHeightEightSheet(
+                            context: context,
+                            widget: ReceiveShowQRSheet(
+                              localCurrency: StateContainer.of(context).curCurrency,
+                              address: StateContainer.of(context).wallet!.address,
+                              qrWidget: qrWidget,
+                            ),
+                          );
                         },
                       ),
                     ),
@@ -2579,12 +2514,9 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                       child: TextButton(
                         key: const Key("home_receive_button"),
                         style: TextButton.styleFrom(
-                          backgroundColor: !_xmrSRDisabled
-                              ? StateContainer.of(context).curTheme.primary
-                              : StateContainer.of(context).curTheme.primary60,
+                          backgroundColor: StateContainer.of(context).curTheme.primary,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppButton.BORDER_RADIUS)),
-                          foregroundColor:
-                              !_xmrSRDisabled ? StateContainer.of(context).curTheme.background40 : Colors.transparent,
+                          foregroundColor: StateContainer.of(context).curTheme.background40,
                         ),
                         child: AutoSizeText(
                           Z.of(context).receive,
@@ -2594,9 +2526,6 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                           stepGranularity: 0.5,
                         ),
                         onPressed: () async {
-                          if (_xmrSRDisabled) {
-                            return;
-                          }
 
                           final String data = "monero:${StateContainer.of(context).xmrAddress}";
                           final Widget qrWidget = SizedBox(
@@ -2615,7 +2544,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                         },
                       ),
                     ),
-                    AppPopupButton(moneroEnabled: true, enabled: !_xmrSRDisabled),
+                    AppPopupButton(moneroEnabled: true),
                   ],
                 ),
 
@@ -2680,14 +2609,14 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: const Icon(Icons.shopping_bag),
-              label: Z.of(context).shopButton,
-              backgroundColor: StateContainer.of(context).curTheme.warning,
-            ),
-            BottomNavigationBarItem(
               icon: const Icon(Icons.home),
               label: Z.of(context).homeButton,
               backgroundColor: StateContainer.of(context).curTheme.backgroundDark,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.shopping_bag),
+              label: Z.of(context).shopButton,
+              backgroundColor: StateContainer.of(context).curTheme.warning,
             ),
             BottomNavigationBarItem(
               icon: Badge(
@@ -2703,15 +2632,21 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
             //   label: Z.of(context).businessButton,
             //   backgroundColor: StateContainer.of(context).curTheme.warning,
             // ),
+            BottomNavigationBarItem(
+              icon: const Icon(AppIcons.settings),
+              label: Z.of(context).settingsHeader,
+              backgroundColor: StateContainer.of(context).curTheme.warning,
+            ),
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: StateContainer.of(context).curTheme.primary,
           unselectedItemColor: StateContainer.of(context).curTheme.text,
           onTap: (int index) async {
-            const int HOME_INDEX = 1;
-            const int SHOP_INDEX = 0;
+            const int HOME_INDEX = 0;
+            const int SHOP_INDEX = 1;
             const int SUBS_INDEX = 2;
-            const int BUSINESS_INDEX = 3;
+            const int SETTINGS_INDEX = 3;
+            const int BUSINESS_INDEX = 4;
 
             // special case for when you double tap home, scroll to the top:
             if (_selectedIndex == index) {
@@ -2731,6 +2666,7 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
               switch (index) {
                 case SUBS_INDEX:
                   final List<Subscription> subs = await sl.get<DBHelper>().getSubscriptions();
+                  if (!mounted) return;
                   await Sheets.showAppHeightNineSheet(
                     context: context,
                     barrier: Colors.transparent,
@@ -2763,6 +2699,9 @@ class AppHomePageState extends State<AppHomePage> with WidgetsBindingObserver, T
                       // qrWidget: qrWidget,
                     ),
                   );
+                  break;
+                case SETTINGS_INDEX:
+                  _scaffoldKey.currentState?.openDrawer();
                   break;
               }
 

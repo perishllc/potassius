@@ -715,6 +715,16 @@
     "type": "text",
     "description": "Confirmation dialog header"
   },
+  "deleteWorkSourceConfirmation": "Weet u zeker dat u deze werkbron wilt verwijderen?\n\nJe kunt het later altijd opnieuw toevoegen door op de knop \"Werkbron toevoegen\" te tikken",
+  "@deleteWorkSourceConfirmation": {
+    "type": "text",
+    "description": "delete work source confirmation info"
+  },
+  "deleteWorkSourceHeader": "Werkbron verwijderen?",
+  "@deleteWorkSourceHeader": {
+    "type": "text",
+    "description": "Confirmation dialog header"
+  },
   "disablePasswordSheetHeader": "Uitschakelen",
   "@disablePasswordSheetHeader": {
     "type": "text",
@@ -2514,6 +2524,11 @@
   "@show": {
     "type": "text",
     "description": "funding_show"
+  },
+  "showAccount": "Rekening tonen",
+  "@showAccount": {
+    "type": "text",
+    "description": "show_account"
   },
   "showAccountInfo": "Account informatie",
   "@showAccountInfo": {

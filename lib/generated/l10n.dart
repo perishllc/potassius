@@ -1485,6 +1485,26 @@ class Z {
     );
   }
 
+  /// `Are you sure you want to delete this work source?\n\nYou can always re-add it later by tapping the "Add Work Source" button`
+  String get deleteWorkSourceConfirmation {
+    return Intl.message(
+      'Are you sure you want to delete this work source?\n\nYou can always re-add it later by tapping the "Add Work Source" button',
+      name: 'deleteWorkSourceConfirmation',
+      desc: 'delete work source confirmation info',
+      args: [],
+    );
+  }
+
+  /// `Delete Work Source?`
+  String get deleteWorkSourceHeader {
+    return Intl.message(
+      'Delete Work Source?',
+      name: 'deleteWorkSourceHeader',
+      desc: 'Confirmation dialog header',
+      args: [],
+    );
+  }
+
   /// `Disable`
   String get disablePasswordSheetHeader {
     return Intl.message(
@@ -5091,6 +5111,16 @@ class Z {
       'Show',
       name: 'show',
       desc: 'funding_show',
+      args: [],
+    );
+  }
+
+  /// `Show Account`
+  String get showAccount {
+    return Intl.message(
+      'Show Account',
+      name: 'showAccount',
+      desc: 'show_account',
       args: [],
     );
   }

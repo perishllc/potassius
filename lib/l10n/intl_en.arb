@@ -715,6 +715,16 @@
     "type": "text",
     "description": "Confirmation dialog header"
   },
+  "deleteWorkSourceConfirmation": "Are you sure you want to delete this work source?\n\nYou can always re-add it later by tapping the \"Add Work Source\" button",
+  "@deleteWorkSourceConfirmation": {
+    "type": "text",
+    "description": "delete work source confirmation info"
+  },
+  "deleteWorkSourceHeader": "Delete Work Source?",
+  "@deleteWorkSourceHeader": {
+    "type": "text",
+    "description": "Confirmation dialog header"
+  },
   "disablePasswordSheetHeader": "Disable",
   "@disablePasswordSheetHeader": {
     "type": "text",
@@ -2514,6 +2524,11 @@
   "@show": {
     "type": "text",
     "description": "funding_show"
+  },
+  "showAccount": "Show Account",
+  "@showAccount": {
+    "type": "text",
+    "description": "show_account"
   },
   "showAccountInfo": "Account Info",
   "@showAccountInfo": {

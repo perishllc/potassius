@@ -262,6 +262,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Sigurado ka bang gusto mong tanggalin ang subscription na ito?\n\nMaaari mo itong muling idagdag anumang oras sa ibang pagkakataon sa pamamagitan ng pag-tap sa button na \"Magdagdag ng Subscription.\""),
         "deleteSubHeader":
             MessageLookupByLibrary.simpleMessage("Tanggalin ang Subscription?"),
+        "deleteWorkSourceConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Sigurado ka bang gusto mong tanggalin ang pinagmumulan ng trabahong ito?\n\nMaaari mo itong muling idagdag anumang oras sa ibang pagkakataon sa pamamagitan ng pag-tap sa button na \"Magdagdag ng Pinagmulan ng Trabaho.\""),
+        "deleteWorkSourceHeader": MessageLookupByLibrary.simpleMessage(
+            "Tanggalin ang Pinagmulan ng Trabaho?"),
         "disablePasswordSheetHeader":
             MessageLookupByLibrary.simpleMessage("Disable"),
         "disablePasswordSuccess":
@@ -864,6 +868,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "shareText": MessageLookupByLibrary.simpleMessage("Ibahagi ang Teksto"),
         "shopButton": MessageLookupByLibrary.simpleMessage("Mamili"),
         "show": MessageLookupByLibrary.simpleMessage("Ipakita"),
+        "showAccount":
+            MessageLookupByLibrary.simpleMessage("Ipakita ang Account"),
         "showAccountInfo":
             MessageLookupByLibrary.simpleMessage("Impormasyon ng Account"),
         "showAccountQR":

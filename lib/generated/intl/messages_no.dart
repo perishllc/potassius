@@ -253,6 +253,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Er du sikker på at du vil slette dette abonnementet?\n\nDu kan alltid legge den til på nytt senere ved å trykke på \"Legg til abonnement\"-knappen"),
         "deleteSubHeader":
             MessageLookupByLibrary.simpleMessage("Vil du slette abonnementet?"),
+        "deleteWorkSourceConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Er du sikker på at du vil slette denne arbeidskilden?\n\nDu kan alltid legge den til på nytt senere ved å trykke på \"Legg til arbeidskilde\"-knappen"),
+        "deleteWorkSourceHeader":
+            MessageLookupByLibrary.simpleMessage("Vil du slette arbeidskilde?"),
         "disablePasswordSheetHeader":
             MessageLookupByLibrary.simpleMessage("Deaktiver"),
         "disablePasswordSuccess": MessageLookupByLibrary.simpleMessage(
@@ -832,6 +836,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "shareText": MessageLookupByLibrary.simpleMessage("Del tekst"),
         "shopButton": MessageLookupByLibrary.simpleMessage("Butikk"),
         "show": MessageLookupByLibrary.simpleMessage("Forestilling"),
+        "showAccount": MessageLookupByLibrary.simpleMessage("Vis konto"),
         "showAccountInfo":
             MessageLookupByLibrary.simpleMessage("Kontoinformasjon"),
         "showAccountQR":

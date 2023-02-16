@@ -236,6 +236,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteSubConfirmation": MessageLookupByLibrary.simpleMessage(
             "האם אתה בטוח שברצונך למחוק את המנוי הזה?\n\nאתה תמיד יכול להוסיף אותו מחדש מאוחר יותר על ידי הקשה על כפתור \"הוסף מנוי\"."),
         "deleteSubHeader": MessageLookupByLibrary.simpleMessage("למחוק מנוי?"),
+        "deleteWorkSourceConfirmation": MessageLookupByLibrary.simpleMessage(
+            "האם אתה בטוח שברצונך למחוק את מקור העבודה הזה?\n\nאתה תמיד יכול להוסיף אותו מחדש מאוחר יותר על ידי הקשה על הלחצן \"הוסף מקור עבודה\"."),
+        "deleteWorkSourceHeader":
+            MessageLookupByLibrary.simpleMessage("למחוק את מקור העבודה?"),
         "disablePasswordSheetHeader":
             MessageLookupByLibrary.simpleMessage("Disable"),
         "disablePasswordSuccess":
@@ -772,6 +776,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "shareText": MessageLookupByLibrary.simpleMessage("שתף טקסט"),
         "shopButton": MessageLookupByLibrary.simpleMessage("לִקְנוֹת"),
         "show": MessageLookupByLibrary.simpleMessage("הופעה"),
+        "showAccount": MessageLookupByLibrary.simpleMessage("הצג חשבון"),
         "showAccountInfo": MessageLookupByLibrary.simpleMessage("פרטי חשבון"),
         "showAccountQR":
             MessageLookupByLibrary.simpleMessage("הצג קוד QR של חשבון"),

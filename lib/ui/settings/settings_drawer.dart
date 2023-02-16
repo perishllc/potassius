@@ -1570,28 +1570,40 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                   fontSize: 16.0, fontWeight: FontWeight.w100, color: StateContainer.of(context).curTheme.text60)),
         ),
         Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
-        AppSettings.buildSettingsListItemSingleLine(context, Z.of(context).contactsHeader, AppIcons.contact,
-            onPressed: () async {
-          // check if contacts have been asked before:
-          // reloading prefs to be sure we get the latest value:
-          await sl.get<SharedPrefsUtil>().reload();
-          final bool contactsSet = await sl.get<SharedPrefsUtil>().getContactsSet();
-          if (!contactsSet) {
-            await _getContactsPermissions();
-          }
-          setState(() {
-            _contactsOpen = true;
-          });
-          _contactsController!.forward();
-        }),
-        Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
-        AppSettings.buildSettingsListItemSingleLine(context, Z.of(context).blockedHeader, AppIcons.block,
-            onPressed: () {
-          setState(() {
-            _blockedOpen = true;
-          });
-          _blockedController!.forward();
-        }),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            AppSettings.buildSettingsListItemSingleLineTwoItems(
+              context,
+              Z.of(context).contactsHeader,
+              AppIcons.contact,
+              onPressed: () async {
+                // check if contacts have been asked before:
+                // reloading prefs to be sure we get the latest value:
+                await sl.get<SharedPrefsUtil>().reload();
+                final bool contactsSet = await sl.get<SharedPrefsUtil>().getContactsSet();
+                if (!contactsSet) {
+                  await _getContactsPermissions();
+                }
+                setState(() {
+                  _contactsOpen = true;
+                });
+                _contactsController!.forward();
+              },
+            ),
+            AppSettings.buildSettingsListItemSingleLineTwoItems(
+              context,
+              Z.of(context).blockedHeader,
+              AppIcons.block,
+              onPressed: () {
+                setState(() {
+                  _blockedOpen = true;
+                });
+                _blockedController!.forward();
+              },
+            ),
+          ],
+        ),
         Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
         AppSettings.buildSettingsListItemSingleLine(context, Z.of(context).backupSecretPhrase, AppIcons.backupseed,
             onPressed: () async {
@@ -2494,6 +2506,7 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                           }, cancelText: CaseChange.toUpperCase(Z.of(context).no, context));
                         },
                       ),
+                      if (_loggedInWithMagic) Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
                       if (_loggedInWithMagic)
                         AppSettings.buildSettingsListItemSingleLine(
                             context, Z.of(context).deleteAccount, AppIcons.logout, onPressed: () {

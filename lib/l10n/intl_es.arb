@@ -715,6 +715,16 @@
     "type": "text",
     "description": "Confirmation dialog header"
   },
+  "deleteWorkSourceConfirmation": "¿Está seguro de que desea eliminar esta fuente de trabajo?\n\nSiempre puede volver a agregarlo más tarde tocando el botón \"Agregar fuente de trabajo\"",
+  "@deleteWorkSourceConfirmation": {
+    "type": "text",
+    "description": "delete work source confirmation info"
+  },
+  "deleteWorkSourceHeader": "¿Eliminar fuente de trabajo?",
+  "@deleteWorkSourceHeader": {
+    "type": "text",
+    "description": "Confirmation dialog header"
+  },
   "disablePasswordSheetHeader": "Deshabilitar",
   "@disablePasswordSheetHeader": {
     "type": "text",
@@ -2514,6 +2524,11 @@
   "@show": {
     "type": "text",
     "description": "funding_show"
+  },
+  "showAccount": "Mostrar cuenta",
+  "@showAccount": {
+    "type": "text",
+    "description": "show_account"
   },
   "showAccountInfo": "Informacion de cuenta",
   "@showAccountInfo": {

@@ -251,6 +251,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Bu aboneliği silmek istediğinizden emin misiniz?\n\n\"Abonelik Ekle\" düğmesine dokunarak istediğiniz zaman yeniden ekleyebilirsiniz."),
         "deleteSubHeader":
             MessageLookupByLibrary.simpleMessage("Abonelik Silinsin mi?"),
+        "deleteWorkSourceConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Bu iş kaynağını silmek istediğinizden emin misiniz?\n\n\"Çalışma Kaynağı Ekle\" düğmesine dokunarak istediğiniz zaman yeniden ekleyebilirsiniz."),
+        "deleteWorkSourceHeader": MessageLookupByLibrary.simpleMessage(
+            "Çalışma Kaynağı Silinsin mi?"),
         "disablePasswordSheetHeader":
             MessageLookupByLibrary.simpleMessage("Kaldır"),
         "disablePasswordSuccess":
@@ -821,6 +825,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "shareText": MessageLookupByLibrary.simpleMessage("Metni Paylaş"),
         "shopButton": MessageLookupByLibrary.simpleMessage("Mağaza"),
         "show": MessageLookupByLibrary.simpleMessage("Göstermek"),
+        "showAccount": MessageLookupByLibrary.simpleMessage("Hesabı Göster"),
         "showAccountInfo":
             MessageLookupByLibrary.simpleMessage("Hesap bilgisi"),
         "showAccountQR":

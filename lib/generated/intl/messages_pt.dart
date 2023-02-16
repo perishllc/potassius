@@ -258,6 +258,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Tem certeza de que deseja excluir esta assinatura?\n\nVocê sempre pode adicioná-lo novamente mais tarde tocando no botão \"Adicionar assinatura\""),
         "deleteSubHeader":
             MessageLookupByLibrary.simpleMessage("Excluir assinatura?"),
+        "deleteWorkSourceConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Tem certeza de que deseja excluir esta fonte de trabalho?\n\nVocê sempre pode adicioná-lo novamente mais tarde tocando no botão \"Adicionar fonte de trabalho\""),
+        "deleteWorkSourceHeader":
+            MessageLookupByLibrary.simpleMessage("Excluir fonte de trabalho?"),
         "disablePasswordSheetHeader":
             MessageLookupByLibrary.simpleMessage("Desabilitar"),
         "disablePasswordSuccess":
@@ -842,6 +846,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "shareText": MessageLookupByLibrary.simpleMessage("Compartilhar texto"),
         "shopButton": MessageLookupByLibrary.simpleMessage("Comprar"),
         "show": MessageLookupByLibrary.simpleMessage("mostrar"),
+        "showAccount": MessageLookupByLibrary.simpleMessage("Mostrar conta"),
         "showAccountInfo":
             MessageLookupByLibrary.simpleMessage("Informações da Conta"),
         "showAccountQR":

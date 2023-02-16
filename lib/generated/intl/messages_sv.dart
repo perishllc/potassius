@@ -260,6 +260,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Är du säker på att du vill ta bort den här prenumerationen?\n\nDu kan alltid lägga till den igen senare genom att trycka på knappen \"Lägg till prenumeration\"."),
         "deleteSubHeader":
             MessageLookupByLibrary.simpleMessage("Ta bort prenumeration?"),
+        "deleteWorkSourceConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Är du säker på att du vill ta bort den här arbetskällan?\n\nDu kan alltid lägga till den igen senare genom att trycka på knappen \"Lägg till arbetskälla\"."),
+        "deleteWorkSourceHeader":
+            MessageLookupByLibrary.simpleMessage("Ta bort arbetskälla?"),
         "disablePasswordSheetHeader":
             MessageLookupByLibrary.simpleMessage("Avaktivera"),
         "disablePasswordSuccess":
@@ -834,6 +838,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "shareText": MessageLookupByLibrary.simpleMessage("Dela text"),
         "shopButton": MessageLookupByLibrary.simpleMessage("affär"),
         "show": MessageLookupByLibrary.simpleMessage("Show"),
+        "showAccount": MessageLookupByLibrary.simpleMessage("Visa konto"),
         "showAccountInfo":
             MessageLookupByLibrary.simpleMessage("Konto information"),
         "showAccountQR":

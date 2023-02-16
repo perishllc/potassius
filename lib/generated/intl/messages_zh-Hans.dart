@@ -196,6 +196,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteSubConfirmation": MessageLookupByLibrary.simpleMessage(
             "您确定要删除此订阅吗？\n\n您以后随时可以通过点击“添加订阅”按钮重新添加它"),
         "deleteSubHeader": MessageLookupByLibrary.simpleMessage("删除订阅？"),
+        "deleteWorkSourceConfirmation": MessageLookupByLibrary.simpleMessage(
+            "您确定要删除此工作来源吗？\n\n您以后随时可以通过点击“添加工作源”按钮重新添加它"),
+        "deleteWorkSourceHeader":
+            MessageLookupByLibrary.simpleMessage("删除工作源？"),
         "disablePasswordSheetHeader":
             MessageLookupByLibrary.simpleMessage("解除"),
         "disablePasswordSuccess":
@@ -653,6 +657,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "shareText": MessageLookupByLibrary.simpleMessage("分享文字"),
         "shopButton": MessageLookupByLibrary.simpleMessage("店铺"),
         "show": MessageLookupByLibrary.simpleMessage("节目"),
+        "showAccount": MessageLookupByLibrary.simpleMessage("显示帐户"),
         "showAccountInfo": MessageLookupByLibrary.simpleMessage("帐户信息"),
         "showAccountQR": MessageLookupByLibrary.simpleMessage("显示账户二维码"),
         "showContacts": MessageLookupByLibrary.simpleMessage("显示联系人"),
