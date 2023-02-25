@@ -140,15 +140,15 @@ class ShopSheetState extends State<ShopSheet> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          UseCard(
-                            image: "assets/logos/onramper.png",
-                            title: NonTranslatable.onramper,
-                            onPress: () async {
-                              final String url =
-                                  "https://widget.onramper.com?apiKey=${dotenv.env["ONRAMPER_API_KEY"]!}&color=4080D7&onlyCryptos=NANO&defaultCrypto=NANO&darkMode=${StateContainer.of(context).curTheme.brightness == Brightness.dark}";
-                              await UIUtil.showChromeSafariWebview(context, url);
-                            },
-                          ),
+                          // UseCard(
+                          //   image: "assets/logos/onramper.png",
+                          //   title: NonTranslatable.onramper,
+                          //   onPress: () async {
+                          //     final String url =
+                          //         "https://widget.onramper.com?apiKey=${dotenv.env["ONRAMPER_API_KEY"]!}&color=4080D7&onlyCryptos=NANO&defaultCrypto=NANO&darkMode=${StateContainer.of(context).curTheme.brightness == Brightness.dark}";
+                          //     await UIUtil.showChromeSafariWebview(context, url);
+                          //   },
+                          // ),
                           UseCard(
                             image: "assets/logos/nanocafe.png",
                             title: NonTranslatable.nanocafe,
