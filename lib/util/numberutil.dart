@@ -4,7 +4,8 @@ import 'package:decimal/decimal.dart';
 class NumberUtil {
   static const int maxDecimalDigits = 6; // Max digits after decimal
   static BigInt rawPerNano = BigInt.parse("1000000000000000000000000000000");
-  static BigInt rawPerNyano = BigInt.parse("100000000000000000000000000000");
+  static BigInt rawPerNyano = BigInt.parse("1000000000000000000000000");
+  static BigInt rawPerBanano = BigInt.parse("100000000000000000000000000000");
   static BigInt rawPerXMR = BigInt.parse("1000000000000");
   static BigInt convertXMRtoNano = BigInt.parse("1000000000000000000");
   // static BigInt convertXMRtoNano = BigInt.parse("1000000000000000000000000000");
@@ -16,7 +17,7 @@ class NumberUtil {
   /// @return Decimal value 1.000000000000000000000000000000
   ///
   static Decimal getRawAsDecimal(String? raw, BigInt? rawPerCur) {
-    rawPerCur ??= rawPerNano;
+    rawPerCur ??= rawPerBanano;
     final Decimal amount = Decimal.parse(raw.toString());
     final Decimal result = (amount / Decimal.parse(rawPerCur.toString())).toDecimal();
     return result;
@@ -115,7 +116,7 @@ class NumberUtil {
   ///
   static String getAmountAsRaw(String amount) {
     final Decimal asDecimal = Decimal.parse(amount);
-    final Decimal rawDecimal = Decimal.parse(rawPerNano.toString());
+    final Decimal rawDecimal = Decimal.parse(rawPerBanano.toString());
     return (asDecimal * rawDecimal).toString();
   }
 
