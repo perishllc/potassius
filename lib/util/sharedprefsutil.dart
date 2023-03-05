@@ -295,7 +295,7 @@ class SharedPrefsUtil {
 
   Future<ThemeSetting> getTheme() async {
     final bool isDarkMode = SchedulerBinding.instance.window.platformBrightness == Brightness.dark;
-    final int defaultValue = isDarkMode ? ThemeOptions.NAUTILUS.index : ThemeOptions.INDIUM.index;
+    final int defaultValue = isDarkMode ? ThemeOptions.POTASSIUS.index : ThemeOptions.INDIUM.index;
     return ThemeSetting(ThemeOptions.values[(await get(cur_theme, defaultValue: defaultValue) as int)]);
   }
 

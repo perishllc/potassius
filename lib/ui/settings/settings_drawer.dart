@@ -131,7 +131,7 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
   CurrencyModeSetting _curCurrencyModeSetting = CurrencyModeSetting(CurrencyModeOptions.BANANO);
   UnlockSetting _curUnlockSetting = UnlockSetting(UnlockOption.NO);
   LockTimeoutSetting _curTimeoutSetting = LockTimeoutSetting(LockTimeoutOption.ONE);
-  ThemeSetting _curThemeSetting = ThemeSetting(ThemeOptions.NAUTILUS);
+  ThemeSetting _curThemeSetting = ThemeSetting(ThemeOptions.POTASSIUS);
   int _curXmrRestoreHeight = 0;
 
   late bool _loadingAccounts;
