@@ -310,6 +310,9 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
           case "NYANO":
             _curCurrencyModeSetting = CurrencyModeSetting(CurrencyModeOptions.BANANO);
             break;
+          case "BANANO":
+            _curCurrencyModeSetting = CurrencyModeSetting(CurrencyModeOptions.BANANO);
+            break;
         }
       });
     });
@@ -924,7 +927,7 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
     final String currencyMode = CurrencyModeSetting(chosen).getDisplayName();
     sl.get<SharedPrefsUtil>().setCurrencyMode(currencyMode).then((void result) {
       setState(() {
-        StateContainer.of(context).setCurrencyMode(currencyMode);
+        StateContainer.of(context).setCurrencyMode(currencyMode, context: context);
         _curCurrencyModeSetting = CurrencyModeSetting(chosen);
       });
     });

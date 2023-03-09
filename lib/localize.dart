@@ -121,17 +121,10 @@ class NonTranslatable {
     return "Potassius";
   }
 
-  static String get currencyName {
-    return "Banano";
-  }
-
-  static String get currencyPrefix {
-    return "ban_";
-  }
-
-  static String get currencyUriPrefix {
-    return "nano";
-  }
+  static String currencyName = "Banano";
+  static String currencyPrefix = "ban_";
+  static String currencyUriPrefix = "banano";
+  static int accountType = 2;
 
   static String get nano {
     return "Nano";

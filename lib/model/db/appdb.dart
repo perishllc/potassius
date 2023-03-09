@@ -248,16 +248,26 @@ class DBHelper {
       ),
       dbClient: dbClient,
     );
-    await saveNode(
-      Node(
-        id: 1,
-        name: "Natrium Node",
-        selected: false,
-        http_url: "https://app.natrium.io/api",
-        ws_url: "wss://app.natrium.io",
-      ),
-      dbClient: dbClient,
-    );
+    // await saveNode(
+    //   Node(
+    //     id: 1,
+    //     name: "Natrium Node",
+    //     selected: false,
+    //     http_url: "https://app.natrium.io/api",
+    //     ws_url: "wss://app.natrium.io",
+    //   ),
+    //   dbClient: dbClient,
+    // );
+    // await saveNode(
+    //   Node(
+    //     id: 2,
+    //     name: "Kalium Node (banano)",
+    //     selected: false,
+    //     http_url: "https://kaliumapi.appditto.com/api",
+    //     ws_url: "wss://kaliumapi.appditto.com",
+    //   ),
+    //   dbClient: dbClient,
+    // );
     // await saveNode(
     //   Node(
     //     id: 1,
