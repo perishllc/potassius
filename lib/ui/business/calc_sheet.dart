@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 // import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 import 'package:intl/intl.dart';
@@ -374,29 +376,32 @@ class CalcSheetState extends State<CalcSheet> {
                   ),
                 ],
               ),
-                Row(
-                  children: <Widget>[
-                    AppButton.buildAppButton(
-                      context,
-                      // Share Address Button
-                      AppButtonType.PRIMARY_OUTLINE,
-                      Z.of(context).scanNFC,
-                      Dimens.BUTTON_BOTTOM_DIMENS,
-                      onPressed: () async {
-                        // final NFCAvailability availability = await FlutterNfcKit.nfcAvailability;
-                        // if (availability != NFCAvailability.available) {
-                        //   sl.get<Logger>().e("NFC is not available");
-                        // }
+                // Row(
+                //   children: <Widget>[
+                //     AppButton.buildAppButton(
+                //       context,
+                //       // Share Address Button
+                //       AppButtonType.PRIMARY_OUTLINE,
+                //       Z.of(context).scanNFC,
+                //       Dimens.BUTTON_BOTTOM_DIMENS,
+                //       onPressed: () async {
+                //         final NFCAvailability availability = await FlutterNfcKit.nfcAvailability;
+                //         if (availability != NFCAvailability.available) {
+                //           sl.get<Logger>().e("NFC is not available");
+                //         }
 
-                        // sl.get<Logger>().v("writing ndef record");
+                //         sl.get<Logger>().v("writing ndef record");
 
-                        // // write NDEF record:
-                        // // decoded NDEF records
-                        // await FlutterNfcKit.writeNDEFRecords([ndef.UriRecord.fromString("https://google.com")]);
-                      },
-                    ),
-                  ],
-                ),
+                //         // must poll once per session to enable NFC writing!
+                //         // await FlutterNfcKit.poll(timeout: const Duration(seconds: 2));
+
+                //         // write NDEF record:
+                //         // decoded NDEF records
+                //         await FlutterNfcKit.writeNDEFRecords([ndef.UriRecord.fromString("https://test-${Random().nextInt(1000)}}.com")]);
+                //       },
+                //     ),
+                //   ],
+                // ),
             ],
           ),
         ],

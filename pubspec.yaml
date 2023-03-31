@@ -8,7 +8,7 @@ publish_to: "none"
 # followed by an optional build number separated by a +.
 # Both the version and the builder number may be overridden in flutter
 # build by specifying --build-name and --build-number, respectively.
-version: 0.8.3
+version: 0.8.5
 
 environment:
   sdk: ">=2.18.2 <3.0.0"
@@ -80,6 +80,7 @@ dependencies:
 
   # Logger
   logger: ^1.0.0
+  logging: ^1.1.1
 
   # changelog:
   package_info_plus: ^1.4.2
@@ -349,7 +350,7 @@ flutter:
     - assets/logos/wenano.png
     - assets/logos/perseeve.png
     # nyano assets:
-    - assets/nyano/images/logos/cat-head-collar-black-1000 × 1180.png
+    # - assets/nyano/images/logos/cat-head-collar-black-1000 × 1180.png
     # illustrations:
     - assets/illustrations/transferfunds_start.svg
     - assets/illustrations/transferfunds_paperwalletonly.svg
