@@ -6,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:wallet_flutter/model/db/account.dart';
 import 'package:wallet_flutter/model/db/node.dart';
+import 'package:wallet_flutter/model/db/scheduled.dart';
 import 'package:wallet_flutter/model/db/subscription.dart';
 import 'package:wallet_flutter/model/db/txdata.dart';
 import 'package:wallet_flutter/model/db/user.dart';
@@ -20,7 +21,7 @@ class DBHelper {
   DBHelper() {
     _nanoUtil = NanoUtil();
   }
-  static const int DB_VERSION = 10;
+  static const int DB_VERSION = 11;
   static const String CONTACTS_SQL = """
         CREATE TABLE Contacts( 
         id INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -121,6 +122,17 @@ class DBHelper {
         address TEXT,
         amount_raw TEXT
         )""";
+  static const String SCHEDULED_SQL = """
+        CREATE TABLE Scheduled( 
+        id INTEGER PRIMARY KEY AUTOINCREMENT, 
+        label TEXT,
+        active BOOLEAN,
+        paid BOOLEAN,
+        autopay BOOLEAN,
+        timestamp INTEGER,
+        address TEXT,
+        amount_raw TEXT
+        )""";
   static const String USER_ADD_BLOCKED_COLUMN_SQL = """
     ALTER TABLE Users ADD is_blocked BOOLEAN
     """;
@@ -150,7 +162,7 @@ class DBHelper {
   static const String ACCOUNTS_ADD_WATCH_ONLY_COLUMN_SQL = """
     ALTER TABLE Accounts ADD watch_only BOOLEAN
     """;
-  
+
   static Database? _db;
 
   NanoUtil? _nanoUtil;
@@ -186,6 +198,7 @@ class DBHelper {
     await db.execute(TX_DATA_SQL);
     await db.execute(NODES_SQL);
     await db.execute(SUBS_SQL);
+    await db.execute(SCHEDULED_SQL);
     await db.execute(WORK_SOURCE);
 
     // add default nodes:
@@ -235,39 +248,42 @@ class DBHelper {
       await db.execute(WORK_SOURCE);
       await _addDefaultWorkSources(dbClient: db);
     }
+    if (oldVersion == 10) {
+      await db.execute(SCHEDULED_SQL);
+    }
   }
 
   Future<void> _addDefaultNodes({Database? dbClient}) async {
     await saveNode(
       Node(
         id: 0,
-        name: "Kalium Node",
+        name: "Nautilus Node",
         selected: true,
         http_url: AccountService.DEFAULT_HTTP_URL,
         ws_url: AccountService.DEFAULT_WS_URL,
       ),
       dbClient: dbClient,
     );
-    // await saveNode(
-    //   Node(
-    //     id: 1,
-    //     name: "Natrium Node",
-    //     selected: false,
-    //     http_url: "https://app.natrium.io/api",
-    //     ws_url: "wss://app.natrium.io",
-    //   ),
-    //   dbClient: dbClient,
-    // );
-    // await saveNode(
-    //   Node(
-    //     id: 2,
-    //     name: "Kalium Node (banano)",
-    //     selected: false,
-    //     http_url: "https://kaliumapi.appditto.com/api",
-    //     ws_url: "wss://kaliumapi.appditto.com",
-    //   ),
-    //   dbClient: dbClient,
-    // );
+    await saveNode(
+      Node(
+        id: 1,
+        name: "Natrium Node",
+        selected: false,
+        http_url: "https://app.natrium.io/api",
+        ws_url: "wss://app.natrium.io",
+      ),
+      dbClient: dbClient,
+    );
+    await saveNode(
+      Node(
+        id: 2,
+        name: "Kalium Node (banano)",
+        selected: false,
+        http_url: "https://kaliumapi.appditto.com/api",
+        ws_url: "wss://kaliumapi.appditto.com",
+      ),
+      dbClient: dbClient,
+    );
     // await saveNode(
     //   Node(
     //     id: 1,
@@ -306,7 +322,27 @@ class DBHelper {
         name: "nano.to",
         selected: false,
         type: WorkSourceTypes.URL,
-        url: "https://pow.nano.to",
+        url: "https://rpc.nano.to",
+      ),
+      dbClient: dbClient,
+    );
+    await saveWorkSource(
+      WorkSource(
+        id: 3,
+        name: "solar",
+        selected: false,
+        type: WorkSourceTypes.URL,
+        url: "https://rpc.nano.to/?source=solar",
+      ),
+      dbClient: dbClient,
+    );
+    await saveWorkSource(
+      WorkSource(
+        id: 4,
+        name: "nanoriver",
+        selected: false,
+        type: WorkSourceTypes.URL,
+        url: "https://worker.nanoriver.cc",
       ),
       dbClient: dbClient,
     );
@@ -323,6 +359,7 @@ class DBHelper {
     await dbClient.execute("DROP TABLE IF EXISTS Transactions");
     await dbClient.execute("DROP TABLE IF EXISTS Nodes");
     await dbClient.execute("DROP TABLE IF EXISTS Subscriptions");
+    await dbClient.execute("DROP TABLE IF EXISTS Scheduled");
     await dbClient.execute("DROP TABLE IF EXISTS WorkSources");
 
     _onCreate(dbClient, DB_VERSION);
@@ -484,7 +521,7 @@ class DBHelper {
       subs.add(
         Subscription(
           id: list[i]["id"] as int? ?? 0,
-          label: list[i]["name"] as String,
+          label: list[i]["label"] as String? ?? "", // todo: remove this null check
           address: list[i]["address"] as String,
           amount_raw: list[i]["amount_raw"] as String,
           frequency: list[i]["frequency"] as String,
@@ -501,7 +538,7 @@ class DBHelper {
     dbClient ??= (await db)!;
     await dbClient.transaction((Transaction txn) async {
       await txn.rawInsert(
-          'INSERT INTO Subscriptions (name, active, paid, autopay, address, amount_raw, frequency) values(?, ?, ?, ?, ?, ?, ?)',
+          'INSERT INTO Subscriptions (label, active, paid, autopay, address, amount_raw, frequency) values(?, ?, ?, ?, ?, ?, ?)',
           [
             sub.label,
             if (sub.active) 1 else 0,
@@ -522,7 +559,7 @@ class DBHelper {
 
   Future<int> changeSubscriptionName(Subscription sub, String name) async {
     final Database dbClient = (await db)!;
-    return dbClient.rawUpdate('UPDATE Subscriptions SET name = ? WHERE id = ?', [name, sub.id]);
+    return dbClient.rawUpdate('UPDATE Subscriptions SET label = ? WHERE id = ?', [name, sub.id]);
   }
 
   Future<int> toggleSubscriptionActive(Subscription sub) async {
@@ -541,6 +578,74 @@ class DBHelper {
     final Database dbClient = (await db)!;
     final int active = sub.autopay ? 0 : 1;
     return dbClient.rawUpdate('UPDATE Subscriptions SET autopay = ? WHERE id = ?', [active, sub.id]);
+  }
+
+  // scheduled:
+  Future<List<Scheduled>> getScheduled() async {
+    final Database dbClient = (await db)!;
+    final List<Map> list = await dbClient.rawQuery('SELECT * FROM Scheduled');
+    final List<Scheduled> scheduled = [];
+    for (int i = 0; i < list.length; i++) {
+      scheduled.add(
+        Scheduled(
+          id: list[i]["id"] as int? ?? 0,
+          label: list[i]["label"] as String,
+          address: list[i]["address"] as String,
+          amount_raw: list[i]["amount_raw"] as String,
+          timestamp: list[i]["timestamp"] as int,
+          active: list[i]["active"] == 1,
+          paid: list[i]["paid"] == 1,
+          autopay: list[i]["autopay"] == 1,
+        ),
+      );
+    }
+    return scheduled;
+  }
+
+  Future<Scheduled?> saveScheduled(Scheduled scheduled, {Database? dbClient}) async {
+    dbClient ??= (await db)!;
+    await dbClient.transaction((Transaction txn) async {
+      await txn.rawInsert(
+          'INSERT INTO Scheduled (label, active, paid, autopay, address, amount_raw, timestamp) values(?, ?, ?, ?, ?, ?, ?)',
+          [
+            scheduled.label,
+            if (scheduled.active) 1 else 0,
+            if (scheduled.paid) 1 else 0,
+            if (scheduled.autopay) 1 else 0,
+            scheduled.address,
+            scheduled.amount_raw,
+            scheduled.timestamp,
+          ]);
+    });
+    return scheduled;
+  }
+
+  Future<int> deleteScheduled(Scheduled sub) async {
+    final Database dbClient = (await db)!;
+    return dbClient.rawDelete('DELETE FROM Scheduled WHERE id = ?', [sub.id]);
+  }
+
+  Future<int> changeScheduledName(Scheduled sub, String name) async {
+    final Database dbClient = (await db)!;
+    return dbClient.rawUpdate('UPDATE Scheduled SET label = ? WHERE id = ?', [name, sub.id]);
+  }
+
+  Future<int> toggleScheduledActive(Scheduled sub) async {
+    final Database dbClient = (await db)!;
+    final int active = sub.active ? 0 : 1;
+    return dbClient.rawUpdate('UPDATE Scheduled SET active = ? WHERE id = ?', [active, sub.id]);
+  }
+
+  Future<int> toggleScheduledPaid(Scheduled sub) async {
+    final Database dbClient = (await db)!;
+    final int paid = sub.paid ? 0 : 1;
+    return dbClient.rawUpdate('UPDATE Scheduled SET paid = ? WHERE id = ?', [paid, sub.id]);
+  }
+
+  Future<int> toggleScheduledAutopay(Scheduled sub) async {
+    final Database dbClient = (await db)!;
+    final int active = sub.autopay ? 0 : 1;
+    return dbClient.rawUpdate('UPDATE Scheduled SET autopay = ? WHERE id = ?', [active, sub.id]);
   }
 
   // Contacts
@@ -870,7 +975,9 @@ class DBHelper {
   Future<User?> getUserOrContactWithName(String name) async {
     final Database dbClient = (await db)!;
     List<Map> list = [];
-    if (name.contains("@") || name.contains(".") || name.contains("#")) {
+    /*if (name.contains("@") && name.contains(".")) {
+      list = await dbClient.rawQuery('SELECT * FROM Users WHERE lower(username) = ?', [name.toLowerCase()]);
+    } else */if (name.contains("@") || name.contains(".") || name.contains("#")) {
       list = await dbClient.rawQuery(
           'SELECT * FROM Users WHERE lower(username) = ?', [SendSheetHelpers.stripPrefixes(name.toLowerCase())]);
     } else if (name.contains("★")) {

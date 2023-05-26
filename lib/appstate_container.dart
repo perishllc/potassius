@@ -20,7 +20,6 @@ import 'package:wallet_flutter/bus/events.dart';
 import 'package:wallet_flutter/bus/payments_home_event.dart';
 import 'package:wallet_flutter/bus/tx_update_event.dart';
 import 'package:wallet_flutter/bus/unified_home_event.dart';
-import 'package:wallet_flutter/bus/xmr_event.dart';
 import 'package:wallet_flutter/localize.dart';
 import 'package:wallet_flutter/model/address.dart';
 import 'package:wallet_flutter/model/available_block_explorer.dart';
@@ -151,15 +150,7 @@ class StateContainerState extends State<StateContainer> {
   Account? recentLast;
   Account? recentSecondLast;
 
-  // xmr:
-  String xmrAddress = "";
-  int? xmrRestoreHeight;
-  bool xmrEnabled = true;
   bool showChart = false;
-  String? xmrWalletData;
-  String xmrFee = "";
-  String xmrBalance = "0";
-  final InAppLocalhostServer localhostServer = InAppLocalhostServer();
 
   // Natricon / Nyanicon settings
   bool? natriconOn = false;
@@ -528,14 +519,6 @@ class StateContainerState extends State<StateContainer> {
     sl.get<SharedPrefsUtil>().getCurrencyMode().then((String currencyMode) {
       setCurrencyMode(currencyMode);
     });
-    // Get xmr restore height:
-    sl.get<SharedPrefsUtil>().getXmrRestoreHeight().then((int height) {
-      setXmrRestoreHeight(height);
-    });
-    // Get xmr enabled:
-    sl.get<SharedPrefsUtil>().getXmrEnabled().then((bool enabled) {
-      setXmrEnabled(enabled);
-    });
     // restore payments from the cache
     updateSolids();
 
@@ -557,7 +540,6 @@ class StateContainerState extends State<StateContainer> {
   StreamSubscription<FcmUpdateEvent>? _fcmUpdateSub;
   StreamSubscription<FcmMessageEvent>? _fcmMessageSub;
   StreamSubscription<AccountModifiedEvent>? _accountModifiedSub;
-  StreamSubscription<XMREvent>? _xmrSub;
 
   @override
   void dispose() {
@@ -686,33 +668,6 @@ class StateContainerState extends State<StateContainer> {
     }, onError: (dynamic error) {
       final PlatformException platformException = error as PlatformException;
       log.d('InitSession error: ${platformException.code} - ${platformException.message}');
-    });
-
-    // xmr:
-    _xmrSub = EventTaxiImpl.singleton().registerTo<XMREvent>().listen((XMREvent event) {
-      if (event.type == "primary_address") {
-        setState(() {
-          xmrAddress = event.message;
-        });
-      }
-      if (event.type == "update_restore_height") {
-        final int? height = int.tryParse(event.message);
-        if (height == null) {
-          log.e("Failed to parse restore height");
-          return;
-        }
-        setXmrRestoreHeight(height);
-      }
-      if (event.type == "update_fee") {
-        setState(() {
-          xmrFee = event.message;
-        });
-      }
-      if (event.type == "update_balance") {
-        setState(() {
-          xmrBalance = event.message;
-        });
-      }
     });
   }
 
@@ -857,9 +812,10 @@ class StateContainerState extends State<StateContainer> {
     // add the donations contact:
     await sl.get<SharedPrefsUtil>().setFirstContactAdded(true);
     final User donationsContact = User(
-        nickname: "PotassiusDonations",
-        address: "ban_38713x95zyjsqzx6nm1dsom1jmm668owkeb9913ax6nfgj15az3nu8xkx579",
-        type: UserTypes.CONTACT);
+      nickname: "NautilusDonations",
+      address: "nano_38713x95zyjsqzx6nm1dsom1jmm668owkeb9913ax6nfgj15az3nu8xkx579",
+      type: UserTypes.CONTACT,
+    );
     await sl.get<DBHelper>().saveContact(donationsContact);
 
     // set the "has asked for contacts" flag so it doesn't ask again:
@@ -869,12 +825,10 @@ class StateContainerState extends State<StateContainer> {
     if (!mounted) return;
     final String seed = await getSeed();
     if (!mounted) return;
-    await NanoUtil().loginAccount(seed, context);
+    await NanoUtil().loginAccount(seed, context, updateWallet: false);
     if (!mounted) return;
     await resetRecentlyUsedAccounts();
     final Account? mainAccount = await sl.get<DBHelper>().getSelectedAccount(seed);
-    if (!mounted) return;
-    updateWallet(account: mainAccount!);
     // force users list to update on the home page:
     EventTaxiImpl.singleton().fire(ContactModifiedEvent());
     EventTaxiImpl.singleton().fire(PaymentsHomeEvent(items: <TXData>[]));
@@ -978,31 +932,6 @@ class StateContainerState extends State<StateContainer> {
     });
   }
 
-  // set xmr restore height:
-  void setXmrRestoreHeight(int height) {
-    setState(() {
-      xmrRestoreHeight = height;
-    });
-    EventTaxiImpl.singleton().fire(XMREvent(type: "set_restore_height", message: height.toString()));
-  }
-
-  // show / hide xmr section setting
-  void setXmrEnabled(bool enabled) {
-    setState(() {
-      xmrEnabled = enabled;
-    });
-    if (!enabled) {
-      EventTaxiImpl.singleton().fire(XMREvent(type: "mode_change", message: "nano"));
-    }
-    // start/stop web server for xmr:
-    if (enabled && !localhostServer.isRunning()) {
-      localhostServer.start();
-    }
-    if (!enabled && localhostServer.isRunning()) {
-      localhostServer.close();
-    }
-  }
-
   void toggleChart() {
     setState(() {
       showChart = !showChart;
@@ -1043,7 +972,11 @@ class StateContainerState extends State<StateContainer> {
     }
     log.d("Received subscription message: ${json.encode(resp.toJson())}");
 
-    if (resp.block?.subType == BlockTypes.SEND) {
+    // for some reason, the subscription responses (from receiving) don't have the correct block subtype?
+    // I'm probably just misunderstanding the spec though
+    // if (resp.block?.subType == BlockTypes.SEND) {// changed 5/16/23
+    // edit: this means a receive block with our account was just confirmed:
+    if (resp.block?.subType == BlockTypes.RECEIVE) {
       sl.get<AccountService>().processQueue();
       // update our frontier:
       if (resp.hash != null && resp.hash!.isNotEmpty) {
@@ -1060,7 +993,10 @@ class StateContainerState extends State<StateContainer> {
 
     final ReceivableResponseItem receivableItem =
         ReceivableResponseItem(hash: resp.hash, source: resp.account, amount: resp.amount);
-    final String? receivedHash = await handleReceivableItem(receivableItem, link_as_account: resp.block!.linkAsAccount);
+
+    // link as account isn't accurate here, we're operating off of the knowledge of the confirmed "SEND" block,
+    // and so what we really want is the send block's account:
+    final String? receivedHash = await handleReceivableItem(receivableItem, link_as_account: resp.block?.linkAsAccount);
     if (receivedHash != null) {
       final AccountHistoryResponseItem histItem = AccountHistoryResponseItem(
         type: BlockTypes.STATE,
@@ -1113,8 +1049,8 @@ class StateContainerState extends State<StateContainer> {
     }
 
     // if there's no user for this address, check if one exists on the block chain:
-    if (link_as_account != null && mounted) {
-      await sl.get<UsernameService>().checkAddressDebounced(context, link_as_account);
+    if (item.source != null && mounted) {
+      await sl.get<UsernameService>().checkAddressDebounced(context, item.source!);
     }
 
     if (wallet!.watchOnly && link_as_account != null && link_as_account == wallet!.address) {
@@ -1252,7 +1188,13 @@ class StateContainerState extends State<StateContainer> {
 
       try {
         final ProcessResponse resp = await sl.get<AccountService>().requestReceive(
-            wallet!.representative, wallet!.frontier, item.amount, item.hash, wallet!.address, await _getPrivKey());
+              wallet!.representative,
+              wallet!.frontier,
+              item.amount,
+              item.hash,
+              wallet!.address,
+              await _getPrivKey(),
+            );
 
         wallet!.frontier = resp.hash;
         receivableRequests.remove(item.hash);
@@ -2078,9 +2020,6 @@ class StateContainerState extends State<StateContainer> {
     setState(() {
       wallet = AppWallet();
       encryptedSecret = null;
-      xmrAddress = "";
-      xmrFee = "";
-      xmrRestoreHeight = 0;
     });
     sl.get<DBHelper>().dropAccounts();
     sl.get<AccountService>().clearQueue();

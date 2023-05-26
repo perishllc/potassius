@@ -147,6 +147,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "שנה את המקור/הביטוי המשויך לחשבון המאושר עם קישור הקסם הזה, כל סיסמה שתגדיר כאן תחליף את הסיסמה הקיימת שלך, אבל אתה יכול להשתמש באותה סיסמה אם תבחר."),
         "checkAvailability":
             MessageLookupByLibrary.simpleMessage("בדוק זמינות"),
+        "checkUsernameConfirmInfo": MessageLookupByLibrary.simpleMessage(
+            "אנחנו עומדים לבדוק אם שם המשתמש הזה רשום בכמה שירותים שונים.\nזה עשוי לקחת שנייה או משהו כזה."),
         "close": MessageLookupByLibrary.simpleMessage("סגור"),
         "confirm": MessageLookupByLibrary.simpleMessage("אשר"),
         "confirmPasswordHint":
@@ -223,6 +225,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "בחר באיזו יחידה להציג כמויות.\n1 ניאנו = 0.000001 ננו, או \n1,000,000 ניאנו = 1 ננו"),
         "currentlyRepresented":
             MessageLookupByLibrary.simpleMessage("מיוצג על ידי"),
+        "daily": MessageLookupByLibrary.simpleMessage("יום יומי"),
         "dayAgo": MessageLookupByLibrary.simpleMessage("לפני יום"),
         "decryptionError": MessageLookupByLibrary.simpleMessage("שגיאת פענוח!"),
         "defaultAccountName":
@@ -239,6 +242,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("למחוק את הצומת?"),
         "deleteRequest":
             MessageLookupByLibrary.simpleMessage("Delete this request"),
+        "deleteScheduledConfirmation": MessageLookupByLibrary.simpleMessage(
+            "האם אתה בטוח שברצונך למחוק את התשלום המתוזמן הזה?\n\nאתה תמיד יכול להוסיף אותו מחדש מאוחר יותר על ידי הקשה על כפתור \"תזמן תשלום\"."),
+        "deleteScheduledHeader":
+            MessageLookupByLibrary.simpleMessage("למחוק תשלום מתוזמן?"),
         "deleteSubConfirmation": MessageLookupByLibrary.simpleMessage(
             "האם אתה בטוח שברצונך למחוק את המנוי הזה?\n\nאתה תמיד יכול להוסיף אותו מחדש מאוחר יותר על ידי הקשה על כפתור \"הוסף מנוי\"."),
         "deleteSubHeader": MessageLookupByLibrary.simpleMessage("למחוק מנוי?"),
@@ -492,6 +499,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Secret phrase may only contain 24 words"),
         "mnemonicSizeError2": MessageLookupByLibrary.simpleMessage(
             "ביטוי סודי יכול להכיל רק 12 או 24 מילים"),
+        "monthly": MessageLookupByLibrary.simpleMessage("יַרחוֹן"),
         "monthlyServerCosts":
             MessageLookupByLibrary.simpleMessage("עלויות שרת חודשיות"),
         "moonpay": MessageLookupByLibrary.simpleMessage("MoonPay"),
@@ -555,6 +563,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "onramp": MessageLookupByLibrary.simpleMessage("אונרמפה"),
         "onramper": MessageLookupByLibrary.simpleMessage("Onramper"),
         "opened": MessageLookupByLibrary.simpleMessage("נפתח"),
+        "overdue": MessageLookupByLibrary.simpleMessage("באיחור"),
         "paid": MessageLookupByLibrary.simpleMessage("שולם"),
         "paperWallet": MessageLookupByLibrary.simpleMessage("ארנק נייר"),
         "passwordBlank":
@@ -581,14 +590,19 @@ class MessageLookup extends MessageLookupByLibrary {
                 "This password will be required to open Nautilus."),
         "passwordsDontMatch":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
+        "pastDue": MessageLookupByLibrary.simpleMessage("עבר מועד"),
         "pay": MessageLookupByLibrary.simpleMessage("לשלם"),
         "payRequest": MessageLookupByLibrary.simpleMessage("שלם בקשה זו"),
         "paymentHistory":
             MessageLookupByLibrary.simpleMessage("היסטוריית תשלומים"),
         "paymentRequestMessage": MessageLookupByLibrary.simpleMessage(
             "מישהו ביקש ממך תשלום! בדוק את דף התשלומים לקבלת מידע נוסף."),
+        "paymentScheduled":
+            MessageLookupByLibrary.simpleMessage("התשלום מתוזמן"),
+        "paymentTime": MessageLookupByLibrary.simpleMessage("זמן תשלום"),
         "payments": MessageLookupByLibrary.simpleMessage("תשלומים"),
         "pickFromList": MessageLookupByLibrary.simpleMessage("בחר מרשימה"),
+        "pickTime": MessageLookupByLibrary.simpleMessage("בחר זמן"),
         "pinBlank":
             MessageLookupByLibrary.simpleMessage("סיכה לא יכולה להיות ריקה"),
         "pinConfirmError":
@@ -646,6 +660,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "receiveMinimumInfo": MessageLookupByLibrary.simpleMessage(
             "סכום מינימלי לקבל. אם יתקבלו תשלום או בקשה בסכום הנמוך מזה, יתעלמו מהם."),
         "received": MessageLookupByLibrary.simpleMessage("התקבל"),
+        "recurringButton": MessageLookupByLibrary.simpleMessage("מַחזוֹרִי"),
+        "recurringPayments":
+            MessageLookupByLibrary.simpleMessage("תשלומים חוזרים"),
         "refund": MessageLookupByLibrary.simpleMessage("החזר כספי"),
         "registerButton": MessageLookupByLibrary.simpleMessage("הירשם"),
         "registerFor": MessageLookupByLibrary.simpleMessage("בשביל"),
@@ -708,6 +725,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "scanNFC": MessageLookupByLibrary.simpleMessage("שלח דרך NFC"),
         "scanQrCode": MessageLookupByLibrary.simpleMessage("סרוק ברקוד"),
         "schedule": MessageLookupByLibrary.simpleMessage("לוח זמנים"),
+        "schedulePayment": MessageLookupByLibrary.simpleMessage("תזמון תשלום"),
+        "scheduledButton": MessageLookupByLibrary.simpleMessage("מתוזמן"),
         "searchHint": MessageLookupByLibrary.simpleMessage("חפש כל דבר"),
         "secretInfo": MessageLookupByLibrary.simpleMessage(
             "In the next screen, you will see your secret phrase. It is a password to access your funds. It is crucial that you back it up and never share it with anyone."),
@@ -846,6 +865,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "themeHeader": MessageLookupByLibrary.simpleMessage("נושא"),
         "thisMayTakeSomeTime":
             MessageLookupByLibrary.simpleMessage("זה עשוי לקחת זמן..."),
+        "timestampEmpty": MessageLookupByLibrary.simpleMessage("אנא בחר זמן"),
+        "timestampInPast":
+            MessageLookupByLibrary.simpleMessage("הזמן חייב להיות בעתיד"),
         "to": MessageLookupByLibrary.simpleMessage("מ"),
         "todayAt": MessageLookupByLibrary.simpleMessage("היום ב"),
         "tooManyFailedAttempts": MessageLookupByLibrary.simpleMessage(
@@ -902,6 +924,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("חשבון לא נפתח"),
         "unpaid": MessageLookupByLibrary.simpleMessage("ללא תשלום"),
         "unread": MessageLookupByLibrary.simpleMessage("שלא נקראו"),
+        "upcomingButton": MessageLookupByLibrary.simpleMessage("בקרוב"),
         "uptime": MessageLookupByLibrary.simpleMessage("זמן אונליין"),
         "urlEmpty": MessageLookupByLibrary.simpleMessage("נא להזין כתובת URL"),
         "useAppRep": MessageLookupByLibrary.simpleMessage("השתמש ב-% 1 נציג"),
@@ -941,6 +964,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "watchOnlySendDisabled": MessageLookupByLibrary.simpleMessage(
             "השליחה מושבתת בכתובות לשעון בלבד"),
         "weekAgo": MessageLookupByLibrary.simpleMessage("לפני שבוע"),
+        "weekly": MessageLookupByLibrary.simpleMessage("שְׁבוּעִי"),
         "welcomeText": MessageLookupByLibrary.simpleMessage(
             "ברוך הבא לנאטריום. בכדי להמשיך, אתה רשאי לייצר ארנק חדש או לייבא אחד קיים."),
         "welcomeTextLogin": MessageLookupByLibrary.simpleMessage(

@@ -165,6 +165,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Baguhin ang seed/phrase na nauugnay sa magic-link na na-authed account na ito, anuman ang password na itinakda mo dito ay mao-overwrite ang iyong umiiral na password, ngunit maaari mong gamitin ang parehong password kung pipiliin mo."),
         "checkAvailability":
             MessageLookupByLibrary.simpleMessage("Suriin ang Availability"),
+        "checkUsernameConfirmInfo": MessageLookupByLibrary.simpleMessage(
+            "Susuriin namin kung nakarehistro ang username na ito sa ilang magkakaibang serbisyo.\nMaaaring tumagal ito ng isang segundo o higit pa."),
         "close": MessageLookupByLibrary.simpleMessage("Isara"),
         "confirm": MessageLookupByLibrary.simpleMessage("Kumpirmahin"),
         "confirmPasswordHint":
@@ -246,6 +248,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Piliin kung aling yunit ang magpapakita ng mga halaga.\n1 nyano = 0.000001 NANO, o \n1,000,000 nyano = 1 NANO"),
         "currentlyRepresented": MessageLookupByLibrary.simpleMessage(
             "Kasalukuyang nirerepresenta ng"),
+        "daily": MessageLookupByLibrary.simpleMessage("Araw-araw"),
         "dayAgo": MessageLookupByLibrary.simpleMessage("Kahapon"),
         "decryptionError":
             MessageLookupByLibrary.simpleMessage("Error sa pag-decryption!"),
@@ -264,6 +267,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tanggalin ang Node?"),
         "deleteRequest":
             MessageLookupByLibrary.simpleMessage("Delete this request"),
+        "deleteScheduledConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Sigurado ka bang gusto mong tanggalin ang nakaiskedyul na pagbabayad na ito?\n\nMaaari mo itong muling idagdag anumang oras sa ibang pagkakataon sa pamamagitan ng pag-tap sa button na \"Iskedyul ng Pagbabayad.\""),
+        "deleteScheduledHeader": MessageLookupByLibrary.simpleMessage(
+            "Tanggalin ang Naka-iskedyul na Pagbabayad?"),
         "deleteSubConfirmation": MessageLookupByLibrary.simpleMessage(
             "Sigurado ka bang gusto mong tanggalin ang subscription na ito?\n\nMaaari mo itong muling idagdag anumang oras sa ibang pagkakataon sa pamamagitan ng pag-tap sa button na \"Magdagdag ng Subscription.\""),
         "deleteSubHeader":
@@ -550,6 +557,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Secret phrase ay may 24 na salita lamang"),
         "mnemonicSizeError2": MessageLookupByLibrary.simpleMessage(
             "Ang lihim na parirala ay maaari lamang maglaman ng 12 o 24 na salita"),
+        "monthly": MessageLookupByLibrary.simpleMessage("Buwan-buwan"),
         "monthlyServerCosts": MessageLookupByLibrary.simpleMessage(
             "Buwanang Mga Gastos sa Server"),
         "moonpay": MessageLookupByLibrary.simpleMessage("MoonPay"),
@@ -619,6 +627,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "onramp": MessageLookupByLibrary.simpleMessage("Onramp"),
         "onramper": MessageLookupByLibrary.simpleMessage("Onramper"),
         "opened": MessageLookupByLibrary.simpleMessage("Binuksan"),
+        "overdue": MessageLookupByLibrary.simpleMessage("Overdue na"),
         "paid": MessageLookupByLibrary.simpleMessage("bayad"),
         "paperWallet": MessageLookupByLibrary.simpleMessage("Paper Wallet"),
         "passwordBlank": MessageLookupByLibrary.simpleMessage(
@@ -645,6 +654,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Itong password ay kailangan para mabuksan ang Nautilus"),
         "passwordsDontMatch": MessageLookupByLibrary.simpleMessage(
             "Ang passwords ay hindi tugma"),
+        "pastDue": MessageLookupByLibrary.simpleMessage("Past Due"),
         "pay": MessageLookupByLibrary.simpleMessage("Magbayad"),
         "payRequest":
             MessageLookupByLibrary.simpleMessage("Bayaran ang hiling na ito"),
@@ -652,9 +662,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Kasaysayan ng pagbabayad"),
         "paymentRequestMessage": MessageLookupByLibrary.simpleMessage(
             "May isang tao na humiling ng pagbabayad mula sa iyo! tingnan ang pahina ng mga pagbabayad para sa karagdagang impormasyon."),
+        "paymentScheduled":
+            MessageLookupByLibrary.simpleMessage("Nakaiskedyul na Pagbabayad"),
+        "paymentTime":
+            MessageLookupByLibrary.simpleMessage("Oras ng Pagbabayad"),
         "payments": MessageLookupByLibrary.simpleMessage("Mga Pagbabayad"),
         "pickFromList":
             MessageLookupByLibrary.simpleMessage("Pumili sa listahan"),
+        "pickTime": MessageLookupByLibrary.simpleMessage("Pumili ng Oras"),
         "pinBlank": MessageLookupByLibrary.simpleMessage(
             "Hindi maaaring walang laman ang pin"),
         "pinConfirmError":
@@ -720,6 +735,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "receiveMinimumInfo": MessageLookupByLibrary.simpleMessage(
             "Isang minimum na halaga na matatanggap. Kung ang isang pagbabayad o kahilingan ay natanggap na may halagang mas mababa kaysa dito, ito ay hindi papansinin."),
         "received": MessageLookupByLibrary.simpleMessage("Natanggap"),
+        "recurringButton": MessageLookupByLibrary.simpleMessage("Paulit-ulit"),
+        "recurringPayments":
+            MessageLookupByLibrary.simpleMessage("Mga Umuulit na Pagbabayad"),
         "refund": MessageLookupByLibrary.simpleMessage("Refund"),
         "registerButton": MessageLookupByLibrary.simpleMessage("Magrehistro"),
         "registerFor": MessageLookupByLibrary.simpleMessage("para sa"),
@@ -792,6 +810,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "scanQrCode":
             MessageLookupByLibrary.simpleMessage("I-scan ang QR Code"),
         "schedule": MessageLookupByLibrary.simpleMessage("Iskedyul"),
+        "schedulePayment":
+            MessageLookupByLibrary.simpleMessage("Iskedyul ng Pagbabayad"),
+        "scheduledButton":
+            MessageLookupByLibrary.simpleMessage("Naka-iskedyul"),
         "searchHint":
             MessageLookupByLibrary.simpleMessage("Maghanap ng anumang bagay"),
         "secretInfo": MessageLookupByLibrary.simpleMessage(
@@ -949,6 +971,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "themeHeader": MessageLookupByLibrary.simpleMessage("Tema"),
         "thisMayTakeSomeTime": MessageLookupByLibrary.simpleMessage(
             "magtatagal pa ito ng ilang sandali..."),
+        "timestampEmpty":
+            MessageLookupByLibrary.simpleMessage("Mangyaring pumili ng oras"),
+        "timestampInPast": MessageLookupByLibrary.simpleMessage(
+            "Ang oras ay dapat sa hinaharap"),
         "to": MessageLookupByLibrary.simpleMessage("Sa"),
         "todayAt": MessageLookupByLibrary.simpleMessage("Ngayon sa"),
         "tooManyFailedAttempts": MessageLookupByLibrary.simpleMessage(
@@ -1009,6 +1035,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Hindi Nabuksan ang Account"),
         "unpaid": MessageLookupByLibrary.simpleMessage("hindi nabayarang"),
         "unread": MessageLookupByLibrary.simpleMessage("hindi pa nababasa"),
+        "upcomingButton": MessageLookupByLibrary.simpleMessage("Paparating"),
         "uptime": MessageLookupByLibrary.simpleMessage("Uptime"),
         "urlEmpty": MessageLookupByLibrary.simpleMessage(
             "Mangyaring magpasok ng isang URL"),
@@ -1054,6 +1081,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Naka-disable ang mga pagpapadala sa mga address na relo lang"),
         "weekAgo": MessageLookupByLibrary.simpleMessage(
             "Isang linggo na ang nakalipas"),
+        "weekly": MessageLookupByLibrary.simpleMessage("Linggu-linggo"),
         "welcomeText": MessageLookupByLibrary.simpleMessage(
             "Maligayang pagdating sa Nautilus. Para magpatuloy, gumawa ng bagong wallet o gamitin ang dating wallet."),
         "welcomeTextLogin": MessageLookupByLibrary.simpleMessage(

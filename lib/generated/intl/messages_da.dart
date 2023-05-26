@@ -158,6 +158,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Skift frøet/sætningen, der er knyttet til denne godkendte konto med magisk link, uanset hvilken adgangskode du angiver her vil overskrive din eksisterende adgangskode, men du kan bruge den samme adgangskode, hvis du vælger det."),
         "checkAvailability":
             MessageLookupByLibrary.simpleMessage("Tjek tilgængelighed"),
+        "checkUsernameConfirmInfo": MessageLookupByLibrary.simpleMessage(
+            "Vi er ved at tjekke, om dette brugernavn er registreret på et par forskellige tjenester.\nDette kan tage et sekund eller deromkring."),
         "close": MessageLookupByLibrary.simpleMessage("Zavřít"),
         "confirm": MessageLookupByLibrary.simpleMessage("Potvrdit"),
         "confirmPasswordHint":
@@ -237,6 +239,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Vælg, hvilken enhed der skal vises beløb i.\n1 nyano = 0.000001 NANO, eller \n1,000,000 Nyano = 1 NANO"),
         "currentlyRepresented":
             MessageLookupByLibrary.simpleMessage("V současné době zastupuje"),
+        "daily": MessageLookupByLibrary.simpleMessage("Daglige"),
         "dayAgo": MessageLookupByLibrary.simpleMessage("For en dag siden"),
         "decryptionError":
             MessageLookupByLibrary.simpleMessage("Dekryptering Fejl!"),
@@ -254,6 +257,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Vil du slette node?"),
         "deleteRequest":
             MessageLookupByLibrary.simpleMessage("Delete this request"),
+        "deleteScheduledConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Er du sikker på, at du vil slette denne planlagte betaling?\n\nDu kan altid tilføje det igen senere ved at trykke på knappen \"Bestil betaling\"."),
+        "deleteScheduledHeader": MessageLookupByLibrary.simpleMessage(
+            "Vil du slette planlagt betaling?"),
         "deleteSubConfirmation": MessageLookupByLibrary.simpleMessage(
             "Er du sikker på, at du vil slette dette abonnement?\n\nDu kan altid tilføje det igen senere ved at trykke på knappen \"Tilføj abonnement\"."),
         "deleteSubHeader":
@@ -529,6 +536,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Tajná fráze může obsahovat pouze 24 slov"),
         "mnemonicSizeError2": MessageLookupByLibrary.simpleMessage(
             "Hemmelig sætning må kun indeholde 12 eller 24 ord"),
+        "monthly": MessageLookupByLibrary.simpleMessage("Månedlige"),
         "monthlyServerCosts": MessageLookupByLibrary.simpleMessage(
             "Månedlige serveromkostninger"),
         "moonpay": MessageLookupByLibrary.simpleMessage("MoonPay"),
@@ -595,6 +603,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "onramp": MessageLookupByLibrary.simpleMessage("Onramp"),
         "onramper": MessageLookupByLibrary.simpleMessage("Onramper"),
         "opened": MessageLookupByLibrary.simpleMessage("Åbnet"),
+        "overdue": MessageLookupByLibrary.simpleMessage("Forsinket"),
         "paid": MessageLookupByLibrary.simpleMessage("betalt"),
         "paperWallet":
             MessageLookupByLibrary.simpleMessage("Papírová Peněženka"),
@@ -622,6 +631,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Toto heslo bude vyžadováno k otevření Nautilus."),
         "passwordsDontMatch":
             MessageLookupByLibrary.simpleMessage("Heslo se neshoduje"),
+        "pastDue":
+            MessageLookupByLibrary.simpleMessage("Ikke betalt til tiden"),
         "pay": MessageLookupByLibrary.simpleMessage("Betal"),
         "payRequest":
             MessageLookupByLibrary.simpleMessage("Betal denne anmodning"),
@@ -629,9 +640,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Betalingshistorik"),
         "paymentRequestMessage": MessageLookupByLibrary.simpleMessage(
             "Nogen har anmodet om betaling fra dig! tjek betalingssiden for mere info."),
+        "paymentScheduled":
+            MessageLookupByLibrary.simpleMessage("Betaling planlagt"),
+        "paymentTime": MessageLookupByLibrary.simpleMessage("Betalingstid"),
         "payments": MessageLookupByLibrary.simpleMessage("Betalinger"),
         "pickFromList":
             MessageLookupByLibrary.simpleMessage("Vyberte ze seznamu"),
+        "pickTime": MessageLookupByLibrary.simpleMessage("Vælg et tidspunkt"),
         "pinBlank":
             MessageLookupByLibrary.simpleMessage("Pin kan ikke være tom"),
         "pinConfirmError":
@@ -693,6 +708,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "receiveMinimumInfo": MessageLookupByLibrary.simpleMessage(
             "Et minimumsbeløb at modtage. Hvis en betaling eller anmodning modtages med et beløb mindre end dette, det vil blive ignoreret."),
         "received": MessageLookupByLibrary.simpleMessage("Přijmuto"),
+        "recurringButton":
+            MessageLookupByLibrary.simpleMessage("Tilbagevendende"),
+        "recurringPayments":
+            MessageLookupByLibrary.simpleMessage("Tilbagevendende betalinger"),
         "refund": MessageLookupByLibrary.simpleMessage("tilbagebetaling"),
         "registerButton": MessageLookupByLibrary.simpleMessage("Tilmeld"),
         "registerFor": MessageLookupByLibrary.simpleMessage("til"),
@@ -762,6 +781,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "scanNFC": MessageLookupByLibrary.simpleMessage("Send via NFC"),
         "scanQrCode": MessageLookupByLibrary.simpleMessage("Oskenovat QR kód"),
         "schedule": MessageLookupByLibrary.simpleMessage("Tidsplan"),
+        "schedulePayment":
+            MessageLookupByLibrary.simpleMessage("Planlæg betaling"),
+        "scheduledButton": MessageLookupByLibrary.simpleMessage("Planlagt"),
         "searchHint": MessageLookupByLibrary.simpleMessage("Søg efter noget"),
         "secretInfo": MessageLookupByLibrary.simpleMessage(
             "Na další obrazovce uvidíte svoji tajnou frázi. Jedná se o heslo pro přístup k vašim finančním prostředkům. Je zásadní, abyste jej zálohovali a nikdy s nikým nesdíleli."),
@@ -908,6 +930,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "themeHeader": MessageLookupByLibrary.simpleMessage("Tématika"),
         "thisMayTakeSomeTime":
             MessageLookupByLibrary.simpleMessage("det kan tage lidt tid..."),
+        "timestampEmpty":
+            MessageLookupByLibrary.simpleMessage("Vælg venligst et tidspunkt"),
+        "timestampInPast":
+            MessageLookupByLibrary.simpleMessage("Tiden skal være i fremtiden"),
         "to": MessageLookupByLibrary.simpleMessage("Pro"),
         "todayAt": MessageLookupByLibrary.simpleMessage("I dag kl"),
         "tooManyFailedAttempts": MessageLookupByLibrary.simpleMessage(
@@ -967,6 +993,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Konto uåbnet"),
         "unpaid": MessageLookupByLibrary.simpleMessage("ubetalt"),
         "unread": MessageLookupByLibrary.simpleMessage("ulæste"),
+        "upcomingButton": MessageLookupByLibrary.simpleMessage("Kommende"),
         "uptime": MessageLookupByLibrary.simpleMessage("Provozuschopnost"),
         "urlEmpty":
             MessageLookupByLibrary.simpleMessage("Indtast venligst en URL"),
@@ -1009,6 +1036,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "watchOnlySendDisabled": MessageLookupByLibrary.simpleMessage(
             "Afsendelser er deaktiveret på vagtadresser"),
         "weekAgo": MessageLookupByLibrary.simpleMessage("En uge siden"),
+        "weekly": MessageLookupByLibrary.simpleMessage("Ugentlig"),
         "welcomeText": MessageLookupByLibrary.simpleMessage(
             "Vítejte v Nautilus. Nejprve můžete vytvořit novou peněženku nebo importovat stávající."),
         "welcomeTextLogin": MessageLookupByLibrary.simpleMessage(

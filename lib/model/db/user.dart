@@ -11,6 +11,7 @@ class UserTypes {
   static const String OPENCAP = "opencap";
   static const String CONTACT = "contact";
   static const String ONCHAIN = "onchain";
+  static const String WELL_KNOWN = "well_known";
 }
 
 String? lowerStripAddress(String? address) {
@@ -29,8 +30,8 @@ String? formatAddress(String? address) {
   if (address == null) {
     return null;
   }
-  // banano mode:
-  return "ban_${lowerStripAddress(address)}";
+  // nano mode:
+  return "nano_${lowerStripAddress(address)}";
 }
 
 @JsonSerializable()
@@ -126,10 +127,8 @@ class User {
   }
 
   static String? getDisplayNameWithType(String? name, String? userType) {
-    if (userType == UserTypes.ONCHAIN) {
+    if (userType == UserTypes.ONCHAIN || userType == UserTypes.WELL_KNOWN) {
       return "@${name!}";
-    } else if (userType == UserTypes.NANO_TO) {
-      return "#${name!}";
     } else {
       return name;
     }

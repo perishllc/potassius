@@ -13,6 +13,7 @@ import 'package:wallet_flutter/generated/l10n.dart';
 import 'package:wallet_flutter/localize.dart';
 import 'package:wallet_flutter/model/authentication_method.dart';
 import 'package:wallet_flutter/model/db/appdb.dart';
+import 'package:wallet_flutter/model/db/scheduled.dart';
 import 'package:wallet_flutter/model/db/txdata.dart';
 import 'package:wallet_flutter/model/db/user.dart';
 import 'package:wallet_flutter/model/vault.dart';
@@ -321,12 +322,20 @@ class _SendConfirmSheetState extends State<SendConfirmSheet> {
             //A container for CONFIRM and CANCEL buttons
             Column(
               children: <Widget>[
-                // A row for CONFIRM Button
+                // A row for buttons
                 Row(
                   children: <Widget>[
+                    // CANCEL Button
+                    AppButton.buildAppButton(
+                        context,
+                        AppButtonType.PRIMARY_OUTLINE,
+                        CaseChange.toUpperCase(Z.of(context).cancel, context),
+                        Dimens.BUTTON_COMPACT_LEFT_DIMENS, onPressed: () {
+                      Navigator.of(context).pop();
+                    }),
                     // CONFIRM Button
                     AppButton.buildAppButton(context, AppButtonType.PRIMARY,
-                        CaseChange.toUpperCase(Z.of(context).confirm, context), Dimens.BUTTON_TOP_DIMENS,
+                        CaseChange.toUpperCase(Z.of(context).confirm, context), Dimens.BUTTON_COMPACT_RIGHT_DIMENS,
                         disabled: !shownWarning, onPressed: () async {
                       if (clicking) return;
                       clicking = true;
@@ -369,18 +378,12 @@ class _SendConfirmSheetState extends State<SendConfirmSheet> {
                   ],
                 ),
                 // A row for CANCEL Button
-                Row(
-                  children: <Widget>[
-                    // CANCEL Button
-                    AppButton.buildAppButton(
-                        context,
-                        AppButtonType.PRIMARY_OUTLINE,
-                        CaseChange.toUpperCase(Z.of(context).cancel, context),
-                        Dimens.BUTTON_BOTTOM_DIMENS, onPressed: () {
-                      Navigator.of(context).pop();
-                    }),
-                  ],
-                ),
+                // Row(
+                //   children: <Widget>[
+                //     // CANCEL Button
+
+                //   ],
+                // ),
               ],
             ),
           ],
@@ -654,6 +657,20 @@ class _SendConfirmSheetState extends State<SendConfirmSheet> {
         StateContainer.of(context).updateTXMemos();
         StateContainer.of(context).updateUnified(true);
         break;
+      }
+    }
+
+    // check if this fulfilled any subscriptions / scheduled payments:
+    final List<Scheduled> scheduledPayments = await sl.get<DBHelper>().getScheduled();
+    for (int i = 0; i < scheduledPayments.length; i++) {
+      final Scheduled scheduled = scheduledPayments[i];
+      // check to make sure the recipient is correct and the amount is correct:
+      if (scheduled.address == widget.destination && scheduled.amount_raw == widget.amountRaw) {
+        // make sure the payment was due:
+        final int currentTime = DateTime.now().millisecondsSinceEpoch ~/ 1000;
+        if (scheduled.timestamp < currentTime) {
+          await sl.get<DBHelper>().deleteScheduled(scheduled);
+        }
       }
     }
 

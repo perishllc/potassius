@@ -1,3 +1,26 @@
+## v0.8.6 - [2023-05-XX]
+#### Added
+- Scheduled Payments
+- Payment History
+- Support for .well-known DID's
+- Confirmation popup when looking up a username
+- Account switcher on the send/receive sheets
+- Revamped username support
+- Solar PoW option
+- rpc.nano.to PoW option
+- nanoriver PoW option
+#### Changed
+- Send / Request confirm sheet updates
+- Dialog style updates
+- Move block explorer setting to advanced settings
+- Remove funding banner
+- Remove Monero support
+- Updated order of the advanced settings menu
+- Settings menu now slides up/down to dismiss
+- Updated subscriptions to show the payment address
+#### Fixed
+- Bug with receives not updating the home page properly
+- Username checking is now properly debounced
 ## v0.8.5 - [2023-04-16]
 #### Added
 - Ability to import 12 word mnemonics / trust wallet phrases

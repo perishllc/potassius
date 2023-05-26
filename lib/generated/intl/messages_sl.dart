@@ -163,6 +163,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Spremenite seme/frazo, povezano s tem overjenim računom z magično povezavo, katero koli geslo, ki ga nastavite tukaj, bo prepisalo vaše obstoječe geslo, vendar lahko uporabite isto geslo, če želite."),
         "checkAvailability":
             MessageLookupByLibrary.simpleMessage("Preverite razpoložljivost"),
+        "checkUsernameConfirmInfo": MessageLookupByLibrary.simpleMessage(
+            "Preverili bomo, ali je to uporabniško ime registrirano v nekaj različnih storitvah.\nTo lahko traja kakšno sekundo."),
         "close": MessageLookupByLibrary.simpleMessage("Zapri"),
         "confirm": MessageLookupByLibrary.simpleMessage("Potrdi"),
         "confirmPasswordHint":
@@ -243,6 +245,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Izberite, v kateri enoti želite prikazati zneske.\n1 nyano = 0,000001 NANO, ali \n1.000.000 nyano = 1 NANO"),
         "currentlyRepresented":
             MessageLookupByLibrary.simpleMessage("Trenutni predstavnik"),
+        "daily": MessageLookupByLibrary.simpleMessage("Dnevno"),
         "dayAgo": MessageLookupByLibrary.simpleMessage("Pred enim dnevom"),
         "decryptionError":
             MessageLookupByLibrary.simpleMessage("Napaka dešifriranja!"),
@@ -260,6 +263,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Želite izbrisati vozlišče?"),
         "deleteRequest":
             MessageLookupByLibrary.simpleMessage("Delete this request"),
+        "deleteScheduledConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Ali ste prepričani, da želite izbrisati to načrtovano plačilo?\n\nPozneje ga lahko kadar koli znova dodate tako, da tapnete gumb »Razporedi plačilo«."),
+        "deleteScheduledHeader": MessageLookupByLibrary.simpleMessage(
+            "Želite izbrisati načrtovano plačilo?"),
         "deleteSubConfirmation": MessageLookupByLibrary.simpleMessage(
             "Ali ste prepričani, da želite izbrisati to naročnino?\n\nPozneje ga lahko kadar koli znova dodate tako, da tapnete gumb »Dodaj naročnino«."),
         "deleteSubHeader":
@@ -533,6 +540,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Skrivni niz lahko vsebuje samo 24 besed"),
         "mnemonicSizeError2": MessageLookupByLibrary.simpleMessage(
             "Skrivni stavek lahko vsebuje samo 12 ali 24 besed"),
+        "monthly": MessageLookupByLibrary.simpleMessage("Mesečno"),
         "monthlyServerCosts":
             MessageLookupByLibrary.simpleMessage("Mesečni stroški strežnika"),
         "moonpay": MessageLookupByLibrary.simpleMessage("MoonPay"),
@@ -598,6 +606,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "onramp": MessageLookupByLibrary.simpleMessage("Onramp"),
         "onramper": MessageLookupByLibrary.simpleMessage("Onramper"),
         "opened": MessageLookupByLibrary.simpleMessage("Odprto"),
+        "overdue": MessageLookupByLibrary.simpleMessage("Zamujen rok"),
         "paid": MessageLookupByLibrary.simpleMessage("plačan"),
         "paperWallet":
             MessageLookupByLibrary.simpleMessage("Papirna denarnica"),
@@ -625,6 +634,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "This password will be required to open Nautilus."),
         "passwordsDontMatch":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
+        "pastDue": MessageLookupByLibrary.simpleMessage("Preteklost"),
         "pay": MessageLookupByLibrary.simpleMessage("Plačajte"),
         "payRequest":
             MessageLookupByLibrary.simpleMessage("Plačajte to zahtevo"),
@@ -632,9 +642,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Zgodovina plačil"),
         "paymentRequestMessage": MessageLookupByLibrary.simpleMessage(
             "Nekdo je od vas zahteval plačilo! preverite stran za plačila za več informacij."),
+        "paymentScheduled":
+            MessageLookupByLibrary.simpleMessage("Plačilo načrtovano"),
+        "paymentTime": MessageLookupByLibrary.simpleMessage("Čas plačila"),
         "payments": MessageLookupByLibrary.simpleMessage("Plačila"),
         "pickFromList":
             MessageLookupByLibrary.simpleMessage("Izberi iz seznama"),
+        "pickTime": MessageLookupByLibrary.simpleMessage("Izberite čas"),
         "pinBlank":
             MessageLookupByLibrary.simpleMessage("Pin ne sme biti prazen"),
         "pinConfirmError":
@@ -696,6 +710,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "receiveMinimumInfo": MessageLookupByLibrary.simpleMessage(
             "Minimalni znesek za prejemanje. Če prejmete plačilo ali zahtevo z zneskom, manjšim od tega, bo to prezrto."),
         "received": MessageLookupByLibrary.simpleMessage("Prejeto"),
+        "recurringButton":
+            MessageLookupByLibrary.simpleMessage("Ponavljajoče se"),
+        "recurringPayments":
+            MessageLookupByLibrary.simpleMessage("Ponavljajoča se plačila"),
         "refund": MessageLookupByLibrary.simpleMessage("Vračilo"),
         "registerButton":
             MessageLookupByLibrary.simpleMessage("Registrirajte se"),
@@ -765,6 +783,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "scanNFC": MessageLookupByLibrary.simpleMessage("Pošlji prek NFC"),
         "scanQrCode": MessageLookupByLibrary.simpleMessage("Zajemi QR kodo"),
         "schedule": MessageLookupByLibrary.simpleMessage("Urnik"),
+        "schedulePayment":
+            MessageLookupByLibrary.simpleMessage("Načrtujte plačilo"),
+        "scheduledButton": MessageLookupByLibrary.simpleMessage("Načrtovano"),
         "searchHint": MessageLookupByLibrary.simpleMessage("Poiščite karkoli"),
         "secretInfo": MessageLookupByLibrary.simpleMessage(
             "Na naslednjem zaslonu boste videli vaš skrivni niz. Ta niz je geslo za dostop do vašega računa. Nujno je, da ga varno shranite in ne delite z nikomur."),
@@ -914,6 +935,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "themeHeader": MessageLookupByLibrary.simpleMessage("Tema"),
         "thisMayTakeSomeTime": MessageLookupByLibrary.simpleMessage(
             "to lahko traja nekaj časa ..."),
+        "timestampEmpty":
+            MessageLookupByLibrary.simpleMessage("Prosimo izberite čas"),
+        "timestampInPast":
+            MessageLookupByLibrary.simpleMessage("Čas mora biti v prihodnosti"),
         "to": MessageLookupByLibrary.simpleMessage("Na"),
         "todayAt": MessageLookupByLibrary.simpleMessage("Danes ob"),
         "tooManyFailedAttempts": MessageLookupByLibrary.simpleMessage(
@@ -973,6 +998,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Račun neodprt"),
         "unpaid": MessageLookupByLibrary.simpleMessage("neplačana"),
         "unread": MessageLookupByLibrary.simpleMessage("neprebrano"),
+        "upcomingButton": MessageLookupByLibrary.simpleMessage("Prihajajoče"),
         "uptime": MessageLookupByLibrary.simpleMessage("prisotnost"),
         "urlEmpty": MessageLookupByLibrary.simpleMessage("Vnesite URL"),
         "useAppRep": MessageLookupByLibrary.simpleMessage("Uporabi %1 Rep"),
@@ -1014,6 +1040,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "watchOnlySendDisabled": MessageLookupByLibrary.simpleMessage(
             "Pošiljanje je onemogočeno na naslovih samo za gledanje"),
         "weekAgo": MessageLookupByLibrary.simpleMessage("Pred enim tednom"),
+        "weekly": MessageLookupByLibrary.simpleMessage("Tedensko"),
         "welcomeText": MessageLookupByLibrary.simpleMessage(
             "Dobrodošli v Nautilus. Za začetek ustvarite novo denarnico ali uvozite že obstoječo."),
         "welcomeTextLogin": MessageLookupByLibrary.simpleMessage(

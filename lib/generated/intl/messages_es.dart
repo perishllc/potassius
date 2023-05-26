@@ -166,6 +166,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Cambie la semilla/frase asociada con esta cuenta autenticada de enlace mágico, cualquier contraseña que establezca aquí sobrescribirá su contraseña existente, pero puede usar la misma contraseña si lo desea."),
         "checkAvailability":
             MessageLookupByLibrary.simpleMessage("Consultar disponibilidad"),
+        "checkUsernameConfirmInfo": MessageLookupByLibrary.simpleMessage(
+            "Estamos a punto de verificar si este nombre de usuario está registrado en algunos servicios diferentes.\nEsto puede tomar un segundo más o menos."),
         "close": MessageLookupByLibrary.simpleMessage("Cerrar"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirmar"),
         "confirmPasswordHint":
@@ -245,6 +247,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Elige en qué unidad quieres mostrar los importes.\n1 nyano = 0.000001 NANO, o \n1.000.000 nyano = 1 NANO"),
         "currentlyRepresented":
             MessageLookupByLibrary.simpleMessage("Su representante actual es"),
+        "daily": MessageLookupByLibrary.simpleMessage("A diario"),
         "dayAgo": MessageLookupByLibrary.simpleMessage("Hace un día"),
         "decryptionError":
             MessageLookupByLibrary.simpleMessage("¡Error de descifrado!"),
@@ -262,6 +265,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("¿Eliminar nodo?"),
         "deleteRequest":
             MessageLookupByLibrary.simpleMessage("Delete this request"),
+        "deleteScheduledConfirmation": MessageLookupByLibrary.simpleMessage(
+            "¿Está seguro de que desea eliminar este pago programado?\n\nSiempre puede volver a agregarlo más tarde tocando el botón \"Programar pago\""),
+        "deleteScheduledHeader":
+            MessageLookupByLibrary.simpleMessage("¿Eliminar pago programado?"),
         "deleteSubConfirmation": MessageLookupByLibrary.simpleMessage(
             "¿Está seguro de que desea eliminar esta suscripción?\n\nSiempre puede volver a agregarlo más tarde tocando el botón \"Agregar suscripción\""),
         "deleteSubHeader":
@@ -546,6 +553,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "La frase secreta solo puede contener 24 palabras"),
         "mnemonicSizeError2": MessageLookupByLibrary.simpleMessage(
             "La frase secreta solo puede contener 12 o 24 palabras"),
+        "monthly": MessageLookupByLibrary.simpleMessage("Mensual"),
         "monthlyServerCosts": MessageLookupByLibrary.simpleMessage(
             "Costos mensuales del Servidor"),
         "moonpay": MessageLookupByLibrary.simpleMessage("MoonPay"),
@@ -611,6 +619,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "onramp": MessageLookupByLibrary.simpleMessage("En rampa"),
         "onramper": MessageLookupByLibrary.simpleMessage("Onramper"),
         "opened": MessageLookupByLibrary.simpleMessage("Abierto"),
+        "overdue": MessageLookupByLibrary.simpleMessage("Atrasado"),
         "paid": MessageLookupByLibrary.simpleMessage("pagado"),
         "paperWallet":
             MessageLookupByLibrary.simpleMessage("Billetera de Papel"),
@@ -638,6 +647,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Esta contraseña será necesaria para abrir Nautilus."),
         "passwordsDontMatch": MessageLookupByLibrary.simpleMessage(
             "Las contraseñas no coinciden"),
+        "pastDue": MessageLookupByLibrary.simpleMessage("Atrasado"),
         "pay": MessageLookupByLibrary.simpleMessage("Pagar"),
         "payRequest":
             MessageLookupByLibrary.simpleMessage("Pagar esta solicitud"),
@@ -645,9 +655,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("historial de pagos"),
         "paymentRequestMessage": MessageLookupByLibrary.simpleMessage(
             "¡Alguien te ha solicitado el pago! consulta la página de pagos para obtener más información."),
+        "paymentScheduled":
+            MessageLookupByLibrary.simpleMessage("Pago programado"),
+        "paymentTime": MessageLookupByLibrary.simpleMessage("Tiempo de pago"),
         "payments": MessageLookupByLibrary.simpleMessage("Pagos"),
         "pickFromList":
             MessageLookupByLibrary.simpleMessage("Elegir de la lista"),
+        "pickTime": MessageLookupByLibrary.simpleMessage("Elige una hora"),
         "pinBlank":
             MessageLookupByLibrary.simpleMessage("Pin no puede estar vacío"),
         "pinConfirmError":
@@ -711,6 +725,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "receiveMinimumInfo": MessageLookupByLibrary.simpleMessage(
             "Un importe mínimo a recibir. Si se recibe un pago o solicitud con un importe inferior a este, se ignorará."),
         "received": MessageLookupByLibrary.simpleMessage("Recibidos"),
+        "recurringButton": MessageLookupByLibrary.simpleMessage("Periódico"),
+        "recurringPayments":
+            MessageLookupByLibrary.simpleMessage("Pagos recurrentes"),
         "refund": MessageLookupByLibrary.simpleMessage("Devolución"),
         "registerButton": MessageLookupByLibrary.simpleMessage("Registro"),
         "registerFor": MessageLookupByLibrary.simpleMessage("para"),
@@ -783,6 +800,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "scanQrCode":
             MessageLookupByLibrary.simpleMessage("Escanear código QR"),
         "schedule": MessageLookupByLibrary.simpleMessage("Calendario"),
+        "schedulePayment":
+            MessageLookupByLibrary.simpleMessage("Pago programado"),
+        "scheduledButton": MessageLookupByLibrary.simpleMessage("Programado"),
         "searchHint":
             MessageLookupByLibrary.simpleMessage("Busca cualquier cosa"),
         "secretInfo": MessageLookupByLibrary.simpleMessage(
@@ -938,6 +958,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "themeHeader": MessageLookupByLibrary.simpleMessage("Tema"),
         "thisMayTakeSomeTime": MessageLookupByLibrary.simpleMessage(
             "Esto puede tardar un rato..."),
+        "timestampEmpty":
+            MessageLookupByLibrary.simpleMessage("Por favor elige una hora"),
+        "timestampInPast": MessageLookupByLibrary.simpleMessage(
+            "El tiempo debe estar en el futuro."),
         "to": MessageLookupByLibrary.simpleMessage("A"),
         "todayAt": MessageLookupByLibrary.simpleMessage("hoy a las"),
         "tooManyFailedAttempts": MessageLookupByLibrary.simpleMessage(
@@ -998,6 +1022,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Cuenta sin abrir"),
         "unpaid": MessageLookupByLibrary.simpleMessage("impagado"),
         "unread": MessageLookupByLibrary.simpleMessage("no leídos"),
+        "upcomingButton": MessageLookupByLibrary.simpleMessage("próximos"),
         "uptime": MessageLookupByLibrary.simpleMessage("Tiempo en línea"),
         "urlEmpty":
             MessageLookupByLibrary.simpleMessage("Por favor ingrese una URL"),
@@ -1042,6 +1067,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "watchOnlySendDisabled": MessageLookupByLibrary.simpleMessage(
             "Envíos están deshabilitados en direcciones de sólo ver"),
         "weekAgo": MessageLookupByLibrary.simpleMessage("Hace una semana"),
+        "weekly": MessageLookupByLibrary.simpleMessage("Semanalmente"),
         "welcomeText": MessageLookupByLibrary.simpleMessage(
             "Bienvenido a Nautilus. Para continuar, crea una billetera nueva o importa una ya existente."),
         "welcomeTextLogin": MessageLookupByLibrary.simpleMessage(

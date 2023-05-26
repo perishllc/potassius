@@ -430,6 +430,11 @@
     "type": "text",
     "description": "check_availability"
   },
+  "checkUsernameConfirmInfo": "Vi er i ferd med å sjekke om dette brukernavnet er registrert på noen forskjellige tjenester.\nDette kan ta et sekund eller så.",
+  "@checkUsernameConfirmInfo": {
+    "type": "text",
+    "description": "username_check_confirm_info"
+  },
   "close": "Lukk",
   "@close": {
     "type": "text",
@@ -667,6 +672,11 @@
     "type": "text",
     "description": "change_representative_current_header"
   },
+  "daily": "Daglig",
+  "@daily": {
+    "type": "text",
+    "description": "frequency_daily"
+  },
   "dayAgo": "En dag siden",
   "@dayAgo": {
     "type": "text",
@@ -716,6 +726,16 @@
   "@deleteRequest": {
     "type": "text",
     "description": "delete_request"
+  },
+  "deleteScheduledConfirmation": "Er du sikker på at du vil slette denne planlagte betalingen?\n\nDu kan alltid legge den til på nytt senere ved å trykke på \"Planlegg betaling\"-knappen",
+  "@deleteScheduledConfirmation": {
+    "type": "text",
+    "description": "delete scheduled payment confirmation info"
+  },
+  "deleteScheduledHeader": "Vil du slette planlagt betaling?",
+  "@deleteScheduledHeader": {
+    "type": "text",
+    "description": "Confirmation dialog header"
   },
   "deleteSubConfirmation": "Er du sikker på at du vil slette dette abonnementet?\n\nDu kan alltid legge den til på nytt senere ved å trykke på \"Legg til abonnement\"-knappen",
   "@deleteSubConfirmation": {
@@ -1562,6 +1582,11 @@
     "type": "text",
     "description": "err"
   },
+  "monthly": "Månedlig",
+  "@monthly": {
+    "type": "text",
+    "description": "frequency_monthly"
+  },
   "monthlyServerCosts": "Månedlige serverkostnader",
   "@monthlyServerCosts": {
     "type": "text",
@@ -1787,6 +1812,11 @@
     "type": "text",
     "description": "history_opened"
   },
+  "overdue": "Forfalt",
+  "@overdue": {
+    "type": "text",
+    "description": "payment_overdue"
+  },
   "paid": "betalt",
   "@paid": {
     "type": "text",
@@ -1852,6 +1882,11 @@
     "type": "text",
     "description": "A paragraph that tells the users that the created password will be required to open Nautilus."
   },
+  "pastDue": "Forfalt",
+  "@pastDue": {
+    "type": "text",
+    "description": "past_due"
+  },
   "pay": "Betale",
   "@pay": {
     "type": "text",
@@ -1872,6 +1907,16 @@
     "type": "text",
     "description": "payments"
   },
+  "paymentScheduled": "Betaling planlagt",
+  "@paymentScheduled": {
+    "type": "text",
+    "description": "payment_scheduled"
+  },
+  "paymentTime": "Betalingstid",
+  "@paymentTime": {
+    "type": "text",
+    "description": "payment_time"
+  },
   "payRequest": "Betal denne forespørselen",
   "@payRequest": {
     "type": "text",
@@ -1881,6 +1926,11 @@
   "@pickFromList": {
     "type": "text",
     "description": "pick rep from list"
+  },
+  "pickTime": "Velg et tidspunkt",
+  "@pickTime": {
+    "type": "text",
+    "description": "pick_time_button"
   },
   "pinBlank": "Pin kan ikke være tom",
   "@pinBlank": {
@@ -2071,6 +2121,16 @@
   "@receiveMinimumInfo": {
     "type": "text",
     "description": "receive_minimum_info"
+  },
+  "recurringButton": "Tilbakevendende",
+  "@recurringButton": {
+    "type": "text",
+    "description": "recurring_button"
+  },
+  "recurringPayments": "Gjentakende betalinger",
+  "@recurringPayments": {
+    "type": "text",
+    "description": "recurring_payments"
   },
   "refund": "tilbakebetaling",
   "@refund": {
@@ -2286,6 +2346,16 @@
   "@schedule": {
     "type": "text",
     "description": "subs_schedule"
+  },
+  "scheduledButton": "Planlagt",
+  "@scheduledButton": {
+    "type": "text",
+    "description": "scheduled_button"
+  },
+  "schedulePayment": "Planlegg betaling",
+  "@schedulePayment": {
+    "type": "text",
+    "description": "schedule_payment_button"
   },
   "searchHint": "Søk etter hva som helst",
   "@searchHint": {
@@ -2767,6 +2837,16 @@
     "type": "text",
     "description": "xmr_loading_takes_time"
   },
+  "timestampEmpty": "Vennligst velg et tidspunkt",
+  "@timestampEmpty": {
+    "type": "text",
+    "description": "timestamp_empty"
+  },
+  "timestampInPast": "Tiden må være i fremtiden",
+  "@timestampInPast": {
+    "type": "text",
+    "description": "timestamp_in_past"
+  },
   "to": "Til",
   "@to": {
     "type": "text",
@@ -2942,6 +3022,11 @@
     "type": "text",
     "description": "history_unread"
   },
+  "upcomingButton": "Kommende",
+  "@upcomingButton": {
+    "type": "text",
+    "description": "upcoming_button"
+  },
   "uptime": "Tid online",
   "@uptime": {
     "type": "text",
@@ -3071,6 +3156,11 @@
   "@weekAgo": {
     "type": "text",
     "description": "history_week_ago"
+  },
+  "weekly": "Ukentlig",
+  "@weekly": {
+    "type": "text",
+    "description": "frequency_weekly"
   },
   "welcomeText": "Velkommen til Nautilus. For å starte, kan du opprette en ny lommebok eller importere en eksisterende.",
   "@welcomeText": {

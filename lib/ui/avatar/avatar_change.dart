@@ -14,7 +14,7 @@ import 'package:wallet_flutter/ui/util/ui_util.dart';
 import 'package:wallet_flutter/ui/widgets/buttons.dart';
 import 'package:wallet_flutter/ui/widgets/sheet_util.dart';
 
-const String NATRICON_ADDRESS = "ban_3natricon9grnc8caqkht19f1fwpz39r3deeyef66m3d4fch3fau7x5q57cj";
+const String NATRICON_ADDRESS = "nano_3natricon9grnc8caqkht19f1fwpz39r3deeyef66m3d4fch3fau7x5q57cj";
 const String NATRICON_BASE_RAW = "1234567891234567891234567891";
 
 class AvatarChangePage extends StatefulWidget {

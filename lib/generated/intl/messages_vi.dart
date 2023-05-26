@@ -161,6 +161,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Thay đổi hạt giống / cụm từ được liên kết với tài khoản được tự động liên kết kỳ diệu này, bất kỳ mật khẩu nào bạn đặt ở đây sẽ ghi đè lên mật khẩu hiện có của bạn, nhưng bạn có thể sử dụng cùng một mật khẩu nếu bạn chọn."),
         "checkAvailability":
             MessageLookupByLibrary.simpleMessage("Kiểm tra tính khả dụng"),
+        "checkUsernameConfirmInfo": MessageLookupByLibrary.simpleMessage(
+            "Chúng tôi sắp kiểm tra xem tên người dùng này đã được đăng ký trên một vài dịch vụ khác nhau chưa.\nĐiều này có thể mất một giây hoặc lâu hơn."),
         "close": MessageLookupByLibrary.simpleMessage("Đóng"),
         "confirm": MessageLookupByLibrary.simpleMessage("Xác nhận"),
         "confirmPasswordHint":
@@ -241,6 +243,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Chọn đơn vị nào để hiển thị số tiền trong đó.\n1 nyano = 0.000001 NANO, hoặc \n1.000.000 nyano = 1 NANO"),
         "currentlyRepresented":
             MessageLookupByLibrary.simpleMessage("Hiện đang được đại diện bởi"),
+        "daily": MessageLookupByLibrary.simpleMessage("Hằng ngày"),
         "dayAgo": MessageLookupByLibrary.simpleMessage("Một ngày trước"),
         "decryptionError": MessageLookupByLibrary.simpleMessage("Lỗi giải mã!"),
         "defaultAccountName":
@@ -256,6 +259,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteNodeHeader": MessageLookupByLibrary.simpleMessage("Xóa nút?"),
         "deleteRequest":
             MessageLookupByLibrary.simpleMessage("Delete this request"),
+        "deleteScheduledConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Bạn có chắc chắn muốn xóa khoản thanh toán đã lên lịch này không?\n\nBạn luôn có thể thêm lại sau bằng cách nhấn vào nút \"Lên lịch thanh toán\""),
+        "deleteScheduledHeader": MessageLookupByLibrary.simpleMessage(
+            "Xóa thanh toán theo lịch trình?"),
         "deleteSubConfirmation": MessageLookupByLibrary.simpleMessage(
             "Bạn có chắc chắn muốn xóa đăng ký này?\n\nBạn luôn có thể thêm lại nó sau bằng cách nhấn vào nút \"Thêm đăng ký\""),
         "deleteSubHeader": MessageLookupByLibrary.simpleMessage("Xóa đăng ký?"),
@@ -529,6 +536,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Cụm từ bí mật chỉ có thể gồm 24 từ"),
         "mnemonicSizeError2": MessageLookupByLibrary.simpleMessage(
             "Cụm từ bí mật chỉ có thể chứa 12 hoặc 24 từ"),
+        "monthly": MessageLookupByLibrary.simpleMessage("hàng tháng"),
         "monthlyServerCosts":
             MessageLookupByLibrary.simpleMessage("Chi phí máy chủ hàng tháng"),
         "moonpay": MessageLookupByLibrary.simpleMessage("MoonPay"),
@@ -593,6 +601,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "onramp": MessageLookupByLibrary.simpleMessage("Onramp"),
         "onramper": MessageLookupByLibrary.simpleMessage("Onramper"),
         "opened": MessageLookupByLibrary.simpleMessage("Đã mở"),
+        "overdue": MessageLookupByLibrary.simpleMessage("Quá hạn"),
         "paid": MessageLookupByLibrary.simpleMessage("đã thanh toán"),
         "paperWallet": MessageLookupByLibrary.simpleMessage("Ví giấy"),
         "passwordBlank":
@@ -619,15 +628,21 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Mật khẩu này sẽ được yêu cầu để mở Nautilus."),
         "passwordsDontMatch":
             MessageLookupByLibrary.simpleMessage("Mật khẩu không khớp"),
+        "pastDue": MessageLookupByLibrary.simpleMessage("Quá hạn"),
         "pay": MessageLookupByLibrary.simpleMessage("Thanh toán"),
         "payRequest": MessageLookupByLibrary.simpleMessage("Trả yêu cầu này"),
         "paymentHistory":
             MessageLookupByLibrary.simpleMessage("Lịch sử thanh toán"),
         "paymentRequestMessage": MessageLookupByLibrary.simpleMessage(
             "Ai đó đã yêu cầu thanh toán từ bạn! kiểm tra trang thanh toán để biết thêm thông tin."),
+        "paymentScheduled":
+            MessageLookupByLibrary.simpleMessage("Thanh toán theo lịch trình"),
+        "paymentTime":
+            MessageLookupByLibrary.simpleMessage("Thời gian thanh toán"),
         "payments": MessageLookupByLibrary.simpleMessage("Thanh toán"),
         "pickFromList":
             MessageLookupByLibrary.simpleMessage("Chọn từ danh sách"),
+        "pickTime": MessageLookupByLibrary.simpleMessage("Chọn thời gian"),
         "pinBlank":
             MessageLookupByLibrary.simpleMessage("Ghim không được để trống"),
         "pinConfirmError":
@@ -691,6 +706,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "receiveMinimumInfo": MessageLookupByLibrary.simpleMessage(
             "Một số tiền tối thiểu để nhận. Nếu nhận được thanh toán hoặc yêu cầu với số tiền nhỏ hơn số tiền này, nó sẽ bị bỏ qua."),
         "received": MessageLookupByLibrary.simpleMessage("Đã nhận"),
+        "recurringButton": MessageLookupByLibrary.simpleMessage("Định kỳ"),
+        "recurringPayments":
+            MessageLookupByLibrary.simpleMessage("Thanh toán định kỳ"),
         "refund": MessageLookupByLibrary.simpleMessage("Hoàn tiền"),
         "registerButton": MessageLookupByLibrary.simpleMessage("Đăng ký"),
         "registerFor": MessageLookupByLibrary.simpleMessage("cho"),
@@ -758,6 +776,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "scanNFC": MessageLookupByLibrary.simpleMessage("Gửi qua NFC"),
         "scanQrCode": MessageLookupByLibrary.simpleMessage("Quét mã QR"),
         "schedule": MessageLookupByLibrary.simpleMessage("Lịch trình"),
+        "schedulePayment":
+            MessageLookupByLibrary.simpleMessage("Lên lịch thanh toán"),
+        "scheduledButton": MessageLookupByLibrary.simpleMessage("Lên kế hoạch"),
         "searchHint":
             MessageLookupByLibrary.simpleMessage("Tìm bất cứ điều gì"),
         "secretInfo": MessageLookupByLibrary.simpleMessage(
@@ -909,6 +930,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "themeHeader": MessageLookupByLibrary.simpleMessage("Chủ đề"),
         "thisMayTakeSomeTime": MessageLookupByLibrary.simpleMessage(
             "Việc này có thể mất một lúc..."),
+        "timestampEmpty":
+            MessageLookupByLibrary.simpleMessage("Vui lòng chọn thời gian"),
+        "timestampInPast": MessageLookupByLibrary.simpleMessage(
+            "Thời gian phải ở trong tương lai"),
         "to": MessageLookupByLibrary.simpleMessage("tới"),
         "todayAt": MessageLookupByLibrary.simpleMessage("Hôm nay lúc"),
         "tooManyFailedAttempts": MessageLookupByLibrary.simpleMessage(
@@ -968,6 +993,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tài khoản chưa được mở"),
         "unpaid": MessageLookupByLibrary.simpleMessage("không trả tiền"),
         "unread": MessageLookupByLibrary.simpleMessage("chưa đọc"),
+        "upcomingButton": MessageLookupByLibrary.simpleMessage("Sắp tới"),
         "uptime": MessageLookupByLibrary.simpleMessage(
             "Thời gian hoạt động (uptime)"),
         "urlEmpty":
@@ -1012,6 +1038,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "watchOnlySendDisabled": MessageLookupByLibrary.simpleMessage(
             "Tính năng gửi bị tắt trên các địa chỉ chỉ xem"),
         "weekAgo": MessageLookupByLibrary.simpleMessage("Một tuần trước"),
+        "weekly": MessageLookupByLibrary.simpleMessage("hàng tuần"),
         "welcomeText": MessageLookupByLibrary.simpleMessage(
             "Chào mừng đến với Nautilus. Để bắt đầu, bạn có thể tạo ví mới hoặc nhập ví hiện có."),
         "welcomeTextLogin": MessageLookupByLibrary.simpleMessage(

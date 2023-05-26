@@ -1,5 +1,5 @@
 name: wallet_flutter
-description: Potassius - Fast, Robust & Secure NANO Wallet.
+description: Nautilus - Fast, Robust & Secure NANO Wallet.
 
 publish_to: "none"
 
@@ -8,7 +8,7 @@ publish_to: "none"
 # followed by an optional build number separated by a +.
 # Both the version and the builder number may be overridden in flutter
 # build by specifying --build-name and --build-number, respectively.
-version: 0.8.5
+version: 0.8.6
 
 environment:
   sdk: ">=2.18.2 <3.0.0"
@@ -74,7 +74,7 @@ dependencies:
   json_annotation: ^4.8.0
 
   # Localization
-  intl: ^0.17.0
+  intl: ^0.18.0
   # BigDecimal alternative
   decimal: ^2.3.0
 
@@ -83,8 +83,8 @@ dependencies:
   logging: ^1.1.1
 
   # changelog:
-  package_info_plus: ^1.4.2
-  # package_info_plus: ^3.0.0
+  # package_info_plus: ^1.4.2
+  # package_info_plus: ^4.0.0
   flutter_markdown: ^0.6.12
 
   # Native webview plugin
@@ -124,7 +124,8 @@ dependencies:
   mobile_scanner: ^3.0.0-beta.4
   # mobile_scanner: 3.0.0-beta.1
   # Share files
-  share_plus: ^6.2.0
+  share_plus: ^7.0.0
+
 
   # File picker
   file_picker: ^5.2.0
@@ -237,6 +238,7 @@ dependencies:
   flutter_native_timezone: ^2.0.0
   cron: ^0.5.1
   math_expressions: ^2.3.1
+  omni_datetime_picker: ^1.0.7
 
 flutter_intl:
   enabled: true
@@ -250,6 +252,7 @@ flutter_intl:
 
 dependency_overrides:
   ffi: ^2.0.1
+  package_info_plus: ^4.0.0
   # web3dart: 2.0.0
   # analyzer: ^4.1.0
   # dart_style: ^2.2.3
@@ -349,20 +352,11 @@ flutter:
     - assets/logos/luckynano.png
     - assets/logos/wenano.png
     - assets/logos/perseeve.png
-    # nyano assets:
-    # - assets/nyano/images/logos/cat-head-collar-black-1000 × 1180.png
     # illustrations:
     - assets/illustrations/transferfunds_start.svg
     - assets/illustrations/transferfunds_paperwalletonly.svg
     # changelog:
     - assets/CHANGELOG.md
-    # xmr:
-    - assets/xmr/
-    - assets/xmr/index.html
-    - assets/xmr/main.js
-    - assets/xmr/monero_wallet_full.js
-    - assets/xmr/monero_wallet_full.wasm
-    - assets/xmr/monero_web_worker.js
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

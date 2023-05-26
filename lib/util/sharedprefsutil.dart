@@ -69,14 +69,6 @@ class SharedPrefsUtil {
   // tracking permissions:
   static const String tracking_enabled = 'fnautilus_tracking_enabled';
 
-  // xmr settings / data:
-  // xmr on:
-  static const String xmr_enabled = 'fnautilus_xmr_enabled';
-  // xmr restore height:
-  static const String xmr_restore_height = 'fnautilus_xmr_restore_height';
-  // xmr wallet data:
-  static const String xmr_wallet_data = 'fnautilus_xmr_wallet_data';
-
   // key derivation method:
   static const String key_derivation = 'fnautilus_key_derivation';
 
@@ -297,7 +289,7 @@ class SharedPrefsUtil {
 
   Future<ThemeSetting> getTheme() async {
     final bool isDarkMode = SchedulerBinding.instance.window.platformBrightness == Brightness.dark;
-    final int defaultValue = isDarkMode ? ThemeOptions.POTASSIUS.index : ThemeOptions.INDIUM.index;
+    final int defaultValue = isDarkMode ? ThemeOptions.NAUTILUS.index : ThemeOptions.INDIUM.index;
     return ThemeSetting(ThemeOptions.values[(await get(cur_theme, defaultValue: defaultValue) as int)]);
   }
 
@@ -381,14 +373,6 @@ class SharedPrefsUtil {
   Future<bool> getFundingOn() async {
     // funding false by default
     return await get(funding_enabled, defaultValue: true) as bool;
-  }
-
-  Future<bool> getXmrEnabled() async {
-    return await get(xmr_enabled, defaultValue: false) as bool;
-  }
-
-  Future<void> setXmrEnabled(bool value) async {
-    return set(xmr_enabled, value);
   }
 
   Future<bool> getTrackingEnabled() async {
@@ -519,7 +503,7 @@ class SharedPrefsUtil {
   }
 
   Future<String> getCurrencyMode() async {
-    return await get(currency_mode, defaultValue: CurrencyModeSetting(CurrencyModeOptions.BANANO).getDisplayName())
+    return await get(currency_mode, defaultValue: CurrencyModeSetting(CurrencyModeOptions.NANO).getDisplayName())
         as String;
   }
 
@@ -555,22 +539,6 @@ class SharedPrefsUtil {
     } else {
       return false;
     }
-  }
-
-  Future<void> setXmrRestoreHeight(int height) async {
-    return set(xmr_restore_height, height);
-  }
-
-  Future<int> getXmrRestoreHeight() async {
-    return await get(xmr_restore_height, defaultValue: 0) as int;
-  }
-
-  Future<void> setXmrWalletData(String data) async {
-    return set(xmr_wallet_data, data);
-  }
-
-  Future<String?> getXmrWalletData() async {
-    return await get(xmr_wallet_data, defaultValue: null) as String?;
   }
 
   Future<void> setKeyDerivationMethod(String data) async {
@@ -649,9 +617,6 @@ class SharedPrefsUtil {
     await prefs.remove(last_napi_users_check);
     await prefs.remove(ninja_api_cache);
     await prefs.remove(firstcontact_added);
-    await prefs.remove(xmr_enabled);
-    await prefs.remove(xmr_restore_height);
-    await prefs.remove(xmr_wallet_data);
     await prefs.remove(key_derivation);
     await prefs.remove(cur_theme);
     await prefs.remove(pro_sub_status);

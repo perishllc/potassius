@@ -500,7 +500,7 @@ class _RegisterNanoToUsernameScreenState extends State<RegisterNanoToUsernameScr
                 TextSelection.fromPosition(TextPosition(offset: _usernameController!.text.length));
           }
 
-          if (text.isNotEmpty && text.startsWith("@ban_")) {
+          if (text.isNotEmpty && text.startsWith("@nano_")) {
             setState(() {
               // remove the @ from the beginning of the string:
               _usernameController!.text =

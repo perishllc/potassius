@@ -912,6 +912,16 @@ class Z {
     );
   }
 
+  /// `We're about to check if this username is registered on a few different services.\nThis may take a second or so.`
+  String get checkUsernameConfirmInfo {
+    return Intl.message(
+      'We\'re about to check if this username is registered on a few different services.\nThis may take a second or so.',
+      name: 'checkUsernameConfirmInfo',
+      desc: 'username_check_confirm_info',
+      args: [],
+    );
+  }
+
   /// `Close`
   String get close {
     return Intl.message(
@@ -1395,6 +1405,16 @@ class Z {
     );
   }
 
+  /// `Daily`
+  String get daily {
+    return Intl.message(
+      'Daily',
+      name: 'daily',
+      desc: 'frequency_daily',
+      args: [],
+    );
+  }
+
   /// `A day ago`
   String get dayAgo {
     return Intl.message(
@@ -1491,6 +1511,26 @@ class Z {
       'Delete this request',
       name: 'deleteRequest',
       desc: 'delete_request',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete this scheduled payment?\n\nYou can always re-add it later by tapping the "Schedule Payment" button`
+  String get deleteScheduledConfirmation {
+    return Intl.message(
+      'Are you sure you want to delete this scheduled payment?\n\nYou can always re-add it later by tapping the "Schedule Payment" button',
+      name: 'deleteScheduledConfirmation',
+      desc: 'delete scheduled payment confirmation info',
+      args: [],
+    );
+  }
+
+  /// `Delete Scheduled Payment?`
+  String get deleteScheduledHeader {
+    return Intl.message(
+      'Delete Scheduled Payment?',
+      name: 'deleteScheduledHeader',
+      desc: 'Confirmation dialog header',
       args: [],
     );
   }
@@ -3188,6 +3228,16 @@ class Z {
     );
   }
 
+  /// `Monthly`
+  String get monthly {
+    return Intl.message(
+      'Monthly',
+      name: 'monthly',
+      desc: 'frequency_monthly',
+      args: [],
+    );
+  }
+
   /// `Monthly Server Costs`
   String get monthlyServerCosts {
     return Intl.message(
@@ -3638,6 +3688,16 @@ class Z {
     );
   }
 
+  /// `Overdue`
+  String get overdue {
+    return Intl.message(
+      'Overdue',
+      name: 'overdue',
+      desc: 'payment_overdue',
+      args: [],
+    );
+  }
+
   /// `paid`
   String get paid {
     return Intl.message(
@@ -3771,6 +3831,16 @@ class Z {
     );
   }
 
+  /// `Past Due`
+  String get pastDue {
+    return Intl.message(
+      'Past Due',
+      name: 'pastDue',
+      desc: 'past_due',
+      args: [],
+    );
+  }
+
   /// `Pay`
   String get pay {
     return Intl.message(
@@ -3811,6 +3881,26 @@ class Z {
     );
   }
 
+  /// `Payment Scheduled`
+  String get paymentScheduled {
+    return Intl.message(
+      'Payment Scheduled',
+      name: 'paymentScheduled',
+      desc: 'payment_scheduled',
+      args: [],
+    );
+  }
+
+  /// `Payment Time`
+  String get paymentTime {
+    return Intl.message(
+      'Payment Time',
+      name: 'paymentTime',
+      desc: 'payment_time',
+      args: [],
+    );
+  }
+
   /// `Pay this request`
   String get payRequest {
     return Intl.message(
@@ -3827,6 +3917,16 @@ class Z {
       'Pick From a List',
       name: 'pickFromList',
       desc: 'pick rep from list',
+      args: [],
+    );
+  }
+
+  /// `Pick a Time`
+  String get pickTime {
+    return Intl.message(
+      'Pick a Time',
+      name: 'pickTime',
+      desc: 'pick_time_button',
       args: [],
     );
   }
@@ -4208,6 +4308,26 @@ class Z {
       'A minimum amount to receive. If a payment or request is received with an amount less than this, it will be ignored.',
       name: 'receiveMinimumInfo',
       desc: 'receive_minimum_info',
+      args: [],
+    );
+  }
+
+  /// `Recurring`
+  String get recurringButton {
+    return Intl.message(
+      'Recurring',
+      name: 'recurringButton',
+      desc: 'recurring_button',
+      args: [],
+    );
+  }
+
+  /// `Recurring Payments`
+  String get recurringPayments {
+    return Intl.message(
+      'Recurring Payments',
+      name: 'recurringPayments',
+      desc: 'recurring_payments',
       args: [],
     );
   }
@@ -4640,6 +4760,26 @@ class Z {
       'Schedule',
       name: 'schedule',
       desc: 'subs_schedule',
+      args: [],
+    );
+  }
+
+  /// `Scheduled`
+  String get scheduledButton {
+    return Intl.message(
+      'Scheduled',
+      name: 'scheduledButton',
+      desc: 'scheduled_button',
+      args: [],
+    );
+  }
+
+  /// `Schedule Payment`
+  String get schedulePayment {
+    return Intl.message(
+      'Schedule Payment',
+      name: 'schedulePayment',
+      desc: 'schedule_payment_button',
       args: [],
     );
   }
@@ -5605,6 +5745,26 @@ class Z {
     );
   }
 
+  /// `Please pick a time`
+  String get timestampEmpty {
+    return Intl.message(
+      'Please pick a time',
+      name: 'timestampEmpty',
+      desc: 'timestamp_empty',
+      args: [],
+    );
+  }
+
+  /// `Time must be in the future`
+  String get timestampInPast {
+    return Intl.message(
+      'Time must be in the future',
+      name: 'timestampInPast',
+      desc: 'timestamp_in_past',
+      args: [],
+    );
+  }
+
   /// `To`
   String get to {
     return Intl.message(
@@ -5955,6 +6115,16 @@ class Z {
     );
   }
 
+  /// `Upcoming`
+  String get upcomingButton {
+    return Intl.message(
+      'Upcoming',
+      name: 'upcomingButton',
+      desc: 'upcoming_button',
+      args: [],
+    );
+  }
+
   /// `Uptime`
   String get uptime {
     return Intl.message(
@@ -6211,6 +6381,16 @@ class Z {
       'A week ago',
       name: 'weekAgo',
       desc: 'history_week_ago',
+      args: [],
+    );
+  }
+
+  /// `Weekly`
+  String get weekly {
+    return Intl.message(
+      'Weekly',
+      name: 'weekly',
+      desc: 'frequency_weekly',
       args: [],
     );
   }

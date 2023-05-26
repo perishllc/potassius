@@ -160,6 +160,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "इस मैजिक-लिंक ऑथर्ड अकाउंट से जुड़े बीज/वाक्यांश को बदलें, आप यहां जो भी पासवर्ड सेट करेंगे, वह आपके मौजूदा पासवर्ड को ओवरराइट कर देगा, लेकिन आप चाहें तो उसी पासवर्ड का उपयोग कर सकते हैं।"),
         "checkAvailability":
             MessageLookupByLibrary.simpleMessage("उपलब्धता जाँचें"),
+        "checkUsernameConfirmInfo": MessageLookupByLibrary.simpleMessage(
+            "हम यह जांचने वाले हैं कि क्या यह उपयोगकर्ता नाम कुछ अलग सेवाओं पर पंजीकृत है।\nइसमें एक या अधिक समय लग सकता है।"),
         "close": MessageLookupByLibrary.simpleMessage("बंद करें"),
         "confirm": MessageLookupByLibrary.simpleMessage("पुष्टि करें"),
         "confirmPasswordHint":
@@ -240,6 +242,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "चुनें कि किस यूनिट में राशियों को प्रदर्शित करना है।\n1 नैनो = 0.000001 नैनो, या \n1,000,000 नैनो = 1 नैनो"),
         "currentlyRepresented":
             MessageLookupByLibrary.simpleMessage("वर्तमान प्रतिनिधि "),
+        "daily": MessageLookupByLibrary.simpleMessage("दैनिक"),
         "dayAgo": MessageLookupByLibrary.simpleMessage("एक दिन पहले"),
         "decryptionError":
             MessageLookupByLibrary.simpleMessage("डिक्रिप्शन त्रुटि!"),
@@ -256,6 +259,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteNodeHeader": MessageLookupByLibrary.simpleMessage("नोड हटाएं?"),
         "deleteRequest":
             MessageLookupByLibrary.simpleMessage("Delete this request"),
+        "deleteScheduledConfirmation": MessageLookupByLibrary.simpleMessage(
+            "क्या आप वाकई इस शेड्यूल किए गए भुगतान को हटाना चाहते हैं?\n\nआप \"अनुसूची भुगतान\" बटन पर टैप करके इसे बाद में कभी भी पुनः जोड़ सकते हैं"),
+        "deleteScheduledHeader":
+            MessageLookupByLibrary.simpleMessage("अनुसूचित भुगतान हटाएं?"),
         "deleteSubConfirmation": MessageLookupByLibrary.simpleMessage(
             "क्या आप वाकई इस सदस्यता को हटाना चाहते हैं?\n\nआप \"सदस्यता जोड़ें\" बटन पर टैप करके इसे बाद में कभी भी पुनः जोड़ सकते हैं"),
         "deleteSubHeader":
@@ -526,6 +533,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "गुप्त वाक्यांश में केवल 24 शब्द हो सकते हैं"),
         "mnemonicSizeError2": MessageLookupByLibrary.simpleMessage(
             "गुप्त वाक्यांश में केवल 12 या 24 शब्द हो सकते हैं"),
+        "monthly": MessageLookupByLibrary.simpleMessage("महीने के"),
         "monthlyServerCosts":
             MessageLookupByLibrary.simpleMessage("मासिक सर्वर लागत"),
         "moonpay": MessageLookupByLibrary.simpleMessage("MoonPay"),
@@ -590,6 +598,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "onramp": MessageLookupByLibrary.simpleMessage("रैंप पर"),
         "onramper": MessageLookupByLibrary.simpleMessage("Onramper"),
         "opened": MessageLookupByLibrary.simpleMessage("खोला गया"),
+        "overdue": MessageLookupByLibrary.simpleMessage("अतिदेय"),
         "paid": MessageLookupByLibrary.simpleMessage("भुगतान किया है"),
         "paperWallet": MessageLookupByLibrary.simpleMessage("पेपर वॉलेट"),
         "passwordBlank":
@@ -616,14 +625,19 @@ class MessageLookup extends MessageLookupByLibrary {
                 "नैट्रियम खोलने के लिए इस पासवर्ड की आवश्यकता होगी।"),
         "passwordsDontMatch":
             MessageLookupByLibrary.simpleMessage("पासवर्ड मेल नहीं खाते"),
+        "pastDue": MessageLookupByLibrary.simpleMessage("पिछला बकाया"),
         "pay": MessageLookupByLibrary.simpleMessage("पे"),
         "payRequest":
             MessageLookupByLibrary.simpleMessage("इस अनुरोध का भुगतान करें"),
         "paymentHistory": MessageLookupByLibrary.simpleMessage("भुगतान इतिहास"),
         "paymentRequestMessage": MessageLookupByLibrary.simpleMessage(
             "किसी ने आपसे भुगतान का अनुरोध किया है! अधिक जानकारी के लिए भुगतान पृष्ठ देखें।"),
+        "paymentScheduled":
+            MessageLookupByLibrary.simpleMessage("भुगतान अनुसूचित"),
+        "paymentTime": MessageLookupByLibrary.simpleMessage("भुगतान का समय"),
         "payments": MessageLookupByLibrary.simpleMessage("पेमेंट्स"),
         "pickFromList": MessageLookupByLibrary.simpleMessage("सूची से चुनें"),
+        "pickTime": MessageLookupByLibrary.simpleMessage("एक समय चुनें"),
         "pinBlank":
             MessageLookupByLibrary.simpleMessage("पिन खाली नहीं हो सकता"),
         "pinConfirmError": MessageLookupByLibrary.simpleMessage(
@@ -686,6 +700,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "receiveMinimumInfo": MessageLookupByLibrary.simpleMessage(
             "प्राप्त करने के लिए न्यूनतम राशि यदि इससे कम राशि के साथ भुगतान या अनुरोध प्राप्त होता है, तो इसे अनदेखा कर दिया जाएगा।"),
         "received": MessageLookupByLibrary.simpleMessage("मिले -"),
+        "recurringButton": MessageLookupByLibrary.simpleMessage("पुनरावर्ती"),
+        "recurringPayments":
+            MessageLookupByLibrary.simpleMessage("आवर्ती भुगतान"),
         "refund": MessageLookupByLibrary.simpleMessage("रिफंड"),
         "registerButton":
             MessageLookupByLibrary.simpleMessage("पंजीकरण करवाना"),
@@ -757,6 +774,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "scanQrCode":
             MessageLookupByLibrary.simpleMessage("क्यूआर कोड स्कैन करें"),
         "schedule": MessageLookupByLibrary.simpleMessage("अनुसूची"),
+        "schedulePayment":
+            MessageLookupByLibrary.simpleMessage("भुगतान निर्धारित करें"),
+        "scheduledButton": MessageLookupByLibrary.simpleMessage("अनुसूचित"),
         "searchHint":
             MessageLookupByLibrary.simpleMessage("किसी भी चीज़ की खोज करें"),
         "secretInfo": MessageLookupByLibrary.simpleMessage(
@@ -905,6 +925,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "themeHeader": MessageLookupByLibrary.simpleMessage("थीम"),
         "thisMayTakeSomeTime":
             MessageLookupByLibrary.simpleMessage("यह कुछ देर ले सकता है..."),
+        "timestampEmpty":
+            MessageLookupByLibrary.simpleMessage("कृपया एक समय चुनें"),
+        "timestampInPast":
+            MessageLookupByLibrary.simpleMessage("समय भविष्य में होना चाहिए"),
         "to": MessageLookupByLibrary.simpleMessage("इसको -"),
         "todayAt": MessageLookupByLibrary.simpleMessage("आज इस समय"),
         "tooManyFailedAttempts": MessageLookupByLibrary.simpleMessage(
@@ -965,6 +989,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("खाता खुला नहीं"),
         "unpaid": MessageLookupByLibrary.simpleMessage("अवैतनिक"),
         "unread": MessageLookupByLibrary.simpleMessage("अपठित"),
+        "upcomingButton": MessageLookupByLibrary.simpleMessage("आगामी"),
         "uptime": MessageLookupByLibrary.simpleMessage("सक्रिय रहने की अवधि"),
         "urlEmpty":
             MessageLookupByLibrary.simpleMessage("कृपया एक यूआरएल दर्ज करें"),
@@ -1010,6 +1035,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "watchOnlySendDisabled": MessageLookupByLibrary.simpleMessage(
             "केवल घड़ी के पतों पर भेजना अक्षम है"),
         "weekAgo": MessageLookupByLibrary.simpleMessage("एक हफ्ते पहले"),
+        "weekly": MessageLookupByLibrary.simpleMessage("साप्ताहिक"),
         "welcomeText": MessageLookupByLibrary.simpleMessage(
             "नेट्रियम में आपका स्वागत है। आगे बढ़ने के लिए, आप एक नया वॉलेट बना सकते हैं या एक मौजूदा वॉलेट को आयात कर सकते हैं।"),
         "welcomeTextLogin": MessageLookupByLibrary.simpleMessage(

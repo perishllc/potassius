@@ -9,8 +9,10 @@ import 'package:logger/logger.dart';
 import 'package:timezone/data/latest.dart' as tz;
 // ignore: depend_on_referenced_packages
 import 'package:timezone/timezone.dart' as tz;
+import 'package:wallet_flutter/bus/scheduled_changed_event.dart';
 import 'package:wallet_flutter/bus/subs_changed_event.dart';
 import 'package:wallet_flutter/model/db/appdb.dart';
+import 'package:wallet_flutter/model/db/scheduled.dart';
 import 'package:wallet_flutter/model/db/subscription.dart';
 import 'package:wallet_flutter/network/model/block_types.dart';
 import 'package:wallet_flutter/network/model/response/account_history_response_item.dart';
@@ -71,6 +73,12 @@ class SubscriptionService {
       await scheduleSubNotification(sub);
     }
 
+    // go through all scheduled payments and set up notifications:
+    final List<Scheduled> scheduled = await sl.get<DBHelper>().getScheduled();
+    for (final Scheduled sched in scheduled) {
+      await schedulePaymentNotification(sched);
+    }
+
     // chinese new year notification:
     // setupChineseNewYearNotification();
   }
@@ -87,6 +95,19 @@ class SubscriptionService {
       }
     }
     EventTaxiImpl.singleton().fire(SubsChangedEvent(subs: await sl.get<DBHelper>().getSubscriptions()));
+    EventTaxiImpl.singleton().fire(ScheduledChangedEvent(scheduled: await sl.get<DBHelper>().getScheduled()));
+    
+    // get all scheduled payments:
+    // final List<Scheduled> scheduled = await sl.get<DBHelper>().getScheduled();
+    // for (final Scheduled sched in scheduled) {
+    //   // ignore: use_build_context_synchronously
+    //   final bool isPaid = await checkSubPaid(history, sched);
+    //   if (isPaid != sched.paid) {
+    //     // make sure the tag matches the real state:
+    //     await sl.get<DBHelper>().toggleScheduledPaid(sched);
+    //   }
+    // }
+
 
     // update scheduled notifications:
     scheduleNotifications();
@@ -197,6 +218,7 @@ Have a happy Chinese New Year!
 
   // check whether a subscription has been paid:
   Future<bool> checkSubPaid(List<AccountHistoryResponseItem> history, Subscription sub) async {
+
     // first check if sub is active:
     if (!sub.active) {
       return false;
@@ -285,5 +307,44 @@ Have a happy Chinese New Year!
       androidAllowWhileIdle: true,
       uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
     );
+  }
+
+  Future<void> schedulePaymentNotification(Scheduled sched) async {
+    // convert unix timestamp to DateTime:
+    final DateTime subTime = DateTime.fromMillisecondsSinceEpoch(sched.timestamp * 1000);
+    final tz.TZDateTime tzdatetime = tz.TZDateTime.from(subTime, tz.local);
+
+    const AndroidNotificationDetails androidNotificationDetails = AndroidNotificationDetails(
+      "scheduled_channel",
+      "Scheduled Payments",
+      channelDescription: "Payment Reminder Notifications",
+      importance: Importance.max,
+      priority: Priority.high,
+      ticker: "ticker",
+    );
+
+    const DarwinNotificationDetails darwinNotificationDetails = DarwinNotificationDetails(
+      presentAlert: true,
+      presentSound: true,
+      presentBadge: true,
+    );
+
+    try {
+
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+      sched.id ?? 0,
+      "Payment Reminder",
+      "Your Scheduled Payment is due",
+      tzdatetime,
+      const NotificationDetails(
+        android: androidNotificationDetails,
+        iOS: darwinNotificationDetails,
+      ),
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
+    );
+    } catch (e) {
+      log.e("scheduled time was probably in the past: $e");
+    }
   }
 }

@@ -56,7 +56,7 @@ class ShopSheetState extends State<ShopSheet> {
                   child: AppDialogs.infoButton(
                     context,
                     () {
-                      Clipboard.setData(ClipboardData(text: StateContainer.of(context).wallet!.address));
+                      Clipboard.setData(ClipboardData(text: StateContainer.of(context).wallet!.address ?? ""));
                       UIUtil.showSnackbar(Z.of(context).addressCopied, context, durationMs: 1500);
                     },
                     icon: AppIcons.content_copy,
@@ -140,15 +140,15 @@ class ShopSheetState extends State<ShopSheet> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          // UseCard(
-                          //   image: "assets/logos/onramper.png",
-                          //   title: NonTranslatable.onramper,
-                          //   onPress: () async {
-                          //     final String url =
-                          //         "https://widget.onramper.com?apiKey=${dotenv.env["ONRAMPER_API_KEY"]!}&color=4080D7&onlyCryptos=NANO&defaultCrypto=NANO&darkMode=${StateContainer.of(context).curTheme.brightness == Brightness.dark}";
-                          //     await UIUtil.showChromeSafariWebview(context, url);
-                          //   },
-                          // ),
+                          UseCard(
+                            image: "assets/logos/onramper.png",
+                            title: NonTranslatable.onramper,
+                            onPress: () async {
+                              final String url =
+                                  "https://widget.onramper.com?apiKey=${dotenv.env["ONRAMPER_API_KEY"]!}&color=4080D7&onlyCryptos=NANO&defaultCrypto=NANO&darkMode=${StateContainer.of(context).curTheme.brightness == Brightness.dark}";
+                              await UIUtil.showChromeSafariWebview(context, url);
+                            },
+                          ),
                           UseCard(
                             image: "assets/logos/nanocafe.png",
                             title: NonTranslatable.nanocafe,

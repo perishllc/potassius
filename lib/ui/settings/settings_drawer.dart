@@ -20,7 +20,6 @@ import 'package:wallet_flutter/appstate_container.dart';
 import 'package:wallet_flutter/bus/contacts_setting_change_event.dart';
 import 'package:wallet_flutter/bus/events.dart';
 import 'package:wallet_flutter/bus/notification_setting_change_event.dart';
-import 'package:wallet_flutter/bus/xmr_event.dart';
 import 'package:wallet_flutter/generated/l10n.dart';
 import 'package:wallet_flutter/localize.dart';
 import 'package:wallet_flutter/model/address.dart';
@@ -79,7 +78,6 @@ import 'package:wallet_flutter/ui/widgets/list_gradient.dart';
 import 'package:wallet_flutter/ui/widgets/remote_message_card.dart';
 import 'package:wallet_flutter/ui/widgets/remote_message_sheet.dart';
 import 'package:wallet_flutter/ui/widgets/security.dart';
-import 'package:wallet_flutter/ui/widgets/set_xmr_restore_height.dart';
 import 'package:wallet_flutter/ui/widgets/sheet_util.dart';
 import 'package:wallet_flutter/util/biometrics.dart';
 import 'package:wallet_flutter/util/caseconverter.dart';
@@ -122,17 +120,15 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
   NotificationSetting _curNotificiationSetting = NotificationSetting(NotificationOptions.ON);
   ContactsSetting _curContactsSetting = ContactsSetting(ContactsOptions.OFF);
   ContactsSetting _curUnopenedWarningSetting = ContactsSetting(ContactsOptions.ON);
-  ContactsSetting _curXmrEnabledSetting = ContactsSetting(ContactsOptions.ON);
   ContactsSetting _curTrackingSetting = ContactsSetting(ContactsOptions.ON);
   NatriconSetting _curNatriconSetting = NatriconSetting(NatriconOptions.ON);
   NyaniconSetting _curNyaniconSetting = NyaniconSetting(NyaniconOptions.ON);
   FundingSetting _curFundingSetting = FundingSetting(FundingOptions.SHOW);
   MinRawSetting _curMinRawSetting = MinRawSetting(MinRawOptions.OFF);
-  CurrencyModeSetting _curCurrencyModeSetting = CurrencyModeSetting(CurrencyModeOptions.BANANO);
+  CurrencyModeSetting _curCurrencyModeSetting = CurrencyModeSetting(CurrencyModeOptions.NANO);
   UnlockSetting _curUnlockSetting = UnlockSetting(UnlockOption.NO);
   LockTimeoutSetting _curTimeoutSetting = LockTimeoutSetting(LockTimeoutOption.ONE);
-  ThemeSetting _curThemeSetting = ThemeSetting(ThemeOptions.POTASSIUS);
-  int _curXmrRestoreHeight = 0;
+  ThemeSetting _curThemeSetting = ThemeSetting(ThemeOptions.NAUTILUS);
 
   late bool _loadingAccounts;
 
@@ -236,18 +232,6 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
             contactsOn ? ContactsSetting(ContactsOptions.ON) : ContactsSetting(ContactsOptions.OFF);
       });
     });
-    // Get show monero setting:
-    sl.get<SharedPrefsUtil>().getXmrEnabled().then((bool contactsOn) {
-      setState(() {
-        _curXmrEnabledSetting = contactsOn ? ContactsSetting(ContactsOptions.ON) : ContactsSetting(ContactsOptions.OFF);
-      });
-    });
-    // restore height:
-    sl.get<SharedPrefsUtil>().getXmrRestoreHeight().then((int height) {
-      setState(() {
-        _curXmrRestoreHeight = StateContainer.of(context).xmrRestoreHeight ?? 0;
-      });
-    });
     // Get tracking authorization:
     sl.get<SharedPrefsUtil>().getTrackingEnabled().then((bool contactsOn) {
       setState(() {
@@ -308,7 +292,7 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
             _curCurrencyModeSetting = CurrencyModeSetting(CurrencyModeOptions.NANO);
             break;
           case "NYANO":
-            _curCurrencyModeSetting = CurrencyModeSetting(CurrencyModeOptions.BANANO);
+            _curCurrencyModeSetting = CurrencyModeSetting(CurrencyModeOptions.NYANO);
             break;
           case "BANANO":
             _curCurrencyModeSetting = CurrencyModeSetting(CurrencyModeOptions.BANANO);
@@ -695,21 +679,16 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
         builder: (BuildContext context) {
           return AppSimpleDialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  Z.of(context).unopenedWarningHeader,
-                  style: AppStyles.textStyleDialogHeader(context),
-                ),
-                AppDialogs.infoButton(
-                  context,
-                  () {
-                    AppDialogs.showInfoDialog(
-                        context, Z.of(context).unopenedWarningHeader, Z.of(context).unopenedWarningInfo);
-                  },
-                )
-              ],
+            title: Text(
+              Z.of(context).unopenedWarningHeader,
+              style: AppStyles.textStyleDialogHeader(context),
+            ),
+            infoButton: AppDialogs.infoButton(
+              context,
+              () {
+                AppDialogs.showInfoDialog(
+                    context, Z.of(context).unopenedWarningHeader, Z.of(context).unopenedWarningInfo);
+              },
             ),
             children: <Widget>[
               AppSimpleDialogOption(
@@ -868,21 +847,16 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
         builder: (BuildContext context) {
           return AppSimpleDialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  Z.of(context).receiveMinimum,
-                  style: AppStyles.textStyleDialogHeader(context),
-                ),
-                AppDialogs.infoButton(
-                  context,
-                  () {
-                    AppDialogs.showInfoDialog(
-                        context, Z.of(context).receiveMinimumHeader, Z.of(context).receiveMinimumInfo);
-                  },
-                )
-              ],
+            title: Text(
+              Z.of(context).receiveMinimum,
+              style: AppStyles.textStyleDialogHeader(context),
+            ),
+            infoButton: AppDialogs.infoButton(
+              context,
+              () {
+                AppDialogs.showInfoDialog(
+                    context, Z.of(context).receiveMinimumHeader, Z.of(context).receiveMinimumInfo);
+              },
             ),
             children: _buildMinRawOptions(),
           );
@@ -904,21 +878,15 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
         builder: (BuildContext context) {
           return AppSimpleDialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  Z.of(context).currencyMode,
-                  style: AppStyles.textStyleDialogHeader(context),
-                ),
-                AppDialogs.infoButton(
-                  context,
-                  () {
-                    AppDialogs.showInfoDialog(
-                        context, Z.of(context).currencyModeHeader, Z.of(context).currencyModeInfo);
-                  },
-                )
-              ],
+            title: Text(
+              Z.of(context).currencyMode,
+              style: AppStyles.textStyleDialogHeader(context),
+            ),
+            infoButton: AppDialogs.infoButton(
+              context,
+              () {
+                AppDialogs.showInfoDialog(context, Z.of(context).currencyModeHeader, Z.of(context).currencyModeInfo);
+              },
             ),
             children: _buildCurrencyModeOptions(),
           );
@@ -929,13 +897,18 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
     if ((_curCurrencyModeSetting.setting == CurrencyModeOptions.BANANO && chosen != CurrencyModeOptions.BANANO) ||
         (_curCurrencyModeSetting.setting != CurrencyModeOptions.BANANO && chosen == CurrencyModeOptions.BANANO)) {
       if (!mounted) return;
-      await AppDialogs.showInfoDialog(context, Z.of(context).currencyModeChange, Z.of(context).currencyModeChangeWarning);
+      await AppDialogs.showInfoDialog(
+          context, Z.of(context).currencyModeChange, Z.of(context).currencyModeChangeWarning);
     }
-    sl.get<SharedPrefsUtil>().setCurrencyMode(currencyMode).then((void result) {
-      setState(() {
-        StateContainer.of(context).setCurrencyMode(currencyMode, context: context);
-        _curCurrencyModeSetting = CurrencyModeSetting(chosen);
-      });
+
+    if (chosen == null) {
+      return;
+    }
+
+    await sl.get<SharedPrefsUtil>().setCurrencyMode(currencyMode);
+    setState(() {
+      StateContainer.of(context).setCurrencyMode(currencyMode, context: context);
+      _curCurrencyModeSetting = CurrencyModeSetting(chosen);
     });
   }
 
@@ -1088,10 +1061,7 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
 
   List<Widget> _buildExplorerOptions() {
     final List<Widget> ret = <Widget>[];
-    // ignore: prefer_const_declarations, prefer_final_locals
-    List<AvailableBlockExplorerEnum> availableBE = AvailableBlockExplorerEnum.values;
-    availableBE.remove(AvailableBlockExplorerEnum.NANOCAFE);
-    for (final AvailableBlockExplorerEnum value in availableBE) {
+    for (final AvailableBlockExplorerEnum value in AvailableBlockExplorerEnum.values) {
       ret.add(SimpleDialogOption(
         onPressed: () {
           Navigator.pop(context, value);
@@ -1114,15 +1084,13 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
         builder: (BuildContext context) {
           return AppSimpleDialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
-              Text(
-                Z.of(context).blockExplorer,
-                style: AppStyles.textStyleDialogHeader(context),
-              ),
-              AppDialogs.infoButton(context, () {
-                AppDialogs.showInfoDialog(context, Z.of(context).blockExplorerHeader, Z.of(context).blockExplorerInfo);
-              }),
-            ]),
+            title: Text(
+              Z.of(context).blockExplorer,
+              style: AppStyles.textStyleDialogHeader(context),
+            ),
+            infoButton: AppDialogs.infoButton(context, () {
+              AppDialogs.showInfoDialog(context, Z.of(context).blockExplorerHeader, Z.of(context).blockExplorerInfo);
+            }),
             children: _buildExplorerOptions(),
           );
         });
@@ -1461,35 +1429,35 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
           Column(
             children: settingsAlerts,
           ),
-        if (StateContainer.of(context).fundingAlerts != null &&
-            StateContainer.of(context).fundingAlerts!.isNotEmpty &&
-            _curFundingSetting.setting == FundingOptions.SHOW)
-          Container(
-            padding: const EdgeInsetsDirectional.only(
-              start: 12,
-              end: 12,
-              bottom: 20,
-            ),
-            child: FundingMessageCard(
-              title: Z.of(context).donateToSupport,
-              shortDescription: Platform.isIOS
-                  ? /*Z.of(context).supportDevelopment*/ null
-                  : StateContainer.of(context).fundingAlerts![currentFundingIndex].title,
-              currentAmountRaw: StateContainer.of(context).fundingAlerts![currentFundingIndex].currentAmountRaw,
-              goalAmountRaw: StateContainer.of(context).fundingAlerts![currentFundingIndex].goalAmountRaw,
-              hideAmounts: true,
-              hideProgressBar: Platform.isIOS,
-              onPressed: () {
-                Sheets.showAppHeightEightSheet(
-                  context: context,
-                  widget: FundingMessagesSheet(
-                    alerts: StateContainer.of(context).fundingAlerts,
-                    hasDismissButton: false,
-                  ),
-                );
-              },
-            ),
-          ),
+        // if (StateContainer.of(context).fundingAlerts != null &&
+        //     StateContainer.of(context).fundingAlerts!.isNotEmpty &&
+        //     _curFundingSetting.setting == FundingOptions.SHOW)
+        //   Container(
+        //     padding: const EdgeInsetsDirectional.only(
+        //       start: 12,
+        //       end: 12,
+        //       bottom: 20,
+        //     ),
+        //     child: FundingMessageCard(
+        //       title: Z.of(context).donateToSupport,
+        //       shortDescription: Platform.isIOS
+        //           ? /*Z.of(context).supportDevelopment*/ null
+        //           : StateContainer.of(context).fundingAlerts![currentFundingIndex].title,
+        //       currentAmountRaw: StateContainer.of(context).fundingAlerts![currentFundingIndex].currentAmountRaw,
+        //       goalAmountRaw: StateContainer.of(context).fundingAlerts![currentFundingIndex].goalAmountRaw,
+        //       hideAmounts: true,
+        //       hideProgressBar: Platform.isIOS,
+        //       onPressed: () {
+        //         Sheets.showAppHeightEightSheet(
+        //           context: context,
+        //           widget: FundingMessagesSheet(
+        //             alerts: StateContainer.of(context).fundingAlerts,
+        //             hasDismissButton: false,
+        //           ),
+        //         );
+        //       },
+        //     ),
+        //   ),
         // Container(
         //   margin: const EdgeInsetsDirectional.only(start: 30.0, bottom: 10),
         //   child: Text(
@@ -1541,10 +1509,6 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
         //   Navigator.of(context).pushNamed("/gift_paper_wallet");
         // }),
         // Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
-        // AppSettings.buildSettingsListItemSingleLine(context, Z.of(context).swapXMR, AppIcons.swapcurrency, onPressed: () {
-        //   Navigator.of(context).pushNamed("/swap_xmr");
-        // }),
-        // Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
         Container(
           margin: const EdgeInsetsDirectional.only(start: 30.0, top: 20, bottom: 10),
           child: Text(Z.of(context).preferences,
@@ -1563,14 +1527,6 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
         Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
         AppSettings.buildSettingsListItemDoubleLine(
             context, Z.of(context).themeHeader, _curThemeSetting, AppIcons.theme, _themeDialog),
-        Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
-        AppSettings.buildSettingsListItemDoubleLine(
-          context,
-          Z.of(context).blockExplorer,
-          StateContainer.of(context).curBlockExplorer,
-          AppIcons.search,
-          _explorerDialog,
-        ),
         Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
         AppSettings.buildSettingsListItemSingleLine(context, Z.of(context).securityHeader, AppIcons.security,
             onPressed: () {
@@ -2058,8 +2014,11 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                                   setState(() {
                                     _loadingAccounts = false;
                                   });
+                                  if (!mounted) return;
                                   Sheets.showAppHeightNineSheet(
-                                      context: context, widget: AppAccountsSheet(accounts: accounts));
+                                    context: context,
+                                    widget: AppAccountsSheet(accounts: accounts),
+                                  );
                                 }
                               },
                               child: Container(
@@ -2074,9 +2033,6 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                                 child: Icon(
                                   Icons.manage_accounts,
                                   size: 24,
-                                  // AppIcons.accountswitcher,
-                                  // size: 36,
-
                                   color: _loadingAccounts
                                       ? StateContainer.of(context).curTheme.primary60
                                       : StateContainer.of(context).curTheme.primary,
@@ -2455,38 +2411,21 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                       AppSettings.buildSettingsListItemDoubleLine(context, Z.of(context).showUnopenedWarning,
                           _curUnopenedWarningSetting, Icons.warning, _unopenedWarningDialog),
                       Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
-                      AppSettings.buildSettingsListItemDoubleLine(
-                          context, Z.of(context).showFunding, _curFundingSetting, Icons.flag, _fundingDialog),
-                      Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
+                      // AppSettings.buildSettingsListItemDoubleLine(
+                      //     context, Z.of(context).showFunding, _curFundingSetting, Icons.flag, _fundingDialog),
+                      // Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
                       AppSettings.buildSettingsListItemDoubleLine(context, Z.of(context).trackingHeader,
                           _curTrackingSetting, Icons.query_stats, _showTrackingDialog),
                       Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
-
-                      Container(
-                        margin: const EdgeInsetsDirectional.only(start: 30, top: 20, bottom: 10),
-                        child: Text(Z.of(context).advanced,
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w100,
-                              color: StateContainer.of(context).curTheme.text60,
-                            )),
-                      ),
-                      // Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
-                      // AppSettings.buildSettingsListItemDoubleLine(context, Z.of(context).showMoneroHeader,
-                      //     _curXmrEnabledSetting, Icons.toll, _showMoneroDialog),
-                      Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
                       AppSettings.buildSettingsListItemDoubleLine(
-                          context, Z.of(context).setXMRRestoreHeight, null, AppIcons.backupseed,
-                          overrideSubtitle: _curXmrRestoreHeight.toString(), () async {
-                        Sheets.showAppHeightEightSheet(context: context, widget: SetXMRRestoreHeightSheet());
-                      }),
+                        context,
+                        Z.of(context).blockExplorer,
+                        StateContainer.of(context).curBlockExplorer,
+                        AppIcons.search,
+                        _explorerDialog,
+                      ),
                       Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
-                      AppSettings.buildSettingsListItemDoubleLine(context, Z.of(context).currencyMode,
-                          _curCurrencyModeSetting, AppIcons.currency, _currencyModeDialog),
-                      Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
-                      AppSettings.buildSettingsListItemDoubleLine(context, Z.of(context).receiveMinimum,
-                          _curMinRawSetting, AppIcons.less_than_equal, _minRawDialog),
-                      Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
+
                       Container(
                         margin: const EdgeInsetsDirectional.only(start: 30, top: 20, bottom: 10),
                         child: Text(Z.of(context).manage,
@@ -2525,6 +2464,23 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                           });
                         }
                       }),
+                      Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
+
+                      Container(
+                        margin: const EdgeInsetsDirectional.only(start: 30, top: 20, bottom: 10),
+                        child: Text(Z.of(context).advanced,
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w100,
+                              color: StateContainer.of(context).curTheme.text60,
+                            )),
+                      ),
+                      Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
+                      AppSettings.buildSettingsListItemDoubleLine(context, Z.of(context).currencyMode,
+                          _curCurrencyModeSetting, AppIcons.currency, _currencyModeDialog),
+                      Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
+                      AppSettings.buildSettingsListItemDoubleLine(context, Z.of(context).receiveMinimum,
+                          _curMinRawSetting, AppIcons.less_than_equal, _minRawDialog),
                       Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
                       AppSettings.buildSettingsListItemSingleLine(
                           context, Z.of(context).exportTXData, AppIcons.file_export, onPressed: () async {
@@ -2700,7 +2656,7 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                     Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
                     AppSettings.buildSettingsListItemSingleLine(
                         context, Z.of(context).copyWalletAddressToClipboard, AppIcons.content_copy, onPressed: () {
-                      Clipboard.setData(ClipboardData(text: StateContainer.of(context).wallet!.address));
+                      Clipboard.setData(ClipboardData(text: StateContainer.of(context).wallet!.address ?? ""));
                       UIUtil.showSnackbar(Z.of(context).addressCopied, context, durationMs: 1500);
                     }),
                     Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
