@@ -4724,6 +4724,16 @@ class Z {
     );
   }
 
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: 'dialog_save',
+      args: [],
+    );
+  }
+
   /// `Scan a %2 \naddress QR code`
   String get scanInstructions {
     return Intl.message(

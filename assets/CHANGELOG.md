@@ -1,4 +1,4 @@
-## v0.8.6 - [2023-05-XX]
+## v0.8.6 - [2023-06-02]
 #### Added
 - Scheduled Payments
 - Payment History
@@ -9,7 +9,10 @@
 - Solar PoW option
 - rpc.nano.to PoW option
 - nanoriver PoW option
+- Account switcher on the home screen (tap and hold to copy address)
+- Ability to edit PoW and Node entries
 #### Changed
+- Time format on transaction cards
 - Send / Request confirm sheet updates
 - Dialog style updates
 - Move block explorer setting to advanced settings
@@ -21,6 +24,8 @@
 #### Fixed
 - Bug with receives not updating the home page properly
 - Username checking is now properly debounced
+- Bug with scanning paper wallets
+- Bug with rendering slider actions on some devices
 ## v0.8.5 - [2023-04-16]
 #### Added
 - Ability to import 12 word mnemonics / trust wallet phrases

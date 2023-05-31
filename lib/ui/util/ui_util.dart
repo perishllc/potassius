@@ -512,16 +512,17 @@ class UIUtil {
     return Image.memory(byteData!.buffer.asUint8List());
   }
 
-  static void showSnackbar(String content, BuildContext context, {int durationMs = 2500}) {
+  static void showSnackbar(String content, BuildContext context, {int durationMs = 2500, double topMarginPercent = 0.8}) {
     showToastWidget(
       Align(
         alignment: Alignment.topCenter,
         child: Container(
-          margin: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.07, horizontal: 14),
+          // margin: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.07, horizontal: 14),
+          margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * topMarginPercent, left: 14, right: 14),
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
           width: MediaQuery.of(context).size.width - 30,
           decoration: BoxDecoration(
-            color: StateContainer.of(context).curTheme.primary,
+            color: StateContainer.of(context).curTheme.warning,
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(color: StateContainer.of(context).curTheme.barrier!, offset: const Offset(0, 15), blurRadius: 30, spreadRadius: -5),
