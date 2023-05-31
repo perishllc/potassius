@@ -258,7 +258,7 @@ class DBHelper {
       Node(
         id: 0,
         name: "Nautilus Node",
-        selected: true,
+        selected: false,
         http_url: AccountService.DEFAULT_HTTP_URL,
         ws_url: AccountService.DEFAULT_WS_URL,
       ),
@@ -278,7 +278,7 @@ class DBHelper {
       Node(
         id: 2,
         name: "Kalium Node (banano)",
-        selected: false,
+        selected: true,
         http_url: "https://kaliumapi.appditto.com/api",
         ws_url: "wss://kaliumapi.appditto.com",
       ),
