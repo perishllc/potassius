@@ -7,7 +7,12 @@
 // 64-bit unsigned addition
 // Sets v[a,a+1] += v[b,b+1]
 // v should be a Uint32Array
+import 'dart:async';
+import 'dart:isolate';
+import 'dart:math';
 import 'dart:typed_data';
+
+import 'package:flutter_nano_ffi/flutter_nano_ffi.dart';
 
 Uint32List ADD64AA(Uint32List v, int a, int b) {
   final int o0 = v[a] + v[b];
@@ -51,8 +56,10 @@ B2B_G(int a, int b, int c, int d, int ix, int iy) {
   final int y0 = m[iy];
   final int y1 = m[iy + 1];
 
-  v = ADD64AA(v, a, b); // v[a,a+1] += v[b,b+1] ... in JS we must store a uint64 as two uint32s
-  v = ADD64AC(v, a, x0, x1); // v[a, a+1] += x ... x0 is the low 32 bits of x, x1 is the high 32 bits
+  v = ADD64AA(v, a,
+      b); // v[a,a+1] += v[b,b+1] ... in JS we must store a uint64 as two uint32s
+  v = ADD64AC(v, a, x0,
+      x1); // v[a, a+1] += x ... x0 is the low 32 bits of x, x1 is the high 32 bits
 
   // v[d,d+1] = (v[d,d+1] xor v[a,a+1]) rotated to the right by 32 bits
   int xor0 = v[d] ^ v[a];
@@ -641,7 +648,8 @@ Uint8List parameterBlock = Uint8List.fromList([
 // Takes an optional Uint8Array key
 // Takes an optinal Uint8Array salt
 // Takes an optinal Uint8Array personal
-blake2bInit(int outlen, [Uint8List? key, Uint8List? salt, Uint8List? personal]) {
+blake2bInit(int outlen,
+    [Uint8List? key, Uint8List? salt, Uint8List? personal]) {
   // if (outlen === 0 || outlen > 64) {
   //   throw new Error('Illegal output length, expected 0 < length <= 64');
   // }
@@ -736,7 +744,8 @@ Uint8List blake2bFinal(ctx) {
 // - outlen - optional output length in bytes, default 64
 // - salt - optional salt bytes, string, Buffer or Uint8Array
 // - personal - optional personal bytes, string, Buffer or Uint8Array
-Uint8List blake2b(Uint8List input, [Uint8List? key, int? outlen, Uint8List? salt, Uint8List? personal]) {
+Uint8List blake2b(Uint8List input,
+    [Uint8List? key, int? outlen, Uint8List? salt, Uint8List? personal]) {
   // preprocess inputs
   outlen = outlen ?? 64;
   // outlen = 64;
@@ -764,8 +773,193 @@ Uint8List blake2b(Uint8List input, [Uint8List? key, int? outlen, Uint8List? salt
 // - outlen - optional output length in bytes, default 64
 // - salt - optional salt bytes, string, Buffer or Uint8Array
 // - personal - optional personal bytes, string, Buffer or Uint8Array
-blake2bHex(Uint8List input, Uint8List key, int outlen, Uint8List salt, Uint8List personal) {
+Uint8List blake2bHex(Uint8List input, Uint8List key, int outlen, Uint8List salt,
+    Uint8List personal) {
   final Uint8List output = blake2b(input, key, outlen, salt, personal);
   // return util.toHex(output);
   return output;
+}
+
+// Future<String> generate_work(String hash, String difficulty) async {
+
+//   String sendDifficulty = "fffffff800000000";
+//   String receiveDifficulty = "fffffe0000000000";
+
+//   final String hashedPassword = NanoHelpers.byteToHex(blake2b(
+//       Uint8List.fromList(utf8.encode(confirmPasswordController!.text))));
+
+//   return "";
+// }
+
+const int allThreshold = 0xffffffc000000000;
+const int sendChangeThreshold = 0xfffffff800000000;
+const int receiveOpenThreshold = 0xfffffe0000000000;
+
+bool threshold(Uint8List value, int difficulty) {
+  if ((value[0] == 255) && (value[1] == 255) && (value[2] == 255)) {
+    print("0x${uint8ToHex(value)}");
+  }
+
+  if ((value[0] == 255) &&
+      (value[1] == 255) &&
+      (value[2] == 255) &&
+      (value[3] >= 192)) {
+    print("0x${uint8ToHex(value)}");
+    return true;
+  } else {
+    return false;
+  }
+
+  // if ((value[0] == 255) &&
+  //     (value[1] == 255) &&
+  //     (value[2] == 255) &&
+  //     (value[3] == 255)) {
+  //   // print(NanoHelpers.byteToHex(value));
+  //   print("0x${uint8ToHex(value)}");
+  //   return true;
+  // }
+
+  // sendChangeThreshold:
+  // if ((value[0] == 255) && // 0xff
+  //     (value[1] == 255) && // 0xff
+  //     (value[2] == 255) && // 0xff
+  //     (value[3] == 255) && // 0xff
+  //     (value[4] >= 248)) {// 0xf8
+  //   return true;
+  // } else {
+  //   return false;
+  // }
+
+  // receiveOpenThreshold:
+  // if ((value[0] == 255) && // 0xff
+  //     (value[1] == 255) && // 0xff
+  //     (value[2] >= 254)) {
+  //   // 0xfe
+  //   return true;
+  // } else {
+  //   return false;
+  // }
+
+  // // // Combine the bytes into a 64-bit unsigned integer
+  // // int combinedValue = 0;
+  // // for (int i = 0; i < 8; i++) {
+  // //   combinedValue = (combinedValue << 8) | value[i];
+  // // }
+  // // return combinedValue > difficulty;
+
+  // List<int> difficultyBytes = [
+  //   (difficulty >> 56) & 0xFF,
+  //   (difficulty >> 48) & 0xFF,
+  //   (difficulty >> 40) & 0xFF,
+  //   (difficulty >> 32) & 0xFF,
+  //   (difficulty >> 24) & 0xFF,
+  //   (difficulty >> 16) & 0xFF,
+  //   (difficulty >> 8) & 0xFF,
+  //   difficulty & 0xFF,
+  // ];
+
+  // for (int i = 0; i < 8; i++) {
+  //   if (value[i] > difficultyBytes[i]) {
+  //     return true;
+  //   } else if (value[i] < difficultyBytes[i]) {
+  //     return false;
+  //   }
+  // }
+  // return true;
+
+  return false;
+}
+
+Uint8List randomUint() {
+  final Random random = Random();
+  return Uint8List.fromList(List<int>.generate(8, (_) => random.nextInt(256)));
+}
+
+Uint8List? generator256(Uint8List hash) {
+  Uint8List random = randomUint();
+  for (int r = 0; r < 256; r++) {
+    random[7] = (random[7] + r) % 256; // pseudo random part
+    // Uint8List random = randomUint();
+    final dynamic context = blake2bInit(8, null);
+    blake2bUpdate(context, random);
+    blake2bUpdate(context, hash);
+    final Uint8List blakeRandom =
+        Uint8List.fromList(blake2bFinal(context).reversed.toList());
+    if (threshold(blakeRandom, sendChangeThreshold)) {
+      return Uint8List.fromList(random.reversed.toList());
+    }
+  }
+  return null;
+}
+
+Future<String> generate_work(String hashString, int threadNum) async {
+  final Uint8List hash = NanoHelpers.hexToBytes(hashString);
+  for (int i = 0; i < 1024; i++) {
+    if (i % 512 == 0) {
+      print("$threadNum: $i");
+    }
+    final Uint8List? generate = generator256(hash);
+    if (generate != null) {
+      // print(uint8ToHex(generate));
+      return uint8ToHex(generate);
+    }
+  }
+  throw Exception("didn't find a valid nonce");
+}
+
+Future<String> generateWorkMultiThreaded(String hash) async {
+  final List<Future<String>> results = <Future<String>>[];
+  for (int i = 0; i < 4; i++) {
+    results.add(Isolate.run(() {
+      return generate_work(hash, i + 1);
+    }));
+  }
+
+  final Completer<String> completer = Completer<String>();
+
+  for (final Future<String> future in results) {
+    future.then(
+      (String value) {
+        if (!completer.isCompleted) {
+          // completer.complete(value);
+          return value;
+        }
+      },
+      onError: (error) {
+        // You can handle or log the error if needed
+        print(error);
+      },
+    );
+  }
+
+  throw Exception("didn't find a valid nonce");
+
+  // return completer.future;
+}
+
+List<int> uint8ToUint4(Uint8List uint8) {
+  int length = uint8.length;
+  List<int> uint4 = List.filled(length * 2, 0);
+  for (int i = 0; i < length; i++) {
+    uint4[i * 2] = uint8[i] ~/ 16;
+    uint4[i * 2 + 1] = uint8[i] % 16;
+  }
+  return uint4;
+}
+
+Uint8List hexToUint8(String hex) {
+  int length = hex.length ~/ 2;
+  Uint8List uint8 = Uint8List(length);
+  for (int i = 0; i < length; i++) {
+    uint8[i] = int.parse(hex.substring(i * 2, i * 2 + 2), radix: 16);
+  }
+  return uint8;
+}
+
+String uint4ToHex(List<int> uint4) {
+  return uint4.map((val) => val.toRadixString(16).toLowerCase()).join('');
+}
+
+String uint8ToHex(Uint8List uint8) {
+  return uint4ToHex(uint8ToUint4(uint8));
 }

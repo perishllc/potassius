@@ -1,723 +1,723 @@
 {
-  "@@locale": "ar",
-  "account": "الحساب",
+  "@@locale": "zh",
+  "account": "账户",
   "@account": {
     "type": "text",
     "description": "Account text"
   },
-  "accountNameHint": "إدخال اسم",
+  "accountNameHint": "输入名称",
   "@accountNameHint": {
     "type": "text",
     "description": "enter_name_hint"
   },
-  "accountNameMissing": "اختر اسم الحساب",
+  "accountNameMissing": "选择一个帐户名称",
   "@accountNameMissing": {
     "type": "text",
     "description": "account_name_missing"
   },
-  "accounts": "الحسابات",
+  "accounts": "账户",
   "@accounts": {
     "type": "text",
     "description": "Accounts header"
   },
-  "ackBackedUp": "هل أنت متأكد من أنك قمت بنسخ نسخة احتياطية من العبارة السرية أو مفتاحك الخاص؟",
+  "ackBackedUp": "您确定已经将您的种子或秘密词语备份了吗？",
   "@ackBackedUp": {
     "type": "text",
     "description": "Ack backed up"
   },
-  "activateSub": "تفعيل الاشتراك",
+  "activateSub": "激活订阅",
   "@activateSub": {
     "type": "text",
     "description": "activate_subscription"
   },
-  "activeMessageHeader": "رسالة نشطة",
+  "activeMessageHeader": "活动消息",
   "@activeMessageHeader": {
     "type": "text",
     "description": "active_message"
   },
-  "addAccount": "إضافة حساب",
+  "addAccount": "添加账户",
   "@addAccount": {
     "type": "text",
     "description": "Default new account name - e.g. Account 1"
   },
-  "addAddress": "إضافة عنوان",
+  "addAddress": "添加地址",
   "@addAddress": {
     "type": "text",
     "description": "split_add_address_header"
   },
-  "addBlocked": "حظر مستخدم",
+  "addBlocked": "屏蔽用户",
   "@addBlocked": {
     "type": "text",
     "description": "blocked_add_button"
   },
-  "addContact": "إضافة جهة الاتصال",
+  "addContact": "添加联系人",
   "@addContact": {
     "type": "text",
     "description": "contact_add_button"
   },
-  "addFavorite": "إضافة المفضلة",
+  "addFavorite": "添加收藏夹",
   "@addFavorite": {
     "type": "text",
     "description": "favorite_add_button"
   },
-  "addNode": "أضف العقدة",
+  "addNode": "添加节点",
   "@addNode": {
     "type": "text",
     "description": "Add a new node"
   },
-  "address": "تبوك",
+  "address": "地址",
   "@address": {
     "type": "text",
     "description": "send_warning_address"
   },
-  "addressCopied": "تم نسخ العنوان",
+  "addressCopied": "地址已复制",
   "@addressCopied": {
     "type": "text",
     "description": "receive_copied"
   },
-  "addressHint": "أدخل العنوان\n",
+  "addressHint": "输入地址",
   "@addressHint": {
     "type": "text",
     "description": "send_address_hint"
   },
-  "addressMissing": "يرجى إدخال العنوان",
+  "addressMissing": "请输入目标地址",
   "@addressMissing": {
     "type": "text",
     "description": "send_enter_address"
   },
-  "addressOrUserMissing": "الرجاء إدخال اسم مستخدم أو عنوان",
+  "addressOrUserMissing": "请输入用户名或地址",
   "@addressOrUserMissing": {
     "type": "text",
     "description": "send_enter_user_address"
   },
-  "addressShare": "أنشر العنوان",
+  "addressShare": "分享地址",
   "@addressShare": {
     "type": "text",
     "description": "receive_share_cta"
   },
-  "addSubscription": "إضافة اشتراك",
+  "addSubscription": "添加订阅",
   "@addSubscription": {
     "type": "text",
     "description": "Add a new subscription"
   },
-  "addUser": "أضف مستخدم",
+  "addUser": "添加用户",
   "@addUser": {
     "type": "text",
     "description": "split_add_user_header"
   },
-  "addWatchOnlyAccount": "أضف حساب المشاهدة فقط",
+  "addWatchOnlyAccount": "添加仅观看帐户",
   "@addWatchOnlyAccount": {
     "type": "text",
     "description": "watch_only_add"
   },
-  "addWatchOnlyAccountError": "خطأ في إضافة حساب المشاهدة فقط: الحساب كان فارغًا",
+  "addWatchOnlyAccountError": "添加仅观看帐户时出错：帐户为空",
   "@addWatchOnlyAccountError": {
     "type": "text",
     "description": "watch_only_add_error"
   },
-  "addWatchOnlyAccountSuccess": "تم إنشاء حساب المشاهدة فقط بنجاح!",
+  "addWatchOnlyAccountSuccess": "已成功创建仅限观看的帐户！",
   "@addWatchOnlyAccountSuccess": {
     "type": "text",
     "description": "watch_only_add_success"
   },
-  "addWorkSource": "أضف مصدر العمل",
+  "addWorkSource": "添加工作来源",
   "@addWorkSource": {
     "type": "text",
     "description": "Add work source"
   },
-  "advanced": "متقدم",
+  "advanced": "先进的",
   "@advanced": {
     "type": "text",
     "description": "settings_advanced_header"
   },
-  "aliases": "الأسماء المستعارة",
+  "aliases": "别名",
   "@aliases": {
     "type": "text",
     "description": "card_details_aliases"
   },
-  "amount": "مقدار",
+  "amount": "数量",
   "@amount": {
     "type": "text",
     "description": "amount_subs"
   },
-  "amountGiftGreaterError": "لا يمكن أن يكون مبلغ الانقسام أكبر من رصيد الهدية",
+  "amountGiftGreaterError": "分割金额不能大于礼物余额",
   "@amountGiftGreaterError": {
     "type": "text",
     "description": "gift_split_greater_error"
   },
-  "amountMissing": "يرجى إدخال المبلغ",
+  "amountMissing": "请输入金额",
   "@amountMissing": {
     "type": "text",
     "description": "send_enter_amount"
   },
-  "appWallet": "٪ 1 محفظة",
+  "appWallet": "%1 钱包",
   "@appWallet": {
     "type": "text",
     "description": "app_wallet"
   },
-  "asked": "طلب",
+  "asked": "问",
   "@asked": {
     "type": "text",
     "description": "home_asked_cta"
   },
-  "askSkipSetup": "لاحظنا أنك نقرت على رابط يحتوي على بعض النانو ، هل ترغب في تخطي عملية الإعداد؟ يمكنك دائمًا تغيير الأشياء لاحقًا.\n\n ومع ذلك ، إذا كان لديك بذرة موجودة تريد استيرادها ، فيجب عليك تحديد لا.",
+  "askSkipSetup": "我们注意到您单击了包含一些 nano 的链接，您想跳过设置过程吗？你以后总是可以改变的。\n\n 但是，如果您有要导入的现有种子，则应选择否。",
   "@askSkipSetup": {
     "type": "text",
     "description": "prompt_skip_setup"
   },
-  "askTracking": "نحن على وشك طلب إذن \"التتبع\" ، ويتم استخدامه * بشكل صارم * لإسناد الروابط / الإحالات ، والتحليلات الطفيفة (أشياء مثل عدد عمليات التثبيت ، وإصدار التطبيق ، وما إلى ذلك) نعتقد أنه يحق لك الحصول على خصوصيتك ولسنا مهتمين بأي من بياناتك الشخصية ، فنحن نحتاج فقط إلى الإذن حتى تعمل إحالات الروابط بشكل صحيح.",
+  "askTracking": "我们即将请求“跟踪”权限，这*严格*用于归因链接/推荐和次要分析（例如安装数量、应用版本等）我们相信您有权享有您的隐私并且对您的任何个人数据不感兴趣，我们只需要获得许可，链接属性才能正常工作。",
   "@askTracking": {
     "type": "text",
     "description": "prompt_ask_tracking"
   },
-  "authConfirm": "المصادقة",
+  "authConfirm": "认证",
   "@authConfirm": {
     "type": "text",
     "description": "auth_confirm_message"
   },
-  "authenticating": "المصادقة",
+  "authenticating": "认证",
   "@authenticating": {
     "type": "text",
     "description": "auth_authenticating"
   },
-  "authError": "حدث خطأ أثناء المصادقة. حاول مرة أخرى في وقت لاحق.",
+  "authError": "验证时出错。稍后再试。",
   "@authError": {
     "type": "text",
     "description": "auth_generic_error"
   },
-  "authMethod": "طريقة المصادقة",
+  "authMethod": "验证方法",
   "@authMethod": {
     "type": "text",
     "description": "settings_disable_fingerprint"
   },
-  "autoImport": "استيراد تلقائي",
+  "autoImport": "自动导入",
   "@autoImport": {
     "type": "text",
     "description": "auto_import"
   },
-  "autoLockHeader": "قفل آليً",
+  "autoLockHeader": "自动锁定",
   "@autoLockHeader": {
     "type": "text",
     "description": "auto_lock_header"
   },
-  "autoRenewSub": "التجديد التلقائي للاشتراك",
+  "autoRenewSub": "自动续订",
   "@autoRenewSub": {
     "type": "text",
     "description": "auto_renew_sub"
   },
-  "backupConfirmButton": "لقد حفظت العبارة السرية",
+  "backupConfirmButton": "我已备份",
   "@backupConfirmButton": {
     "type": "text",
     "description": "Has backed up seed confirmation button"
   },
-  "backupSecretPhrase": "حفظ العبارة السرية الخاصة بك\n",
+  "backupSecretPhrase": "备份秘密词语",
   "@backupSecretPhrase": {
     "type": "text",
     "description": "backup seed"
   },
-  "backupSeed": "نسخ احتياطي للمفتاح الخاص",
+  "backupSeed": "备份种子",
   "@backupSeed": {
     "type": "text",
     "description": "settings_backup_seed"
   },
-  "backupSeedConfirm": "هل أنت متاكد من حفظ المفتاح الخاص؟",
+  "backupSeedConfirm": "您确认您备份了您的钱包种子吗？",
   "@backupSeedConfirm": {
     "type": "text",
     "description": "intro_new_wallet_backup"
   },
-  "backupYourSeed": "حفظ المفتاح الخاص",
+  "backupYourSeed": "备份您的种子",
   "@backupYourSeed": {
     "type": "text",
     "description": "intro_new_wallet_seed_backup_header"
   },
-  "biometricsMethod": "القياسات الحيوية",
+  "biometricsMethod": "生物识别技术",
   "@biometricsMethod": {
     "type": "text",
     "description": "settings_fingerprint_method"
   },
-  "blockedAdded": "تم حظر %1 بنجاح.",
+  "blockedAdded": "%1 已成功阻止。",
   "@blockedAdded": {
     "type": "text",
     "description": "blocked_added"
   },
-  "blockedExists": "تم حظر المستخدم بالفعل!",
+  "blockedExists": "用户已被封锁！",
   "@blockedExists": {
     "type": "text",
     "description": "user_already_blocked"
   },
-  "blockedHeader": "تم حظره",
+  "blockedHeader": "已封锁",
   "@blockedHeader": {
     "type": "text",
     "description": "blocked_header"
   },
-  "blockedInfo": "حظر مستخدم بواسطة أي اسم مستعار أو عنوان معروف. سيتم تجاهل أي رسائل أو معاملات أو طلبات منها.",
+  "blockedInfo": "通过任何已知的别名或地址屏蔽用户。任何消息、事务或来自它们的请求都将被忽略。",
   "@blockedInfo": {
     "type": "text",
     "description": "blocked_info"
   },
-  "blockedInfoHeader": "معلومات محظورة",
+  "blockedInfoHeader": "封锁信息",
   "@blockedInfoHeader": {
     "type": "text",
     "description": "blocked_info"
   },
-  "blockedNameExists": "اسم Nick مستخدم بالفعل!",
+  "blockedNameExists": "昵称已经使用了！",
   "@blockedNameExists": {
     "type": "text",
     "description": "blocked_name_used"
   },
-  "blockedNameMissing": "اختر اسم Nick",
+  "blockedNameMissing": "选择一个昵称",
   "@blockedNameMissing": {
     "type": "text",
     "description": "blocked_name_missing"
   },
-  "blockedRemoved": "تم إلغاء حظر %1!",
+  "blockedRemoved": "%1 已解除封锁！",
   "@blockedRemoved": {
     "type": "text",
     "description": "blocked_removed"
   },
-  "blockExplorer": "بلوك إكسبلورر",
+  "blockExplorer": "区块浏览器",
   "@blockExplorer": {
     "type": "text",
     "description": "settings_change_block_explorer"
   },
-  "blockExplorerHeader": "معلومات بلوك إكسبلورر",
+  "blockExplorerHeader": "区块浏览器信息",
   "@blockExplorerHeader": {
     "type": "text",
     "description": "block_explorer"
   },
-  "blockExplorerInfo": "مستكشف الكتلة الذي سيتم استخدامه لعرض معلومات المعاملة",
+  "blockExplorerInfo": "使用哪个区块浏览器显示交易信息",
   "@blockExplorerInfo": {
     "type": "text",
     "description": "block_explorer_info"
   },
-  "blockUser": "حظر هذا المستخدم",
+  "blockUser": "屏蔽此用户",
   "@blockUser": {
     "type": "text",
     "description": "block_user"
   },
-  "branchConnectErrorLongDesc": "يبدو أننا لا نستطيع الوصول إلى واجهة برمجة تطبيقات الفرع ، فعادةً ما يكون هذا بسبب نوع من مشكلة الشبكة أو VPN تحظر الاتصال.\n\n يجب أن تظل قادرًا على استخدام التطبيق كالمعتاد ، ومع ذلك قد لا يعمل إرسال بطاقات الهدايا واستلامها.",
+  "branchConnectErrorLongDesc": "我们似乎无法访问 Branch API，这通常是由某种网络问题或 VPN 阻止连接引起的。\n\n 您应该仍然可以正常使用该应用程序，但发送和接收礼品卡可能无法正常工作。",
   "@branchConnectErrorLongDesc": {
     "type": "text",
     "description": "branch_connection_error_long_desc"
   },
-  "branchConnectErrorShortDesc": "خطأ: لا يمكن الوصول إلى فرع API",
+  "branchConnectErrorShortDesc": "错误：无法访问分支 API",
   "@branchConnectErrorShortDesc": {
     "type": "text",
     "description": "branch_connection_error_short_desc"
   },
-  "branchConnectErrorTitle": "تحذير الاتصال",
+  "branchConnectErrorTitle": "连接警告",
   "@branchConnectErrorTitle": {
     "type": "text",
     "description": "branch_connection_error_title"
   },
-  "businessButton": "اعمال",
+  "businessButton": "商业",
   "@businessButton": {
     "type": "text",
     "description": "business_button"
   },
-  "cancel": "إلغاء",
+  "cancel": "取消",
   "@cancel": {
     "type": "text",
     "description": "dialog_cancel"
   },
-  "cancelSub": "إلغاء الاشتراك",
+  "cancelSub": "取消订阅",
   "@cancelSub": {
     "type": "text",
     "description": "cancel_subscription"
   },
-  "captchaWarning": "كلمة التحقق",
+  "captchaWarning": "验证码",
   "@captchaWarning": {
     "type": "text",
     "description": "gift_claim_captcha_warning_header"
   },
-  "captchaWarningBody": "من أجل منع إساءة الاستخدام ، نطلب منك حل captcha للمطالبة ببطاقة الهدايا في الصفحة التالية.",
+  "captchaWarningBody": "为了防止滥用，我们要求您解决验证码才能在下一页领取礼品卡。",
   "@captchaWarningBody": {
     "type": "text",
     "description": "gift_claim_captcha_warning_body"
   },
-  "changeCurrency": "تغيير العملة",
+  "changeCurrency": "更改货币",
   "@changeCurrency": {
     "type": "text",
     "description": "settings_local_currency"
   },
-  "changeLog": "سجل التغيير",
+  "changeLog": "更改日志",
   "@changeLog": {
     "type": "text",
     "description": "change_log_header"
   },
-  "changeNode": "تغيير العقدة",
+  "changeNode": "改变节点",
   "@changeNode": {
     "type": "text",
     "description": "change node"
   },
-  "changeNodeInfo": "قم بتغيير العقدة التي تتصل بها. يتيح لك هذا الاتصال بعقدة مختلفة في حالة مواجهة مشكلات مع العقدة الافتراضية ، أو فقط إذا كنت ترغب في الاتصال بعقدة تستضيفها بنفسك. تُستخدم العقدة لإرسال المعاملات وتلقي التحديثات حول حسابك.",
+  "changeNodeInfo": "更改您连接到的节点。这允许您连接到不同的节点，以防万一您对默认节点有问题，或者只是想连接到您自己托管的节点。该节点用于提交交易和接收有关您帐户的更新。",
   "@changeNodeInfo": {
     "type": "text",
     "description": "change node"
   },
-  "changePassword": "غير كلمة السر",
+  "changePassword": "更改密码",
   "@changePassword": {
     "type": "text",
     "description": "A button that changes the magic password"
   },
-  "changePasswordParagraph": "غيّر كلمة مرورك الحالية. إذا كنت لا تعرف كلمة مرورك الحالية ، فما عليك سوى تخمين أفضل ما لديك لأنه ليس مطلوبًا في الواقع تغييرها (نظرًا لأنك قمت بتسجيل الدخول بالفعل) ، ولكنها تتيح لنا حذف إدخال النسخ الاحتياطي الحالي.",
+  "changePasswordParagraph": "更改现有密码。如果您不知道当前密码，请做出最佳猜测，因为实际上不需要更改它（因为您已经登录），但它确实让我们删除了现有的备份条目。",
   "@changePasswordParagraph": {
     "type": "text",
     "description": "A paragraph that explains the user can set or change their existing magic password."
   },
-  "changePin": "تغيير الدبوس",
+  "changePin": "更改引脚",
   "@changePin": {
     "type": "text",
     "description": "change_pin"
   },
-  "changePinHint": "تعيين دبوس",
+  "changePinHint": "设置引脚",
   "@changePinHint": {
     "type": "text",
     "description": "A text field hint that tells the user to set a pin"
   },
-  "changePow": "تغيير إثبات العمل",
+  "changePow": "改变工作量证明",
   "@changePow": {
     "type": "text",
     "description": "change pow"
   },
-  "changePowSource": "تغيير مصدر إثبات العمل",
+  "changePowSource": "更改 PoW 源",
   "@changePowSource": {
     "type": "text",
     "description": "change pow source"
   },
-  "changePowSourceInfo": "تغيير مصدر إثبات العمل المستخدم لإرسال واستقبال المعاملات.",
+  "changePowSourceInfo": "更改用于发送和接收交易的 PoW 来源。",
   "@changePowSourceInfo": {
     "type": "text",
     "description": "change pow source info"
   },
-  "changeRepAuthenticate": "تغير المندوب",
+  "changeRepAuthenticate": "更改代表",
   "@changeRepAuthenticate": {
     "type": "text",
     "description": "settings_change_rep"
   },
-  "changeRepButton": "تغير",
+  "changeRepButton": "更改",
   "@changeRepButton": {
     "type": "text",
     "description": "change_representative_change"
   },
-  "changeRepHint": "أدخل مندوب جديد",
+  "changeRepHint": "输入新代表",
   "@changeRepHint": {
     "type": "text",
     "description": "change_representative_hint"
   },
-  "changeRepSame": "هذا هو بالفعل ممثلك!",
+  "changeRepSame": "这已经是你的代表了！",
   "@changeRepSame": {
     "type": "text",
     "description": "change_representative_same"
   },
-  "changeRepSucces": "تم تغير المندوب بنجاح",
+  "changeRepSucces": "代表更改成功",
   "@changeRepSucces": {
     "type": "text",
     "description": "change_representative_success"
   },
-  "changeSeed": "تغيير البذور",
+  "changeSeed": "改变种子",
   "@changeSeed": {
     "type": "text",
     "description": "A button that changes the magic seed"
   },
-  "changeSeedParagraph": "قم بتغيير العبارة الأولية المرتبطة بهذا الحساب المصادق عليه الارتباط السحري ، مهما كانت كلمة المرور التي قمت بتعيينها هنا ستحل محل كلمة المرور الحالية ، ولكن يمكنك استخدام نفس كلمة المرور إذا اخترت ذلك.",
+  "changeSeedParagraph": "更改与此magic-link authed 帐户关联的种子/短语，您在此处设置的任何密码都将覆盖您现有的密码，但您可以选择使用相同的密码。",
   "@changeSeedParagraph": {
     "type": "text",
     "description": "A paragraph that explains the user can set or change their existing magic seed."
   },
-  "checkAvailability": "تحقق من التوفر",
+  "checkAvailability": "查看空房情况",
   "@checkAvailability": {
     "type": "text",
     "description": "check_availability"
   },
-  "checkUsernameConfirmInfo": "نحن على وشك التحقق مما إذا كان اسم المستخدم هذا مسجلاً في بعض الخدمات المختلفة.\nقد يستغرق هذا ثانية أو نحو ذلك.",
+  "checkUsernameConfirmInfo": "我们将检查此用户名是否已在几个不同的服务上注册。\n这可能需要一秒钟左右的时间。",
   "@checkUsernameConfirmInfo": {
     "type": "text",
     "description": "username_check_confirm_info"
   },
-  "close": "إغلاق",
+  "close": "关闭",
   "@close": {
     "type": "text",
     "description": "dialog_close"
   },
-  "confirm": "تأكيد",
+  "confirm": "确认",
   "@confirm": {
     "type": "text",
     "description": "dialog_confirm"
   },
-  "confirmPasswordHint": "تأكيد كلمة المرور\n",
+  "confirmPasswordHint": "确认密码",
   "@confirmPasswordHint": {
     "type": "text",
     "description": "A text field hint that tells the user to confirm the password"
   },
-  "confirmPinHint": "قم بتأكيد الدبوس",
+  "confirmPinHint": "确认引脚",
   "@confirmPinHint": {
     "type": "text",
     "description": "A text field hint that tells the user to confirm the pin"
   },
-  "connectingHeader": "الاتصال",
+  "connectingHeader": "连接中",
   "@connectingHeader": {
     "type": "text",
     "description": "A header to let the user now that Nautilus is currently connecting to (or loading) live chat."
   },
-  "connectionWarning": "لا يمكن الاتصال",
+  "connectionWarning": "无法连接",
   "@connectionWarning": {
     "type": "text",
     "description": "home_connection_warning"
   },
-  "connectionWarningBody": "يبدو أننا لا نستطيع الاتصال بالواجهة الخلفية ، فقد يكون هذا مجرد اتصالك أو إذا استمرت المشكلة ، فقد تكون الواجهة الخلفية معطلة للصيانة أو حتى انقطاع التيار. إذا مر أكثر من ساعة وما زلت تواجه مشكلات ، فيرجى إرسال تقرير في # bug-report في خادم discord @ chat.perish.co",
+  "connectionWarningBody": "我们似乎无法连接到后端，这可能只是您的连接，或者如果问题仍然存在，后端可能会因维护甚至中断而停机。如果一个多小时后仍然有问题，请在 discord 服务器@chat.perish.co 的#bug-reports 中提交报告",
   "@connectionWarningBody": {
     "type": "text",
     "description": "connection_warning_body"
   },
-  "connectionWarningBodyLong": "يبدو أننا لا نستطيع الاتصال بالواجهة الخلفية ، فقد يكون هذا مجرد اتصالك أو إذا استمرت المشكلة ، فقد تكون الواجهة الخلفية معطلة للصيانة أو حتى انقطاع التيار. إذا مر أكثر من ساعة وما زلت تواجه مشكلات ، فيرجى إرسال تقرير في # bug-report في خادم discord @ chat.perish.co",
+  "connectionWarningBodyLong": "我们似乎无法连接到后端，这可能只是您的连接，或者如果问题仍然存在，后端可能会因维护甚至中断而停机。如果一个多小时后仍然有问题，请在 discord 服务器@chat.perish.co 的#bug-reports 中提交报告",
   "@connectionWarningBodyLong": {
     "type": "text",
     "description": "connection_warning_body_long"
   },
-  "connectionWarningBodyShort": "لا يمكننا الاتصال بالخلفية",
+  "connectionWarningBodyShort": "我们似乎无法连接到后端",
   "@connectionWarningBodyShort": {
     "type": "text",
     "description": "connection_warning_body_short"
   },
-  "contactAdded": "تم إضافة %1 إلى جهات الاتصال.",
+  "contactAdded": "%1已被添加到联系人！",
   "@contactAdded": {
     "type": "text",
     "description": "contact_added"
   },
-  "contactExists": "جهة الاتصال موجودة مسبقا",
+  "contactExists": "联系人已存在",
   "@contactExists": {
     "type": "text",
     "description": "contact_name_exists"
   },
-  "contactHeader": "جهة الاتصال",
+  "contactHeader": "联系人",
   "@contactHeader": {
     "type": "text",
     "description": "contact_view_header"
   },
-  "contactInvalid": "اسم جهة الاتصال خاطيء",
+  "contactInvalid": "联系人姓名无效",
   "@contactInvalid": {
     "type": "text",
     "description": "contact_invalid_name"
   },
-  "contactNameHint": "أدخل اسم @",
+  "contactNameHint": "输入姓名@",
   "@contactNameHint": {
     "type": "text",
     "description": "contact_name_hint"
   },
-  "contactNameMissing": "إختر إسم جهة الاتصال",
+  "contactNameMissing": "没有要导出的联系人",
   "@contactNameMissing": {
     "type": "text",
     "description": "contact_name_missing"
   },
-  "contactRemoved": "تم حذف %1 من جهة الاتصال !",
+  "contactRemoved": "%1已从联系人名单中刪除!",
   "@contactRemoved": {
     "type": "text",
     "description": "contact_removed"
   },
-  "contactsHeader": "جهات الاتصال",
+  "contactsHeader": "联系人名单",
   "@contactsHeader": {
     "type": "text",
     "description": "contact_header"
   },
-  "contactsImportErr": "فشل استيراد جهات الاتصال",
+  "contactsImportErr": "无法导入联系人",
   "@contactsImportErr": {
     "type": "text",
     "description": "contact_import_error"
   },
-  "contactsImportSuccess": "تم جلب جهات اتصال %1 بنجاح.",
+  "contactsImportSuccess": "已成功导入％1个联系人",
   "@contactsImportSuccess": {
     "type": "text",
     "description": "contact_import_success"
   },
-  "continueButton": "يكمل",
+  "continueButton": "继续",
   "@continueButton": {
     "type": "text",
     "description": "A continue button that goes to the next screen."
   },
-  "continueWithoutLogin": "تواصل بدون تسجيل الدخول",
+  "continueWithoutLogin": "无需登录即可继续",
   "@continueWithoutLogin": {
     "type": "text",
     "description": "alternative_to_login"
   },
-  "copied": "تم نسخ",
+  "copied": "已复制",
   "@copied": {
     "type": "text",
     "description": "Copied (to clipboard)"
   },
-  "copy": "نسخ",
+  "copy": "复制",
   "@copy": {
     "type": "text",
     "description": "Copy (to clipboard)"
   },
-  "copyAddress": "نسخ العنوان",
+  "copyAddress": "复制地址",
   "@copyAddress": {
     "type": "text",
     "description": "receive_copy_cta"
   },
-  "copyLink": "نسخ الرابط",
+  "copyLink": "复制链接",
   "@copyLink": {
     "type": "text",
     "description": "copy_link"
   },
-  "copyMessage": "نسخ الرسالة",
+  "copyMessage": "复制消息",
   "@copyMessage": {
     "type": "text",
     "description": "copy_message"
   },
-  "copySeed": "نسخ المفتاح الخاص",
+  "copySeed": "复制种子",
   "@copySeed": {
     "type": "text",
     "description": "copy_seed_btn"
   },
-  "copyWalletAddressToClipboard": "نسخ عنوان المحفظة إلى الحافظة",
+  "copyWalletAddressToClipboard": "将钱包地址复制到剪贴板",
   "@copyWalletAddressToClipboard": {
     "type": "text",
     "description": "onramp_copy"
   },
-  "copyXMRSeed": "نسخ بذور مونيرو",
+  "copyXMRSeed": "复制门罗币种子",
   "@copyXMRSeed": {
     "type": "text",
     "description": "copy_xmr_seed_btn"
   },
-  "createAPasswordHeader": "أنشئ كلمة مرور.",
+  "createAPasswordHeader": "创建一个密码。",
   "@createAPasswordHeader": {
     "type": "text",
     "description": "A paragraph that tells the users to create a password."
   },
-  "created": "خلقت",
+  "created": "创建",
   "@created": {
     "type": "text",
     "description": "gift_created"
   },
-  "createGiftCard": "إنشاء بطاقة هدايا",
+  "createGiftCard": "创建礼品卡",
   "@createGiftCard": {
     "type": "text",
     "description": "create_gift_card"
   },
-  "createGiftHeader": "إنشاء بطاقة هدايا",
+  "createGiftHeader": "创建礼品卡",
   "@createGiftHeader": {
     "type": "text",
     "description": "create_gift_header"
   },
-  "createPasswordFirstParagraph": "يمكنك إنشاء كلمة مرور لإضافة أمان إلى محفظتك.\n",
+  "createPasswordFirstParagraph": "您可以创建一个密码来加强您钱包的安全性。",
   "@createPasswordFirstParagraph": {
     "type": "text",
     "description": "A paragraph that tells the users that they can create a password for additional security."
   },
-  "createPasswordHint": "أنشئ كلمة مرور\n",
+  "createPasswordHint": "创建密码",
   "@createPasswordHint": {
     "type": "text",
     "description": "A text field hint that tells the user to create a password"
   },
-  "createPasswordSecondParagraph": "كلمة المرور اختيارية ، وسيتم حماية محفظتك برقم التعريف الشخصي أو القياسات الحيوية بغض النظر.\n",
+  "createPasswordSecondParagraph": "密码是可选的，无论如何您的钱包仍会被识别码或生物识别技术保护。",
   "@createPasswordSecondParagraph": {
     "type": "text",
     "description": "A paragraph that tells the users that the password creation is optional and the wallet will be still protected with biometrics or PIN regardless."
   },
-  "createPasswordSheetHeader": "خلق",
+  "createPasswordSheetHeader": "创建",
   "@createPasswordSheetHeader": {
     "type": "text",
     "description": "Prompt user to create a new password"
   },
-  "createPinHint": "قم بإنشاء دبوس",
+  "createPinHint": "创建图钉",
   "@createPinHint": {
     "type": "text",
     "description": "A text field hint that tells the user to create a pin"
   },
-  "createQR": "إنشاء رمز الاستجابة السريعة",
+  "createQR": "创建二维码",
   "@createQR": {
     "type": "text",
     "description": "create_qr_code"
   },
-  "creatingGiftCard": "إنشاء بطاقة هدايا",
+  "creatingGiftCard": "创建礼品卡",
   "@creatingGiftCard": {
     "type": "text",
     "description": "creating_gift_card"
   },
-  "cronFormatExplainer": "محدد بتنسيق CRON",
+  "cronFormatExplainer": "以 CRON 格式指定",
   "@cronFormatExplainer": {
     "type": "text",
     "description": "sub_creation_cron_hint"
   },
-  "currency": "عملة",
+  "currency": "货币",
   "@currency": {
     "type": "text",
     "description": "A settings menu item for changing currency"
   },
-  "currencyMode": "وضع العملة",
+  "currencyMode": "货币模式",
   "@currencyMode": {
     "type": "text",
     "description": "currency_mode"
   },
-  "currencyModeChange": "تغيير وضع العملة",
+  "currencyModeChange": "货币模式变更",
   "@currencyModeChange": {
     "type": "text",
     "description": "currency_mode_change"
   },
-  "currencyModeChangeWarning": "تذكر تغيير العقدة إلى / من عقدة BANANO حتى يسري التغيير! يمكنك القيام بذلك في قائمة الإعدادات المتقدمة -> تغيير العقدة.",
+  "currencyModeChangeWarning": "请记住将节点更改为/从 BANANO 节点以使更改生效！您可以在高级设置菜单 -> 更改节点中执行此操作。",
   "@currencyModeChangeWarning": {},
-  "currencyModeHeader": "معلومات وضع العملة",
+  "currencyModeHeader": "货币模式信息",
   "@currencyModeHeader": {
     "type": "text",
     "description": "currency_mode_header"
   },
-  "currencyModeInfo": "اختر الوحدة التي تريد عرض الكميات بها.\n1 نيانو = 0.000001 نانو، أو \n1,000,000 نيانو = 1 نانو",
+  "currencyModeInfo": "选择要显示金额的单位。\n1 nyano = 0.000001 NANO，或者 \n1,000,000 nyano = 1 NANO",
   "@currencyModeInfo": {
     "type": "text",
     "description": "currency_mode_info"
   },
-  "currentlyRepresented": "المندوب الحالي",
+  "currentlyRepresented": "当前代表",
   "@currentlyRepresented": {
     "type": "text",
     "description": "change_representative_current_header"
   },
-  "daily": "يوميًا",
+  "daily": "日常的",
   "@daily": {
     "type": "text",
     "description": "frequency_daily"
   },
-  "dayAgo": "قبل يوم",
+  "dayAgo": "一天前",
   "@dayAgo": {
     "type": "text",
     "description": "history_day_ago"
   },
-  "decryptionError": "خطأ فك التشفير!",
+  "decryptionError": "解密错误！",
   "@decryptionError": {
     "type": "text",
     "description": "decryption_errorc"
   },
-  "defaultAccountName": "الحساب الرئيسي",
+  "defaultAccountName": "主要账户",
   "@defaultAccountName": {
     "type": "text",
     "description": "Default account name"
   },
-  "defaultGiftMessage": "تحقق من نوتيلوس! لقد أرسلت لك بعض النانو بهذا الرابط:",
+  "defaultGiftMessage": "看看鹦鹉螺！我用这个链接给你发了一些 %2：",
   "@defaultGiftMessage": {
     "type": "text",
     "description": "default_gift_message"
   },
-  "defaultNewAccountName": "الحساب %1",
+  "defaultNewAccountName": "账户 %1",
   "@defaultNewAccountName": {
     "type": "text",
     "description": "Default new account name - e.g. Account 1"
   },
-  "delete": "حذف",
+  "delete": "删除",
   "@delete": {
     "type": "text",
     "description": "home_delete_slide"
   },
-  "deleteAccount": "حذف الحساب",
+  "deleteAccount": "删除帐户",
   "@deleteAccount": {
     "type": "text",
     "description": "settings_delete_account"
   },
-  "deleteNodeConfirmation": "هل أنت متأكد أنك تريد حذف هذه العقدة؟\n\nيمكنك دائمًا إعادة إضافته لاحقًا بالنقر فوق الزر \"إضافة عقدة\"",
+  "deleteNodeConfirmation": "您确定要删除此节点吗？\n\n您以后随时可以通过点击“添加节点”按钮重新添加它",
   "@deleteNodeConfirmation": {
     "type": "text",
     "description": "delete node confirmation info"
   },
-  "deleteNodeHeader": "هل تريد حذف العقدة؟",
+  "deleteNodeHeader": "删除节点？",
   "@deleteNodeHeader": {
     "type": "text",
     "description": "Confirmation dialog header"
@@ -727,182 +727,182 @@
     "type": "text",
     "description": "delete_request"
   },
-  "deleteScheduledConfirmation": "هل أنت متأكد أنك تريد حذف هذه الدفعة المجدولة؟\n\nيمكنك دائمًا إعادة إضافته لاحقًا عن طريق النقر على الزر \"جدولة الدفع\"",
+  "deleteScheduledConfirmation": "您确定要删除此预定付款吗？\n\n您以后随时可以通过点击“安排付款”按钮重新添加",
   "@deleteScheduledConfirmation": {
     "type": "text",
     "description": "delete scheduled payment confirmation info"
   },
-  "deleteScheduledHeader": "هل تريد حذف الدفع المجدول؟",
+  "deleteScheduledHeader": "删除预定付款？",
   "@deleteScheduledHeader": {
     "type": "text",
     "description": "Confirmation dialog header"
   },
-  "deleteSubConfirmation": "هل أنت متأكد أنك تريد حذف هذا الاشتراك؟\n\nيمكنك دائمًا إعادة إضافته لاحقًا بالنقر فوق الزر \"إضافة اشتراك\"",
+  "deleteSubConfirmation": "您确定要删除此订阅吗？\n\n您以后随时可以通过点击“添加订阅”按钮重新添加它",
   "@deleteSubConfirmation": {
     "type": "text",
     "description": "delete sub confirmation info"
   },
-  "deleteSubHeader": "حذف الاشتراك؟",
+  "deleteSubHeader": "删除订阅？",
   "@deleteSubHeader": {
     "type": "text",
     "description": "Confirmation dialog header"
   },
-  "deleteWorkSourceConfirmation": "هل أنت متأكد أنك تريد حذف مصدر العمل هذا؟\n\nيمكنك دائمًا إعادة إضافته لاحقًا بالنقر فوق الزر \"إضافة مصدر العمل\"",
+  "deleteWorkSourceConfirmation": "您确定要删除此工作来源吗？\n\n您以后随时可以通过点击“添加工作源”按钮重新添加它",
   "@deleteWorkSourceConfirmation": {
     "type": "text",
     "description": "delete work source confirmation info"
   },
-  "deleteWorkSourceHeader": "هل تريد حذف مصدر العمل؟",
+  "deleteWorkSourceHeader": "删除工作源？",
   "@deleteWorkSourceHeader": {
     "type": "text",
     "description": "Confirmation dialog header"
   },
-  "disablePasswordSheetHeader": "تعطيل",
+  "disablePasswordSheetHeader": "解除",
   "@disablePasswordSheetHeader": {
     "type": "text",
     "description": "Prompt user to disable their password"
   },
-  "disablePasswordSuccess": "تم تعطيل كلمة المرور\n",
+  "disablePasswordSuccess": "钱包密码已被解除",
   "@disablePasswordSuccess": {
     "type": "text",
     "description": "Disabling a Wallet Password was successful"
   },
-  "disableWalletPassword": "تعطيل كلمة مرور المحفظة\n",
+  "disableWalletPassword": "解除钱包密码",
   "@disableWalletPassword": {
     "type": "text",
     "description": "Allows user to deencrypt wallet with a password"
   },
-  "dismiss": "رفض",
+  "dismiss": "解雇",
   "@dismiss": {
     "type": "text",
     "description": "dismiss"
   },
-  "domainInvalid": "اسم مجال غير صالح",
+  "domainInvalid": "域名无效",
   "@domainInvalid": {
     "type": "text",
     "description": "domain_invalid_name"
   },
-  "donateButton": "يتبرع",
+  "donateButton": "捐",
   "@donateButton": {
     "type": "text",
     "description": "donate_button"
   },
-  "donateToSupport": "دعم المشروع",
+  "donateToSupport": "支持项目",
   "@donateToSupport": {
     "type": "text",
     "description": "settings_support_donate"
   },
-  "doYouHaveSeedBody": "إذا لم تكن متأكدًا مما يعنيه هذا ، فمن المحتمل أنه ليس لديك بذرة لاستيرادها ويمكنك فقط الضغط على متابعة.",
+  "doYouHaveSeedBody": "如果您不确定这意味着什么，那么您可能没有要导入的种子，可以按继续。",
   "@doYouHaveSeedBody": {
     "type": "text",
     "description": "do_have_seed_to_import_body"
   },
-  "doYouHaveSeedHeader": "هل لديك بذرة لاستيرادها؟",
+  "doYouHaveSeedHeader": "你有种子要进口吗？",
   "@doYouHaveSeedHeader": {
     "type": "text",
     "description": "do_have_seed_to_import"
   },
-  "edit": "تحرير",
+  "edit": "编辑",
   "@edit": {
     "type": "text",
     "description": "accounts_edit_slide"
   },
-  "enableNotifications": "تمكين الإخطارات",
+  "enableNotifications": "启用通知",
   "@enableNotifications": {
     "type": "text",
     "description": "notification_warning_enable_button"
   },
-  "enableTracking": "تمكين التتبع",
+  "enableTracking": "启用跟踪",
   "@enableTracking": {
     "type": "text",
     "description": "tracking_warning_enable_button"
   },
-  "encryptionFailedError": "أخفق إنشاء كلمة مرور المحفظة\n",
+  "encryptionFailedError": "钱包密码设置失败",
   "@encryptionFailedError": {
     "type": "text",
     "description": "If encrypting a wallet raised an error"
   },
-  "enterAddress": "أدخل العنوان",
+  "enterAddress": "输入地址",
   "@enterAddress": {
     "type": "text",
     "description": "enter_address"
   },
-  "enterAmount": "أدخل المبلغ",
+  "enterAmount": "输入金额",
   "@enterAmount": {
     "type": "text",
     "description": "send_amount_hint"
   },
-  "enterEmail": "أدخل البريد الإلكتروني",
+  "enterEmail": "输入电子邮件",
   "@enterEmail": {
     "type": "text",
     "description": "enter_email"
   },
-  "enterFrequency": "أدخل التردد",
+  "enterFrequency": "输入频率",
   "@enterFrequency": {
     "type": "text",
     "description": "add_sub_frequency_hint"
   },
-  "enterGiftMemo": "أدخل ملاحظة الهدية",
+  "enterGiftMemo": "输入礼品备注",
   "@enterGiftMemo": {
     "type": "text",
     "description": "gift_note"
   },
-  "enterHeight": "أدخل الارتفاع",
+  "enterHeight": "输入高度",
   "@enterHeight": {
     "type": "text",
     "description": "enter_height_hint"
   },
-  "enterHttpUrl": "أدخل عنوان HTTP URL",
+  "enterHttpUrl": "输入 HTTP 网址",
   "@enterHttpUrl": {
     "type": "text",
     "description": "change_node_http_hint"
   },
-  "enterMemo": "أدخل رسالة",
+  "enterMemo": "输入消息",
   "@enterMemo": {
     "type": "text",
     "description": "enter_memo"
   },
-  "enterMoneroAddress": "أدخل عنوان XMR",
+  "enterMoneroAddress": "输入 XMR 地址",
   "@enterMoneroAddress": {
     "type": "text",
     "description": "enter_xmr_address"
   },
-  "enterName": "أدخل الاسم",
+  "enterName": "输入名字",
   "@enterName": {
     "type": "text",
     "description": "add_sub_name_hint"
   },
-  "enterNodeName": "أدخل اسم العقدة",
+  "enterNodeName": "输入节点名称",
   "@enterNodeName": {
     "type": "text",
     "description": "change_node_name_hint"
   },
-  "enterPasswordHint": "ادخل رقمك ادخل رقمك\n",
+  "enterPasswordHint": "输入您的密码",
   "@enterPasswordHint": {
     "type": "text",
     "description": "A text field hint that tells the users to enter their password"
   },
-  "enterSplitAmount": "أدخل مبلغ التقسيم",
+  "enterSplitAmount": "输入分割金额",
   "@enterSplitAmount": {
     "type": "text",
     "description": "gift_split_amount_hint"
   },
-  "enterUsername": "أدخل اسم مستخدم",
+  "enterUsername": "输入用户名",
   "@enterUsername": {
     "type": "text",
     "description": "enter_username"
   },
-  "enterUserOrAddress": "أدخل المستخدم أو العنوان",
+  "enterUserOrAddress": "输入用户或地址",
   "@enterUserOrAddress": {
     "type": "text",
     "description": "enter_user_address"
   },
-  "enterWsUrl": "أدخل عنوان URL WebSocket",
+  "enterWsUrl": "输入 WebSocket 网址",
   "@enterWsUrl": {
     "type": "text",
     "description": "change_node_ws_hint"
   },
-  "errorProcessingGiftCard": "حدث خطأ أثناء معالجة بطاقة الهدايا هذه ، فقد لا تكون صالحة أو منتهية الصلاحية أو فارغة.",
+  "errorProcessingGiftCard": "处理此礼品卡时出错，它可能无效、过期或为空。",
   "@errorProcessingGiftCard": {
     "type": "text",
     "description": "gift_process_error"
@@ -912,32 +912,32 @@
     "type": "text",
     "description": "settings_eula"
   },
-  "exampleCardFrom": "من شخص ما",
+  "exampleCardFrom": "来自某人",
   "@exampleCardFrom": {
     "type": "text",
     "description": "example_card_from"
   },
-  "exampleCardIntro": "مرحبا بكم في نتريوم. بمجرد تلقي %2 ، ستظهر المعاملات كما يلي:",
+  "exampleCardIntro": "欢迎来到Nautilus。当您收到或发送NANO时，交易将如下出现。",
   "@exampleCardIntro": {
     "type": "text",
     "description": "example_card_intro"
   },
-  "exampleCardLittle": "القليل",
+  "exampleCardLittle": "一点",
   "@exampleCardLittle": {
     "type": "text",
     "description": "example_card_little"
   },
-  "exampleCardLot": "كثيرا من",
+  "exampleCardLot": "很多",
   "@exampleCardLot": {
     "type": "text",
     "description": "example_card_lot"
   },
-  "exampleCardTo": "إلى شخص ما",
+  "exampleCardTo": "发给某人",
   "@exampleCardTo": {
     "type": "text",
     "description": "example_card_to"
   },
-  "examplePaymentExplainer": "بمجرد إرسال طلب دفع أو استلامه، سيظهر هنا على هذا النحو مع لون وعلامة البطاقة التي تشير إلى الحالة. \n\nيشير اللون الأخضر إلى أن الطلب قد تم دفعه.\nيشير اللون الأصفر إلى أن الطلب/المذكرة لم يتم دفع/قراءة.\nيشير اللون الأحمر إلى أن الطلب لم تتم قراءته أو استلامه.\n\n البطاقات الملونة المحايدة بدون مبلغ هي مجرد رسائل.",
+  "examplePaymentExplainer": "一旦你发送或收到付款请求，它们就会像这样显示在这里，卡片的颜色和标签表示状态。 \n\n绿色表示请求已付款。\n黄色表示请求/备忘录尚未付款/已读。\n红色表示请求尚未被读取或接收。\n\n 没有金额的中性色卡片只是信息。",
   "@examplePaymentExplainer": {
     "type": "text",
     "description": "example_payments_explainer"
@@ -947,32 +947,32 @@
     "type": "text",
     "description": "example_payment_from"
   },
-  "examplePaymentFulfilled": "بعض",
+  "examplePaymentFulfilled": "一些",
   "@examplePaymentFulfilled": {
     "type": "text",
     "description": "example_payment_fulfilled"
   },
-  "examplePaymentFulfilledMemo": "سوشي",
+  "examplePaymentFulfilledMemo": "寿司",
   "@examplePaymentFulfilledMemo": {
     "type": "text",
     "description": "example_payment_fulfilled_memo"
   },
-  "examplePaymentIntro": "بمجرد إرسال طلب دفع أو استلامه، سيظهر هنا:",
+  "examplePaymentIntro": "一旦您发送或收到付款请求，它们将显示在此处：",
   "@examplePaymentIntro": {
     "type": "text",
     "description": "example_payments_intro"
   },
-  "examplePaymentMessage": "مهلا، ما الأمر؟",
+  "examplePaymentMessage": "嘿怎么了？",
   "@examplePaymentMessage": {
     "type": "text",
     "description": "example_card_message"
   },
-  "examplePaymentReceivable": "الكثير من",
+  "examplePaymentReceivable": "很多",
   "@examplePaymentReceivable": {
     "type": "text",
     "description": "example_payment_receivable"
   },
-  "examplePaymentReceivableMemo": "رينت",
+  "examplePaymentReceivableMemo": "租",
   "@examplePaymentReceivableMemo": {
     "type": "text",
     "description": "example_payment_receivable_memo"
@@ -987,7 +987,7 @@
     "type": "text",
     "description": "example_pay_recipient"
   },
-  "examplePayRecipientMessage": "عيد ميلاد سعيد!",
+  "examplePayRecipientMessage": "生日快乐！",
   "@examplePayRecipientMessage": {
     "type": "text",
     "description": "example_pay_recipient_message"
@@ -997,42 +997,42 @@
     "type": "text",
     "description": "example_rec_recipient"
   },
-  "exampleRecRecipientMessage": "أموال الغاز",
+  "exampleRecRecipientMessage": "煤气钱",
   "@exampleRecRecipientMessage": {
     "type": "text",
     "description": "example_rec_recipient_message"
   },
-  "exchangeCurrency": "تبادل٪ 2",
+  "exchangeCurrency": "交换 %2",
   "@exchangeCurrency": {
     "type": "text",
     "description": "exchange_currency"
   },
-  "exchangeNano": "صرف نانو",
+  "exchangeNano": "交换纳米",
   "@exchangeNano": {
     "type": "text",
     "description": "exchange_nano"
   },
-  "existingPasswordHint": "إدخل كلمة السر الحالية",
+  "existingPasswordHint": "输入当前密码",
   "@existingPasswordHint": {
     "type": "text",
     "description": "A text field hint that tells the user to enter their current password"
   },
-  "existingPinHint": "أدخل رقم التعريف الشخصي الحالي",
+  "existingPinHint": "输入当前引脚",
   "@existingPinHint": {
     "type": "text",
     "description": "A text field hint that tells the user to enter their current pin"
   },
-  "exit": "خروج",
+  "exit": "退出",
   "@exit": {
     "type": "text",
     "description": "Exit action, like a button"
   },
-  "exportTXData": "معاملات التصدير",
+  "exportTXData": "出口交易",
   "@exportTXData": {
     "type": "text",
     "description": "export_tx_data"
   },
-  "failed": "فشل",
+  "failed": "失败了",
   "@failed": {
     "type": "text",
     "description": "history_failed"
@@ -1042,176 +1042,176 @@
     "type": "text",
     "description": "failed_message"
   },
-  "fallbackHeader": "نوتيلوس غير متصل",
+  "fallbackHeader": "鹦鹉螺已断开连接",
   "@fallbackHeader": {
     "type": "text",
     "description": "fallback_connected"
   },
-  "fallbackInfo": "يبدو أن خوادم Nautilus غير متصلة، ويجب أن يظل الإرسال والاستلام (بدون مذكرات) قيد التشغيل ولكن قد لا يتم تنفيذ طلبات الدفع\n\n ارجع لاحقًا أو أعد تشغيل التطبيق للمحاولة مرة أخرى",
+  "fallbackInfo": "Nautilus 服务器似乎已断开连接，发送和接收（无备忘录）应该仍然可以运行，但付款请求可能无法通过\n\n 稍后再回来或重启应用程序再试一次",
   "@fallbackInfo": {
     "type": "text",
     "description": "fallback_info"
   },
-  "favoriteExists": "المفضلة موجودة بالفعل",
+  "favoriteExists": "收藏夹已存在",
   "@favoriteExists": {
     "type": "text",
     "description": "favorite_name_exists"
   },
-  "favoriteHeader": "المفضلة",
+  "favoriteHeader": "最喜欢的",
   "@favoriteHeader": {
     "type": "text",
     "description": "favorite_view_header"
   },
-  "favoriteInvalid": "اسم مفضل غير صالح",
+  "favoriteInvalid": "收藏名称无效",
   "@favoriteInvalid": {
     "type": "text",
     "description": "favorite_invalid_name"
   },
-  "favoriteNameHint": "أدخل اسم Nick",
+  "favoriteNameHint": "输入昵称",
   "@favoriteNameHint": {
     "type": "text",
     "description": "favorite_name_hint"
   },
-  "favoriteNameMissing": "اختر اسمًا لهذه المفضلة",
+  "favoriteNameMissing": "为此收藏夹选择一个名字",
   "@favoriteNameMissing": {
     "type": "text",
     "description": "favorite_name_missing"
   },
-  "favoriteRemoved": "تمت إزالة %1 من المفضلة!",
+  "favoriteRemoved": "%1 已从收藏夹中删除！",
   "@favoriteRemoved": {
     "type": "text",
     "description": "favorite_removed"
   },
-  "favoritesHeader": "المفضلة",
+  "favoritesHeader": "收藏夹",
   "@favoritesHeader": {
     "type": "text",
     "description": "favorite_header"
   },
-  "featured": "مميزة",
+  "featured": "精选",
   "@featured": {
     "type": "text",
     "description": "featured"
   },
-  "fewDaysAgo": "منذ بضعة أيام",
+  "fewDaysAgo": "几天之前",
   "@fewDaysAgo": {
     "type": "text",
     "description": "history_few_days_ago"
   },
-  "fewHoursAgo": "قبل ساعات قليلة",
+  "fewHoursAgo": "几个小时前",
   "@fewHoursAgo": {
     "type": "text",
     "description": "history_few_hours_ago"
   },
-  "fewMinutesAgo": "قبل عدة دقائق",
+  "fewMinutesAgo": "几分钟前",
   "@fewMinutesAgo": {
     "type": "text",
     "description": "history_few_minutes_ago"
   },
-  "fewSecondsAgo": "قبل ثوان",
+  "fewSecondsAgo": "几秒钟前",
   "@fewSecondsAgo": {
     "type": "text",
     "description": "history_few_seconds_ago"
   },
-  "fingerprintSeedBackup": "المصادقة على نسخ المفتاح الخاص.",
+  "fingerprintSeedBackup": "确认指纹，备份钱包种子。",
   "@fingerprintSeedBackup": {
     "type": "text",
     "description": "settings_fingerprint_title"
   },
-  "frequencyEmpty": "الرجاء إدخال التردد",
+  "frequencyEmpty": "请输入频率",
   "@frequencyEmpty": {
     "type": "text",
     "description": "frequency_empty"
   },
-  "from": "من",
+  "from": "来自",
   "@from": {
     "type": "text",
     "description": "request_from"
   },
-  "fulfilled": "الوفاء",
+  "fulfilled": "完成",
   "@fulfilled": {
     "type": "text",
     "description": "history_fulfilled"
   },
-  "fundingBannerHeader": "لافتة التمويل",
+  "fundingBannerHeader": "资金横幅",
   "@fundingBannerHeader": {
     "type": "text",
     "description": "funding_banner_header"
   },
-  "fundingHeader": "التمويل",
+  "fundingHeader": "资金",
   "@fundingHeader": {
     "type": "text",
     "description": "funding_header"
   },
-  "generatingWork": "إنشاء إثبات العمل (PoW)، قد يستغرق ذلك بعض الوقت (> 20 ثانية)...",
+  "generatingWork": "生成 PoW，这可能需要一段时间（> 20 秒）...",
   "@generatingWork": {
     "description": "generating_local_work"
   },
-  "getCurrency": "احصل على٪ 2",
+  "getCurrency": "获取 %2",
   "@getCurrency": {
     "type": "text",
     "description": "get_currency"
   },
-  "getNano": "احصل على NANO",
+  "getNano": "获取纳米",
   "@getNano": {
     "type": "text",
     "description": "get_nano"
   },
-  "giftAlert": "لديك هدية!",
+  "giftAlert": "你有天赋！",
   "@giftAlert": {
     "type": "text",
     "description": "import_gift_header"
   },
-  "giftAlertEmpty": "هدية فارغة",
+  "giftAlertEmpty": "空礼物",
   "@giftAlertEmpty": {
     "type": "text",
     "description": "import_gift_empty_header"
   },
-  "giftAmount": "مبلغ الهدية",
+  "giftAmount": "礼物金额",
   "@giftAmount": {
     "type": "text",
     "description": "gift_amount"
   },
-  "giftCardCreationError": "حدث خطأ أثناء محاولة إنشاء رابط بطاقة هدايا",
+  "giftCardCreationError": "尝试创建礼品卡链接时出错",
   "@giftCardCreationError": {
     "type": "text",
     "description": "create_gift_error"
   },
-  "giftCardCreationErrorSent": "حدث خطأ أثناء محاولة إنشاء بطاقة هدايا ، أو تم نسخ رابط بطاقة الهدايا أو البذرة إلى الحافظة الخاصة بك ، وقد يتم الاحتفاظ بأموالك بداخلها بناءً على الخطأ الذي حدث.",
+  "giftCardCreationErrorSent": "尝试创建礼品卡时发生错误，礼品卡链接或种子已复制到您的剪贴板，您的资金可能包含在其中，具体取决于出现的问题。",
   "@giftCardCreationErrorSent": {
     "type": "text",
     "description": "gift_generic_error"
   },
-  "giftCardInfoHeader": "معلومات ورقة الهدايا",
+  "giftCardInfoHeader": "礼品单信息",
   "@giftCardInfoHeader": {
     "type": "text",
     "description": "gift_card_sheet_info_header"
   },
-  "giftFrom": "هدية من",
+  "giftFrom": "礼物来自",
   "@giftFrom": {
     "type": "text",
     "description": "gift_from"
   },
-  "giftInfo": "قم بتحميل بطاقة هدايا رقمية باستخدام NANO! قم بتعيين مبلغ ورسالة اختيارية للمستلم ليراها عند فتحه!\n\nبمجرد الإنشاء، ستحصل على رابط يمكنك إرساله إلى أي شخص، والذي عند فتحه سيوزع الأموال تلقائيًا على المستلم بعد تثبيت Nautilus!\n\nإذا كان المستلم مستخدمًا لـ Nautilus بالفعل، فسيتلقى مطالبة بتحويل الأموال إلى حسابه عند فتح الرابط.",
+  "giftInfo": "使用 NANO 加载一张数字礼品卡！设置金额和一条可选消息，供收件人打开时查看！\n\n创建后，您将获得一个可以发送给任何人的链接，该链接打开后将在安装Nautilus后自动将资金分配给收款人！\n\n如果收款人已经是Nautilus用户，他们将在打开链接时收到将资金转入其账户的提示。",
   "@giftInfo": {
     "type": "text",
     "description": "Description for gift card creation"
   },
-  "giftMessage": "رسالة هدية",
+  "giftMessage": "礼物留言",
   "@giftMessage": {
     "type": "text",
     "description": "gift_message"
   },
-  "giftProcessError": "حدث خطأ أثناء معالجة بطاقة الهدايا هذه. ربما تحقق من اتصالك وحاول النقر فوق رابط الهدية مرة أخرى.",
+  "giftProcessError": "处理此礼品卡时出错。也许检查您的连接并尝试再次单击礼物链接。",
   "@giftProcessError": {
     "type": "text",
     "description": "gift_process_error"
   },
-  "giftProcessSuccess": "تم استلام الهدية بنجاح ، قد يستغرق ظهورها في محفظتك بعض الوقت.",
+  "giftProcessSuccess": "礼物已成功收到，可能需要一点时间才会出现在您的钱包中。",
   "@giftProcessSuccess": {
     "type": "text",
     "description": "gift_process_success"
   },
-  "giftRefundSuccess": "تم رد أموال الهدية بنجاح!",
+  "giftRefundSuccess": "礼品成功退还！",
   "@giftRefundSuccess": {
     "type": "text",
     "description": "gift_refund_success"
@@ -1221,317 +1221,317 @@
     "type": "text",
     "description": "Description for username already registered"
   },
-  "goBackButton": "عد\n",
+  "goBackButton": "返回",
   "@goBackButton": {
     "type": "text",
     "description": "A button that goes to the previous screen."
   },
-  "gotItButton": "موافق!",
+  "gotItButton": "明白！",
   "@gotItButton": {
     "type": "text",
     "description": "Got It! Acknowledgement button"
   },
-  "goToQRCode": "انتقل إلى QR",
+  "goToQRCode": "前往二维码",
   "@goToQRCode": {
     "type": "text",
     "description": "go_to_qr_code"
   },
-  "handoff": "تسليم",
+  "handoff": "不可触摸",
   "@handoff": {
     "type": "text",
     "description": "send_handoff"
   },
-  "handoffFailed": "حدث خطأ ما أثناء محاولة تسليم المنع!",
+  "handoffFailed": "尝试切换块时出现问题！",
   "@handoffFailed": {
     "type": "text",
     "description": "handoff_failed"
   },
-  "handoffSupportedMethodNotFound": "تعذر العثور على طريقة تسليم معتمدة!",
+  "handoffSupportedMethodNotFound": "找不到受支持的切换方法！",
   "@handoffSupportedMethodNotFound": {
     "type": "text",
     "description": "handoff_method_not_found"
   },
-  "haveSeedToImport": "لدي بذرة",
+  "haveSeedToImport": "我有一颗种子",
   "@haveSeedToImport": {
     "type": "text",
     "description": "have_seed_to_import"
   },
-  "hide": "هيدي",
+  "hide": "隐藏",
   "@hide": {
     "type": "text",
     "description": "accounts_hide_slide"
   },
-  "hideAccountHeader": "إخفاء الحساب؟",
+  "hideAccountHeader": "隐藏账户？",
   "@hideAccountHeader": {
     "type": "text",
     "description": "Confirmation dialog header"
   },
-  "hideAccountsConfirmation": "هل أنت متأكد أنك تريد إخفاء الحسابات الفارغة؟\n\nسيؤدي هذا إلى إخفاء جميع الحسابات التي يبلغ رصيدها 0 بالضبط (باستثناء عناوين المشاهدة فقط وحسابك الرئيسي) ، ولكن يمكنك دائمًا إعادة إضافتها لاحقًا عن طريق النقر على الزر \"إضافة حساب\"",
+  "hideAccountsConfirmation": "您确定要隐藏空帐户吗？\n\n这将隐藏所有余额为 0 的帐户（不包括仅观看地址和您的主帐户），但您以后可以随时通过点击“添加帐户”按钮重新添加它们",
   "@hideAccountsConfirmation": {
     "type": "text",
     "description": "hide accounts confirmation info"
   },
-  "hideAccountsHeader": "إخفاء الحسابات؟",
+  "hideAccountsHeader": "隐藏帐户？",
   "@hideAccountsHeader": {
     "type": "text",
     "description": "Confirmation dialog header"
   },
-  "hideEmptyAccounts": "إخفاء الحسابات الفارغة",
+  "hideEmptyAccounts": "隐藏空账户",
   "@hideEmptyAccounts": {
     "type": "text",
     "description": "hide_empty_accounts"
   },
-  "home": "الصفحة الرئيسية",
+  "home": "家",
   "@home": {
     "type": "text",
     "description": "home"
   },
-  "homeButton": "مسكن",
+  "homeButton": "家",
   "@homeButton": {
     "type": "text",
     "description": "home_button"
   },
-  "hourAgo": "قبل ساعة",
+  "hourAgo": "一小时前",
   "@hourAgo": {
     "type": "text",
     "description": "history_hour_ago"
   },
-  "ignore": "تجاهل",
+  "ignore": "忽略",
   "@ignore": {
     "type": "text",
     "description": "ignore"
   },
-  "import": "استيراد",
+  "import": "导入",
   "@import": {
     "type": "text",
     "description": "Generic import"
   },
-  "importGift": "يحتوي الرابط الذي نقرت عليه على بعض النانو، هل ترغب في استيراده إلى هذه المحفظة، أو إعادته إلى من أرسله؟",
+  "importGift": "你点击的链接包含一些 nano，你想把它导入这个钱包，还是退款给发送它的人？",
   "@importGift": {
     "type": "text",
     "description": "import_gift"
   },
-  "importGiftEmpty": "Unfortunately the link you clicked that contained some %2 appears to be empty, but you can still see the amount and associated message.",
+  "importGiftEmpty": "Unfortunately the link you clicked that contained some nano appears to be empty, but you can still see the amount and associated message.",
   "@importGiftEmpty": {
     "type": "text",
     "description": "import_gift_empty"
   },
-  "importGiftIntro": "يبدو أنك نقرت على رابط يحتوي على بعض NANO ، من أجل تلقي هذه الأموال ، نحتاج فقط لك لإنهاء إعداد محفظتك.",
+  "importGiftIntro": "看起来你点击了一个包含一些 NANO 的链接，为了接收这些资金，我们只需要你完成设置你的钱包。",
   "@importGiftIntro": {
     "type": "text",
     "description": "import_gift_intro"
   },
-  "importGiftv2": "الرابط الذي نقرت عليه يحتوي على بعض NANO ، هل ترغب في استيراده إلى هذه المحفظة؟",
+  "importGiftv2": "您点击的链接包含一些 NANO，您想将其导入此钱包吗？",
   "@importGiftv2": {
     "type": "text",
     "description": "import_gift_v2"
   },
-  "importHD": "استيراد HD",
+  "importHD": "导入高清",
   "@importHD": {
     "type": "text",
     "description": "intro_import_hd"
   },
-  "importHDTrust": "استيراد HD / Trust",
+  "importHDTrust": "导入高清/信任",
   "@importHDTrust": {
     "type": "text",
     "description": "intro_import_hd_trust"
   },
-  "importSecretPhrase": "استيراد العبارة السرية",
+  "importSecretPhrase": "输入秘密词语",
   "@importSecretPhrase": {
     "type": "text",
     "description": "Header for restoring using mnemonic"
   },
-  "importSecretPhraseHint": "الرجاء إدخال عبارة سرية مكونة من 24 كلمة. يجب فصل كل كلمة بمسافة.",
+  "importSecretPhraseHint": "请输入您的24个秘密词语。每个词语应该由空格分隔。",
   "@importSecretPhraseHint": {
     "type": "text",
     "description": "helper message for importing mnemnic"
   },
-  "importSecretPhraseHint2": "الرجاء إدخال العبارة السرية المكونة من 12 أو 24 كلمة أدناه. يجب فصل كل كلمة بمسافة.",
+  "importSecretPhraseHint2": "请在下方输入您的 12 或 24 字密码。每个单词应以空格分隔。",
   "@importSecretPhraseHint2": {
     "type": "text",
     "description": "helper message for importing mnemnic"
   },
-  "importSeed": "جلب المفتاح الخاص",
+  "importSeed": "导入种子",
   "@importSeed": {
     "type": "text",
     "description": "intro_seed_header"
   },
-  "importSeedHint": "أدخل المفتاح الخاص",
+  "importSeedHint": "请在下面输入您的种子。",
   "@importSeedHint": {
     "type": "text",
     "description": "intro_seed_info"
   },
-  "importSeedInstead": "بدلاً من ذلك، استيراد المفتاح الخاص",
+  "importSeedInstead": "导入种子",
   "@importSeedInstead": {
     "type": "text",
     "description": "importSeedInstead"
   },
-  "importStandard": "معيار الاستيراد",
+  "importStandard": "进口标准",
   "@importStandard": {
     "type": "text",
     "description": "intro_import_standard"
   },
-  "importWallet": "إجلب محفظة",
+  "importWallet": "导入现有钱包",
   "@importWallet": {
     "type": "text",
     "description": "intro_welcome_have_wallet"
   },
-  "imSure": "أنا متأكد",
+  "imSure": "我确定",
   "@imSure": {
     "type": "text",
     "description": "send_confirm_warning"
   },
-  "instantly": "فوراً",
+  "instantly": "立刻",
   "@instantly": {
     "type": "text",
     "description": "insantly"
   },
-  "insufficientBalance": "لرصيد غير كافي",
+  "insufficientBalance": "余额不足",
   "@insufficientBalance": {
     "type": "text",
     "description": "send_insufficient_balance"
   },
-  "introSkippedWarningContent": "لقد تخطينا عملية المقدمة لتوفير الوقت ، ولكن يجب عليك الاحتفاظ بنسخة احتياطية من البذور التي تم إنشاؤها حديثًا على الفور.\n\nإذا فقدت بذرتك ، فستفقد إمكانية الوصول إلى أموالك.\n\nبالإضافة إلى ذلك ، تم تعيين رمز المرور الخاص بك على \"000000\" والذي يجب عليك أيضًا تغييره على الفور.",
+  "introSkippedWarningContent": "我们跳过了介绍过程以节省您的时间，但您应该立即备份新创建的种子。\n\n如果您失去种子，您将无法使用您的资金。\n\n此外，您的密码已设置为“000000”，您也应立即更改。",
   "@introSkippedWarningContent": {
     "type": "text",
     "description": "intro_skipped_warning_content"
   },
-  "introSkippedWarningHeader": "قم بعمل نسخة احتياطية من بذورك!",
+  "introSkippedWarningHeader": "备份你的种子！",
   "@introSkippedWarningHeader": {
     "type": "text",
     "description": "intro_skipped_warning_header"
   },
-  "invalidAddress": "العنوان المدخل غير صحيح",
+  "invalidAddress": "无效的目标地址",
   "@invalidAddress": {
     "type": "text",
     "description": "send_invalid_address"
   },
-  "invalidFrequency": "التردد غير صحيح",
+  "invalidFrequency": "频率无效",
   "@invalidFrequency": {
     "type": "text",
     "description": "invalid_frequency"
   },
-  "invalidHeight": "ارتفاع غير صالح",
+  "invalidHeight": "无效高度",
   "@invalidHeight": {
     "type": "text",
     "description": "height_invalid"
   },
-  "invalidPassword": "كلمة المرور خاطئ\n",
+  "invalidPassword": "无效密码",
   "@invalidPassword": {
     "type": "text",
     "description": "An error indicating a password has been entered incorrectly"
   },
-  "invalidPin": "رقم التعريف الشخصي غير صالح",
+  "invalidPin": "无效引脚",
   "@invalidPin": {
     "type": "text",
     "description": "An error indicating a pin has been entered incorrectly"
   },
-  "iosFundingMessage": "نظرًا لإرشادات وقيود iOS App Store ، لا يمكننا ربطك بصفحة التبرعات الخاصة بنا. إذا كنت ترغب في دعم المشروع ، ففكر في الإرسال إلى عنوان عقدة nautilus.",
+  "iosFundingMessage": "由于 iOS App Store 指南和限制，我们无法将您链接到我们的捐赠页面。如果您想支持该项目，请考虑发送到 nautilus 节点的地址。",
   "@iosFundingMessage": {
     "type": "text",
     "description": "ios_funding_message"
   },
-  "iUnderstandTheRisks": "أنا أدرك المخاطر\n",
+  "iUnderstandTheRisks": "我已明白风险",
   "@iUnderstandTheRisks": {
     "type": "text",
     "description": "Shown to users if they have a rooted Android device or jailbroken iOS device"
   },
-  "language": "اللغة",
+  "language": "语言",
   "@language": {
     "type": "text",
     "description": "settings_change_language"
   },
-  "linkCopied": "تم نسخ الرابط",
+  "linkCopied": "链接已复制",
   "@linkCopied": {
     "type": "text",
     "description": "link_copied"
   },
-  "loaded": "لوديد",
+  "loaded": "已加载",
   "@loaded": {
     "type": "text",
     "description": "history_loaded"
   },
-  "loadedInto": "تم تحميله في",
+  "loadedInto": "已加载到",
   "@loadedInto": {
     "type": "text",
     "description": "loaded_into"
   },
-  "lockAppSetting": "المصادقة في الاطلاق",
+  "lockAppSetting": "启动时要求验证",
   "@lockAppSetting": {
     "type": "text",
     "description": "authenticate_on_launch"
   },
-  "locked": "مقفل",
+  "locked": "已锁定",
   "@locked": {
     "type": "text",
     "description": "lockedtxt"
   },
-  "loginButton": "تسجيل الدخول",
+  "loginButton": "登录",
   "@loginButton": {
     "type": "text",
     "description": "login_button"
   },
-  "loginOrRegisterHeader": "تسجيل الدخول أو التسجيل",
+  "loginOrRegisterHeader": "登录或注册",
   "@loginOrRegisterHeader": {
     "type": "text",
     "description": "login_register_header"
   },
-  "logout": "خروج",
+  "logout": "登出",
   "@logout": {
     "type": "text",
     "description": "settings_logout"
   },
-  "logoutAction": "حذف المفتاح الخاص والخروج",
+  "logoutAction": "删除种子并登出",
   "@logoutAction": {
     "type": "text",
     "description": "settings_logout_alert_confirm_cta"
   },
-  "logoutAreYouSure": "هل أنت متأكد؟",
+  "logoutAreYouSure": "您确定？",
   "@logoutAreYouSure": {
     "type": "text",
     "description": "settings_logout_warning_title"
   },
-  "logoutDetail": "خروجك من حساب نتريوم سوف يحذف البيانات من الجهاز. إذا مفتاحك الخاص غير محفوظ في مكان أمن، سوف تفقد رصيدك نهائيا",
+  "logoutDetail": "注销将从此设备中删除您的种子和所有与Nautilus相关的数据。如果您的种子代码没有备份，您将永远无法再次访问您的帐户",
   "@logoutDetail": {
     "type": "text",
     "description": "settings_logout_alert_message"
   },
-  "logoutReassurance": "ليس هناك خشية إذا قمت بحفض نسخة للمفتاح الخاص",
+  "logoutReassurance": "只要您有备份您的种子，就没有什么可担心的。",
   "@logoutReassurance": {
     "type": "text",
     "description": "settings_logout_warning_message"
   },
-  "looksLikeHdSeed": "يبدو أن هذا هو بذرة HD ، ما لم تكن متأكدًا من أنك تعرف ما تفعله ، يجب عليك استخدام خيار \"استيراد HD\" بدلاً من ذلك.",
+  "looksLikeHdSeed": "这似乎是一个高清种子，除非你确定你知道你在做什么，否则你应该使用“导入高清”选项。",
   "@looksLikeHdSeed": {
     "type": "text",
     "description": "settings_import_hd_warning"
   },
-  "looksLikeStandardSeed": "يبدو أن هذا أساس قياسي ، يجب عليك استخدام خيار \"استيراد قياسي\" بدلاً من ذلك.",
+  "looksLikeStandardSeed": "这似乎是一个标准种子，您应该改用“导入标准”选项。",
   "@looksLikeStandardSeed": {
     "type": "text",
     "description": "settings_import_standard_warning"
   },
-  "manage": "إدارة",
+  "manage": "管理",
   "@manage": {
     "type": "text",
     "description": "settings_manage_header"
   },
-  "mantaError": "لا يمكن التحقق من الطلب\n",
+  "mantaError": "无法验证请求",
   "@mantaError": {
     "type": "text",
     "description": "Was unable to verify the manta/appia payment request (from scanning QR code, etc.)"
   },
-  "manualEntry": "إدخال يدوي",
+  "manualEntry": "手动输入",
   "@manualEntry": {
     "type": "text",
     "description": "transfer_manual_entry"
   },
-  "markAsPaid": "وضع علامة على أنها مدفوعة",
+  "markAsPaid": "标记为已付款",
   "@markAsPaid": {
     "type": "text",
     "description": "fulfill_payment"
   },
-  "markAsUnpaid": "وضع علامة على أنه بدون",
+  "markAsUnpaid": "标记为未付款",
   "@markAsUnpaid": {
     "type": "text",
     "description": "unfulfill_payment"
@@ -1541,57 +1541,57 @@
     "type": "text",
     "description": "maybe_app_button"
   },
-  "memoSentButNotReceived": "إعادة إرسال المذكرة! إذا كان لا يزال غير معترف به، فقد يكون جهاز المستلم غير متصل.",
+  "memoSentButNotReceived": "备忘录已重新发送！如果仍未确认，则收件人的设备可能处于脱机状态。",
   "@memoSentButNotReceived": {
     "type": "text",
     "description": "memo_sent_again"
   },
-  "messageCopied": "تم نسخ الرسالة",
+  "messageCopied": "消息已复制",
   "@messageCopied": {
     "type": "text",
     "description": "message_copied"
   },
-  "messageHeader": "رسالة",
+  "messageHeader": "留言",
   "@messageHeader": {
     "type": "text",
     "description": "message_header"
   },
-  "minimumSend": "الحد الأدنى لمبلغ الإرسال هو %1 %2",
+  "minimumSend": "最小发送金额为 %1 %2",
   "@minimumSend": {
     "type": "text",
     "description": "send_minimum_error"
   },
-  "minuteAgo": "قبل دقيقة",
+  "minuteAgo": "一分钟前",
   "@minuteAgo": {
     "type": "text",
     "description": "history_minute_ago"
   },
-  "mnemonicInvalidWord": "%1 ليست كلمة صالحة",
+  "mnemonicInvalidWord": "%1 不是有效的词语",
   "@mnemonicInvalidWord": {
     "type": "text",
     "description": "A word that is not part of bip39"
   },
-  "mnemonicPhrase": "عبارة تذكيرية",
+  "mnemonicPhrase": "秘密短语",
   "@mnemonicPhrase": {
     "type": "text",
     "description": "mnemonic_phrase"
   },
-  "mnemonicSizeError": "العبارة السرية قد تحتوي فقط على 24 كلمة",
+  "mnemonicSizeError": "秘密词语一定要包含 24 个词语",
   "@mnemonicSizeError": {
     "type": "text",
     "description": "err"
   },
-  "mnemonicSizeError2": "يجب ألا تحتوي العبارة السرية إلا على 12 أو 24 كلمة",
+  "mnemonicSizeError2": "密语只能包含 12 或 24 个字",
   "@mnemonicSizeError2": {
     "type": "text",
     "description": "err"
   },
-  "monthly": "شهريا",
+  "monthly": "每月",
   "@monthly": {
     "type": "text",
     "description": "frequency_monthly"
   },
-  "monthlyServerCosts": "تكاليف الخادم الشهرية",
+  "monthlyServerCosts": "每月服务器成本",
   "@monthlyServerCosts": {
     "type": "text",
     "description": "support_monthly_costs"
@@ -1601,12 +1601,12 @@
     "type": "text",
     "description": "moonpay_ramp"
   },
-  "moreSettings": "المزيد من الإعدادات",
+  "moreSettings": "更多设置",
   "@moreSettings": {
     "type": "text",
     "description": "settings_more"
   },
-  "nameEmpty": "الرجاء إدخال اسم",
+  "nameEmpty": "请输入姓名",
   "@nameEmpty": {
     "type": "text",
     "description": "name_empty"
@@ -1616,87 +1616,87 @@
     "type": "text",
     "description": "natricon_settings"
   },
-  "nautilusWallet": "محفظة نوتيلوس",
+  "nautilusWallet": "鹦鹉螺钱包",
   "@nautilusWallet": {
     "type": "text",
     "description": "nautilus_wallet"
   },
-  "nearby": "مجاور",
+  "nearby": "附近",
   "@nearby": {
     "type": "text",
     "description": "nearby_devices"
   },
-  "needVerificationAlert": "تتطلب هذه الميزة أن يكون لديك سجل معاملات أطول لمنع البريد العشوائي.\n\nبدلاً من ذلك، يمكنك إظهار رمز الاستجابة السريعة لشخص ما للمسح الضوئي.",
+  "needVerificationAlert": "此功能要求您具有更长的交易历史记录，以防止垃圾邮件。\n\n或者，您可以显示二维码供他人扫描。",
   "@needVerificationAlert": {
     "type": "text",
     "description": "verification_needed_header"
   },
-  "needVerificationAlertHeader": "مطلوب التحقق",
+  "needVerificationAlertHeader": "需要验证",
   "@needVerificationAlertHeader": {
     "type": "text",
     "description": "verification_needed_header"
   },
-  "newAccountIntro": "هذا هو حسابك الجديد بمجرد تلقي NANO ، ستظهر المعاملات كما يلي:",
+  "newAccountIntro": "这是您的新账户。当您收到 NANO 时, 交易会如下出现：",
   "@newAccountIntro": {
     "type": "text",
     "description": "Alternate account intro card"
   },
-  "newWallet": "محفظة جديدة",
+  "newWallet": "创建新钱包",
   "@newWallet": {
     "type": "text",
     "description": "intro_welcome_new_wallet"
   },
-  "nextButton": "التالى",
+  "nextButton": "继续",
   "@nextButton": {
     "type": "text",
     "description": "A button that goes to the next screen."
   },
-  "nextPayment": "الدفعة التالية",
+  "nextPayment": "下次付款",
   "@nextPayment": {
     "type": "text",
     "description": "next_payment"
   },
-  "no": "لا",
+  "no": "否认",
   "@no": {
     "type": "text",
     "description": "intro_new_wallet_backup_no"
   },
-  "noContactsExport": "لا توجد جهات الاتصال للنقل",
+  "noContactsExport": "没有要导出的联系人",
   "@noContactsExport": {
     "type": "text",
     "description": "contact_export_none"
   },
-  "noContactsImport": "لا توجد جهات اتصال جديدة للجلب.",
+  "noContactsImport": "找不到要导入的联系人",
   "@noContactsImport": {
     "type": "text",
     "description": "contact_import_none"
   },
-  "node": "العقدة",
+  "node": "节点",
   "@node": {
     "type": "text",
     "description": "Node header"
   },
-  "nodes": "العقد",
+  "nodes": "节点",
   "@nodes": {
     "type": "text",
     "description": "Nodes header"
   },
-  "nodeStatus": "حالة العقدة",
+  "nodeStatus": "节点状态",
   "@nodeStatus": {
     "type": "text",
     "description": "settings_node_status"
   },
-  "noneMethod": "لا أحد",
+  "noneMethod": "没有任何",
   "@noneMethod": {
     "type": "text",
     "description": "settings_none_method"
   },
-  "noSearchResults": "لا توجد نتائج بحث!",
+  "noSearchResults": "没有搜索结果！",
   "@noSearchResults": {
     "type": "text",
     "description": "home_search_error"
   },
-  "noSkipButton": "لا ، تخطي\n",
+  "noSkipButton": "不，跳过",
   "@noSkipButton": {
     "type": "text",
     "description": "A button that declines and skips the mentioned process."
@@ -1706,97 +1706,97 @@
     "type": "text",
     "description": "no_thanks_app_button"
   },
-  "notificationBody": "أفتح نتريوم للكشف عن هذا التعامل",
+  "notificationBody": "打开Nautilus查看此交易",
   "@notificationBody": {
     "type": "text",
     "description": "notification_body"
   },
-  "notificationHeaderSupplement": "اضغط للفتح",
+  "notificationHeaderSupplement": "点击打开",
   "@notificationHeaderSupplement": {
     "type": "text",
     "description": "notificaiton_header_suplement"
   },
-  "notificationInfo": "لكي تعمل هذه الميزة بشكل صحيح، يجب تمكين الإشعارات.",
+  "notificationInfo": "为了使此功能正常工作，必须启用通知",
   "@notificationInfo": {
     "type": "text",
     "description": "notification_info"
   },
-  "notifications": "تنبيهات",
+  "notifications": "通知",
   "@notifications": {
     "type": "text",
     "description": "notifications_settings"
   },
-  "notificationTitle": "تم استلام %1 %2",
+  "notificationTitle": "收到 %1 %2",
   "@notificationTitle": {
     "type": "text",
     "description": "notification_title"
   },
-  "notificationWarning": "تعطيل الإخطارات",
+  "notificationWarning": "通知已禁用",
   "@notificationWarning": {
     "type": "text",
     "description": "home_notification_warning"
   },
-  "notificationWarningBodyLong": "تتطلب جميع طلبات الدفع والمذكرات والرسائل تمكين الإخطارات من أجل العمل بشكل صحيح أثناء استخدامهم لخدمة إشعارات FCM لضمان تسليم الرسائل.\n\nيمكنك تمكين الإشعارات بالزر أدناه أو رفض هذه البطاقة إذا كنت لا تهتم باستخدام هذه الميزات.",
+  "notificationWarningBodyLong": "付款请求、备忘录和消息都需要启用通知才能正常工作，因为它们使用 FCM 通知服务来确保消息传递。\n\n如果您不想使用这些功能，可以使用下面的按钮启用通知或关闭此卡。",
   "@notificationWarningBodyLong": {
     "type": "text",
     "description": "notification_warning_body_long"
   },
-  "notificationWarningBodyShort": "لن تعمل طلبات الدفع والمذكرات والرسائل بشكل صحيح.",
+  "notificationWarningBodyShort": "付款请求、备忘录和消息将无法正常运行。",
   "@notificationWarningBodyShort": {
     "type": "text",
     "description": "notification_warning_body_short"
   },
-  "notSent": "لم يتم إرسالها",
+  "notSent": "未发送",
   "@notSent": {
     "type": "text",
     "description": "not_sent_message"
   },
-  "noTXDataExport": "لا توجد معاملات للتصدير.",
+  "noTXDataExport": "没有要导出的交易。",
   "@noTXDataExport": {
     "type": "text",
     "description": "tx_export_none"
   },
-  "nyanicon": "نيانيكون",
+  "nyanicon": "Nyanicon",
   "@nyanicon": {
     "type": "text",
     "description": "nyanicon_settings"
   },
-  "obscureInfoHeader": "معلومات المعاملات الغامضة",
+  "obscureInfoHeader": "模糊的交易信息",
   "@obscureInfoHeader": {
     "type": "text",
     "description": "obscure_tx_info"
   },
-  "obscureTransaction": "معاملة غامضة",
+  "obscureTransaction": "模糊交易",
   "@obscureTransaction": {
     "type": "text",
     "description": "obscure_tx"
   },
-  "obscureTransactionBody": "هذه ليست خصوصية حقيقية ، لكنها ستجعل من الصعب على المستلم معرفة من أرسل الأموال إليه.",
+  "obscureTransactionBody": "这不是真正的隐私，但它会让收款人更难看到是谁给他们汇款的。",
   "@obscureTransactionBody": {
     "type": "text",
     "description": "obscure_tx_body"
   },
-  "off": "غلق",
+  "off": "关闭",
   "@off": {
     "type": "text",
     "description": "generic_off"
   },
-  "ok": "طيب",
+  "ok": "好的",
   "@ok": {
     "type": "text",
     "description": "ok"
   },
-  "onboard": "قم بدعوة شخص ما",
+  "onboard": "邀请某人",
   "@onboard": {
     "type": "text",
     "description": "featured_onboard"
   },
-  "onboarding": "على متن الطائرة",
+  "onboarding": "入职",
   "@onboarding": {
     "type": "text",
     "description": "share_onboarding"
   },
-  "onramp": "أونرامب",
+  "onramp": "入口匝道",
   "@onramp": {
     "type": "text",
     "description": "onramp_settings"
@@ -1806,267 +1806,267 @@
     "type": "text",
     "description": "onramper_ramp"
   },
-  "onStr": "فتح",
+  "onStr": "开启",
   "@onStr": {
     "type": "text",
     "description": "generic_on"
   },
-  "opened": "تم افتتاحه",
+  "opened": "已开业",
   "@opened": {
     "type": "text",
     "description": "history_opened"
   },
-  "overdue": "متأخر",
+  "overdue": "逾期",
   "@overdue": {
     "type": "text",
     "description": "payment_overdue"
   },
-  "paid": "دفع",
+  "paid": "已支付",
   "@paid": {
     "type": "text",
     "description": "history_paid"
   },
-  "paperWallet": "المحفظة الورقية",
+  "paperWallet": "纸钱包",
   "@paperWallet": {
     "type": "text",
     "description": "paper_wallet"
   },
-  "passwordBlank": "لا يمكن أن تكون كلمة المرور فارغة\n",
+  "passwordBlank": "密码不能为空",
   "@passwordBlank": {
     "type": "text",
     "description": "An error indicating a password has been entered incorrectly"
   },
-  "passwordCapitalLetter": "يجب أن تحتوي كلمة المرور على حرف واحد كبير وصغير على الأقل",
+  "passwordCapitalLetter": "密码必须至少包含 1 个大写和小写字母",
   "@passwordCapitalLetter": {
     "type": "text",
     "description": "password_uppercase_lowercase"
   },
-  "passwordDisclaimer": "نحن لسنا مسؤولين إذا نسيت كلمة المرور الخاصة بك ، وبحكم التصميم لا يمكننا إعادة تعيينها أو تغييرها نيابة عنك.",
+  "passwordDisclaimer": "如果您忘记了密码，我们概不负责，并且我们无法为您重置或更改密码。",
   "@passwordDisclaimer": {
     "type": "text",
     "description": "A paragraph that we're not responsible if you lose your password."
   },
-  "passwordIncorrect": "كلمة سر خاطئة",
+  "passwordIncorrect": "密码错误",
   "@passwordIncorrect": {
     "type": "text",
     "description": "An error indicating the password is incorrect"
   },
-  "passwordNoLongerRequiredToOpenParagraph": "لن تحتاج إلى كلمة مرور لفتح  نتريم بعد الآن.\n",
+  "passwordNoLongerRequiredToOpenParagraph": "您以后打开Nautilus不再需要密码了。",
   "@passwordNoLongerRequiredToOpenParagraph": {
     "type": "text",
     "description": "An info paragraph that tells the user a password will no longer be needed to open Nautilus"
   },
-  "passwordNumber": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
+  "passwordNumber": "密码必须至少包含 1 个数字",
   "@passwordNumber": {
     "type": "text",
     "description": "password_number"
   },
-  "passwordsDontMatch": "كلمة المرور غير مطابقة\n",
+  "passwordsDontMatch": "密码不匹配",
   "@passwordsDontMatch": {
     "type": "text",
     "description": "An error indicating a password has been confirmed incorrectly"
   },
-  "passwordSpecialCharacter": "يجب أن تحتوي كلمة المرور على حرف خاص واحد على الأقل",
+  "passwordSpecialCharacter": "密码必须至少包含 1 个特殊字符",
   "@passwordSpecialCharacter": {
     "type": "text",
     "description": "password_special_character"
   },
-  "passwordTooShort": "كلمة المرور قصيرة جدا",
+  "passwordTooShort": "密码太短",
   "@passwordTooShort": {
     "type": "text",
     "description": "An error indicating the password is too short"
   },
-  "passwordWarning": "ستكون كلمة المرور هذه مطلوبة لفتح Nautilus.",
+  "passwordWarning": "打开 Nautilus 需要此密码。",
   "@passwordWarning": {
     "type": "text",
     "description": "A paragraph that warns the user to not lose their password."
   },
-  "passwordWillBeRequiredToOpenParagraph": "هناك حاجة إلى كلمة المرور لفتح نتريم",
+  "passwordWillBeRequiredToOpenParagraph": "以后需要这个密码才能打开Nautilus。",
   "@passwordWillBeRequiredToOpenParagraph": {
     "type": "text",
     "description": "A paragraph that tells the users that the created password will be required to open Nautilus."
   },
-  "pastDue": "تجاوز تاريخ الاستحقاق",
+  "pastDue": "逾期",
   "@pastDue": {
     "type": "text",
     "description": "past_due"
   },
-  "pay": "الدفع",
+  "pay": "付钱",
   "@pay": {
     "type": "text",
     "description": "home_pay_slidable"
   },
-  "paymentHistory": "تاريخ الدفع",
+  "paymentHistory": "支付历史",
   "@paymentHistory": {
     "type": "text",
     "description": "payment_history"
   },
-  "paymentRequestMessage": "طلب شخص ما الدفع منك! تحقق من صفحة المدفوعات لمزيد من المعلومات.",
+  "paymentRequestMessage": "有人要求你付款！查看付款页面了解更多信息。",
   "@paymentRequestMessage": {
     "type": "text",
     "description": "payment_request_message"
   },
-  "payments": "المدفوعات",
+  "payments": "付款",
   "@payments": {
     "type": "text",
     "description": "payments"
   },
-  "paymentScheduled": "جدولة الدفع",
+  "paymentScheduled": "预定付款",
   "@paymentScheduled": {
     "type": "text",
     "description": "payment_scheduled"
   },
-  "paymentTime": "وقت الدفع",
+  "paymentTime": "付款时间",
   "@paymentTime": {
     "type": "text",
     "description": "payment_time"
   },
-  "payRequest": "ادفع هذا الطلب",
+  "payRequest": "支付此申请",
   "@payRequest": {
     "type": "text",
     "description": "pay_request"
   },
-  "pickFromList": "اختيار من قائمة",
+  "pickFromList": "从代表名单选择",
   "@pickFromList": {
     "type": "text",
     "description": "pick rep from list"
   },
-  "pickTime": "اختر وقتًا",
+  "pickTime": "选择时间",
   "@pickTime": {
     "type": "text",
     "description": "pick_time_button"
   },
-  "pinBlank": "لا يمكن أن يكون رقم التعريف الشخصي فارغًا",
+  "pinBlank": "引脚不能为空",
   "@pinBlank": {
     "type": "text",
     "description": "An error indicating a pin has been entered incorrectly"
   },
-  "pinConfirmError": "رمز الPIN غير مطابق",
+  "pinConfirmError": "识别码不匹配",
   "@pinConfirmError": {
     "type": "text",
     "description": "pin_confirm_error"
   },
-  "pinConfirmTitle": "تأكيد رمز الPIN",
+  "pinConfirmTitle": "确认您的识别码",
   "@pinConfirmTitle": {
     "type": "text",
     "description": "pin_confirm_title"
   },
-  "pinCreateTitle": "ضع 6 أرقام رمز الPIN",
+  "pinCreateTitle": "创建一个6位数的识别码",
   "@pinCreateTitle": {
     "type": "text",
     "description": "pin_create_title"
   },
-  "pinEnterTitle": "أدخل رمز الPIN",
+  "pinEnterTitle": "输入识别码",
   "@pinEnterTitle": {
     "type": "text",
     "description": "pin_enter_title"
   },
-  "pinIncorrect": "تم إدخال رقم التعريف الشخصي غير الصحيح",
+  "pinIncorrect": "输入的密码不正确",
   "@pinIncorrect": {
     "type": "text",
     "description": "pin_error"
   },
-  "pinInvalid": "رمز الPIN غير صحيح",
+  "pinInvalid": "输入的识别码无效",
   "@pinInvalid": {
     "type": "text",
     "description": "pin_error"
   },
-  "pinMethod": "PIN",
+  "pinMethod": "识别码",
   "@pinMethod": {
     "type": "text",
     "description": "settings_pin_method"
   },
-  "pinRepChange": "أدخل رمز الPIN لتغير المندوب",
+  "pinRepChange": "输入识别码以更改代表。",
   "@pinRepChange": {
     "type": "text",
     "description": "change_representative_pin"
   },
-  "pinsDontMatch": "الدبابيس غير متطابقة",
+  "pinsDontMatch": "引脚不匹配",
   "@pinsDontMatch": {
     "type": "text",
     "description": "An error indicating a pin has been confirmed incorrectly"
   },
-  "pinSeedBackup": "أدخل الPIN للنسخ المفتاح الخاص",
+  "pinSeedBackup": "输入识别码以查看钱包种子。",
   "@pinSeedBackup": {
     "type": "text",
     "description": "settings_pin_title"
   },
-  "plausibleDeniabilityParagraph": "هذا ليس نفس رقم التعريف الشخصي الذي استخدمته لإنشاء محفظتك. اضغط على زر المعلومات لمزيد من المعلومات.",
+  "plausibleDeniabilityParagraph": "这与您用于创建钱包的密码不同。按信息按钮了解更多信息。",
   "@plausibleDeniabilityParagraph": {
     "type": "text",
     "description": "A paragraph that tells warns the user this is plausible deniability pin."
   },
-  "plausibleInfoHeader": "معلومات الإنكار المعقولة",
+  "plausibleInfoHeader": "似是而非的否认信息",
   "@plausibleInfoHeader": {
     "type": "text",
     "description": "plausible_info_header"
   },
-  "plausibleSheetInfo": "قم بتعيين دبوس ثانوي لوضع الإنكار المعقول.\n\nإذا تم إلغاء قفل محفظتك باستخدام هذا الدبوس الثانوي ، فسيتم استبدال بذرتك بتجزئة من البذور الموجودة. هذه ميزة أمان مخصصة لاستخدامها في حالة إجبارك على فتح محفظتك.\n\nسيعمل هذا الدبوس مثل دبوس عادي (صحيح) باستثناء عند فتح محفظتك ، وهو الوقت الذي يتم فيه تنشيط وضع الإنكار المعقول.\n\nستفقد أموالك عند الدخول في وضع الإنكار المعقول إذا لم تقم بعمل نسخة احتياطية من البذور الخاصة بك!",
+  "plausibleSheetInfo": "为似是而非的否认模式设置辅助引脚。\n\n如果您的钱包使用此辅助密码解锁，您的种子将替换为现有种子的哈希值。这是一项安全功能，旨在在您被迫打开钱包的情况下使用。\n\n除了解锁你的钱包时，这个密码就像一个正常的（正确的）密码，这是在合理的否认模式将激活的时候。\n\n如果您没有备份您的种子，您的资金将在进入合理否认模式时丢失！",
   "@plausibleSheetInfo": {
     "type": "text",
     "description": "plausible_sheet_info"
   },
-  "pow": "PoW",
+  "pow": "工作量证明",
   "@pow": {
     "type": "text",
     "description": "pow"
   },
-  "preferences": "الاختيارات",
+  "preferences": "偏好",
   "@preferences": {
     "type": "text",
     "description": "settings_preferences_header"
   },
-  "privacyPolicy": "سياسة الخصوصية",
+  "privacyPolicy": "隐私政策",
   "@privacyPolicy": {
     "type": "text",
     "description": "settings_privacy_policy"
   },
-  "promotionalLink": "نانو مجاني",
+  "promotionalLink": "免费纳米",
   "@promotionalLink": {
     "type": "text",
     "description": "promo_Link"
   },
-  "proSubRequiredHeader": "الاشتراك في Nautilus Pro مطلوب",
+  "proSubRequiredHeader": "需要订阅 Nautilus Pro",
   "@proSubRequiredHeader": {
     "type": "text",
     "description": "pro_sub_required_header"
   },
-  "proSubRequiredParagraph": "مقابل 1 NANO فقط شهريًا ، يمكنك فتح جميع ميزات Nautilus Pro.",
+  "proSubRequiredParagraph": "每月只需 1 NANO，您就可以解锁 Nautilus Pro 的所有功能。",
   "@proSubRequiredParagraph": {
     "type": "text",
     "description": "pro_sub_required_paragraph"
   },
-  "purchaseCurrency": "شراء٪ 2",
+  "purchaseCurrency": "购买 %2",
   "@purchaseCurrency": {
     "type": "text",
     "description": "purchase_currency"
   },
-  "purchaseNano": "شراء نانو",
+  "purchaseNano": "购买 Nano",
   "@purchaseNano": {
     "type": "text",
     "description": "purchase_nano"
   },
-  "qrInvalidAddress": "لا يحتوي رمز الاستجابة السريعة على وجهة صالحة\n",
+  "qrInvalidAddress": "二维码不包含一个有效的地址",
   "@qrInvalidAddress": {
     "type": "text",
     "description": "qr_invalid_address"
   },
-  "qrInvalidPermissions": "يرجى منح الكاميرا لمسح رموز QR\n",
+  "qrInvalidPermissions": "请提供相机许可来扫描二维码",
   "@qrInvalidPermissions": {
     "type": "text",
     "description": "User did not grant camera permissions to the app"
   },
-  "qrInvalidSeed": "رمز الاستجابة السريعة لا يحتوي على مفتاح خاص صحيح",
+  "qrInvalidSeed": "二维码没有包含任何有效的种子",
   "@qrInvalidSeed": {
     "type": "text",
     "description": "qr_invalid_seed"
   },
-  "qrMnemonicError": "لا يحتوي رمز الاستجابة السريعة على عبارة سرية صالحة",
+  "qrMnemonicError": "二维码不包含有效的秘密词语",
   "@qrMnemonicError": {
     "type": "text",
     "description": "When QR does not contain a valid mnemonic phrase"
   },
-  "qrUnknownError": "لا يمكن قراءة رمز الاستجابة السريعة\n",
+  "qrUnknownError": "无法读取二维码",
   "@qrUnknownError": {
     "type": "text",
     "description": "An unknown error occurred with the QR scanner"
@@ -2076,127 +2076,127 @@
     "type": "text",
     "description": "rate_app_button"
   },
-  "rateTheApp": "قيم التطبيق",
+  "rateTheApp": "为应用程序评分",
   "@rateTheApp": {
     "type": "text",
     "description": "rate_app_header"
   },
-  "rateTheAppDescription": "إذا كنت تستمتع بالتطبيق، ففكر في تخصيص الوقت لمراجعته،\nإنه يساعد حقًا ولا يجب أن يستغرق أكثر من دقيقة.",
+  "rateTheAppDescription": "如果你喜欢这个应用程序，可以考虑花点时间查看它，\n它确实有帮助，而且花费的时间不应超过一分钟。",
   "@rateTheAppDescription": {
     "type": "text",
     "description": "rate_app_desc"
   },
-  "rawSeed": "Raw Seed",
+  "rawSeed": "种子",
   "@rawSeed": {
     "type": "text",
     "description": "raw_seed"
   },
-  "readMore": "اقرأ المزيد",
+  "readMore": "阅读更多",
   "@readMore": {
     "type": "text",
     "description": "read_more"
   },
-  "receivable": "مستحق",
+  "receivable": "应收账款",
   "@receivable": {
     "type": "text",
     "description": "history_receivable"
   },
-  "receive": "إستلام",
+  "receive": "接收",
   "@receive": {
     "type": "text",
     "description": "home_receive_cta"
   },
-  "received": "تم الإستلام",
+  "received": "收到",
   "@received": {
     "type": "text",
     "description": "history_received"
   },
-  "receiveMinimum": "تلقي الحد الأدنى",
+  "receiveMinimum": "最低收益",
   "@receiveMinimum": {
     "type": "text",
     "description": "receive_minimum"
   },
-  "receiveMinimumHeader": "تلقي الحد الأدنى من المعلومات",
+  "receiveMinimumHeader": "接收最低限度信息",
   "@receiveMinimumHeader": {
     "type": "text",
     "description": "receive_minimum_header"
   },
-  "receiveMinimumInfo": "الحد الأدنى للمبلغ لتلقيه. إذا تم استلام دفعة أو طلب بمبلغ أقل من هذا، فسيتم تجاهله.",
+  "receiveMinimumInfo": "收取的最低金额。如果收到的金额低于此金额的付款或请求，则会被忽略。",
   "@receiveMinimumInfo": {
     "type": "text",
     "description": "receive_minimum_info"
   },
-  "recurringButton": "يتكرر",
+  "recurringButton": "再次发生的",
   "@recurringButton": {
     "type": "text",
     "description": "recurring_button"
   },
-  "recurringPayments": "دفعات متكررة",
+  "recurringPayments": "定期付款",
   "@recurringPayments": {
     "type": "text",
     "description": "recurring_payments"
   },
-  "refund": "استرداد",
+  "refund": "退款",
   "@refund": {
     "type": "text",
     "description": "refund"
   },
-  "registerButton": "يسجل",
+  "registerButton": "登记",
   "@registerButton": {
     "type": "text",
     "description": "register_button"
   },
-  "registerFor": "من أجل",
+  "registerFor": "为了",
   "@registerFor": {
     "type": "text",
     "description": "register_for"
   },
-  "registering": "التسجيل",
+  "registering": "正在注册",
   "@registering": {
     "type": "text",
     "description": "register_registering"
   },
-  "registerUsername": "تسجيل اسم المستخدم",
+  "registerUsername": "注册用户名",
   "@registerUsername": {
     "type": "text",
     "description": "register_username"
   },
-  "registerUsernameHeader": "تسجيل اسم مستخدم",
+  "registerUsernameHeader": "注册一个用户名",
   "@registerUsernameHeader": {
     "type": "text",
     "description": "register_username_header"
   },
-  "remove": "إزالة",
+  "remove": "消除",
   "@remove": {
     "type": "text",
     "description": "accounts_remove_slide"
   },
-  "removeAccountText": "هل أنت متأكد أنك تريد إخفاء هذا الحساب؟ يمكنك إعادة إضافته لاحقًا بذخت على \"%1\"",
+  "removeAccountText": "您确定要隐藏此账户？ 您之后可以点 \"%1\" 键来重新添加此账户。",
   "@removeAccountText": {
     "type": "text",
     "description": "Remove account dialog body"
   },
-  "removeBlocked": "إلغاء الحظر",
+  "removeBlocked": "解除封锁",
   "@removeBlocked": {
     "type": "text",
     "description": "blocked_remove_btn"
   },
-  "removeBlockedConfirmation": "هل تريد بالتأكيد إلغاء حظر %1؟",
+  "removeBlockedConfirmation": "您确定要解除封锁 %1 吗？",
   "@removeBlockedConfirmation": {
     "type": "text",
     "description": "blocked_remove_sure"
   },
-  "removeContact": "حذف بيانات جهة الاتصال",
+  "removeContact": "删除联系人",
   "@removeContact": {
     "type": "text",
     "description": "contact_remove_btn"
   },
-  "removeContactConfirmation": "هل تريد حذف %1؟",
+  "removeContactConfirmation": "您确认要刪除%1吗？",
   "@removeContactConfirmation": {
     "type": "text",
     "description": "contact_remove_sure"
   },
-  "removeFavorite": "إزالة المفضلة",
+  "removeFavorite": "移除收藏夹",
   "@removeFavorite": {
     "type": "text",
     "description": "favorite_remove_btn"
@@ -2206,362 +2206,362 @@
     "type": "text",
     "description": "favorite_remove_sure"
   },
-  "repInfo": "المندوب هو الحساب الذي يصوت لصالح توافق شبكة. يتم وزن قوة التصويت بالتوازن ، يمكنك تفويض رصيدك لزيادة وزن التصويت لمندوب تثق فيه. المندوب ليست له القدرة الشرائية لأموالك. يجب إختيار مندوب ضئيل الإنقطاع وجدير بالثقة.",
+  "repInfo": "代表是投票支持网络共识的帐户。代表的投票权重由账户余额加权，您可以用余额投票来增加您信任的代表的投票权重。您的代表对您的资金没有控制权。您应该选择一个下线时间很少并且值得信赖的代表。",
   "@repInfo": {
     "type": "text",
     "description": "change_representative_info"
   },
-  "repInfoHeader": "ماهو المندوب؟",
+  "repInfoHeader": "什么是代表？",
   "@repInfoHeader": {
     "type": "text",
     "description": "change_representative_info_header"
   },
-  "reply": "رد",
+  "reply": "回复",
   "@reply": {
     "type": "text",
     "description": "home_reply_slidable"
   },
-  "representatives": "مندوب",
+  "representatives": "代表",
   "@representatives": {
     "type": "text",
     "description": "representatives"
   },
-  "request": "طلب",
+  "request": "申请",
   "@request": {
     "type": "text",
     "description": "home_request_cta"
   },
-  "requestAmountConfirm": "طلب %1 %2",
+  "requestAmountConfirm": "请求 %1 %2",
   "@requestAmountConfirm": {
     "type": "text",
     "description": "request_pin_description"
   },
-  "requested": "طلب",
+  "requested": "已请求",
   "@requested": {
     "type": "text",
     "description": "home_requested_cta"
   },
-  "requestedFrom": "طلب من",
+  "requestedFrom": "请求自",
   "@requestedFrom": {
     "type": "text",
     "description": "requested_from"
   },
-  "requestError": "فشل الطلب: لا يبدو أن هذا المستخدم قد تم تثبيت Nautilus أو أنه تم تعطيل الإشعارات.",
+  "requestError": "请求失败：此用户似乎没有安装 Nautilus，或者禁用了通知。",
   "@requestError": {
     "type": "text",
     "description": "request_generic_error"
   },
-  "requestFrom": "طلب من",
+  "requestFrom": "请求来自",
   "@requestFrom": {
     "type": "text",
     "description": "request_title"
   },
-  "requesting": "طلب",
+  "requesting": "正在申请",
   "@requesting": {
     "type": "text",
     "description": "request_requesting"
   },
-  "requestPayment": "طلب الدفع",
+  "requestPayment": "申请付款",
   "@requestPayment": {
     "type": "text",
     "description": "request_payment_cta"
   },
-  "requestSendError": "خطأ في إرسال طلب الدفع، قد يكون جهاز المستلم غير متصل أو غير متوفر.",
+  "requestSendError": "发送付款请求时出错，收款人的设备可能处于离线状态或不可用。",
   "@requestSendError": {
     "type": "text",
     "description": "request_send_error"
   },
-  "requestSentButNotReceived": "إعادة إرسال الطلب! إذا كان لا يزال غير معترف به، فقد يكون جهاز المستلم غير متصل.",
+  "requestSentButNotReceived": "请求重新发送！如果仍未确认，则收件人的设备可能处于脱机状态。",
   "@requestSentButNotReceived": {
     "type": "text",
     "description": "request_sent_again"
   },
-  "requestSheetInfo": "طلب الدفع ، مع الرسائل المشفرة من طرف إلى طرف!\n\nلن يتم قبول طلبات الدفع والمذكرات والرسائل إلا من قبل مستخدمي نوتيلوس الآخرين ، ولكن يمكنك استخدامها لحفظ السجلات الخاصة بك حتى إذا كان المستلم لا يستخدم نوتيلوس.",
+  "requestSheetInfo": "使用端到端加密消息请求付款！\n\n付款请求、备忘录和消息只能由其他 nautilus 用户接收，但即使收件人不使用 nautilus，您也可以将它们用于自己的记录保存。",
   "@requestSheetInfo": {
     "type": "text",
     "description": "request_sheet_info"
   },
-  "requestSheetInfoHeader": "طلب معلومات الورقة",
+  "requestSheetInfoHeader": "请求表信息",
   "@requestSheetInfoHeader": {
     "type": "text",
     "description": "request_sheet_info_header"
   },
-  "requireAPasswordToOpenHeader": "مطالبة كلمة مرور لفتح نتريم ؟",
+  "requireAPasswordToOpenHeader": "需要密码来打开Nautilus吗？",
   "@requireAPasswordToOpenHeader": {
     "type": "text",
     "description": "A paragraph that asks the users if they would like a password to be required to open Nautilus."
   },
-  "requireCaptcha": "يتطلب اختبار CAPTCHA للمطالبة ببطاقة الهدايا",
+  "requireCaptcha": "要求 CAPTCHA 领取礼品卡",
   "@requireCaptcha": {
     "type": "text",
     "description": "gift_claim_require_captcha"
   },
-  "resendMemo": "إعادة إرسال هذه المذكرة",
+  "resendMemo": "重新发送此备忘录",
   "@resendMemo": {
     "type": "text",
     "description": "resend_memo"
   },
-  "resetAccountButton": "إعادة تعيين الحساب",
+  "resetAccountButton": "重置帐户",
   "@resetAccountButton": {
     "type": "text",
     "description": "reset_account_button"
   },
-  "resetAccountParagraph": "سيؤدي هذا إلى إنشاء حساب جديد بكلمة المرور التي قمت بتعيينها للتو ، ولن يتم حذف الحساب القديم ما لم تكن كلمات المرور المختارة هي نفسها.",
+  "resetAccountParagraph": "这将使用您刚刚设置的密码创建一个新帐户，除非选择的密码相同，否则旧帐户不会被删除。",
   "@resetAccountParagraph": {
     "type": "text",
     "description": "reset_account_warning"
   },
-  "resetDatabase": "إعادة تعيين قاعدة البيانات",
+  "resetDatabase": "重置数据库",
   "@resetDatabase": {
     "type": "text",
     "description": "settings_nuke_db"
   },
-  "resetDatabaseConfirmation": "هل تريد بالتأكيد إعادة تعيين قاعدة البيانات الداخلية؟ \n\nقد يؤدي ذلك إلى إصلاح المشكلات المتعلقة بتحديث التطبيق، ولكنه سيؤدي أيضًا إلى حذف جميع التفضيلات المحفوظة. لن يؤدي هذا إلى حذف بذور محفظتك. إذا كنت تواجه مشكلات، فيجب عليك الاحتفاظ بنسخة احتياطية من البذور الخاصة بك، وإعادة تثبيت التطبيق، وإذا استمرت المشكلة، فلا تتردد في إنشاء تقرير خطأ على github أو discord.",
+  "resetDatabaseConfirmation": "确实要重置内部数据库吗？ \n\n这可能会解决与更新应用程序有关的问题，但也会删除所有已保存的首选项。这不会删除你的钱包种子。如果你遇到问题，你应该备份你的种子，重新安装应用程序，如果问题仍然存在，请随时在github或Discord上提交错误报告。",
   "@resetDatabaseConfirmation": {
     "type": "text",
     "description": "database_remove_sure"
   },
-  "retry": "إعادة المحاولة",
+  "retry": "重试",
   "@retry": {
     "type": "text",
     "description": "home_retry_slide"
   },
-  "rootWarning": "يبدو أن جهازك \"rooted\" أو \"jailbroken\" أو تم تعديله بطريقة تعرض الأمان للخطر. يرجى إعادة ضبط جهازك إلى حالته الأصلية قبل المتابعة.\n",
+  "rootWarning": "您的设备似乎被“越狱”或被修改，从而存在安全隐患。建议您在继续之前把设备还原到初始状态。",
   "@rootWarning": {
     "type": "text",
     "description": "Shown to users if they have a rooted Android device or jailbroken iOS device"
   },
-  "save": "يحفظ",
+  "save": "节省",
   "@save": {
     "type": "text",
     "description": "dialog_save"
   },
-  "scanInstructions": "مسح \nعنوان رمز الاستجابة السريعة",
+  "scanInstructions": "扫描%2二维码地址",
   "@scanInstructions": {
     "type": "text",
     "description": "scan_send_instruction_label"
   },
-  "scanNFC": "إرسال عبر NFC",
+  "scanNFC": "通过 NFC 发送",
   "@scanNFC": {
     "type": "text",
     "description": "scan_nfc"
   },
-  "scanQrCode": "مسح رمز الاستجابة السريعة",
+  "scanQrCode": "扫描二维码",
   "@scanQrCode": {
     "type": "text",
     "description": "send_scan_qr"
   },
-  "schedule": "برنامج",
+  "schedule": "日程",
   "@schedule": {
     "type": "text",
     "description": "subs_schedule"
   },
-  "scheduledButton": "المقرر",
+  "scheduledButton": "已预定",
   "@scheduledButton": {
     "type": "text",
     "description": "scheduled_button"
   },
-  "schedulePayment": "دفع الجدول الزمني",
+  "schedulePayment": "安排付款",
   "@schedulePayment": {
     "type": "text",
     "description": "schedule_payment_button"
   },
-  "searchHint": "ابحث عن أي شيء",
+  "searchHint": "搜索任何东西",
   "@searchHint": {
     "type": "text",
     "description": "home_search_hint"
   },
-  "secretInfo": "في الشاشة التالية ، سترى العبارة السرية الخاصة بك. إنها كلمة مرور للوصول إلى أموالك. من الأهمية أن تقوم بنسخه احتياطيًا وأن لا تشاركه أبدًا مع أي شخص.",
+  "secretInfo": "您将会看到您的秘密词语，它是存取您的币的密匙。您要确保把它备份好，并且不要和任何人分享。",
   "@secretInfo": {
     "type": "text",
     "description": "Description for seed"
   },
-  "secretInfoHeader": "السلامة اولا!",
+  "secretInfoHeader": "安全第一！",
   "@secretInfoHeader": {
     "type": "text",
     "description": "secret info header"
   },
-  "secretPhrase": "العبارة السرية",
+  "secretPhrase": "秘密词语",
   "@secretPhrase": {
     "type": "text",
     "description": "Secret (mnemonic) phrase"
   },
-  "secretPhraseCopied": "تم نسخ العبارة السرية",
+  "secretPhraseCopied": "已复制秘密词语",
   "@secretPhraseCopied": {
     "type": "text",
     "description": "Copied secret phrase to clipboard"
   },
-  "secretPhraseCopy": "نسخ العبارة السرية",
+  "secretPhraseCopy": "复制秘密词语",
   "@secretPhraseCopy": {
     "type": "text",
     "description": "Copy secret phrase to clipboard"
   },
-  "secretWarning": "إذا فقدت جهازك أو قمت بحذف التطبيق ، فستحتاج إلى عباراتك السرية أو بمفتاح سري لاسترداد أموالك!",
+  "secretWarning": "如果您丢了您的手机或卸载这程序，您就需要您的种子或秘密词语才可以重获您的币！",
   "@secretWarning": {
     "type": "text",
     "description": "Secret warning"
   },
-  "securityHeader": "تأمين",
+  "securityHeader": "安全性",
   "@securityHeader": {
     "type": "text",
     "description": "security_header"
   },
-  "seed": "مفتاح خاص",
+  "seed": "种子",
   "@seed": {
     "type": "text",
     "description": "intro_new_wallet_seed_header"
   },
-  "seedBackupInfo": "مفتاحك الخاص يوجد أسفله. يجب حفظ نسخةٌ منه في مكان أمن.  لا للقطة الشاشة أو لنص في الهاتف.",
+  "seedBackupInfo": "以下是您钱包的种子。请您务必备份此种子，但为了安全请永远不要用纯文本或屏幕截图来储存它。",
   "@seedBackupInfo": {
     "type": "text",
     "description": "intro_new_wallet_seed"
   },
-  "seedCopied": "تم نسخ المفتاح الخاص\n لمدة دقيقتين",
+  "seedCopied": "种子复制到剪贴板。 2分钟后失效",
   "@seedCopied": {
     "type": "text",
     "description": "intro_new_wallet_seed_copied"
   },
-  "seedCopiedShort": "تم النسخ المفتاح الخاص",
+  "seedCopiedShort": "种子已复制",
   "@seedCopiedShort": {
     "type": "text",
     "description": "seed_copied_btn"
   },
-  "seedDescription": "المفتاح خاص يحتمل عل معلومات مطابقة للعبرة سارية. طالما لديك نسخة احتياطية من واحدة منها ، سيكون لديك وسيلة للحفاظ على أموالك.",
+  "seedDescription": "种子和秘密词语对机器来说是同一个东西，只要有种子或秘密词语的备份，就可以存取您的币。",
   "@seedDescription": {
     "type": "text",
     "description": "Describing what a seed is"
   },
-  "seedInvalid": "مفتاح خاص غير صحيح",
+  "seedInvalid": "无效的种子",
   "@seedInvalid": {
     "type": "text",
     "description": "intro_seed_invalid"
   },
-  "selfSendError": "لا يمكن الطلب من الذات",
+  "selfSendError": "无法向自己申请",
   "@selfSendError": {
     "type": "text",
     "description": "self_send_error"
   },
-  "send": "إرسال",
+  "send": "发送",
   "@send": {
     "type": "text",
     "description": "home_send_cta"
   },
-  "sendAmountConfirm": "أرسل %1 %2",
+  "sendAmountConfirm": "发送 %1 %2",
   "@sendAmountConfirm": {
     "type": "text",
     "description": "send_amount_confirm"
   },
-  "sendAmounts": "إرسال المبالغ",
+  "sendAmounts": "发送金额",
   "@sendAmounts": {
     "type": "text",
     "description": "split_bill_send_amounts"
   },
-  "sendError": "يوجد خطأ. حاول لاحقاً.",
+  "sendError": "发生错误。请稍后再试。",
   "@sendError": {
     "type": "text",
     "description": "send_generic_error"
   },
-  "sendFrom": "أرسل من",
+  "sendFrom": "发送自",
   "@sendFrom": {
     "type": "text",
     "description": "send_title"
   },
-  "sending": "إرسال",
+  "sending": "发出",
   "@sending": {
     "type": "text",
     "description": "send_sending"
   },
-  "sendMemoError": "فشل إرسال مذكرة مع المعاملة، قد لا يكون مستخدم Nautilus.",
+  "sendMemoError": "发送包含交易的备忘录失败，他们可能不是Nautilus用户。",
   "@sendMemoError": {
     "type": "text",
     "description": "send_memo_error"
   },
-  "sendMessageConfirm": "إرسال رسالة",
+  "sendMessageConfirm": "正在发送消息",
   "@sendMessageConfirm": {
     "type": "text",
     "description": "send_message_description"
   },
-  "sendRequestAgain": "إرسال الطلب مرة أخرى",
+  "sendRequestAgain": "再次发送请求",
   "@sendRequestAgain": {
     "type": "text",
     "description": "request_again"
   },
-  "sendRequests": "ارسل طلبات",
+  "sendRequests": "发送请求",
   "@sendRequests": {
     "type": "text",
     "description": "split_bill_send_requests"
   },
-  "sendSheetInfo": "أرسل أو اطلب دفعة، مع الرسائل المشفرة من النهاية إلى النهاية!\n\nلن يتم قبول طلبات الدفع والمذكرات والرسائل إلا من قبل مستخدمي nautilus الآخرين.\n\nلا تحتاج إلى اسم مستخدم لإرسال أو استقبال طلبات الدفع، ويمكنك استخدامها لحفظ السجلات الخاصة بك حتى لو لم تستخدم nautilus.",
+  "sendSheetInfo": "使用端到端加密消息发送或请求付款！\n\n付款请求、备忘录和消息只能由其他 nautilus 用户接收。\n\n您无需拥有用户名即可发送或接收付款请求，即使他们不使用nautilus，您也可以将其用于自己的记录保存。",
   "@sendSheetInfo": {
     "type": "text",
     "description": "send_sheet_info"
   },
-  "sendSheetInfoHeader": "إرسال معلومات الورقة",
+  "sendSheetInfoHeader": "发送工作表信息",
   "@sendSheetInfoHeader": {
     "type": "text",
     "description": "send_sheet_info_header"
   },
-  "sent": "تم الارسال",
+  "sent": "发送",
   "@sent": {
     "type": "text",
     "description": "history_sent"
   },
-  "sentTo": "تم الإرسال إلى",
+  "sentTo": "发给",
   "@sentTo": {
     "type": "text",
     "description": "sent_to"
   },
-  "set": "تعيين",
+  "set": "放",
   "@set": {
     "type": "text",
     "description": "dialog_set"
   },
-  "setPassword": "إنشاء كلمة مرور\n",
+  "setPassword": "设置密码",
   "@setPassword": {
     "type": "text",
     "description": "A button that sets the wallet password"
   },
-  "setPasswordSuccess": "تم إنشاء كلمة مرور المحفظة بنجاح\n",
+  "setPasswordSuccess": "密码设置成功",
   "@setPasswordSuccess": {
     "type": "text",
     "description": "Setting a Wallet Password was successful"
   },
-  "setPin": "تعيين دبوس",
+  "setPin": "设置引脚",
   "@setPin": {
     "type": "text",
     "description": "A button that sets the plausible deniability password"
   },
-  "setPinParagraph": "قم بتعيين أو تغيير رقم التعريف الشخصي الحالي الخاص بك. إذا لم تقم بتعيين رقم تعريف شخصي حتى الآن ، فإن رقم التعريف الشخصي الافتراضي هو 000000.",
+  "setPinParagraph": "设置或更改您现有的 PIN。如果您尚未设置 PIN，则默认 PIN 为 000000。",
   "@setPinParagraph": {
     "type": "text",
     "description": "A paragraph that explains the user can set or change their existing pin."
   },
-  "setPinSuccess": "تم تعيين رقم التعريف الشخصي بنجاح",
+  "setPinSuccess": "已成功设置引脚",
   "@setPinSuccess": {
     "type": "text",
     "description": "Setting a Wallet Pin was successful"
   },
-  "setPlausibleDeniabilityPin": "تعيين رقم التعريف الشخصي المعقول",
+  "setPlausibleDeniabilityPin": "设置合理的引脚",
   "@setPlausibleDeniabilityPin": {
     "type": "text",
     "description": "Allows user to setup a plausible deniability pin"
   },
-  "setRestoreHeight": "تعيين استعادة الارتفاع",
+  "setRestoreHeight": "设置恢复高度",
   "@setRestoreHeight": {
     "type": "text",
     "description": "set_restore_height"
   },
-  "settingsHeader": "الإعدادات",
+  "settingsHeader": "设置",
   "@settingsHeader": {
     "type": "text",
     "description": "settings_title"
   },
-  "settingsTransfer": "تحميل من المحفظة الورقية",
+  "settingsTransfer": "用纸钱包充值",
   "@settingsTransfer": {
     "type": "text",
     "description": "settings_transfer"
   },
-  "setWalletPassword": "إنشاء كلمة مرور المحفظة\n",
+  "setWalletPassword": "设置钱包密码",
   "@setWalletPassword": {
     "type": "text",
     "description": "Allows user to encrypt wallet with a password"
@@ -2576,202 +2576,202 @@
     "type": "text",
     "description": "Allows user to setup a plausible deniability pin"
   },
-  "setXMRRestoreHeight": "قم بتعيين ارتفاع استعادة XMR",
+  "setXMRRestoreHeight": "设置 XMR 恢复高度",
   "@setXMRRestoreHeight": {
     "type": "text",
     "description": "set_xmr_restore_height"
   },
-  "share": "يشارك",
+  "share": "分享",
   "@share": {
     "type": "text",
     "description": "nautilus_share"
   },
-  "shareApp": "مشاركة٪ 1",
+  "shareApp": "共享 %1",
   "@shareApp": {
     "type": "text",
     "description": "settings_share"
   },
-  "shareAppText": "سحب٪ 1! محفظة هاتف نانو متميزة!",
+  "shareAppText": "检查 %1！首屈一指的 NANO 手机钱包！",
   "@shareAppText": {
     "type": "text",
     "description": "share_extra"
   },
-  "shareLink": "مشاركة الرابط",
+  "shareLink": "分享链接",
   "@shareLink": {
     "type": "text",
     "description": "share_link"
   },
-  "shareMessage": "مشاركة الرسالة",
+  "shareMessage": "分享讯息",
   "@shareMessage": {
     "type": "text",
     "description": "share_message"
   },
-  "shareNautilus": "شارك نتريوم",
+  "shareNautilus": "分享Nautilus",
   "@shareNautilus": {
     "type": "text",
     "description": "settings_share"
   },
-  "shareNautilusText": "راجع نتريوم! محفظة نتريوم الرسمية للهاتف",
+  "shareNautilusText": "来试试Nautilus！ 一个卓越的NANO手机钱包！",
   "@shareNautilusText": {
     "type": "text",
     "description": "share_extra"
   },
-  "shareText": "مشاركة النص",
+  "shareText": "分享文字",
   "@shareText": {
     "type": "text",
     "description": "settings_share_text"
   },
-  "shopButton": "محل",
+  "shopButton": "店铺",
   "@shopButton": {
     "type": "text",
     "description": "shop_button"
   },
-  "show": "يعرض",
+  "show": "节目",
   "@show": {
     "type": "text",
     "description": "funding_show"
   },
-  "showAccount": "إظهار الحساب",
+  "showAccount": "显示帐户",
   "@showAccount": {
     "type": "text",
     "description": "show_account"
   },
-  "showAccountInfo": "معلومات الحساب",
+  "showAccountInfo": "帐户信息",
   "@showAccountInfo": {
     "type": "text",
     "description": "show_account_info"
   },
-  "showAccountQR": "إظهار رمز الاستجابة السريعة للحساب",
+  "showAccountQR": "显示账户二维码",
   "@showAccountQR": {
     "type": "text",
     "description": "show_account_qr"
   },
-  "showAddress": "إظهار العنوان",
+  "showAddress": "显示地址",
   "@showAddress": {
     "type": "text",
     "description": "show_address"
   },
-  "showContacts": "إظهار جهات الاتصال",
+  "showContacts": "显示联系人",
   "@showContacts": {
     "type": "text",
     "description": "contacts_enabled"
   },
-  "showFunding": "إظهار بانر التمويل",
+  "showFunding": "显示资金横幅",
   "@showFunding": {
     "type": "text",
     "description": "show_funding_banner"
   },
-  "showLinkOptions": "إظهار خيارات الارتباط",
+  "showLinkOptions": "显示链接选项",
   "@showLinkOptions": {
     "type": "text",
     "description": "show_link_options"
   },
-  "showLinkQR": "إظهار ارتباط QR",
+  "showLinkQR": "显示链接二维码",
   "@showLinkQR": {
     "type": "text",
     "description": "show_link_qr"
   },
-  "showMoneroHeader": "عرض مونيرو",
+  "showMoneroHeader": "显示门罗币",
   "@showMoneroHeader": {
     "type": "text",
     "description": "show_monero_header"
   },
-  "showMoneroInfo": "تمكين قسم Monero",
+  "showMoneroInfo": "启用门罗币部分",
   "@showMoneroInfo": {
     "type": "text",
     "description": "show_monero_info"
   },
-  "showQR": "إظهار رمز الاستجابة السريعة",
+  "showQR": "显示二维码",
   "@showQR": {
     "type": "text",
     "description": "show_qr"
   },
-  "showUnopenedWarning": "تحذير غير مفتوح",
+  "showUnopenedWarning": "未开封警告",
   "@showUnopenedWarning": {
     "type": "text",
     "description": "warn_unsafe_send"
   },
-  "simplex": "البسيط",
+  "simplex": "Simplex",
   "@simplex": {
     "type": "text",
     "description": "simplex_ramp"
   },
-  "social": "اجتماعي",
+  "social": "社会的",
   "@social": {
     "type": "text",
     "description": "share_social"
   },
-  "someone": "شخصا ما",
+  "someone": "某人",
   "@someone": {
     "type": "text",
     "description": "send_someone"
   },
-  "spendCurrency": "أنفق٪ 2",
+  "spendCurrency": "花费 %2",
   "@spendCurrency": {
     "type": "text",
     "description": "spend_currency"
   },
-  "spendNano": "أنفق نانو",
+  "spendNano": "花费 NANO",
   "@spendNano": {
     "type": "text",
     "description": "spend_nano"
   },
-  "splitBill": "سبليت بيل",
+  "splitBill": "拆分账单",
   "@splitBill": {
     "type": "text",
     "description": "show_split_bill"
   },
-  "splitBillHeader": "تقسيم مشروع قانون",
+  "splitBillHeader": "拆分账单",
   "@splitBillHeader": {
     "type": "text",
     "description": "show_split_bill_header"
   },
-  "splitBillInfo": "أرسل مجموعة من طلبات الدفع دفعة واحدة! يجعل من السهل تقسيم فاتورة في مطعم على سبيل المثال.",
+  "splitBillInfo": "一次发送一堆付款请求！例如，它可以很容易地在餐厅拆分账单。",
   "@splitBillInfo": {
     "type": "text",
     "description": "split_bill_info"
   },
-  "splitBillInfoHeader": "تقسيم معلومات بيل",
+  "splitBillInfoHeader": "拆分账单信息",
   "@splitBillInfoHeader": {
     "type": "text",
     "description": "split_bill_info_header"
   },
-  "splitBy": "تقسيم حسب",
+  "splitBy": "拆分依据",
   "@splitBy": {
     "type": "text",
     "description": "gift_card_split_by"
   },
-  "subsButton": "الاشتراكات",
+  "subsButton": "订阅",
   "@subsButton": {
     "type": "text",
     "description": "subs_button"
   },
-  "subscribeButton": "الإشتراك",
+  "subscribeButton": "订阅",
   "@subscribeButton": {
     "type": "text",
     "description": "subscribe_button"
   },
-  "subscribed": "مشترك",
+  "subscribed": "已订阅",
   "@subscribed": {
     "type": "text",
     "description": "subscribed_text"
   },
-  "subscribeEvery": "اشترك كل",
+  "subscribeEvery": "订阅每",
   "@subscribeEvery": {
     "type": "text",
     "description": "subscribe_every"
   },
-  "subscribeWithApple": "اشترك عبر Apple Pay",
+  "subscribeWithApple": "通过 Apple Pay 订阅",
   "@subscribeWithApple": {
     "type": "text",
     "description": "subscribe_apple_button"
   },
-  "subscribing": "الاشتراك",
+  "subscribing": "订阅中",
   "@subscribing": {
     "type": "text",
     "description": "sub_confirm"
   },
-  "subsInfo": "يمكنك استخدام الاشتراكات لإعداد أشياء مثل التبرع الشهري لمنشئ المحتوى المفضل لديك ، أو اشتراك شهري في خدمة ، ويكون طول الاشتراك قابلاً للتخصيص ، ويمكن إيقاف تشغيله وتشغيله بسهولة مرة أخرى. عندما يحين موعد الاشتراك ، ستتلقى إشعارًا وشارة لتذكيرك بأن هذا الاشتراك قد حان.",
+  "subsInfo": "您可以使用订阅来设置诸如每月向您最喜欢的内容创作者捐款，或每月订阅一项服务，订阅的长度是可定制的，并且可以轻松地关闭和重新打开。当订阅到期时，您会收到通知和徽章，提醒您订阅到期。",
   "@subsInfo": {
     "type": "text",
     "description": "subs_info"
@@ -2781,282 +2781,282 @@
     "type": "text",
     "description": "A button to open up the live support window"
   },
-  "supportDevelopment": "مساعدة في دعم التنمية",
+  "supportDevelopment": "帮助支持发展",
   "@supportDevelopment": {
     "type": "text",
     "description": "settings_support_development"
   },
-  "supportTheDeveloper": "دعم المطور",
+  "supportTheDeveloper": "支持开发者",
   "@supportTheDeveloper": {
     "type": "text",
     "description": "change_log_support"
   },
-  "swapping": "مبادلة",
+  "swapping": "交换",
   "@swapping": {
     "type": "text",
     "description": "swapping_xmr"
   },
-  "swapXMR": "مبادلة XMR",
+  "swapXMR": "交换 XMR",
   "@swapXMR": {
     "type": "text",
     "description": "swap_xmr"
   },
-  "swapXMRHeader": "مبادلة مونيرو",
+  "swapXMRHeader": "交换门罗币",
   "@swapXMRHeader": {
     "type": "text",
     "description": "swap_xmr_header"
   },
-  "swapXMRInfo": "Monero هي عملة مشفرة تركز على الخصوصية وتجعل من الصعب جدًا أو حتى المستحيل تتبع المعاملات. وفي الوقت نفسه ، NANO هي عملة مشفرة تركز على المدفوعات وهي سريعة وبدون رسوم. يوفران معًا بعض الجوانب الأكثر فائدة للعملات المشفرة!\n\nاستخدم هذه الصفحة لتبديل NANO الخاص بك بـ XMR بسهولة!",
+  "swapXMRInfo": "门罗币是一种以隐私为中心的加密货币，它使得追踪交易变得非常困难甚至不可能。同时，NANO 是一种以支付为中心的加密货币，速度快，费用低。它们一起提供了加密货币的一些最有用的方面！\n\n使用此页面轻松将您的 NANO 换成 XMR！",
   "@swapXMRInfo": {
     "type": "text",
     "description": "swap_xmr_header"
   },
-  "switchToSeed": "التبديل إلى المفتاح الخاص",
+  "switchToSeed": "转换成种子",
   "@switchToSeed": {
     "type": "text",
     "description": "switchToSeed"
   },
-  "systemDefault": "النظام الافتراضي",
+  "systemDefault": "系统默认",
   "@systemDefault": {
     "type": "text",
     "description": "settings_default_language_string"
   },
-  "tapMessageToEdit": "اضغط على رسالة لتحريرها",
+  "tapMessageToEdit": "点按消息进行编辑",
   "@tapMessageToEdit": {
     "type": "text",
     "description": "gift_creation_message_edit_hint"
   },
-  "tapToHide": "إضغط للاخفاء",
+  "tapToHide": "点击隐藏",
   "@tapToHide": {
     "type": "text",
     "description": "Tap to hide content"
   },
-  "tapToReveal": "اضغط للكشف",
+  "tapToReveal": "点击揭示",
   "@tapToReveal": {
     "type": "text",
     "description": "Tap to reveal hidden content"
   },
-  "themeHeader": "مظهر",
+  "themeHeader": "主题",
   "@themeHeader": {
     "type": "text",
     "description": "theme_header"
   },
-  "thisMayTakeSomeTime": "هذا قد يستغرق بعض الوقت...",
+  "thisMayTakeSomeTime": "可能还要等一下...",
   "@thisMayTakeSomeTime": {
     "type": "text",
     "description": "xmr_loading_takes_time"
   },
-  "timestampEmpty": "الرجاء اختيار وقت",
+  "timestampEmpty": "请选择时间",
   "@timestampEmpty": {
     "type": "text",
     "description": "timestamp_empty"
   },
-  "timestampInPast": "يجب أن يكون الوقت في المستقبل",
+  "timestampInPast": "时间必须在未来",
   "@timestampInPast": {
     "type": "text",
     "description": "timestamp_in_past"
   },
-  "to": "إلى",
+  "to": "至",
   "@to": {
     "type": "text",
     "description": "send_to"
   },
-  "todayAt": "اليوم في",
+  "todayAt": "今天在",
   "@todayAt": {
     "type": "text",
     "description": "history_today_at"
   },
-  "tooManyFailedAttempts": "العديد من محاولات الفتح الفاشلة.",
+  "tooManyFailedAttempts": "解锁失败太多次。",
   "@tooManyFailedAttempts": {
     "type": "text",
     "description": "fail_toomany_attempts"
   },
-  "trackingHeader": "إذن التتبع",
+  "trackingHeader": "追踪授权",
   "@trackingHeader": {
     "type": "text",
     "description": "prompt_ask_tracking_header"
   },
-  "trackingWarning": "تتبع معطل",
+  "trackingWarning": "跟踪已禁用",
   "@trackingWarning": {
     "type": "text",
     "description": "home_tracking_warning"
   },
-  "trackingWarningBodyLong": "قد يتم تقليل وظائف بطاقة الهدايا أو لا تعمل على الإطلاق إذا تم تعطيل التتبع. نحن نستخدم هذا الإذن حصريًا لهذه الميزة. بالتأكيد لا يتم بيع أي من بياناتك أو جمعها أو تتبعها على الواجهة الخلفية لأي غرض يتجاوز الضرورة",
+  "trackingWarningBodyLong": "如果禁用跟踪，礼品卡功能可能会减少或根本无法使用。我们将此权限专门用于此功能。绝对不会出于任何不必要的目的在后端出售、收集或跟踪您的任何数据",
   "@trackingWarningBodyLong": {
     "type": "text",
     "description": "tracking_warning_body_long"
   },
-  "trackingWarningBodyShort": "لن تعمل روابط بطاقات الهدايا بشكل صحيح",
+  "trackingWarningBodyShort": "礼品卡链接无法正常工作",
   "@trackingWarningBodyShort": {
     "type": "text",
     "description": "tracking_warning_body_short"
   },
-  "transactions": "معاملات",
+  "transactions": "交易",
   "@transactions": {
     "type": "text",
     "description": "transaction_header"
   },
-  "transfer": "تحويل",
+  "transfer": "传送",
   "@transfer": {
     "type": "text",
     "description": "transfer_btn"
   },
-  "transferClose": "اضغط في أي مكان لغلق النافذة.",
+  "transferClose": "点击任意位置关闭窗口。",
   "@transferClose": {
     "type": "text",
     "description": "transfer_close_text"
   },
-  "transferComplete": "تم تحويل %1 %2 إلى محفظة نتريوم.\n",
+  "transferComplete": "%1 NANO 成功传送到您的 Nautilus 钱包。\n",
   "@transferComplete": {
     "type": "text",
     "description": "transfer_complete_text"
   },
-  "transferConfirmInfo": "تم كشف محفظة برصيد %1 %2.\n",
+  "transferConfirmInfo": "检测到一个包含 %1 %2 的钱包。\n",
   "@transferConfirmInfo": {
     "type": "text",
     "description": "transfer_confirm_info_first"
   },
-  "transferConfirmInfoSecond": "إضغط لتأكيد تحويل الرصيد.\n",
+  "transferConfirmInfoSecond": "按键确定传送钱币。\n",
   "@transferConfirmInfoSecond": {
     "type": "text",
     "description": "transfer_confirm_info_second"
   },
-  "transferConfirmInfoThird": "قد يستغرق النقل عدة ثوانيٍ.",
+  "transferConfirmInfoThird": "传送需要几秒钟完成，请稍等一下。",
   "@transferConfirmInfoThird": {
     "type": "text",
     "description": "transfer_confirm_info_third"
   },
-  "transferError": "لقد حدث خطأ أثناء النقل. الرجاء إعادة المحاولة في وقت لاحق.",
+  "transferError": "传送出现了问题，请稍后再尝试。",
   "@transferError": {
     "type": "text",
     "description": "transfer_error"
   },
-  "transferHeader": "تحويل الرصيد",
+  "transferHeader": "传送钱币",
   "@transferHeader": {
     "type": "text",
     "description": "transfer_header"
   },
-  "transferIntro": "ستقوم هذه العملية بتحويل الرصيد من المحفظة الورقية إلى محفظة نتريوم الخاصة بك. \n\n اضغط على الزر \"%1\" للبدء.",
+  "transferIntro": "这个过程会将纸钱包的钱币转移到您的 Nautilus 钱包。\n\n请按 \"%1\" 键开始。",
   "@transferIntro": {
     "type": "text",
     "description": "transfer_intro"
   },
-  "transferIntroShort": "ستحول هذه العملية الأموال من محفظة ورقية إلى محفظة Nautilus الخاصة بك.",
+  "transferIntroShort": "此过程会将资金从纸质钱包转移到您的Nautilus钱包。",
   "@transferIntroShort": {
     "type": "text",
     "description": "transfer_intro_short"
   },
-  "transferLoading": "بصدد التحويل",
+  "transferLoading": "传送中",
   "@transferLoading": {
     "type": "text",
     "description": "transfer_loading_text"
   },
-  "transferManualHint": "الرجاء إدخال المفتاح الخاص.",
+  "transferManualHint": "请输入种子。",
   "@transferManualHint": {
     "type": "text",
     "description": "transfer_hint"
   },
-  "transferNoFunds": "هذا المفتاح الخاص لا يحتوي على NANO",
+  "transferNoFunds": "这个种子没有包含任何 NANO",
   "@transferNoFunds": {
     "type": "text",
     "description": "transfer_no_funds_toast"
   },
-  "transferQrScanError": "لا يحتوي رمز الاستجابة السريعة على مفتاح خاص صحيح.",
+  "transferQrScanError": "这个二维码没有包含任何有效的种子。",
   "@transferQrScanError": {
     "type": "text",
     "description": "transfer_qr_scan_error"
   },
-  "transferQrScanHint": "مسح\n المفتاح الخاص",
+  "transferQrScanHint": "请扫描 NANO \n种子",
   "@transferQrScanHint": {
     "type": "text",
     "description": "transfer_qr_scan_hint"
   },
-  "unacknowledged": "غير معترف به",
+  "unacknowledged": "未被承认",
   "@unacknowledged": {
     "type": "text",
     "description": "history_unacknowledged"
   },
-  "unconfirmed": "غير معزز",
+  "unconfirmed": "未经证实",
   "@unconfirmed": {
     "type": "text",
     "description": "history_unconfirmed"
   },
-  "unfulfilled": "لم تتحقق",
+  "unfulfilled": "未了",
   "@unfulfilled": {
     "type": "text",
     "description": "history_unfulfilled"
   },
-  "unlock": "فتح",
+  "unlock": "解锁",
   "@unlock": {
     "type": "text",
     "description": "unlocktxt"
   },
-  "unlockBiometrics": "مصادقة لفتح نتريوم",
+  "unlockBiometrics": "验证并解锁 Nautilus",
   "@unlockBiometrics": {
     "type": "text",
     "description": "unlock_bio"
   },
-  "unlockPin": "أدخل الPIN لفتح نتريوم",
+  "unlockPin": "请输入识别码来解锁 Nautilus",
   "@unlockPin": {
     "type": "text",
     "description": "unlock_pin"
   },
-  "unopenedWarningHeader": "إظهار تحذير غير مفتوح",
+  "unopenedWarningHeader": "显示未打开的警告",
   "@unopenedWarningHeader": {
     "type": "text",
     "description": "unopened_warning_header"
   },
-  "unopenedWarningInfo": "أظهر تحذيرًا عند إرسال الأموال إلى حساب غير مفتوح ، فهذا مفيد لأن معظم العناوين التي ترسل إليها تحتوي على رصيد ، وقد يكون الإرسال إلى عنوان جديد نتيجة لخطأ إملائي.",
+  "unopenedWarningInfo": "在向未开立的账户发送资金时显示警告，这很有用，因为您发送到的大多数时间地址都会有余额，而发送到新地址可能是拼写错误的结果。",
   "@unopenedWarningInfo": {
     "type": "text",
     "description": "unopened_warning_info"
   },
-  "unopenedWarningWarning": "هل أنت متأكد من أن هذا هو العنوان الصحيح؟\nيبدو أن هذا الحساب غير مفتوح\n\nيمكنك تعطيل هذا التحذير في درج الإعدادات ضمن \"تحذير غير مفتوح\"",
+  "unopenedWarningWarning": "你确定这是正确的地址吗？\n此帐户似乎未开通\n\n您可以在“未打开警告”下的设置抽屉中禁用此警告",
   "@unopenedWarningWarning": {
     "type": "text",
     "description": "unopened_warning_warning"
   },
-  "unopenedWarningWarningHeader": "الحساب مفتوح",
+  "unopenedWarningWarningHeader": "未开户",
   "@unopenedWarningWarningHeader": {
     "type": "text",
     "description": "unopened_warning_warning_header"
   },
-  "unpaid": "غير مدفوع",
+  "unpaid": "未付款",
   "@unpaid": {
     "type": "text",
     "description": "history_unpaid"
   },
-  "unread": "غير مقروء",
+  "unread": "未读",
   "@unread": {
     "type": "text",
     "description": "history_unread"
   },
-  "upcomingButton": "القادمة",
+  "upcomingButton": "即将到来",
   "@upcomingButton": {
     "type": "text",
     "description": "upcoming_button"
   },
-  "uptime": "مدة التشغيل",
+  "uptime": "上线时间",
   "@uptime": {
     "type": "text",
     "description": "Rep uptime"
   },
-  "urlEmpty": "الرجاء إدخال عنوان URL",
+  "urlEmpty": "请输入网址",
   "@urlEmpty": {
     "type": "text",
     "description": "url_empty"
   },
-  "useAppRep": "استخدم٪ 1 Rep",
+  "useAppRep": "使用 %1 代表",
   "@useAppRep": {
     "type": "text",
     "description": "use app node as rep"
   },
-  "useCurrency": "استخدم٪ 2",
+  "useCurrency": "使用 %2",
   "@useCurrency": {
     "type": "text",
     "description": "use_currency"
   },
-  "useNano": "استخدم NANO",
+  "useNano": "使用纳米",
   "@useNano": {
     "type": "text",
     "description": "use_nano"
@@ -3066,192 +3066,192 @@
     "type": "text",
     "description": "use nautilus node as rep"
   },
-  "userAlreadyAddedError": "تمت إضافة المستخدم بالفعل!",
+  "userAlreadyAddedError": "用户已添加！",
   "@userAlreadyAddedError": {
     "type": "text",
     "description": "split_bill_duplicate_error"
   },
-  "usernameAlreadyRegistered": "لديك بالفعل اسم مستخدم مسجل! ليس من الممكن حاليًا تغيير اسم المستخدم الخاص بك، ولكن لك مطلق الحرية في تسجيل اسم مستخدم جديد تحت عنوان مختلف.",
+  "usernameAlreadyRegistered": "您已经注册了用户名！目前无法更改您的用户名，但您可以自由地在其他地址下注册一个新用户名。",
   "@usernameAlreadyRegistered": {
     "type": "text",
     "description": "Description for username already registered"
   },
-  "usernameAvailable": "اسم المستخدم متاح!",
+  "usernameAvailable": "用户名可用！",
   "@usernameAvailable": {
     "type": "text",
     "description": "username_available"
   },
-  "usernameEmpty": "الرجاء إدخال اسم مستخدم",
+  "usernameEmpty": "请输入用户名",
   "@usernameEmpty": {
     "type": "text",
     "description": "username_empty"
   },
-  "usernameError": "خطأ اسم المستخدم",
+  "usernameError": "用户名错误",
   "@usernameError": {
     "type": "text",
     "description": "username_unknown_error"
   },
-  "usernameInfo": "اختر @username فريدًا ليسهل على الأصدقاء والعائلة العثور عليك!\n\nيؤدي وجود اسم مستخدم Nautilus إلى تحديث واجهة المستخدم عالميًا لتعكس مقبضك الجديد.",
+  "usernameInfo": "挑选一个独特的 @username 让亲朋好友轻松找到你！\n\n拥有 Nautilus 用户名可在全局范围内更新用户界面，以反映您的新用户名。",
   "@usernameInfo": {
     "type": "text",
     "description": "Description for username registration"
   },
-  "usernameInvalid": "اسم مستخدم صالح",
+  "usernameInvalid": "用户名无效",
   "@usernameInvalid": {
     "type": "text",
     "description": "username_invalid_name"
   },
-  "usernameUnavailable": "اسم المستخدم",
+  "usernameUnavailable": "用户名不可用",
   "@usernameUnavailable": {
     "type": "text",
     "description": "username_unavailable"
   },
-  "usernameWarning": "أسماء مستخدمي Nautilus هي خدمة مركزية تقدمها Nano.to",
+  "usernameWarning": "鹦鹉螺用户名是由 nano.to 提供的集中式服务",
   "@usernameWarning": {
     "type": "text",
     "description": "Username centralization warning"
   },
-  "userNotFound": "لم يتم العثور على المستخدم!",
+  "userNotFound": "找不到用户！",
   "@userNotFound": {
     "type": "text",
     "description": "user_not_found"
   },
-  "using": "استخدام",
+  "using": "使用",
   "@using": {
     "type": "text",
     "description": "gift_message_using"
   },
-  "viewDetails": "عرض التفاصيل",
+  "viewDetails": "查看详情",
   "@viewDetails": {
     "type": "text",
     "description": "transaction_details"
   },
-  "viewPaymentHistory": "عرض تاريخ الدفع",
+  "viewPaymentHistory": "查看付款记录",
   "@viewPaymentHistory": {
     "type": "text",
     "description": "view_payment_history"
   },
-  "viewTX": "عرض الصفقة",
+  "viewTX": "查看交易",
   "@viewTX": {
     "type": "text",
     "description": "transaction_transaction"
   },
-  "votingWeight": "وزن التصويت",
+  "votingWeight": "投票比重",
   "@votingWeight": {
     "type": "text",
     "description": "Representative Voting Weight"
   },
-  "warning": "تحذير",
+  "warning": "警告",
   "@warning": {
     "type": "text",
     "description": "settings_logout_alert_title"
   },
-  "watchAccountExists": "الحساب مضاف بالفعل!",
+  "watchAccountExists": "帐号已添加！",
   "@watchAccountExists": {
     "type": "text",
     "description": "account_entry_exists"
   },
-  "watchOnlyAccount": "مشاهدة الحساب فقط",
+  "watchOnlyAccount": "仅观看帐户",
   "@watchOnlyAccount": {
     "type": "text",
     "description": "watch_only_account"
   },
-  "watchOnlySendDisabled": "يتم تعطيل عمليات الإرسال على عناوين المشاهدة فقط",
+  "watchOnlySendDisabled": "仅监视地址上禁用发送",
   "@watchOnlySendDisabled": {
     "type": "text",
     "description": "watch_only_send_disabled"
   },
-  "weekAgo": "منذ أسبوع",
+  "weekAgo": "一星期前",
   "@weekAgo": {
     "type": "text",
     "description": "history_week_ago"
   },
-  "weekly": "أسبوعي",
+  "weekly": "每周",
   "@weekly": {
     "type": "text",
     "description": "frequency_weekly"
   },
-  "welcomeText": "أهلا بك في نتريوم. لتبدأ، إحدث محفظة أو إجلب محفظة موجودة.",
+  "welcomeText": "欢迎来到Nautilus。下一步，您可以创建新钱包或导入已有钱包。",
   "@welcomeText": {
     "type": "text",
     "description": "intro_welcome_title"
   },
-  "welcomeTextLogin": "مرحبا بكم في نوتيلوس. حدد خيارًا للبدء أو اختر سمة باستخدام الرمز أدناه.",
+  "welcomeTextLogin": "欢迎来到鹦鹉螺。选择一个选项以开始使用或使用下面的图标选择一个主题。",
   "@welcomeTextLogin": {
     "type": "text",
     "description": "intro_welcome_login"
   },
-  "welcomeTextUpdated": "مرحبًا بكم في نوتيلوس. للبدء ، أنشئ محفظة جديدة أو استورد محفظة حالية.",
+  "welcomeTextUpdated": "欢迎来到鹦鹉螺。首先，创建一个新钱包或导入现有钱包。",
   "@welcomeTextUpdated": {
     "type": "text",
     "description": "intro_welcome_title"
   },
-  "welcomeTextWithoutLogin": "للبدء ، أنشئ محفظة جديدة أو استورد محفظة حالية.",
+  "welcomeTextWithoutLogin": "首先，创建一个新钱包或导入现有钱包。",
   "@welcomeTextWithoutLogin": {
     "type": "text",
     "description": "intro_welcome_no_login"
   },
-  "withAddress": "مع العنوان",
+  "withAddress": "有地址",
   "@withAddress": {
     "type": "text",
     "description": "with_address"
   },
-  "withFee": "مع رسوم",
+  "withFee": "有费用",
   "@withFee": {
     "type": "text",
     "description": "with_fee"
   },
-  "withMessage": "مع رسالة",
+  "withMessage": "带消息",
   "@withMessage": {
     "type": "text",
     "description": "with_message"
   },
-  "xMinute": "بعد %1 دقيقة",
+  "xMinute": "%1 分钟后",
   "@xMinute": {
     "type": "text",
     "description": "after_minute"
   },
-  "xMinutes": "بعد %1 دقائق",
+  "xMinutes": "%1 分钟后",
   "@xMinutes": {
     "type": "text",
     "description": "after_minutes"
   },
-  "xmrStatusConnecting": "توصيل",
+  "xmrStatusConnecting": "连接",
   "@xmrStatusConnecting": {
     "type": "text",
     "description": "xmr_connecting_status"
   },
-  "xmrStatusError": "خطأ",
+  "xmrStatusError": "错误",
   "@xmrStatusError": {
     "type": "text",
     "description": "xmr_error_status"
   },
-  "xmrStatusLoading": "جار التحميل",
+  "xmrStatusLoading": "正在加载",
   "@xmrStatusLoading": {
     "type": "text",
     "description": "xmr_loading_status"
   },
-  "xmrStatusSynchronized": "متزامن",
+  "xmrStatusSynchronized": "同步",
   "@xmrStatusSynchronized": {
     "type": "text",
     "description": "xmr_synced_status"
   },
-  "xmrStatusSynchronizing": "مزامنة",
+  "xmrStatusSynchronizing": "同步",
   "@xmrStatusSynchronizing": {
     "type": "text",
     "description": "xmr_syncing_status"
   },
-  "yes": "نعم",
+  "yes": "确认",
   "@yes": {
     "type": "text",
     "description": "intro_new_wallet_backup_yes"
   },
-  "yesButton": "نعم",
+  "yesButton": "确认",
   "@yesButton": {
     "type": "text",
     "description": "A button that accepts the mentioned process."
   },
-  "yesterdayAt": "البارحة عند",
+  "yesterdayAt": "昨天在",
   "@yesterdayAt": {
     "type": "text",
     "description": "history_yesterday_at"

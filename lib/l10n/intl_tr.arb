@@ -1142,6 +1142,10 @@
     "type": "text",
     "description": "funding_header"
   },
+  "generatingWork": "PoW oluşturuluyor, bu biraz zaman alabilir (> 20 saniye)...",
+  "@generatingWork": {
+    "description": "generating_local_work"
+  },
   "getCurrency": "%2'yi al",
   "@getCurrency": {
     "type": "text",
@@ -1722,7 +1726,7 @@
     "type": "text",
     "description": "notifications_settings"
   },
-  "notificationTitle": "%1 NANO Alındı",
+  "notificationTitle": "%1 %2 Alındı",
   "@notificationTitle": {
     "type": "text",
     "description": "notification_title"
@@ -2227,7 +2231,7 @@
     "type": "text",
     "description": "home_request_cta"
   },
-  "requestAmountConfirm": "İstek %1% 2",
+  "requestAmountConfirm": "İstek %1 %2",
   "@requestAmountConfirm": {
     "type": "text",
     "description": "request_pin_description"
@@ -2442,7 +2446,7 @@
     "type": "text",
     "description": "home_send_cta"
   },
-  "sendAmountConfirm": "%1 Nano gönder?",
+  "sendAmountConfirm": "%1 %2 gönder?",
   "@sendAmountConfirm": {
     "type": "text",
     "description": "send_amount_confirm"
@@ -2907,7 +2911,7 @@
     "type": "text",
     "description": "transfer_complete_text"
   },
-  "transferConfirmInfo": "%1 NANO bakiyeye sahip bir cüzdan tespit edildi.\n",
+  "transferConfirmInfo": "%1 %2 bakiyeye sahip bir cüzdan tespit edildi.\n",
   "@transferConfirmInfo": {
     "type": "text",
     "description": "transfer_confirm_info_first"

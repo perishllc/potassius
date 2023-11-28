@@ -1,5 +1,5 @@
 {
-  "@@locale": "zh-Hans",
+  "@@locale": "zh_Hans",
   "account": "账户",
   "@account": {
     "type": "text",
@@ -692,7 +692,7 @@
     "type": "text",
     "description": "Default account name"
   },
-  "defaultGiftMessage": "看看鹦鹉螺！我用这个链接给你发了一些 nano：",
+  "defaultGiftMessage": "看看鹦鹉螺！我用这个链接给你发了一些 %2：",
   "@defaultGiftMessage": {
     "type": "text",
     "description": "default_gift_message"
@@ -1141,6 +1141,10 @@
   "@fundingHeader": {
     "type": "text",
     "description": "funding_header"
+  },
+  "generatingWork": "生成 PoW，这可能需要一段时间（> 20 秒）...",
+  "@generatingWork": {
+    "description": "generating_local_work"
   },
   "getCurrency": "获取 %2",
   "@getCurrency": {
@@ -1722,7 +1726,7 @@
     "type": "text",
     "description": "notifications_settings"
   },
-  "notificationTitle": "收到 %1 NANO",
+  "notificationTitle": "收到 %1 %2",
   "@notificationTitle": {
     "type": "text",
     "description": "notification_title"
@@ -2332,7 +2336,7 @@
     "type": "text",
     "description": "dialog_save"
   },
-  "scanInstructions": "扫描NANO二维码地址",
+  "scanInstructions": "扫描%2二维码地址",
   "@scanInstructions": {
     "type": "text",
     "description": "scan_send_instruction_label"
@@ -2442,7 +2446,7 @@
     "type": "text",
     "description": "home_send_cta"
   },
-  "sendAmountConfirm": "发送 %1 NANO",
+  "sendAmountConfirm": "发送 %1 %2",
   "@sendAmountConfirm": {
     "type": "text",
     "description": "send_amount_confirm"
@@ -2907,7 +2911,7 @@
     "type": "text",
     "description": "transfer_complete_text"
   },
-  "transferConfirmInfo": "检测到一个包含 %1 NANO 的钱包。\n",
+  "transferConfirmInfo": "检测到一个包含 %1 %2 的钱包。\n",
   "@transferConfirmInfo": {
     "type": "text",
     "description": "transfer_confirm_info_first"

@@ -21,7 +21,7 @@ class DBHelper {
   DBHelper() {
     _nanoUtil = NanoUtil();
   }
-  static const int DB_VERSION = 11;
+  static const int DB_VERSION = 12;
   static const String CONTACTS_SQL = """
         CREATE TABLE Contacts( 
         id INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -176,7 +176,8 @@ class DBHelper {
   }
 
   Future<Database> initDb() async {
-    final io.Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    final io.Directory documentsDirectory =
+        await getApplicationDocumentsDirectory();
     final String path = join(documentsDirectory.path, "nautilus.db");
     final Database theDb = await openDatabase(
       path,
@@ -251,12 +252,34 @@ class DBHelper {
     if (oldVersion == 10) {
       await db.execute(SCHEDULED_SQL);
     }
+    if (oldVersion == 11) {
+      // delete all old work sources:
+      try {
+        final List<WorkSource> sources = await getWorkSources(dbClient: db);
+        for (int i = 0; i < sources.length; i++) {
+          await deleteWorkSource(
+            WorkSource(
+              id: i,
+              name: "",
+              selected: false,
+              type: WorkSourceTypes.NONE,
+            ),
+            dbClient: db,
+          );
+        }
+      } catch (e) {
+        // no-op
+      }
+      // add new ones:
+      await _addDefaultWorkSources(dbClient: db);
+    }
   }
 
   Future<void> _addDefaultNodes({Database? dbClient}) async {
+    int id = 0;
     await saveNode(
       Node(
-        id: 0,
+        id: id++,
         name: "Nautilus Node",
         selected: false,
         http_url: AccountService.DEFAULT_HTTP_URL,
@@ -266,7 +289,7 @@ class DBHelper {
     );
     await saveNode(
       Node(
-        id: 1,
+        id: id++,
         name: "Natrium Node",
         selected: false,
         http_url: "https://app.natrium.io/api",
@@ -276,7 +299,7 @@ class DBHelper {
     );
     await saveNode(
       Node(
-        id: 2,
+        id: id++,
         name: "Kalium Node (banano)",
         selected: true,
         http_url: "https://kaliumapi.appditto.com/api",
@@ -297,18 +320,19 @@ class DBHelper {
   }
 
   Future<void> _addDefaultWorkSources({Database? dbClient}) async {
+    int id = 0;
     await saveWorkSource(
       WorkSource(
-        id: 0,
-        name: "Use Node (none)",
+        id: id++,
+        name: "Local (GPU)",
         selected: false,
-        type: WorkSourceTypes.NODE,
+        type: WorkSourceTypes.LOCAL,
       ),
       dbClient: dbClient,
     );
     await saveWorkSource(
       WorkSource(
-        id: 1,
+        id: id++,
         name: AccountService.DEFAULT_WORKER_NAME,
         selected: true,
         type: WorkSourceTypes.URL,
@@ -316,19 +340,19 @@ class DBHelper {
       ),
       dbClient: dbClient,
     );
+    // await saveWorkSource(
+    //   WorkSource(
+    //     id: id++,
+    //     name: "nano.to",
+    //     selected: false,
+    //     type: WorkSourceTypes.URL,
+    //     url: "https://rpc.nano.to",
+    //   ),
+    //   dbClient: dbClient,
+    // );
     await saveWorkSource(
       WorkSource(
-        id: 2,
-        name: "nano.to",
-        selected: false,
-        type: WorkSourceTypes.URL,
-        url: "https://rpc.nano.to",
-      ),
-      dbClient: dbClient,
-    );
-    await saveWorkSource(
-      WorkSource(
-        id: 3,
+        id: id++,
         name: "solar",
         selected: false,
         type: WorkSourceTypes.URL,
@@ -338,7 +362,7 @@ class DBHelper {
     );
     await saveWorkSource(
       WorkSource(
-        id: 4,
+        id: id++,
         name: "nanoriver",
         selected: false,
         type: WorkSourceTypes.URL,
@@ -366,7 +390,11 @@ class DBHelper {
   }
 
   String lowerStripAddress(String address) {
-    return address.toLowerCase().replaceAll("xrb_", "").replaceAll("nano_", "").replaceAll("ban_", "");
+    return address
+        .toLowerCase()
+        .replaceAll("xrb_", "")
+        .replaceAll("nano_", "")
+        .replaceAll("ban_", "");
   }
 
   String? formatAddress(String? address) {
@@ -400,7 +428,8 @@ class DBHelper {
 
   Future<Node> getSelectedNode() async {
     final Database dbClient = (await db)!;
-    final List<Map> list = await dbClient.rawQuery("SELECT * FROM Nodes where selected = 1");
+    final List<Map> list =
+        await dbClient.rawQuery("SELECT * FROM Nodes where selected = 1");
     final Node node = Node(
       id: list[0]["id"] as int?,
       name: list[0]["name"] as String,
@@ -417,20 +446,23 @@ class DBHelper {
       await txn.rawUpdate('UPDATE Nodes set selected = 0');
       // Get access increment count
       final List<Map> list = await txn.rawQuery('SELECT * FROM Nodes');
-      await txn.rawUpdate('UPDATE Nodes set selected = ? WHERE id = ?', [1, node.id]);
+      await txn.rawUpdate(
+          'UPDATE Nodes set selected = ? WHERE id = ?', [1, node.id]);
     });
   }
 
   Future<Node?> saveNode(Node node, {Database? dbClient}) async {
     dbClient ??= (await db)!;
     await dbClient.transaction((Transaction txn) async {
-      await txn.rawInsert('INSERT INTO Nodes (name, id, selected, http_url, ws_url) values(?, ?, ?, ?, ?)', [
-        node.name,
-        node.id,
-        if (node.selected) 1 else 0,
-        node.http_url,
-        node.ws_url,
-      ]);
+      await txn.rawInsert(
+          'INSERT INTO Nodes (name, id, selected, http_url, ws_url) values(?, ?, ?, ?, ?)',
+          [
+            node.name,
+            node.id,
+            if (node.selected) 1 else 0,
+            node.http_url,
+            node.ws_url,
+          ]);
     });
     return node;
   }
@@ -442,23 +474,26 @@ class DBHelper {
 
   Future<int> changeNodeName(Node node, String name) async {
     final Database dbClient = (await db)!;
-    return dbClient.rawUpdate('UPDATE Nodes SET name = ? WHERE id = ?', [name, node.id]);
+    return dbClient
+        .rawUpdate('UPDATE Nodes SET name = ? WHERE id = ?', [name, node.id]);
   }
 
   Future<int> changeNodeHttp(Node node, String http_url) async {
     final Database dbClient = (await db)!;
-    return dbClient.rawUpdate('UPDATE Nodes SET http_url = ? WHERE id = ?', [http_url, node.id]);
+    return dbClient.rawUpdate(
+        'UPDATE Nodes SET http_url = ? WHERE id = ?', [http_url, node.id]);
   }
 
   Future<int> changeNodeWs(Node node, String ws_url) async {
     final Database dbClient = (await db)!;
-    return dbClient.rawUpdate('UPDATE Nodes SET ws_url = ? WHERE id = ?', [ws_url, node.id]);
+    return dbClient.rawUpdate(
+        'UPDATE Nodes SET ws_url = ? WHERE id = ?', [ws_url, node.id]);
   }
 
   // Work sources:
 
-  Future<List<WorkSource>> getWorkSources() async {
-    final Database dbClient = (await db)!;
+  Future<List<WorkSource>> getWorkSources({Database? dbClient}) async {
+    dbClient ??= (await db)!;
     final List<Map> list = await dbClient.rawQuery("SELECT * FROM WorkSources");
     final List<WorkSource> workSources = [];
     for (int i = 0; i < list.length; i++) {
@@ -477,7 +512,8 @@ class DBHelper {
 
   Future<WorkSource> getSelectedWorkSource() async {
     final Database dbClient = (await db)!;
-    final List<Map> list = await dbClient.rawQuery("SELECT * FROM WorkSources where selected = 1");
+    final List<Map> list =
+        await dbClient.rawQuery("SELECT * FROM WorkSources where selected = 1");
     final WorkSource ws = WorkSource(
       id: list[0]["id"] as int?,
       name: list[0]["name"] as String,
@@ -494,49 +530,57 @@ class DBHelper {
       await txn.rawUpdate('UPDATE WorkSources set selected = 0');
       // Get access increment count
       final List<Map> list = await txn.rawQuery('SELECT * FROM Nodes');
-      await txn.rawUpdate('UPDATE WorkSources set selected = ? WHERE id = ?', [1, ws.id]);
+      await txn.rawUpdate(
+          'UPDATE WorkSources set selected = ? WHERE id = ?', [1, ws.id]);
     });
   }
 
-  Future<WorkSource?> saveWorkSource(WorkSource ws, {Database? dbClient}) async {
+  Future<WorkSource?> saveWorkSource(WorkSource ws,
+      {Database? dbClient}) async {
     dbClient ??= (await db)!;
     await dbClient.transaction((Transaction txn) async {
-      await txn.rawInsert('INSERT INTO WorkSources (name, id, selected, url, type) values(?, ?, ?, ?, ?)', [
-        ws.name,
-        ws.id,
-        if (ws.selected) 1 else 0,
-        ws.url,
-        ws.type,
-      ]);
+      await txn.rawInsert(
+          'INSERT INTO WorkSources (name, id, selected, url, type) values(?, ?, ?, ?, ?)',
+          [
+            ws.name,
+            ws.id,
+            if (ws.selected) 1 else 0,
+            ws.url,
+            ws.type,
+          ]);
     });
     return ws;
   }
 
-  Future<int> deleteWorkSource(WorkSource ws) async {
-    final Database dbClient = (await db)!;
+  Future<int> deleteWorkSource(WorkSource ws, {Database? dbClient}) async {
+    dbClient ??= (await db)!;
     return dbClient.rawDelete('DELETE FROM WorkSources WHERE id = ?', [ws.id]);
   }
 
   Future<int> changeWorkSourceName(WorkSource ws, String name) async {
     final Database dbClient = (await db)!;
-    return dbClient.rawUpdate('UPDATE WorkSources SET name = ? WHERE id = ?', [name, ws.id]);
+    return dbClient.rawUpdate(
+        'UPDATE WorkSources SET name = ? WHERE id = ?', [name, ws.id]);
   }
 
   Future<int> changeWorkSourceUrl(WorkSource ws, String url) async {
     final Database dbClient = (await db)!;
-    return dbClient.rawUpdate('UPDATE WorkSources SET url = ? WHERE id = ?', [url, ws.id]);
+    return dbClient
+        .rawUpdate('UPDATE WorkSources SET url = ? WHERE id = ?', [url, ws.id]);
   }
 
   // subscriptions:
   Future<List<Subscription>> getSubscriptions() async {
     final Database dbClient = (await db)!;
-    final List<Map> list = await dbClient.rawQuery('SELECT * FROM Subscriptions');
+    final List<Map> list =
+        await dbClient.rawQuery('SELECT * FROM Subscriptions');
     final List<Subscription> subs = [];
     for (int i = 0; i < list.length; i++) {
       subs.add(
         Subscription(
           id: list[i]["id"] as int? ?? 0,
-          label: list[i]["label"] as String? ?? "", // todo: remove this null check
+          label:
+              list[i]["label"] as String? ?? "", // todo: remove this null check
           address: list[i]["address"] as String,
           amount_raw: list[i]["amount_raw"] as String,
           frequency: list[i]["frequency"] as String,
@@ -549,7 +593,8 @@ class DBHelper {
     return subs;
   }
 
-  Future<Subscription?> saveSubscription(Subscription sub, {Database? dbClient}) async {
+  Future<Subscription?> saveSubscription(Subscription sub,
+      {Database? dbClient}) async {
     dbClient ??= (await db)!;
     await dbClient.transaction((Transaction txn) async {
       await txn.rawInsert(
@@ -569,30 +614,35 @@ class DBHelper {
 
   Future<int> deleteSubscription(Subscription sub) async {
     final Database dbClient = (await db)!;
-    return dbClient.rawDelete('DELETE FROM Subscriptions WHERE id = ?', [sub.id]);
+    return dbClient
+        .rawDelete('DELETE FROM Subscriptions WHERE id = ?', [sub.id]);
   }
 
   Future<int> changeSubscriptionName(Subscription sub, String name) async {
     final Database dbClient = (await db)!;
-    return dbClient.rawUpdate('UPDATE Subscriptions SET label = ? WHERE id = ?', [name, sub.id]);
+    return dbClient.rawUpdate(
+        'UPDATE Subscriptions SET label = ? WHERE id = ?', [name, sub.id]);
   }
 
   Future<int> toggleSubscriptionActive(Subscription sub) async {
     final Database dbClient = (await db)!;
     final int active = sub.active ? 0 : 1;
-    return dbClient.rawUpdate('UPDATE Subscriptions SET active = ? WHERE id = ?', [active, sub.id]);
+    return dbClient.rawUpdate(
+        'UPDATE Subscriptions SET active = ? WHERE id = ?', [active, sub.id]);
   }
 
   Future<int> toggleSubscriptionPaid(Subscription sub) async {
     final Database dbClient = (await db)!;
     final int paid = sub.paid ? 0 : 1;
-    return dbClient.rawUpdate('UPDATE Subscriptions SET paid = ? WHERE id = ?', [paid, sub.id]);
+    return dbClient.rawUpdate(
+        'UPDATE Subscriptions SET paid = ? WHERE id = ?', [paid, sub.id]);
   }
 
   Future<int> toggleSubscriptionAutopay(Subscription sub) async {
     final Database dbClient = (await db)!;
     final int active = sub.autopay ? 0 : 1;
-    return dbClient.rawUpdate('UPDATE Subscriptions SET autopay = ? WHERE id = ?', [active, sub.id]);
+    return dbClient.rawUpdate(
+        'UPDATE Subscriptions SET autopay = ? WHERE id = ?', [active, sub.id]);
   }
 
   // scheduled:
@@ -617,7 +667,8 @@ class DBHelper {
     return scheduled;
   }
 
-  Future<Scheduled?> saveScheduled(Scheduled scheduled, {Database? dbClient}) async {
+  Future<Scheduled?> saveScheduled(Scheduled scheduled,
+      {Database? dbClient}) async {
     dbClient ??= (await db)!;
     await dbClient.transaction((Transaction txn) async {
       await txn.rawInsert(
@@ -642,31 +693,36 @@ class DBHelper {
 
   Future<int> changeScheduledName(Scheduled sub, String name) async {
     final Database dbClient = (await db)!;
-    return dbClient.rawUpdate('UPDATE Scheduled SET label = ? WHERE id = ?', [name, sub.id]);
+    return dbClient.rawUpdate(
+        'UPDATE Scheduled SET label = ? WHERE id = ?', [name, sub.id]);
   }
 
   Future<int> toggleScheduledActive(Scheduled sub) async {
     final Database dbClient = (await db)!;
     final int active = sub.active ? 0 : 1;
-    return dbClient.rawUpdate('UPDATE Scheduled SET active = ? WHERE id = ?', [active, sub.id]);
+    return dbClient.rawUpdate(
+        'UPDATE Scheduled SET active = ? WHERE id = ?', [active, sub.id]);
   }
 
   Future<int> toggleScheduledPaid(Scheduled sub) async {
     final Database dbClient = (await db)!;
     final int paid = sub.paid ? 0 : 1;
-    return dbClient.rawUpdate('UPDATE Scheduled SET paid = ? WHERE id = ?', [paid, sub.id]);
+    return dbClient.rawUpdate(
+        'UPDATE Scheduled SET paid = ? WHERE id = ?', [paid, sub.id]);
   }
 
   Future<int> toggleScheduledAutopay(Scheduled sub) async {
     final Database dbClient = (await db)!;
     final int active = sub.autopay ? 0 : 1;
-    return dbClient.rawUpdate('UPDATE Scheduled SET autopay = ? WHERE id = ?', [active, sub.id]);
+    return dbClient.rawUpdate(
+        'UPDATE Scheduled SET autopay = ? WHERE id = ?', [active, sub.id]);
   }
 
   // Contacts
   Future<List<User>> getContacts() async {
     final Database dbClient = (await db)!;
-    final List<Map> list = await dbClient.rawQuery("SELECT * FROM Users WHERE nickname <> '' ORDER BY nickname");
+    final List<Map> list = await dbClient
+        .rawQuery("SELECT * FROM Users WHERE nickname <> '' ORDER BY nickname");
     final List<User> contacts = [];
     for (int i = 0; i < list.length; i++) {
       contacts.add(User(
@@ -682,8 +738,8 @@ class DBHelper {
   Future<List<User>> getContactsWithNameLike(String pattern) async {
     final Database dbClient = (await db)!;
     // List<Map> list =
-    final List<Map> list = await dbClient
-        .rawQuery("SELECT * FROM Users WHERE nickname LIKE '%$pattern%' AND nickname <> '' ORDER BY LOWER(nickname)");
+    final List<Map> list = await dbClient.rawQuery(
+        "SELECT * FROM Users WHERE nickname LIKE '%$pattern%' AND nickname <> '' ORDER BY LOWER(nickname)");
     final List<User> contacts = [];
     for (int i = 0; i < list.length; i++) {
       contacts.add(User(
@@ -698,8 +754,8 @@ class DBHelper {
 
   Future<User?> getContactWithAddress(String address) async {
     final Database dbClient = (await db)!;
-    final List<Map> list = await dbClient
-        .rawQuery("SELECT * FROM Users WHERE lower(address) = '${formatAddress(address)}' AND nickname <> ''");
+    final List<Map> list = await dbClient.rawQuery(
+        "SELECT * FROM Users WHERE lower(address) = '${formatAddress(address)}' AND nickname <> ''");
     if (list.isNotEmpty) {
       return User(
           nickname: list[0]["nickname"] as String?,
@@ -713,24 +769,28 @@ class DBHelper {
 
   Future<User?> getContactWithName(String name) async {
     final Database dbClient = (await db)!;
-    final List<Map> list = await dbClient.rawQuery("SELECT * FROM Users WHERE nickname = ? AND nickname <> ''", [name]);
+    final List<Map> list = await dbClient.rawQuery(
+        "SELECT * FROM Users WHERE nickname = ? AND nickname <> ''", [name]);
     if (list.isNotEmpty) {
-      return User(nickname: list[0]["nickname"] as String?, address: list[0]["address"] as String?);
+      return User(
+          nickname: list[0]["nickname"] as String?,
+          address: list[0]["address"] as String?);
     }
     return null;
   }
 
   Future<bool> contactExistsWithName(String name) async {
     final Database dbClient = (await db)!;
-    final int count = Sqflite.firstIntValue(await dbClient
-        .rawQuery("SELECT count(*) FROM Users WHERE lower(nickname) = ? AND nickname <> ''", [name.toLowerCase()]))!;
+    final int count = Sqflite.firstIntValue(await dbClient.rawQuery(
+        "SELECT count(*) FROM Users WHERE lower(nickname) = ? AND nickname <> ''",
+        [name.toLowerCase()]))!;
     return count > 0;
   }
 
   Future<bool> contactExistsWithAddress(String address) async {
     final Database dbClient = (await db)!;
-    final int count = Sqflite.firstIntValue(await dbClient
-        .rawQuery("SELECT count(*) FROM Users WHERE lower(address) = '${formatAddress(address)}' AND nickname <> ''"))!;
+    final int count = Sqflite.firstIntValue(await dbClient.rawQuery(
+        "SELECT count(*) FROM Users WHERE lower(address) = '${formatAddress(address)}' AND nickname <> ''"))!;
     return count > 0;
   }
 
@@ -811,7 +871,8 @@ class DBHelper {
   // Users
   Future<List<User>> getUsers() async {
     final Database dbClient = (await db)!;
-    final List<Map> list = await dbClient.rawQuery('SELECT * FROM Users ORDER BY username');
+    final List<Map> list =
+        await dbClient.rawQuery('SELECT * FROM Users ORDER BY username');
     final List<User> users = [];
     for (int i = 0; i < list.length; i++) {
       users.add(User(
@@ -826,8 +887,8 @@ class DBHelper {
 
   Future<List<User>> getUsersWithNameLike(String pattern) async {
     final Database dbClient = (await db)!;
-    final List<Map> list =
-        await dbClient.rawQuery("SELECT * FROM Users WHERE username LIKE '%$pattern%' ORDER BY LOWER(username)");
+    final List<Map> list = await dbClient.rawQuery(
+        "SELECT * FROM Users WHERE username LIKE '%$pattern%' ORDER BY LOWER(username)");
     final List<User> users = [];
     for (int i = 0; i < list.length; i++) {
       users.add(User(
@@ -840,7 +901,8 @@ class DBHelper {
     return users;
   }
 
-  Future<List<User>> getUserContactSuggestionsWithNameLike(String pattern) async {
+  Future<List<User>> getUserContactSuggestionsWithNameLike(
+      String pattern) async {
     final Database dbClient = (await db)!;
     final List<Map> list = await dbClient.rawQuery(
         "SELECT * FROM Users WHERE username LIKE '%$pattern%' OR nickname LIKE '%$pattern%' ORDER BY LOWER(username)");
@@ -848,7 +910,8 @@ class DBHelper {
     const int maxSuggestions = 5;
     // dart doesn't support function overloading so I can't import dart:math for the min() function
     // which is why I'm doing this
-    final int minned = (maxSuggestions <= list.length) ? maxSuggestions : list.length;
+    final int minned =
+        (maxSuggestions <= list.length) ? maxSuggestions : list.length;
     for (int i = 0; i < minned; i++) {
       users.add(User(
           username: list[i]["username"] as String?,
@@ -862,13 +925,14 @@ class DBHelper {
 
   Future<List<User>> getUserSuggestionsWithUsernameLike(String pattern) async {
     final Database dbClient = (await db)!;
-    final List<Map> list =
-        await dbClient.rawQuery("SELECT * FROM Users WHERE username LIKE '%$pattern%' ORDER BY LOWER(username)");
+    final List<Map> list = await dbClient.rawQuery(
+        "SELECT * FROM Users WHERE username LIKE '%$pattern%' ORDER BY LOWER(username)");
     final List<User> users = [];
     const int maxSuggestions = 5;
     // dart doesn't support function overloading so I can't import dart:math for the min() function
     // which is why I'm doing this
-    final int minned = (maxSuggestions <= list.length) ? maxSuggestions : list.length;
+    final int minned =
+        (maxSuggestions <= list.length) ? maxSuggestions : list.length;
     for (int i = 0; i < minned; i++) {
       users.add(User(
           username: list[i]["username"] as String?,
@@ -888,7 +952,8 @@ class DBHelper {
     const int maxSuggestions = 5;
     // dart doesn't support function overloading so I can't import dart:math for the min() function
     // which is why I'm doing this
-    final int minned = (maxSuggestions <= list.length) ? maxSuggestions : list.length;
+    final int minned =
+        (maxSuggestions <= list.length) ? maxSuggestions : list.length;
     for (int i = 0; i < minned; i++) {
       users.add(User(
           username: list[i]["username"] as String?,
@@ -902,8 +967,8 @@ class DBHelper {
 
   Future<User?> getUserWithAddress(String address) async {
     final Database dbClient = (await db)!;
-    final List<Map> list =
-        await dbClient.rawQuery("SELECT * FROM Users WHERE lower(address) = '${formatAddress(address)}'");
+    final List<Map> list = await dbClient.rawQuery(
+        "SELECT * FROM Users WHERE lower(address) = '${formatAddress(address)}'");
     // TODO: Handle multiple users with the same address
     if (list.isNotEmpty) {
       return User(
@@ -918,8 +983,8 @@ class DBHelper {
 
   Future<String?> getUsernameOrReturnAddress(String address) async {
     final Database dbClient = (await db)!;
-    final List<Map> list =
-        await dbClient.rawQuery("SELECT * FROM Users WHERE lower(address) = '${formatAddress(address)}'");
+    final List<Map> list = await dbClient.rawQuery(
+        "SELECT * FROM Users WHERE lower(address) = '${formatAddress(address)}'");
     // TODO: Handle multiple users with the same address
     if (list.isNotEmpty) {
       return list[0]["username"] as String?;
@@ -929,8 +994,8 @@ class DBHelper {
 
   Future<String?> getUsernameWithAddress(String address) async {
     final Database dbClient = (await db)!;
-    final List<Map> list =
-        await dbClient.rawQuery("SELECT * FROM Users WHERE lower(address) = '${formatAddress(address)}'");
+    final List<Map> list = await dbClient.rawQuery(
+        "SELECT * FROM Users WHERE lower(address) = '${formatAddress(address)}'");
     // TODO: Handle multiple users with the same address
     if (list.isNotEmpty) {
       return list[0]["username"] as String?;
@@ -941,7 +1006,8 @@ class DBHelper {
   Future<User?> getUserOrContactWithAddress(String address) async {
     final Database dbClient = (await db)!;
     List<Map> list;
-    list = await dbClient.rawQuery("SELECT * FROM Users WHERE lower(address) = '${formatAddress(address)}'");
+    list = await dbClient.rawQuery(
+        "SELECT * FROM Users WHERE lower(address) = '${formatAddress(address)}'");
     // TODO: Handle multiple users with the same address
     if (list.isNotEmpty) {
       return User(
@@ -957,8 +1023,8 @@ class DBHelper {
   Future<User?> isOnchainUsernameRecorded(String address) async {
     final Database dbClient = (await db)!;
     List<Map> list;
-    list = await dbClient
-        .rawQuery("SELECT * FROM Users WHERE type = 'ONCHAIN' AND lower(address) = '${formatAddress(address)}'");
+    list = await dbClient.rawQuery(
+        "SELECT * FROM Users WHERE type = 'ONCHAIN' AND lower(address) = '${formatAddress(address)}'");
     // TODO: Handle multiple users with the same address
     if (list.isNotEmpty) {
       return User(
@@ -973,8 +1039,8 @@ class DBHelper {
 
   Future<User?> getUserWithName(String name) async {
     final Database dbClient = (await db)!;
-    final List<Map> list =
-        await dbClient.rawQuery('SELECT * FROM Users WHERE lower(username) = ?', [name.toLowerCase()]);
+    final List<Map> list = await dbClient.rawQuery(
+        'SELECT * FROM Users WHERE lower(username) = ?', [name.toLowerCase()]);
     if (list.isNotEmpty) {
       return User(
           username: list[0]["username"] as String?,
@@ -992,14 +1058,18 @@ class DBHelper {
     List<Map> list = [];
     /*if (name.contains("@") && name.contains(".")) {
       list = await dbClient.rawQuery('SELECT * FROM Users WHERE lower(username) = ?', [name.toLowerCase()]);
-    } else */if (name.contains("@") || name.contains(".") || name.contains("#")) {
+    } else */
+    if (name.contains("@") || name.contains(".") || name.contains("#")) {
       list = await dbClient.rawQuery(
-          'SELECT * FROM Users WHERE lower(username) = ?', [SendSheetHelpers.stripPrefixes(name.toLowerCase())]);
+          'SELECT * FROM Users WHERE lower(username) = ?',
+          [SendSheetHelpers.stripPrefixes(name.toLowerCase())]);
     } else if (name.contains("★")) {
       list = await dbClient.rawQuery(
-          'SELECT * FROM Users WHERE lower(nickname) = ?', [SendSheetHelpers.stripPrefixes(name.toLowerCase())]);
+          'SELECT * FROM Users WHERE lower(nickname) = ?',
+          [SendSheetHelpers.stripPrefixes(name.toLowerCase())]);
     } else {
-      list = await dbClient.rawQuery('SELECT * FROM Users WHERE lower(username) = ? OR lower(nickname) = ?',
+      list = await dbClient.rawQuery(
+          'SELECT * FROM Users WHERE lower(username) = ? OR lower(nickname) = ?',
           [name.toLowerCase(), name.toLowerCase()]);
     }
 
@@ -1017,22 +1087,30 @@ class DBHelper {
 
   Future<bool> userExistsWithName(String name) async {
     final Database dbClient = (await db)!;
-    final int count = Sqflite.firstIntValue(
-        await dbClient.rawQuery('SELECT count(*) FROM Users WHERE lower(username) = ?', [name.toLowerCase()]))!;
+    final int count = Sqflite.firstIntValue(await dbClient.rawQuery(
+        'SELECT count(*) FROM Users WHERE lower(username) = ?',
+        [name.toLowerCase()]))!;
     return count > 0;
   }
 
   Future<bool> userExistsWithAddress(String address) async {
     final Database dbClient = (await db)!;
-    final int count = Sqflite.firstIntValue(
-        await dbClient.rawQuery("SELECT count(*) FROM Users WHERE lower(address) = '${formatAddress(address)}'"))!;
+    final int count = Sqflite.firstIntValue(await dbClient.rawQuery(
+        "SELECT count(*) FROM Users WHERE lower(address) = '${formatAddress(address)}'"))!;
     return count > 0;
   }
 
   Future<int> addUser(User user) async {
     final Database dbClient = (await db)!;
-    return dbClient.rawInsert('INSERT INTO Users (username, address, nickname, type, is_blocked) values(?, ?, ?, ?, ?)',
-        [user.username, user.address, user.nickname, user.type, user.is_blocked]);
+    return dbClient.rawInsert(
+        'INSERT INTO Users (username, address, nickname, type, is_blocked) values(?, ?, ?, ?, ?)',
+        [
+          user.username,
+          user.address,
+          user.nickname,
+          user.type,
+          user.is_blocked
+        ]);
   }
 
   Future<int> addOrReplaceUser(User user) async {
@@ -1043,7 +1121,8 @@ class DBHelper {
     if (!userExists) {
       return addUser(user);
     } else {
-      return dbClient!.rawUpdate('UPDATE Users SET address = ? WHERE username = ?', [
+      return dbClient!
+          .rawUpdate('UPDATE Users SET address = ? WHERE username = ?', [
         user.address,
         user.username,
       ]);
@@ -1052,13 +1131,16 @@ class DBHelper {
 
   Future<bool> deleteUser(User user) async {
     final Database dbClient = (await db)!;
-    return await dbClient.rawDelete("DELETE FROM Users WHERE lower(username) = '${user.username!.toLowerCase()}'") > 0;
+    return await dbClient.rawDelete(
+            "DELETE FROM Users WHERE lower(username) = '${user.username!.toLowerCase()}'") >
+        0;
   }
 
   // Blocked
   Future<List<User>> getBlocked() async {
     final Database dbClient = (await db)!;
-    final List<Map> list = await dbClient.rawQuery('SELECT * FROM Users WHERE is_blocked = 1 ORDER BY nickname');
+    final List<Map> list = await dbClient
+        .rawQuery('SELECT * FROM Users WHERE is_blocked = 1 ORDER BY nickname');
     final List<User> users = [];
     for (int i = 0; i < list.length; i++) {
       users.add(User(
@@ -1079,18 +1161,21 @@ class DBHelper {
     final bool nickname = false;
     // UPDATE by username / address / nickname:
     if (user.username != null) {
-      username = await dbClient!
-              .rawUpdate('UPDATE Users SET is_blocked = 1 WHERE lower(username) = ?', [user.username!.toLowerCase()]) >
+      username = await dbClient!.rawUpdate(
+              'UPDATE Users SET is_blocked = 1 WHERE lower(username) = ?',
+              [user.username!.toLowerCase()]) >
           0;
     }
     if (user.address != null) {
-      address = await dbClient!
-              .rawUpdate('UPDATE Users SET is_blocked = 1 WHERE lower(address) = ?', [user.address!.toLowerCase()]) >
+      address = await dbClient!.rawUpdate(
+              'UPDATE Users SET is_blocked = 1 WHERE lower(address) = ?',
+              [user.address!.toLowerCase()]) >
           0;
     }
     if (user.nickname != null) {
-      address = await dbClient!
-              .rawUpdate('UPDATE Users SET is_blocked = 1 WHERE lower(nickname) = ?', [user.nickname!.toLowerCase()]) >
+      address = await dbClient!.rawUpdate(
+              'UPDATE Users SET is_blocked = 1 WHERE lower(nickname) = ?',
+              [user.nickname!.toLowerCase()]) >
           0;
     }
     return username || address || nickname;
@@ -1102,18 +1187,18 @@ class DBHelper {
     bool address = false;
     bool nickname = false;
     if (user.username != null) {
-      username = await dbClient!
-              .rawUpdate("UPDATE Users SET is_blocked = 0 WHERE lower(username) = '${user.username!.toLowerCase()}'") >
+      username = await dbClient!.rawUpdate(
+              "UPDATE Users SET is_blocked = 0 WHERE lower(username) = '${user.username!.toLowerCase()}'") >
           0;
     }
     if (user.address != null) {
-      address = await dbClient!
-              .rawUpdate("UPDATE Users SET is_blocked = 0 WHERE lower(address) = '${user.address!.toLowerCase()}'") >
+      address = await dbClient!.rawUpdate(
+              "UPDATE Users SET is_blocked = 0 WHERE lower(address) = '${user.address!.toLowerCase()}'") >
           0;
     }
     if (user.nickname != null) {
-      nickname = await dbClient!
-              .rawUpdate("UPDATE Users SET is_blocked = 0 WHERE lower(nickname) = '${user.nickname!.toLowerCase()}'") >
+      nickname = await dbClient!.rawUpdate(
+              "UPDATE Users SET is_blocked = 0 WHERE lower(nickname) = '${user.nickname!.toLowerCase()}'") >
           0;
     }
     return username || address || nickname;
@@ -1122,21 +1207,23 @@ class DBHelper {
   Future<bool> blockedExistsWithName(String nickname) async {
     final Database dbClient = (await db)!;
     final int count = Sqflite.firstIntValue(await dbClient.rawQuery(
-        'SELECT count(*) FROM Users WHERE lower(nickname) = ? AND is_blocked = 1', [nickname.toLowerCase()]))!;
+        'SELECT count(*) FROM Users WHERE lower(nickname) = ? AND is_blocked = 1',
+        [nickname.toLowerCase()]))!;
     return count > 0;
   }
 
   Future<bool> blockedExistsWithAddress(String address) async {
     final Database dbClient = (await db)!;
-    final int count = Sqflite.firstIntValue(await dbClient
-        .rawQuery("SELECT count(*) FROM Users WHERE lower(address) = '${formatAddress(address)}' AND is_blocked = 1"))!;
+    final int count = Sqflite.firstIntValue(await dbClient.rawQuery(
+        "SELECT count(*) FROM Users WHERE lower(address) = '${formatAddress(address)}' AND is_blocked = 1"))!;
     return count > 0;
   }
 
   Future<bool> blockedExistsWithUsername(String username) async {
     final Database dbClient = (await db)!;
     final int count = Sqflite.firstIntValue(await dbClient.rawQuery(
-        'SELECT count(*) FROM Users WHERE lower(username) = ? AND is_blocked = 1', [username.toLowerCase()]))!;
+        'SELECT count(*) FROM Users WHERE lower(username) = ? AND is_blocked = 1',
+        [username.toLowerCase()]))!;
     return count > 0;
   }
 
@@ -1154,7 +1241,9 @@ class DBHelper {
     if (dbItem["to_address"] != null) {
       newData.to_address = dbItem["to_address"] as String?;
     }
-    if (dbItem["amount_raw"] != null && dbItem["amount_raw"] != "" && dbItem["amount_raw"] != "0") {
+    if (dbItem["amount_raw"] != null &&
+        dbItem["amount_raw"] != "" &&
+        dbItem["amount_raw"] != "0") {
       newData.amount_raw = dbItem["amount_raw"] as String?;
     }
     if (dbItem["is_request"] != null) {
@@ -1182,7 +1271,8 @@ class DBHelper {
       if (dbItem["fulfillment_time"] is int) {
         newData.fulfillment_time = dbItem["fulfillment_time"] as int?;
       } else {
-        newData.fulfillment_time = int.tryParse(dbItem["fulfillment_time"] as String);
+        newData.fulfillment_time =
+            int.tryParse(dbItem["fulfillment_time"] as String);
       }
     }
     if (dbItem["block"] != null) {
@@ -1302,14 +1392,23 @@ class DBHelper {
         [
           txData.from_address,
           txData.to_address,
-          if (txData.amount_raw == null || txData.amount_raw!.isEmpty) "" else txData.amount_raw,
+          if (txData.amount_raw == null || txData.amount_raw!.isEmpty)
+            ""
+          else
+            txData.amount_raw,
           if (txData.is_request) 1 else 0,
           txData.request_time,
           if (txData.is_fulfilled) 1 else 0,
           txData.fulfillment_time,
-          if (txData.block == null || txData.block!.isEmpty) "" else txData.block,
+          if (txData.block == null || txData.block!.isEmpty)
+            ""
+          else
+            txData.block,
           if (txData.link == null || txData.link!.isEmpty) "" else txData.link,
-          if (txData.memo_enc == null || txData.memo_enc!.isEmpty) "" else txData.memo_enc,
+          if (txData.memo_enc == null || txData.memo_enc!.isEmpty)
+            ""
+          else
+            txData.memo_enc,
           if (txData.is_memo) 1 else 0,
           if (txData.is_message) 1 else 0,
           if (txData.is_tx) 1 else 0,
@@ -1330,7 +1429,8 @@ class DBHelper {
   // txdata
   Future<List<TXData>> getTXData() async {
     final Database dbClient = (await db)!;
-    final List<Map> list = await dbClient.rawQuery('SELECT * FROM Transactions ORDER BY request_time DESC');
+    final List<Map> list = await dbClient
+        .rawQuery('SELECT * FROM Transactions ORDER BY request_time DESC');
     final List<TXData> transactions = [];
     for (int i = 0; i < list.length; i++) {
       transactions.add(createTXDataFromDB(list[i]));
@@ -1340,8 +1440,9 @@ class DBHelper {
 
   Future<TXData?> getTXDataByBlock(String? block) async {
     final Database dbClient = (await db)!;
-    final List<Map> list =
-        await dbClient.rawQuery('SELECT * FROM Transactions WHERE block = ? ORDER BY request_time DESC', [block]);
+    final List<Map> list = await dbClient.rawQuery(
+        'SELECT * FROM Transactions WHERE block = ? ORDER BY request_time DESC',
+        [block]);
     if (list.isNotEmpty) {
       return createTXDataFromDB(list[0]);
     }
@@ -1389,8 +1490,9 @@ class DBHelper {
 
   Future<TXData?> getBlockSpecificTXData(String block) async {
     final Database dbClient = (await db)!;
-    final List<Map> list =
-        await dbClient.rawQuery('SELECT * FROM Transactions WHERE block = ? ORDER BY request_time DESC', [block]);
+    final List<Map> list = await dbClient.rawQuery(
+        'SELECT * FROM Transactions WHERE block = ? ORDER BY request_time DESC',
+        [block]);
     if (list.isNotEmpty) {
       return createTXDataFromDB(list[0]);
     }
@@ -1399,8 +1501,9 @@ class DBHelper {
 
   Future<TXData?> getTXDataByRequestTime(String request_time) async {
     final Database dbClient = (await db)!;
-    final List<Map> list = await dbClient
-        .rawQuery('SELECT * FROM Transactions WHERE request_time = ? ORDER BY request_time DESC', [request_time]);
+    final List<Map> list = await dbClient.rawQuery(
+        'SELECT * FROM Transactions WHERE request_time = ? ORDER BY request_time DESC',
+        [request_time]);
     if (list.isNotEmpty) {
       return createTXDataFromDB(list[0]);
     }
@@ -1409,8 +1512,8 @@ class DBHelper {
 
   Future<TXData?> getTXDataByUUID(String uuid) async {
     final Database dbClient = (await db)!;
-    final List<Map> list =
-        await dbClient.rawQuery("SELECT * FROM Transactions WHERE lower(uuid) = '${uuid.toLowerCase()}'");
+    final List<Map> list = await dbClient.rawQuery(
+        "SELECT * FROM Transactions WHERE lower(uuid) = '${uuid.toLowerCase()}'");
     if (list.isNotEmpty) {
       return createTXDataFromDB(list[0]);
     }
@@ -1419,33 +1522,43 @@ class DBHelper {
 
   Future<bool> deleteTXData(TXData txData) async {
     final Database dbClient = (await db)!;
-    return await dbClient.rawDelete("DELETE FROM Transactions WHERE lower(uuid) = '${txData.uuid!.toLowerCase()}'") > 0;
+    return await dbClient.rawDelete(
+            "DELETE FROM Transactions WHERE lower(uuid) = '${txData.uuid!.toLowerCase()}'") >
+        0;
   }
 
   Future<bool> deleteTXDataByUUID(String uuid) async {
     final Database dbClient = (await db)!;
-    return await dbClient.rawDelete("DELETE FROM Transactions WHERE lower(uuid) = '${uuid.toLowerCase()}'") > 0;
+    return await dbClient.rawDelete(
+            "DELETE FROM Transactions WHERE lower(uuid) = '${uuid.toLowerCase()}'") >
+        0;
   }
 
   Future<bool> deleteTXDataByID(int? id) async {
     final Database dbClient = (await db)!;
-    return await dbClient.rawDelete("DELETE FROM Transactions WHERE id = ?", [id]) > 0;
+    return await dbClient
+            .rawDelete("DELETE FROM Transactions WHERE id = ?", [id]) >
+        0;
   }
 
   Future<bool> deleteTXDataByBlock(String block) async {
     final Database dbClient = (await db)!;
-    return await dbClient.rawDelete("DELETE FROM Transactions WHERE lower(block) = '${block.toLowerCase()}'") > 0;
+    return await dbClient.rawDelete(
+            "DELETE FROM Transactions WHERE lower(block) = '${block.toLowerCase()}'") >
+        0;
   }
 
   Future<bool> deleteTXDataByRequestTime(String request_time) async {
     final Database dbClient = (await db)!;
-    return await dbClient.rawDelete("DELETE FROM Transactions WHERE request_time = ?", [request_time]) > 0;
+    return await dbClient.rawDelete(
+            "DELETE FROM Transactions WHERE request_time = ?", [request_time]) >
+        0;
   }
 
   Future<List<TXData>> getUnfulfilledTXs() async {
     final Database dbClient = (await db)!;
-    final List<Map> list = await dbClient
-        .rawQuery('SELECT * FROM Transactions WHERE (is_fulfilled = 0 AND is_request = 1) ORDER BY request_time');
+    final List<Map> list = await dbClient.rawQuery(
+        'SELECT * FROM Transactions WHERE (is_fulfilled = 0 AND is_request = 1) ORDER BY request_time');
     final List<TXData> transactions = [];
     for (int i = 0; i < list.length; i++) {
       transactions.add(createTXDataFromDB(list[i]));
@@ -1456,7 +1569,8 @@ class DBHelper {
   Future<int> changeTXFulfillmentStatus(String? uuid, bool is_fulfilled) async {
     final Database dbClient = (await db)!;
     // return await dbClient.rawUpdate('UPDATE Transactions SET is_fulfilled = ? WHERE id = ?', [is_fulfilled ? 1 : 0, txData.id]);
-    return dbClient.rawUpdate('UPDATE Transactions SET is_fulfilled = ? WHERE uuid = ?', [
+    return dbClient
+        .rawUpdate('UPDATE Transactions SET is_fulfilled = ? WHERE uuid = ?', [
       if (is_fulfilled) 1 else 0,
       uuid,
     ]);
@@ -1465,7 +1579,8 @@ class DBHelper {
   Future<int> changeTXAckStatus(String uuid, bool is_acknowledged) async {
     final Database dbClient = (await db)!;
     // return await dbClient.rawUpdate('UPDATE Transactions SET is_fulfilled = ? WHERE id = ?', [is_fulfilled ? 1 : 0, txData.id]);
-    return dbClient.rawUpdate('UPDATE Transactions SET is_acknowledged = ? WHERE uuid = ?', [
+    return dbClient.rawUpdate(
+        'UPDATE Transactions SET is_acknowledged = ? WHERE uuid = ?', [
       if (is_acknowledged) 1 else 0,
       uuid,
     ]);
@@ -1478,14 +1593,17 @@ class DBHelper {
 
   Future<void> removeNanoToUsers() async {
     final Database dbClient = (await db)!;
-    await dbClient.rawDelete("DELETE FROM Users WHERE type = '${UserTypes.NANO_TO}'");
+    await dbClient
+        .rawDelete("DELETE FROM Users WHERE type = '${UserTypes.NANO_TO}'");
   }
 
   // Accounts
   Future<List<Account>> getAccounts(String? seed) async {
-    final String derivationMethod = await sl.get<SharedPrefsUtil>().getKeyDerivationMethod();
+    final String derivationMethod =
+        await sl.get<SharedPrefsUtil>().getKeyDerivationMethod();
     final Database dbClient = (await db)!;
-    final List<Map> list = await dbClient.rawQuery('SELECT * FROM Accounts ORDER BY acct_index');
+    final List<Map> list =
+        await dbClient.rawQuery('SELECT * FROM Accounts ORDER BY acct_index');
     final List<Account> accounts = [];
     for (int i = 0; i < list.length; i++) {
       accounts.add(Account(
@@ -1499,7 +1617,8 @@ class DBHelper {
           balance: list[i]["balance"] as String?));
     }
     for (final Account acc in accounts) {
-      acc.address ??= await NanoUtil.uniSeedToAddress(seed!, acc.index!, derivationMethod);
+      acc.address ??=
+          await NanoUtil.uniSeedToAddress(seed!, acc.index!, derivationMethod);
       // check if account has a user:
       final User? user = await getUserWithAddress(acc.address!);
       if (user != null) {
@@ -1509,10 +1628,12 @@ class DBHelper {
     return accounts;
   }
 
-  Future<List<Account>> getRecentlyUsedAccounts(String? seed, {int limit = 2}) async {
+  Future<List<Account>> getRecentlyUsedAccounts(String? seed,
+      {int limit = 2}) async {
     final Database dbClient = (await db)!;
     final List<Map> list = await dbClient.rawQuery(
-        'SELECT * FROM Accounts WHERE selected != 1 ORDER BY last_accessed DESC, acct_index ASC LIMIT ?', [limit]);
+        'SELECT * FROM Accounts WHERE selected != 1 ORDER BY last_accessed DESC, acct_index ASC LIMIT ?',
+        [limit]);
     final List<Account> accounts = [];
     for (int i = 0; i < list.length; i++) {
       accounts.add(Account(
@@ -1525,10 +1646,12 @@ class DBHelper {
           watchOnly: list[i]["watch_only"] == 1,
           balance: list[i]["balance"] as String?));
     }
-    final String derivationMethod = await sl.get<SharedPrefsUtil>().getKeyDerivationMethod();
+    final String derivationMethod =
+        await sl.get<SharedPrefsUtil>().getKeyDerivationMethod();
     // check if account has a user:
     for (final Account acc in accounts) {
-      acc.address ??= await NanoUtil.uniSeedToAddress(seed!, acc.index!, derivationMethod);
+      acc.address ??=
+          await NanoUtil.uniSeedToAddress(seed!, acc.index!, derivationMethod);
       final User? user = await getUserWithAddress(acc.address!);
       if (user != null) {
         acc.user = user;
@@ -1543,8 +1666,8 @@ class DBHelper {
     await dbClient.transaction((Transaction txn) async {
       int nextIndex = 0;
       int? curIndex;
-      final List<Map> accounts =
-          await txn.rawQuery('SELECT * from Accounts WHERE acct_index >= 0 ORDER BY acct_index ASC');
+      final List<Map> accounts = await txn.rawQuery(
+          'SELECT * from Accounts WHERE acct_index >= 0 ORDER BY acct_index ASC');
       for (int i = 0; i < accounts.length; i++) {
         curIndex = accounts[i]["acct_index"] as int?;
         if (curIndex != nextIndex) {
@@ -1554,7 +1677,8 @@ class DBHelper {
       }
       final int nextID = nextIndex + 1;
       final String nextName = nameBuilder!.replaceAll("%1", nextID.toString());
-      final String derivationMethod = await sl.get<SharedPrefsUtil>().getKeyDerivationMethod();
+      final String derivationMethod =
+          await sl.get<SharedPrefsUtil>().getKeyDerivationMethod();
       account = Account(
         index: nextIndex,
         name: nextName,
@@ -1569,7 +1693,13 @@ class DBHelper {
       );
       await txn.rawInsert(
           'INSERT INTO Accounts (name, acct_index, last_accessed, selected, address) values(?, ?, ?, ?, ?)',
-          [account!.name, account!.index, account!.lastAccess, if (account!.selected) 1 else 0, account!.address]);
+          [
+            account!.name,
+            account!.index,
+            account!.lastAccess,
+            if (account!.selected) 1 else 0,
+            account!.address
+          ]);
     });
     // check if account has a user:
     final User? user = await getUserWithAddress(account!.address!);
@@ -1579,14 +1709,15 @@ class DBHelper {
     return account;
   }
 
-  Future<Account?> addWatchOnlyAccount(String accountName, String watchAddress) async {
+  Future<Account?> addWatchOnlyAccount(
+      String accountName, String watchAddress) async {
     final Database dbClient = (await db)!;
     Account? account;
     await dbClient.transaction((Transaction txn) async {
       int nextIndex = 0;
       int? curIndex;
-      final List<Map> accounts =
-          await txn.rawQuery('SELECT * from Accounts WHERE acct_index >= 0 ORDER BY acct_index ASC');
+      final List<Map> accounts = await txn.rawQuery(
+          'SELECT * from Accounts WHERE acct_index >= 0 ORDER BY acct_index ASC');
       for (int i = 0; i < accounts.length; i++) {
         curIndex = accounts[i]["acct_index"] as int?;
         if (curIndex != nextIndex) {
@@ -1596,7 +1727,12 @@ class DBHelper {
       }
       final int nextID = nextIndex + 1;
       account = Account(
-          index: nextIndex, name: accountName, lastAccess: 0, selected: false, watchOnly: true, address: watchAddress);
+          index: nextIndex,
+          name: accountName,
+          lastAccess: 0,
+          selected: false,
+          watchOnly: true,
+          address: watchAddress);
       await txn.rawInsert(
           'INSERT INTO Accounts (name, acct_index, last_accessed, selected, watch_only, address) values(?, ?, ?, ?, ?, ?)',
           [
@@ -1616,14 +1752,16 @@ class DBHelper {
     return account;
   }
 
-  Future<Account?> addNewMainAccount(String? seed, {String? nameBuilder, int offset = 0}) async {
+  Future<Account?> addNewMainAccount(String? seed,
+      {String? nameBuilder, int offset = 0}) async {
     final Database dbClient = (await db)!;
     Account? account;
     await dbClient.transaction((Transaction txn) async {
       int nextIndex = offset;
       final int nextID = nextIndex + 1;
       final String nextName = nameBuilder!.replaceAll("%1", nextID.toString());
-      final String derivationMethod = await sl.get<SharedPrefsUtil>().getKeyDerivationMethod();
+      final String derivationMethod =
+          await sl.get<SharedPrefsUtil>().getKeyDerivationMethod();
       account = Account(
         index: nextIndex,
         name: nextName,
@@ -1637,7 +1775,13 @@ class DBHelper {
       );
       await txn.rawInsert(
           'INSERT INTO Accounts (name, acct_index, last_accessed, selected, address) values(?, ?, ?, ?, ?)',
-          [account!.name, account!.index, account!.lastAccess, if (account!.selected) 1 else 0, account!.address]);
+          [
+            account!.name,
+            account!.index,
+            account!.lastAccess,
+            if (account!.selected) 1 else 0,
+            account!.address
+          ]);
     });
     // check if account has a user:
     final User? user = await getUserWithAddress(account!.address!);
@@ -1649,18 +1793,27 @@ class DBHelper {
 
   Future<int> deleteAccount(Account account) async {
     final Database dbClient = (await db)!;
-    return dbClient.rawDelete('DELETE FROM Accounts WHERE acct_index = ?', [account.index]);
+    return dbClient.rawDelete(
+        'DELETE FROM Accounts WHERE acct_index = ?', [account.index]);
   }
 
   Future<int> saveAccount(Account account) async {
     final Database dbClient = (await db)!;
-    return dbClient.rawInsert('INSERT INTO Accounts (name, acct_index, last_accessed, selected) values(?, ?, ?, ?)',
-        [account.name, account.index, account.lastAccess, if (account.selected) 1 else 0]);
+    return dbClient.rawInsert(
+        'INSERT INTO Accounts (name, acct_index, last_accessed, selected) values(?, ?, ?, ?)',
+        [
+          account.name,
+          account.index,
+          account.lastAccess,
+          if (account.selected) 1 else 0
+        ]);
   }
 
   Future<int> changeAccountName(Account account, String name) async {
     final Database dbClient = (await db)!;
-    return dbClient.rawUpdate('UPDATE Accounts SET name = ? WHERE acct_index = ?', [name, account.index]);
+    return dbClient.rawUpdate(
+        'UPDATE Accounts SET name = ? WHERE acct_index = ?',
+        [name, account.index]);
   }
 
   Future<void> changeAccount(Account? account) async {
@@ -1668,26 +1821,33 @@ class DBHelper {
     return dbClient.transaction((Transaction txn) async {
       await txn.rawUpdate('UPDATE Accounts set selected = 0');
       // Get access increment count
-      final List<Map> list = await txn.rawQuery('SELECT max(last_accessed) as last_access FROM Accounts');
-      await txn.rawUpdate('UPDATE Accounts set selected = ?, last_accessed = ? where acct_index = ?',
+      final List<Map> list = await txn
+          .rawQuery('SELECT max(last_accessed) as last_access FROM Accounts');
+      await txn.rawUpdate(
+          'UPDATE Accounts set selected = ?, last_accessed = ? where acct_index = ?',
           [1, list[0]["last_access"] + 1, account!.index]);
     });
   }
 
   Future<int> updateAccountBalance(Account account, String balance) async {
     final Database dbClient = (await db)!;
-    return dbClient.rawUpdate('UPDATE Accounts set balance = ? where acct_index = ?', [balance, account.index]);
+    return dbClient.rawUpdate(
+        'UPDATE Accounts set balance = ? where acct_index = ?',
+        [balance, account.index]);
   }
 
   Future<Account?> getSelectedAccount(String? seed) async {
     final Database dbClient = (await db)!;
-    final List<Map> list = await dbClient.rawQuery('SELECT * FROM Accounts where selected = 1');
+    final List<Map> list =
+        await dbClient.rawQuery('SELECT * FROM Accounts where selected = 1');
     if (list.isEmpty) {
       return null;
     }
-    final String derivationMethod = await sl.get<SharedPrefsUtil>().getKeyDerivationMethod();
+    final String derivationMethod =
+        await sl.get<SharedPrefsUtil>().getKeyDerivationMethod();
     final String address = (list[0]["address"] as String?) ??
-        await NanoUtil.uniSeedToAddress(seed!, list[0]["acct_index"] as int, derivationMethod);
+        await NanoUtil.uniSeedToAddress(
+            seed!, list[0]["acct_index"] as int, derivationMethod);
     final Account account = Account(
         id: list[0]["id"] as int?,
         name: list[0]["name"] as String?,
@@ -1707,12 +1867,15 @@ class DBHelper {
 
   Future<Account?> getMainAccount(String? seed) async {
     final Database dbClient = (await db)!;
-    final List<Map> list = await dbClient.rawQuery('SELECT * FROM Accounts where acct_index = 0');
+    final List<Map> list =
+        await dbClient.rawQuery('SELECT * FROM Accounts where acct_index = 0');
     if (list.isEmpty) {
       return null;
     }
-    final String derivationMethod = await sl.get<SharedPrefsUtil>().getKeyDerivationMethod();
-    final String address = await NanoUtil.uniSeedToAddress(seed!, list[0]["acct_index"] as int, derivationMethod);
+    final String derivationMethod =
+        await sl.get<SharedPrefsUtil>().getKeyDerivationMethod();
+    final String address = await NanoUtil.uniSeedToAddress(
+        seed!, list[0]["acct_index"] as int, derivationMethod);
     final Account account = Account(
         id: list[0]["id"] as int?,
         name: list[0]["name"] as String?,
