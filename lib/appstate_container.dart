@@ -145,7 +145,7 @@ class StateContainerState extends State<StateContainer> {
 
   BaseTheme curTheme =
       SchedulerBinding.instance.window.platformBrightness == Brightness.dark
-          ? NautilusTheme()
+          ? PotassiusTheme()
           : IndiumTheme();
   bool nyanoMode = false;
   bool bananoMode = false;

@@ -71,8 +71,9 @@ class ThemeSetting extends SettingSelectionItem {
       case ThemeOptions.POTASSIUS:
         return PotassiusTheme();
       case ThemeOptions.NAUTILUS:
-      default:
         return NautilusTheme();
+      default:
+        return PotassiusTheme();
     }
   }
 
