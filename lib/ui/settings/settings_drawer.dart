@@ -125,10 +125,10 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
   NyaniconSetting _curNyaniconSetting = NyaniconSetting(NyaniconOptions.ON);
   FundingSetting _curFundingSetting = FundingSetting(FundingOptions.SHOW);
   MinRawSetting _curMinRawSetting = MinRawSetting(MinRawOptions.OFF);
-  CurrencyModeSetting _curCurrencyModeSetting = CurrencyModeSetting(CurrencyModeOptions.NANO);
+  CurrencyModeSetting _curCurrencyModeSetting = CurrencyModeSetting(CurrencyModeOptions.BANANO);
   UnlockSetting _curUnlockSetting = UnlockSetting(UnlockOption.NO);
   LockTimeoutSetting _curTimeoutSetting = LockTimeoutSetting(LockTimeoutOption.ONE);
-  ThemeSetting _curThemeSetting = ThemeSetting(ThemeOptions.NAUTILUS);
+  ThemeSetting _curThemeSetting = ThemeSetting(ThemeOptions.POTASSIUS);
 
   late bool _loadingAccounts;
 
@@ -1587,7 +1587,7 @@ class SettingsSheetState extends State<SettingsSheet> with TickerProviderStateMi
                 ],
               ),
             ),
-            const SizedBox(width: 90),
+            SizedBox(width: UIUtil.isTablet(context) ? 30 : 90),
           ],
         ),
         Divider(height: 2, color: StateContainer.of(context).curTheme.text15),
